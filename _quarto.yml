@@ -7,19 +7,26 @@ book:
   date: "10/6/2022"
   chapters:
     - index.qmd
-    - ch1.qmd
-    - ch2.qmd
-    - ch3.qmd
-    - ch4.qmd
-    - ch5.qmd
-    - SyriaNTL.qmd
-    - RojavaRefineries.qmd
-    - references.qmd
+    - part: "Learning"
+      chapters:
+        - ch1.qmd
+        - ch2.qmd
+        - ch3.qmd
+        - ch4.qmd
+    - part: "Case Studies"
+      chapters:
+        - SyriaNTL.qmd
+        - RojavaRefineries.qmd
   repo-url: https://github.com/oballinger/GEE_OSINT/
   repo-actions: [edit]
   downloads: [pdf, epub]
   sharing: [twitter, facebook]
-  logo: logo_white.png
+  sidebar:
+    logo: logo_white.png
+
+
+
+
 bibliography: references.bib
 
 format:
@@ -33,28 +40,3 @@ format:
     documentclass: scrreprt
   epub:
     cover-image: cover.png
-website:
-  favicon: logo_black.png
-  open-graph: true
-  google-analytics: "UA-XXXXXXXX"
-  navbar:
-      background: primary
-      search: true
-      left:
-        - text: "Home"
-          file: index.qmd
-  sidebar:
-    style: "docked"
-    search: true
-    contents:
-      - section: "Basics"
-        contents:
-          - index.qmd
-          - basics-knitr.qmd
-          - basics-jupyter.qmd
-      - section: "Layout"
-        contents:
-          - layout.qmd
-execute:
-  echo: false
-jupyter: python3

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./" class="sidebar-logo-link">
+      <a href="./index.html" class="sidebar-logo-link">
       <img src="./logo_white.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -140,46 +140,56 @@ ul.task-list li input[type="checkbox"] {
   <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ch1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Acquisition</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ch2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ch3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Algorithms</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ch4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Application Development</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./ch5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Case Studies</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Case Studies</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./SyriaNTL.html" class="sidebar-item-text sidebar-link">War at Night</a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./RojavaRefineries.html" class="sidebar-item-text sidebar-link">Refinery Detection</a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
-  </div>
-</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -255,6 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -276,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#FFFFFF' ,'primaryBorderColor':'#000000' , 'lineColor':'#009933'}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#FFFFFF' ,'primaryBorderColor':'#000000' , 'lineColor':'#009933'}}}%%
 
 flowchart
   A(Does it happen outside?) 
@@ -301,16 +312,35 @@ C--&gt;H
 </div>
 </div>
 </div>
-<p>This is, of course, a bit of an exaggeration. But if you’re interested in a visible phenomenon that happens outdoors and that isn’t very tiny, chances are an earth-observing satellite has taken a picture of it. What that picture can tell you naturally depends on what you’re interested in learning.</p>
-<p>For a deeper dive into analyzing optical satellite imagery, see the subsection on <a href="./ch3.html#multispectral-remote-sensing-remote_sensing">multispectral remote sensing.</a>.</p>
+<p>This is, of course, a bit of an exaggeration. But if you’re interested in a visible phenomenon that happens outdoors and that isn’t very tiny, chances are an earth-observing satellite has taken a picture of it. What that picture can tell you naturally depends on what you’re interested in learning. For a deeper dive into analyzing optical satellite imagery, see the subsection on <a href="./ch3.html#multispectral-remote-sensing-remote_sensing">multispectral remote sensing.</a>.</p>
+<p>There are several different types of optical satellite imagery available in the GEE catalogue. The main collections are the Landsat and Sentinel series of satellites, which are operated by NASA and the European Space Agency, respectively. Landsat satellites have been in orbit since 1972, and Sentinel satellites have been in orbit since 2015. Norway’s International Climate and Forest Initiative (NICFI) has also contributed to the GEE catalogue by providing a collection of optical imagery from Planet’s PlanetScope satellites. These are higher resolution (4.7 meters per pixel) than Landsat (30m/px) and Sentinel-2 (10m/px), but are only available for the tropics. Even higher resolution imagery (60cm/px) is available from the GEE catalogue from the National Agriculture Imagery Program, but it is only available for the United States. For more details, see the “Datasets” section below.</p>
 <section id="applications" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="applications">Applications</h3>
 <ul>
-<li>Geolocating pictures</li>
-<li>General surveillance</li>
-<li>Change/Damage detection</li>
-<li>Verifying the locations of artillery strikes</li>
-<li>Monitoring illegal mining/logging</li>
+<li>Geolocating pictures
+<ul>
+<li>Some of Bellingcat’s <a href="https://www.bellingcat.com/resources/how-tos/2014/07/09/verification-and-geolocation-tricks-and-tips-with-google-earth/">earliest work</a> involved figuring out where a picture was taken by cross-referencing it with optical satellite imagery.</li>
+</ul></li>
+<li>General surveillance
+<ul>
+<li><a href="https://web.archive.org/web/20220415054905/https://fas.org/blogs/security/2021/11/a-closer-look-at-chinas-missile-silo-construction/">Monitoring</a> Chinese missile silo construction.</li>
+<li>Amassing <a href="https://www.nytimes.com/2022/04/04/world/europe/bucha-ukraine-bodies.html">evidence</a> of genocide in Bucha, Ukraine</li>
+</ul></li>
+<li>Damage detection
+<ul>
+<li><a href="https://www.theguardian.com/world/2022/oct/27/before-and-after-satellite-imagery-will-track-ukraine-cultural-damage-un-says">Ukraine</a></li>
+<li><a href="https://reliefweb.int/report/mali/satellite-imagery-conflict-affected-areas-how-technology-can-support-wfp-emergency">Mali</a></li>
+<li><a href="https://www.pnas.org/doi/pdf/10.1073/pnas.2025400118">Around the World</a></li>
+</ul></li>
+<li>Verifying the locations of artillery/missile/drone strikes
+<ul>
+<li>The <a href="https://www.cnbc.com/2019/09/17/satellite-photos-show-extent-of-damage-to-saudi-aramco-plants.html">2019 attack</a> on Saudi Arabia’s Abqaiq oil processing facility.</li>
+</ul></li>
+<li>Monitoring illegal mining/logging
+<ul>
+<li>Global Witness <a href="https://www.globalwitness.org/en/campaigns/natural-resource-governance/myanmars-poisoned-mountains/">investigation</a> into illegal mining by militias in Myanmar.</li>
+<li>Tracking <a href="https://www.theguardian.com/environment/2016/mar/02/new-satellite-mapping-a-game-changer-against-illegal-logging">illegal logging</a> across the world.</li>
+</ul></li>
 </ul>
 </section>
 <section id="datasets" class="level3 unnumbered">
@@ -375,7 +405,7 @@ C--&gt;H
 <h2 data-number="1.2" class="anchored" data-anchor-id="radar-imagery"><span class="header-section-number">1.2</span> Radar Imagery</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/radar%20ships.jpg" class="img-fluid figure-img"></p>
+<p><img src="./images/radar ships.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Ships and interference from a radar system are visible in Zhuanghe Wan, near North Korea.</figcaption><p></p>
 </figure>
 </div>
@@ -418,6 +448,8 @@ C--&gt;H
 <p></p><figcaption class="figure-caption">A timelapse of nighttime lights over Northern Iraq showing the capture and liberation of Mosul by ISIS.</figcaption><p></p>
 </figure>
 </div>
+<p>Satellite images of the Earth at night a useful proxy for human activity. The brightness of a given area at night is a function of the number of people living there and the nature of their activities. The effects of conflict, natural disasters, and economic development can all be inferred from changes in nighttime lights.</p>
+<p>The timelapse above reveals a number of interesting things: The capture of Mosul by ISIS in 2014 and the destruction of its infrastructure during the fighting (shown as the city darkening), as well as the liberation of the city by the Iraqi military in 2017 are all visible in nighttime lights. The code to create this gif, as well as a more in-depth tutorial on the uses of nighttime lights, can be found in the <a href="./SyriaNTL.html">“War at Night”</a> case study.</p>
 <section id="applications-2" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="applications-2">Applications</h3>
 <ul>
@@ -462,6 +494,8 @@ C--&gt;H
 <p></p><figcaption class="figure-caption">Sulphur Dioxide plume resulting from ISIS attack on the Al-Mishraq Sulphur Plant in Iraq</figcaption><p></p>
 </figure>
 </div>
+<p>Climate and atmospheric data can be used to track the effects of conflict on the environment. The European Space Agency’s Sentinel-5p satellites measure the concentration of a number of atmospheric gases, including nitrogen dioxide, methane, and ozone. Measurements are available on a daily basis at a fairly high resolution (1km), allowing for the detection of localized sources of pollution such as oil refineries or power plants. For example, see this <a href="https://www.bellingcat.com/resources/2021/04/15/what-oil-satellite-technology-and-iraq-can-tell-us-about-pollution/">Bellingcat article</a> in which Wim Zwijnenburg and I trace pollution to specific facilities operated by multinational oil companies in Iraq.</p>
+<p>The Copernicus Atmosphere Monitoring Service (CAMS) provides similar data at a lower spatial resolution (45km), but measurements are avaialble on an hourly basis. The timelapse above utilizes CAMS data to show a sulphur dioxide plume resulting from an ISIS attack on the Al-Mishraq Sulphur Plant in Iraq. The plant was used to produce sulphuric acid, for use in fertilizers and pesticides. The attack destroyed the plant, causing a fire which burned for a month and released <a href="https://earthobservatory.nasa.gov/images/88994/sulfur-dioxide-spreads-over-iraq">21 kilotons</a> of sulphur dioxide into the atmosphere per day; the largest human-made release of sulphur dioxide in history.</p>
 <section id="applications-3" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="applications-3">Applications</h3>
 <ul>
@@ -510,10 +544,12 @@ C--&gt;H
 <p></p><figcaption class="figure-caption">Zinc deposits across Central Africa</figcaption><p></p>
 </figure>
 </div>
+<p>Mining activities often play an important role in conflict. According to an influential <a href="https://www.aeaweb.org/articles?id=10.1257/aer.20150774">study</a>, “the historical rise in mineral prices might explain up to one-fourth of the average level of violence across African countries” between 1997 and 2010. Data on the location of mineral deposits can be used to identify areas where mining activities are likely to be taking place, and several such datasets are available in Google Earth Engine.</p>
 <section id="applications-4" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="applications-4">Applications</h3>
 <ul>
 <li>Monitoring mining activity</li>
+<li>Identifying areas where mining activities are likely to be taking place</li>
 <li>Mapping the distribution of resources in rebel held areas in conflicts fueled by resource extraction</li>
 </ul>
 </section>
@@ -885,7 +921,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -907,7 +945,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -943,24 +998,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

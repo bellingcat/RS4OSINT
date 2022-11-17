@@ -1,1 +1,66 @@
-# Getting Started
+# Remote Sensing 
+
+[Remote sensing](https://www.sciencedirect.com/topics/medicine-and-dentistry/remote-sensing) is the science of obtaining information about an object or phenomenon without making physical contact with the object. Remote sensing can be done with various types of electromagnetic radiation such as visible, infrared, or microwave. The electromagnetic radiation is either emitted or reflected from the object being sensed. The reflected radiation is then collected by a sensor and processed to obtain information about the object.
+
+![](./images/diagram.png)
+
+## Orbits
+
+The Landsat satellites are in a sun-synchronous orbit, meaning they pass over the same spot on Earth at the same time every day. The Sentinel satellites are in a polar orbit, meaning they pass over the same spot on Earth twice a day, once in the morning and once in the afternoon. NASA have created a great [visualisation](https://svs.gsfc.nasa.gov/4745) showing the orbits of the Landsat and Sentinel-2 satellites:
+
+{{< video https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004745/landsat_w_sentinel_ls8ls9sAsB_fade_1080p60.mp4 >}}
+
+
+The Sentinel satellites are in a lower orbit than Landsat, meaning they are closer to the Earth and have a higher resolution. 
+
+
+There are three spatial, spectral, and temporal. 
+
+## Resolution
+
+### Spatial Resolution {.unnumbered}
+Spatial resolution governs how "sharp" an image looks. The Google Maps satellite basemap, for example, is really sharp 
+Most of the optical imagery that is freely available has relatively low spatial resolution (it looks more grainy than, for example, the Google satellite basemap), 
+
+![](./images/Landsat.png)
+![](./images/Sentinel2.png)
+![](./images/Maxar.png)
+
+
+![](./images/kh11.png)
+
+
+
+### Spectral Resolution {.unnumbered}
+
+What open source imagery lacks in spatial resolution it often makes up for with *spectral* resolution. Really sharp imagery from MAXAR, for example, collects 
+
+Different materials reflect light differently. An apple absorbs shorter wavelengths (e.g. blue and green), and reflects longer wavelengths (red). Our eyes use that information-- the color-- to distinguish between different objects. But our eyes can only see a relatively small sliver of the electromagnetic spectrum covering blue, yellow, and red; we can't see UV or infrared wavelengths, for example, though the extent to which different materials reflect or absorb these wavelengths is just as useful for distinguishing between them. For example, Astroturf (fake plastic grass) and real grass will both look green to us, espeically from a satellite image. But living plants absorb radiation from the sun in a part of the light spectrum that we can't see. There's a spectral index called the Normalized Difference Vegetation Index (NDVI) which exploits this fact to isolate vegetation in multispectral satellite imagery. So if we look at [Gilette Stadium](https://en.wikipedia.org/wiki/Gillette_Stadium) near Boston, we can tell that the three training fields south of the stadium are real grass (they generate high NDVI values, showing up red), while the pitch in the stadium itself is astroturf (generating low NDVI values, showing up blue).
+
+![VHR image of Gilette Stadium with Sentinel-2 derived NDVI overlay](images/NDVI.jpg)
+
+In other words, even though these fields are all green and indistinguishable to the human eye, their *spectral profiles* beyond the visible light spectrum differ, and we can use this information to distinguish between them. Below is a plot of the spectral profiles of different materials, including oil.
+
+<iframe title="Spectral Profiles of Different Materials" aria-label="Interactive line chart" id="datawrapper-chart-b1kcX" src="https://datawrapper.dwcdn.net/b1kcX/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
+
+The European Space Agency's Sentinel-2 satellite collects spectral information well beyond the visible light spectrum, enabling this sort of analysis. It chops the electromagnetic spectrum up into "bands", and measures how strongly wavelengths in each of those bands is reflected:
+
+![](images/S2_bands.png)
+
+We'll be using this satellite to distinguish between oil and other materials, similar to the way we were able to distinguish between real and fake grass at Gilette Stadium. First, we'll have to do a bit of pre-processing on the Sentinel-2 imagery after which we'll train a machine learning model to identify oil. 
+
+### Temporal Resolution {.unnumbered}
+
+Finally, time 
+There is often a tradeoff between spatial and temporal resolution. 
+
+The Google Maps basemap is very high resolution, available globally, and is freely available. But it has no *temporal* dimension: it's a snapshot from one particular point in time. If the thing we're interested in involves *changes* over time, this basemap will be of limited use. 
+
+The **"revisit rate"** is the time it takes a satellite to image the same point on earth 
+
+* [Sentinel 2](https://sentinel.esa.int/web/sentinel/missions/sentinel-2): 5 days 
+* [Landsat 9](https://landsat.gsfc.nasa.gov/satellites/landsat-9/#:~:text=Landsat%209%20replaces%20Landsat%207,for%20Landsat%208%20%2B%20Landsat%207.): 8 days 
+* [Planet SkySat](https://www.planet.com/pulse/12x-rapid-revisit-announcement/): 2-3 hours 
+
+
