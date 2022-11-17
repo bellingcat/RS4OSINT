@@ -1,0 +1,217 @@
+# Data Acquisition
+
+One of the main advantages of GEE is that it hosts several Petabytes of satellite imagery and other spatial data sets, [all in one place](https://developers.google.com/earth-engine/datasets). Among these are a many that could prove useful to those investigating illegal mining and logging, estimating conflict-induced damage, monitoring pollution from extractive industries, conducting maritime surveillance without relying on ship transponders, verifying the locations of artillery strikes, tracking missile defense systems, and many other topics. This section highlights ten categories of geospatial data available natively in the GEE catalogue ranging from optical satellite imagery, to atmospheric data, to building footprints. Each sub-section provides an overview of the given data type, suggests potential applications, and lists the corresponding datasets in the GEE catalogue. The datasets listed under each heading are **not** an exhaustive list-- there are over 500 in the whole catalogue, and the ones listed in this section are simply the ones with the most immediate relevance to open source investigations. If a particular geospatial dataset you want to work with isn't hosted in the GEE catalog, you can upload your own data. We'll cover that in the next section. 
+
+
+## Optical Imagery
+![Sentinel-2 timelapse showing the ancient city of Hasankeyf being flooded following the construction of a dam by the Turkish government.](./images/hasankeyf.gif)
+
+Optical satellite imagery is the bread and butter of many open source investiagtions. It would be tough to list off all of the possible use cases, so here's a handy flowchart:
+
+```{mermaid}
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#FFFFFF' ,'primaryBorderColor':'#000000' , 'lineColor':'#009933'}}}%%
+
+flowchart
+  A(Does it happen outside?) 
+  A--> B(Yes)
+  A--> C(No)
+  D(Is it very small?)
+  B-->D
+  E(Yes)
+  F(No)
+    D-->F
+    D-->E
+G(Use optical satellite imagery)
+H(Don't use optical satellite imagery)
+E-->H
+F-->G
+C-->H
+```
+
+This is, of course, a bit of an exaggeration. But if you're interested in a visible phenomenon that happens outdoors and that isn't very tiny, chances are an earth-observing satellite has taken a picture of it. What that picture can tell you naturally depends on what you're interested in learning. 
+
+For a deeper dive into analyzing optical satellite imagery, see the subsection on [multispectral remote sensing.](ch3.qmd#multispectral-remote-sensing-remote_sensing).
+
+### Applications {.unnumbered}
+
+* Geolocating pictures
+* General surveillance
+* Change/Damage detection 
+* Verifying the locations of artillery strikes 
+* Monitoring illegal mining/logging
+
+
+### Datasets {.unnumbered}
+
+| Sensor      | Timeframe    | Resolution | Coverage |
+| ----------- | ------------ | ---------- | -------- |
+| [Landsat 1-5](https://developers.google.com/earth-engine/datasets/catalog/landsat-mss) | 1972–1999    | 30m        | Global   |
+| [Landsat 7](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LE07_C02_T1_L2)   | 1999–2021    | 30m        | Global   |
+| [Landsat 8](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2)   | 2013–Present | 30m        | Global   |
+| [Landsat 9](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC09_C02_T1_L2)   | 2021–Present | 30m        | Global   |
+| [Sentinel-2](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED)  | 2015–Present | 10m        | Global   |
+| [NICFI](https://developers.google.com/earth-engine/datasets/tags/nicfi)       | 2015-Present | 4.7m       | Tropics  |
+| [NAIP](https://developers.google.com/earth-engine/datasets/catalog/USDA_NAIP_DOQQ)        | 2002-2021    | 0.6m       | USA      |
+
+
+## Radar Imagery 
+![Ships and interference from a radar system are visible in Zhuanghe Wan, near North Korea.](./images/radar%20ships.jpg)
+
+
+### Applications {.unnumbered}
+
+* Change/Damage detection 
+* Tracking military radar systems
+* Maritime surveillance
+* Monitoring illegal mining/logging
+
+### Datasets {.unnumbered}
+
+| Sensor      | Timeframe    | Resolution | Coverage |
+| ----------- | ------------ | ---------- | -------- |
+| [Sentinel 1](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD) | 2014-Present    | 10m        | Global   |
+
+
+## Nighttime Lights 
+![A timelapse of nighttime lights over Northern Iraq showing the capture and liberation of Mosul by ISIS.](./images/Figure_1.gif)
+
+### Applications {.unnumbered}
+
+* Damage detection 
+* Identifying gas flaring/oil production
+* Identifying urban areas/military bases illuminated at night 
+
+### Datasets {.unnumbered}
+
+| Sensor      | Timeframe    | Resolution | Coverage |
+| ----------- | ------------ | ---------- | -------- |
+| [DMSP-OLS](https://developers.google.com/earth-engine/datasets/catalog/NOAA_DMSP-OLS_NIGHTTIME_LIGHTS) | 1992-2014    | 927m        | Global   |
+| [VIIRS](https://developers.google.com/earth-engine/datasets/catalog/NOAA_VIIRS_DNB_MONTHLY_V1_VCMSLCFG)   | 2014-Present    | 463m        | Global   |
+
+
+
+## Climate and Atmospheric Data
+![Sulphur Dioxide plume resulting from ISIS attack on the Al-Mishraq Sulphur Plant in Iraq](./images/mishraq_small.gif)
+
+### Applications {.unnumbered}
+
+* Monitoring of airborne pollution 
+* Tracing pollution back to specific facilities and companies 
+* Visualizing the effects of one-off environmental catastrophes 
+    - Nordstream 1 leak
+    - ISIS setting Mishraq sulphur plant on fire 
+
+### Datasets {.unnumbered}
+
+| Sensor      | Timeframe    | Resolution | Coverage |
+| ----------- | ------------ | ---------- | -------- |
+| [CAMS NRT](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_CAMS_NRT) | 2016-Present    | 44528m        | Global   |
+| [Sentinel-5p](https://developers.google.com/earth-engine/datasets/catalog/sentinel-5p)   | 2018-Present    | 1113m        | Global   |
+
+
+## Mineral Deposits
+![Zinc deposits across Central Africa](./images/mining.jpg)
+
+### Applications {.unnumbered}
+
+* Monitoring mining activity
+* Mapping the distribution of resources in rebel held areas in conflicts fueled by resource extraction
+
+
+### Datasets {.unnumbered}
+
+| Sensor      | Timeframe    | Resolution | Coverage |
+| ----------- | ------------ | ---------- | -------- |
+| [iSDA](https://developers.google.com/earth-engine/datasets/tags/isda) | 2001-2017    | 30m        | Africa   |
+
+
+## Fires
+![Detected fires over Ukraine since 27/02/2022 showing the frontline of the war](./images/fires.jpg)
+
+Earth-observing satellites can detect "thermal anomalies" (fires) from space. NASA's Fire Information for Resource Management System (FIRMS) provides daily data on active fires in near real time, going back to the year 2000. Carlos Gonzales wrote a comprehensive [Bellingcat article](https://www.bellingcat.com/resources/2022/10/04/scorched-earth-using-nasa-fire-data-to-monitor-war-zones/) on the use of FIRMS to monitor war zones from Ukraine to Ethiopia. The map above shows that FIRMS detected fires over Eastern Ukraine trace the frontline of the war. 
+
+FIRMS data are derived from the MODIS satellite, but only show the central location and intensity of a detected fire. Another MODIS product (linked in the table below) generates a monthly map of burned areas, which can be used to assess the spatial extent of fires. 
+
+
+### Applications {.unnumbered}
+* Identification of possible artillery strikes/fighting in places like Ukraine 
+* Environmental warfare and "scorched earth" policies
+* Large scale arson
+    - e.g. [Refugee camps burned down in Myanmar](https://citizenevidence.org/2021/02/26/using-viirs-fire-data-for-human-rights-research/)
+
+### Datasets {.unnumbered}
+
+| Sensor      | Timeframe    | Resolution | Coverage |
+| ----------- | ------------ | ---------- | -------- |
+| [FIRMS](https://developers.google.com/earth-engine/datasets/catalog/FIRMS)  |2000-Present     |  1000m        | Global   |
+| [MODIS Burned Area](https://developers.google.com/earth-engine/datasets/catalog/CIESIN_GPWv411_GPW_Population_Count)  | 2000-Present    | 500m        | Global   |
+
+
+## Population Density Estimates
+![Population density estimates around Pyongyang, North Korea](./images/pop.jpg)
+
+Sometimes, we may want to get an estimate the population in a specific area to ballpark how many people might be affected by a natural disaster, a counteroffensive, or a missile strike. You can't really google "what is the population in this rectangle i've drawn in Northeastern Syria?" and get a good answer. Luckily, there are several spatial population datasets hosted in GEE that let you do just that. Some, such as WorldPop, provide estimated breakdowns by age and sex as well. However, it is extremely important to bear in mind that these are **estimates**, and will **not** take into account things like conflict-induced displacement. For example, Oak Ridge National Laboratory's LandScan program has released high-resolution population data for Ukraine, but this pertains to the pre-war population distribution. The war has radically changed this distribution, so these estimates no longer reflect where people *are*. Still, this dataset could be used to roughly estimate displacement or the number of people who will need new housing. 
+
+### Applications: {.unnumbered}
+
+* Rough estimates of civilians at risk from conflict or disaster, provided at a high spatial resolution 
+
+### Datasets {.unnumbered}
+
+| Sensor      | Timeframe    | Resolution | Coverage |
+| ----------- | ------------ | ---------- | -------- |
+| [Worldpop](https://developers.google.com/earth-engine/datasets/tags/worldpop)  |2000-2021     |  92m        | Global   |
+| [GPW](https://developers.google.com/earth-engine/datasets/catalog/CIESIN_GPWv411_GPW_Population_Count)  | 2000-2021    | 927m        | Global   |
+| [LandScan](https://developers.google.com/earth-engine/datasets/catalog/DOE_ORNL_LandScan_HD_Ukraine_202201)   | 2013–Present | 100m        | Ukraine   |
+
+
+
+## Building Footprints 
+![Building footprints in Mariupol, Ukraine colored by whether the building is damaged](./images/footprints.png)
+
+A building footprint dataset contains the two dimensional outlines of buildings in a given area. Currently, GEE hosts one building footprint dataset which covers all of Africa. In 2022, Microsoft released a free [global building footprint dataset](https://www.microsoft.com/en-us/maps/building-footprints), though to use it in Earth Engine you'll have to download it from their [GitHub page](https://github.com/Microsoft/USBuildingFootprints) and upload it manually to GEE. The same goes for OpenStreetMap (OSM), a public database of building footprints, roads, and other features that also contains useful annotations for many buildings indicating their use. [Benjamin Strick](https://www.youtube.com/watch?v=bJkV3l5Haq0) has a great youtube video on conducting investigations using OSM data.
+
+### Applications: {.unnumbered}
+
+* Joining damage estimate data with the number of buildings in an area
+
+### Datasets {.unnumbered}
+
+| Dataset      | Timeframe    | Coverage |
+| ----------- | ------------ | -------- |
+| [Open Buildings](https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_Research_open-buildings_v2_polygons)  |2022   | Africa   |
+
+
+## Administrative Boundaries 
+![Second-level administrative boundaries in Yemen](./images/fao_gaul.jpg)
+
+Spatial analysis often have to aggregate information over a defined area; we may want to assess the total burned area by province in Ukraine, or count the number of Saudi airstrikes by district in Yemen. For that, we need data on these administrative boundaries. GEE hosts several such datasets at the country, province, and district (or equivalent) level. 
+
+### Applications {.unnumbered}
+
+* Quick spatial calculations for different provinces/districts in a country
+    - e.g. counts of conflict events by district over time
+
+### Datasets {.unnumbered}
+
+| Dataset      | Timeframe    | Coverage |
+| ----------- | ------------ | -------- |
+| [FAO GAUL](https://developers.google.com/earth-engine/datasets/tags/gaul)  |2015   | Global   |
+
+
+## Global Power Plant Database
+![Power plants in Ukraine colored by type](./images/power.jpg)
+
+The Global Power Plant Database is a comprehensive, open source database of power plants around the world. It centralizes power plant data to make it easier to navigate, compare and draw insights. Each power plant is geolocated and entries contain information on plant capacity, generation, ownership, and fuel type. As of June 2018, the database includes around 28,500 power plants from 164 countries. The database is curated by the [World Resources Institude (WRI)](https://datasets.wri.org/dataset/globalpowerplantdatabase).
+
+### Applications: {.unnumbered}
+
+* Analyzing the impact of conflict on critical infrastructure.
+    - e.g. fighting in Ukraine taking place around nuclear power facilities. 
+* Could be combined with the atmospheric measurements of different pollutants and the population estimates data to assess the impact of various forms of energy generation on air quality and public health. 
+
+### Datasets {.unnumbered}
+
+| Dataset      | Timeframe    | Coverage |
+| ----------- | ------------ | -------- |
+| [GPPD](https://developers.google.com/earth-engine/datasets/catalog/WRI_GPPD_power_plants)  |2018   | Global   |

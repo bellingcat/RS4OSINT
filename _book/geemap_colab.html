@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Google Earth Engine for OSINT - 6&nbsp; Install geemap</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./SyriaNTL.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Install geemap</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./logo_white.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Google Earth Engine for OSINT</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/oballinger/GEE_OSINT/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="./Google-Earth-Engine-for-OSINT.pdf">
+            <i class="bi bi-bi-file-pdf pe-1"></i>
+          Download PDF
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="./Google-Earth-Engine-for-OSINT.epub">
+            <i class="bi bi-bi-journal pe-1"></i>
+          Download ePub
+          </a>
+        </li>
+    </ul>
+    <a href="" title="Share" id="sidebar-tool-dropdown-1" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-1">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Acquisition</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Algorithms</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Application Development</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Case Studies</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SyriaNTL.html" class="sidebar-item-text sidebar-link">War at Night</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geemap_colab.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Install geemap</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#import-geemap-library" id="toc-import-geemap-library" class="nav-link active" data-scroll-target="#import-geemap-library"><span class="toc-section-number">6.1</span>  Import geemap library</a></li>
+  <li><a href="#create-an-interactive-map" id="toc-create-an-interactive-map" class="nav-link" data-scroll-target="#create-an-interactive-map"><span class="toc-section-number">6.2</span>  Create an interactive map</a></li>
+  <li><a href="#add-earth-engine-data" id="toc-add-earth-engine-data" class="nav-link" data-scroll-target="#add-earth-engine-data"><span class="toc-section-number">6.3</span>  Add Earth Engine data</a></li>
+  <li><a href="#display-the-map" id="toc-display-the-map" class="nav-link" data-scroll-target="#display-the-map"><span class="toc-section-number">6.4</span>  Display the map</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.dev/oballinger/GEE_OSINT/blob/main/geemap_colab.ipynb" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Install geemap</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+
+<table class="ee-notebook-buttons" align="left">
+<tbody><tr><td>
+<a target="_blank" href="https://github.com/giswqs/earthengine-py-notebooks/tree/master/Template/geemap_colab.ipynb"><img width="32px" src="https://www.tensorflow.org/images/GitHub-Mark-32px.png"> View source on GitHub</a>
+</td>
+<td>
+<a target="_blank" href="https://nbviewer.jupyter.org/github/giswqs/earthengine-py-notebooks/blob/master/Template/geemap_colab.ipynb"><img width="26px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/883px-Jupyter_logo.svg.png">Notebook Viewer</a>
+</td>
+<td>
+<a target="_blank" href="https://colab.research.google.com/github/giswqs/earthengine-py-notebooks/blob/master/Template/geemap_colab.ipynb"><img src="https://www.tensorflow.org/images/colab_logo_32px.png"> Run in Google Colab</a>
+</td>
+
+</tr></tbody></table>
+<div class="cell" data-outputid="6ab93686-cecb-4a30-fd55-fc781370ace7" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install geemap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting geemap
+  Downloading geemap-0.17.1-py2.py3-none-any.whl (2.1 MB)
+     |████████████████████████████████| 2.1 MB 12.3 MB/s 
+Requirement already satisfied: gdown in /usr/local/lib/python3.7/dist-packages (from geemap) (4.4.0)
+Collecting jupyterlab&gt;=3
+  Downloading jupyterlab-3.4.8-py3-none-any.whl (8.8 MB)
+     |████████████████████████████████| 8.8 MB 46.2 MB/s 
+Collecting colour
+  Downloading colour-0.1.5-py2.py3-none-any.whl (23 kB)
+Collecting scooby
+  Downloading scooby-0.6.0-py3-none-any.whl (14 kB)
+Requirement already satisfied: pandas in /usr/local/lib/python3.7/dist-packages (from geemap) (1.3.5)
+Requirement already satisfied: earthengine-api&gt;=0.1.304 in /usr/local/lib/python3.7/dist-packages (from geemap) (0.1.323)
+Collecting geocoder
+  Downloading geocoder-1.38.1-py2.py3-none-any.whl (98 kB)
+     |████████████████████████████████| 98 kB 8.8 MB/s 
+Collecting ipyevents
+  Downloading ipyevents-2.0.1-py2.py3-none-any.whl (130 kB)
+     |████████████████████████████████| 130 kB 69.7 MB/s 
+Collecting python-box
+  Downloading python_box-6.0.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+     |████████████████████████████████| 3.0 MB 62.3 MB/s 
+Collecting ee-extra&gt;=0.0.10
+  Downloading ee_extra-0.0.14.tar.gz (198 kB)
+     |████████████████████████████████| 198 kB 75.6 MB/s 
+Collecting ipyfilechooser&gt;=0.6.0
+  Downloading ipyfilechooser-0.6.0-py3-none-any.whl (11 kB)
+Collecting ipyleaflet&gt;=0.17.0
+  Downloading ipyleaflet-0.17.1-py3-none-any.whl (3.4 MB)
+     |████████████████████████████████| 3.4 MB 75.5 MB/s 
+Collecting geeadd&gt;=0.5.1
+  Downloading geeadd-0.5.6-py3-none-any.whl (30 kB)
+Collecting pycrs
+  Downloading PyCRS-1.0.2.tar.gz (36 kB)
+Collecting whiteboxgui&gt;=0.6.0
+  Downloading whiteboxgui-0.7.0-py2.py3-none-any.whl (99 kB)
+     |████████████████████████████████| 99 kB 9.4 MB/s 
+Collecting xyzservices
+  Downloading xyzservices-2022.9.0-py3-none-any.whl (55 kB)
+     |████████████████████████████████| 55 kB 4.3 MB/s 
+Requirement already satisfied: folium&gt;=0.11.0 in /usr/local/lib/python3.7/dist-packages (from geemap) (0.12.1.post1)
+Requirement already satisfied: pillow in /usr/local/lib/python3.7/dist-packages (from geemap) (7.1.2)
+Requirement already satisfied: matplotlib in /usr/local/lib/python3.7/dist-packages (from geemap) (3.2.2)
+Collecting ffmpeg-python
+  Downloading ffmpeg_python-0.2.0-py3-none-any.whl (25 kB)
+Requirement already satisfied: numpy in /usr/local/lib/python3.7/dist-packages (from geemap) (1.21.6)
+Collecting bqplot
+  Downloading bqplot-0.12.36-py2.py3-none-any.whl (1.2 MB)
+     |████████████████████████████████| 1.2 MB 57.8 MB/s 
+Collecting pyshp&gt;=2.1.3
+  Downloading pyshp-2.3.1-py2.py3-none-any.whl (46 kB)
+     |████████████████████████████████| 46 kB 3.7 MB/s 
+Collecting sankee&gt;=0.1.0
+  Downloading sankee-0.2.0.tar.gz (29 kB)
+Collecting ipytree
+  Downloading ipytree-0.2.2-py2.py3-none-any.whl (1.3 MB)
+     |████████████████████████████████| 1.3 MB 53.6 MB/s 
+Collecting geojson
+  Downloading geojson-2.5.0-py2.py3-none-any.whl (14 kB)
+Requirement already satisfied: google-auth-httplib2&gt;=0.0.3 in /usr/local/lib/python3.7/dist-packages (from earthengine-api&gt;=0.1.304-&gt;geemap) (0.0.4)
+Requirement already satisfied: google-auth&gt;=1.4.1 in /usr/local/lib/python3.7/dist-packages (from earthengine-api&gt;=0.1.304-&gt;geemap) (1.35.0)
+Requirement already satisfied: google-cloud-storage in /usr/local/lib/python3.7/dist-packages (from earthengine-api&gt;=0.1.304-&gt;geemap) (1.18.1)
+Requirement already satisfied: future in /usr/local/lib/python3.7/dist-packages (from earthengine-api&gt;=0.1.304-&gt;geemap) (0.16.0)
+Requirement already satisfied: google-api-python-client&lt;2,&gt;=1.12.1 in /usr/local/lib/python3.7/dist-packages (from earthengine-api&gt;=0.1.304-&gt;geemap) (1.12.11)
+Requirement already satisfied: six in /usr/local/lib/python3.7/dist-packages (from earthengine-api&gt;=0.1.304-&gt;geemap) (1.15.0)
+Requirement already satisfied: httplib2&lt;1dev,&gt;=0.9.2 in /usr/local/lib/python3.7/dist-packages (from earthengine-api&gt;=0.1.304-&gt;geemap) (0.17.4)
+Requirement already satisfied: httplib2shim in /usr/local/lib/python3.7/dist-packages (from earthengine-api&gt;=0.1.304-&gt;geemap) (0.0.3)
+Requirement already satisfied: jinja2&gt;=2.9 in /usr/local/lib/python3.7/dist-packages (from folium&gt;=0.11.0-&gt;geemap) (2.11.3)
+Requirement already satisfied: branca&gt;=0.3.0 in /usr/local/lib/python3.7/dist-packages (from folium&gt;=0.11.0-&gt;geemap) (0.5.0)
+Requirement already satisfied: requests in /usr/local/lib/python3.7/dist-packages (from folium&gt;=0.11.0-&gt;geemap) (2.23.0)
+Collecting beautifulsoup4&gt;=4.9.0
+  Downloading beautifulsoup4-4.11.1-py3-none-any.whl (128 kB)
+     |████████████████████████████████| 128 kB 67.9 MB/s 
+Collecting logzero&gt;=1.5.0
+  Downloading logzero-1.7.0-py2.py3-none-any.whl (16 kB)
+Collecting soupsieve&gt;1.2
+  Downloading soupsieve-2.3.2.post1-py3-none-any.whl (37 kB)
+Requirement already satisfied: uritemplate&lt;4dev,&gt;=3.0.0 in /usr/local/lib/python3.7/dist-packages (from google-api-python-client&lt;2,&gt;=1.12.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (3.0.1)
+Requirement already satisfied: google-api-core&lt;3dev,&gt;=1.21.0 in /usr/local/lib/python3.7/dist-packages (from google-api-python-client&lt;2,&gt;=1.12.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (1.31.6)
+Requirement already satisfied: setuptools&gt;=40.3.0 in /usr/local/lib/python3.7/dist-packages (from google-api-core&lt;3dev,&gt;=1.21.0-&gt;google-api-python-client&lt;2,&gt;=1.12.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (57.4.0)
+Requirement already satisfied: packaging&gt;=14.3 in /usr/local/lib/python3.7/dist-packages (from google-api-core&lt;3dev,&gt;=1.21.0-&gt;google-api-python-client&lt;2,&gt;=1.12.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (21.3)
+Requirement already satisfied: googleapis-common-protos&lt;2.0dev,&gt;=1.6.0 in /usr/local/lib/python3.7/dist-packages (from google-api-core&lt;3dev,&gt;=1.21.0-&gt;google-api-python-client&lt;2,&gt;=1.12.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (1.56.4)
+Requirement already satisfied: protobuf&lt;4.0.0dev,&gt;=3.12.0 in /usr/local/lib/python3.7/dist-packages (from google-api-core&lt;3dev,&gt;=1.21.0-&gt;google-api-python-client&lt;2,&gt;=1.12.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (3.17.3)
+Requirement already satisfied: pytz in /usr/local/lib/python3.7/dist-packages (from google-api-core&lt;3dev,&gt;=1.21.0-&gt;google-api-python-client&lt;2,&gt;=1.12.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (2022.2.1)
+Requirement already satisfied: cachetools&lt;5.0,&gt;=2.0.0 in /usr/local/lib/python3.7/dist-packages (from google-auth&gt;=1.4.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (4.2.4)
+Requirement already satisfied: rsa&lt;5,&gt;=3.1.4 in /usr/local/lib/python3.7/dist-packages (from google-auth&gt;=1.4.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (4.9)
+Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.7/dist-packages (from google-auth&gt;=1.4.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (0.2.8)
+Requirement already satisfied: ipywidgets in /usr/local/lib/python3.7/dist-packages (from ipyfilechooser&gt;=0.6.0-&gt;geemap) (7.7.1)
+Collecting traittypes&lt;3,&gt;=0.2.1
+  Downloading traittypes-0.2.1-py2.py3-none-any.whl (8.6 kB)
+Requirement already satisfied: traitlets&gt;=4.3.1 in /usr/local/lib/python3.7/dist-packages (from ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (5.1.1)
+Requirement already satisfied: jupyterlab-widgets&gt;=1.0.0 in /usr/local/lib/python3.7/dist-packages (from ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (3.0.3)
+Requirement already satisfied: ipykernel&gt;=4.5.1 in /usr/local/lib/python3.7/dist-packages (from ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (5.3.4)
+Requirement already satisfied: ipython&gt;=4.0.0 in /usr/local/lib/python3.7/dist-packages (from ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (7.9.0)
+Requirement already satisfied: ipython-genutils~=0.2.0 in /usr/local/lib/python3.7/dist-packages (from ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (0.2.0)
+Requirement already satisfied: widgetsnbextension~=3.6.0 in /usr/local/lib/python3.7/dist-packages (from ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (3.6.1)
+Requirement already satisfied: tornado&gt;=4.2 in /usr/local/lib/python3.7/dist-packages (from ipykernel&gt;=4.5.1-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (5.1.1)
+Requirement already satisfied: jupyter-client in /usr/local/lib/python3.7/dist-packages (from ipykernel&gt;=4.5.1-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (6.1.12)
+Requirement already satisfied: decorator in /usr/local/lib/python3.7/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (4.4.2)
+Requirement already satisfied: pygments in /usr/local/lib/python3.7/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (2.6.1)
+Requirement already satisfied: backcall in /usr/local/lib/python3.7/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (0.2.0)
+Requirement already satisfied: pexpect in /usr/local/lib/python3.7/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (4.8.0)
+Requirement already satisfied: pickleshare in /usr/local/lib/python3.7/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (0.7.5)
+Collecting jedi&gt;=0.10
+  Downloading jedi-0.18.1-py2.py3-none-any.whl (1.6 MB)
+     |████████████████████████████████| 1.6 MB 53.3 MB/s 
+Requirement already satisfied: prompt-toolkit&lt;2.1.0,&gt;=2.0.0 in /usr/local/lib/python3.7/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (2.0.10)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.0 in /usr/local/lib/python3.7/dist-packages (from jedi&gt;=0.10-&gt;ipython&gt;=4.0.0-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (0.8.3)
+Requirement already satisfied: MarkupSafe&gt;=0.23 in /usr/local/lib/python3.7/dist-packages (from jinja2&gt;=2.9-&gt;folium&gt;=0.11.0-&gt;geemap) (2.0.1)
+Requirement already satisfied: jupyter-core in /usr/local/lib/python3.7/dist-packages (from jupyterlab&gt;=3-&gt;geemap) (4.11.1)
+Collecting jupyterlab-server~=2.10
+  Downloading jupyterlab_server-2.15.2-py3-none-any.whl (54 kB)
+     |████████████████████████████████| 54 kB 2.9 MB/s 
+Requirement already satisfied: notebook&lt;7 in /usr/local/lib/python3.7/dist-packages (from jupyterlab&gt;=3-&gt;geemap) (5.3.1)
+Collecting tornado&gt;=4.2
+  Downloading tornado-6.2-cp37-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (423 kB)
+     |████████████████████████████████| 423 kB 78.4 MB/s 
+Requirement already satisfied: tomli in /usr/local/lib/python3.7/dist-packages (from jupyterlab&gt;=3-&gt;geemap) (2.0.1)
+Collecting nbclassic
+  Downloading nbclassic-0.4.4-py3-none-any.whl (9.8 MB)
+     |████████████████████████████████| 9.8 MB 40.4 MB/s 
+Collecting jupyter-server~=1.16
+  Downloading jupyter_server-1.19.1-py3-none-any.whl (346 kB)
+     |████████████████████████████████| 346 kB 76.2 MB/s 
+Requirement already satisfied: nbformat&gt;=5.2.0 in /usr/local/lib/python3.7/dist-packages (from jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (5.4.0)
+Requirement already satisfied: Send2Trash in /usr/local/lib/python3.7/dist-packages (from jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (1.8.0)
+Requirement already satisfied: terminado&gt;=0.8.3 in /usr/local/lib/python3.7/dist-packages (from jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (0.13.3)
+Collecting prometheus-client
+  Downloading prometheus_client-0.14.1-py3-none-any.whl (59 kB)
+     |████████████████████████████████| 59 kB 6.5 MB/s 
+Requirement already satisfied: pyzmq&gt;=17 in /usr/local/lib/python3.7/dist-packages (from jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (23.2.1)
+Collecting argon2-cffi
+  Downloading argon2_cffi-21.3.0-py3-none-any.whl (14 kB)
+Collecting anyio&lt;4,&gt;=3.1.0
+  Downloading anyio-3.6.1-py3-none-any.whl (80 kB)
+     |████████████████████████████████| 80 kB 8.4 MB/s 
+Collecting websocket-client
+  Downloading websocket_client-1.4.1-py3-none-any.whl (55 kB)
+     |████████████████████████████████| 55 kB 3.9 MB/s 
+Collecting nbconvert&gt;=6.4.4
+  Downloading nbconvert-7.1.0-py3-none-any.whl (272 kB)
+     |████████████████████████████████| 272 kB 71.8 MB/s 
+Requirement already satisfied: typing-extensions in /usr/local/lib/python3.7/dist-packages (from anyio&lt;4,&gt;=3.1.0-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (4.1.1)
+Collecting sniffio&gt;=1.1
+  Downloading sniffio-1.3.0-py3-none-any.whl (10 kB)
+Requirement already satisfied: idna&gt;=2.8 in /usr/local/lib/python3.7/dist-packages (from anyio&lt;4,&gt;=3.1.0-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (2.10)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /usr/local/lib/python3.7/dist-packages (from jupyter-client-&gt;ipykernel&gt;=4.5.1-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (2.8.2)
+Collecting json5
+  Downloading json5-0.9.10-py2.py3-none-any.whl (19 kB)
+Requirement already satisfied: importlib-metadata&gt;=3.6 in /usr/local/lib/python3.7/dist-packages (from jupyterlab-server~=2.10-&gt;jupyterlab&gt;=3-&gt;geemap) (4.12.0)
+Collecting jinja2&gt;=2.9
+  Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+     |████████████████████████████████| 133 kB 96.3 MB/s 
+Requirement already satisfied: jsonschema&gt;=3.0.1 in /usr/local/lib/python3.7/dist-packages (from jupyterlab-server~=2.10-&gt;jupyterlab&gt;=3-&gt;geemap) (4.3.3)
+Requirement already satisfied: babel in /usr/local/lib/python3.7/dist-packages (from jupyterlab-server~=2.10-&gt;jupyterlab&gt;=3-&gt;geemap) (2.10.3)
+Requirement already satisfied: zipp&gt;=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata&gt;=3.6-&gt;jupyterlab-server~=2.10-&gt;jupyterlab&gt;=3-&gt;geemap) (3.8.1)
+Requirement already satisfied: importlib-resources&gt;=1.4.0 in /usr/local/lib/python3.7/dist-packages (from jsonschema&gt;=3.0.1-&gt;jupyterlab-server~=2.10-&gt;jupyterlab&gt;=3-&gt;geemap) (5.9.0)
+Requirement already satisfied: pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,&gt;=0.14.0 in /usr/local/lib/python3.7/dist-packages (from jsonschema&gt;=3.0.1-&gt;jupyterlab-server~=2.10-&gt;jupyterlab&gt;=3-&gt;geemap) (0.18.1)
+Requirement already satisfied: attrs&gt;=17.4.0 in /usr/local/lib/python3.7/dist-packages (from jsonschema&gt;=3.0.1-&gt;jupyterlab-server~=2.10-&gt;jupyterlab&gt;=3-&gt;geemap) (22.1.0)
+Requirement already satisfied: defusedxml in /usr/local/lib/python3.7/dist-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (0.7.1)
+Collecting mistune&lt;3,&gt;=2.0.3
+  Downloading mistune-2.0.4-py2.py3-none-any.whl (24 kB)
+Collecting tinycss2
+  Downloading tinycss2-1.1.1-py3-none-any.whl (21 kB)
+Requirement already satisfied: bleach in /usr/local/lib/python3.7/dist-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (5.0.1)
+Collecting jupyterlab-pygments
+  Downloading jupyterlab_pygments-0.2.2-py2.py3-none-any.whl (21 kB)
+Requirement already satisfied: pandocfilters&gt;=1.4.1 in /usr/local/lib/python3.7/dist-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (1.5.0)
+Collecting nbclient&gt;=0.5.0
+  Downloading nbclient-0.6.8-py3-none-any.whl (71 kB)
+     |████████████████████████████████| 71 kB 209 kB/s 
+Collecting traitlets&gt;=4.3.1
+  Downloading traitlets-5.4.0-py3-none-any.whl (107 kB)
+     |████████████████████████████████| 107 kB 73.7 MB/s 
+Collecting nest-asyncio
+  Downloading nest_asyncio-1.5.6-py3-none-any.whl (5.2 kB)
+Requirement already satisfied: fastjsonschema in /usr/local/lib/python3.7/dist-packages (from nbformat&gt;=5.2.0-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (2.16.1)
+Requirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /usr/local/lib/python3.7/dist-packages (from packaging&gt;=14.3-&gt;google-api-core&lt;3dev,&gt;=1.21.0-&gt;google-api-python-client&lt;2,&gt;=1.12.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (3.0.9)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.7/dist-packages (from prompt-toolkit&lt;2.1.0,&gt;=2.0.0-&gt;ipython&gt;=4.0.0-&gt;ipywidgets-&gt;ipyfilechooser&gt;=0.6.0-&gt;geemap) (0.2.5)
+Requirement already satisfied: pyasn1&lt;0.5.0,&gt;=0.4.6 in /usr/local/lib/python3.7/dist-packages (from pyasn1-modules&gt;=0.2.1-&gt;google-auth&gt;=1.4.1-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (0.4.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;folium&gt;=0.11.0-&gt;geemap) (1.24.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;folium&gt;=0.11.0-&gt;geemap) (2022.6.15)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;folium&gt;=0.11.0-&gt;geemap) (3.0.4)
+Requirement already satisfied: plotly&gt;=5.2.2 in /usr/local/lib/python3.7/dist-packages (from sankee&gt;=0.1.0-&gt;geemap) (5.5.0)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/local/lib/python3.7/dist-packages (from plotly&gt;=5.2.2-&gt;sankee&gt;=0.1.0-&gt;geemap) (8.0.1)
+Requirement already satisfied: ptyprocess in /usr/local/lib/python3.7/dist-packages (from terminado&gt;=0.8.3-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (0.7.0)
+Collecting whitebox
+  Downloading whitebox-2.1.4-py2.py3-none-any.whl (75 kB)
+     |████████████████████████████████| 75 kB 5.9 MB/s 
+Collecting argon2-cffi-bindings
+  Downloading argon2_cffi_bindings-21.2.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (86 kB)
+     |████████████████████████████████| 86 kB 5.9 MB/s 
+Requirement already satisfied: cffi&gt;=1.0.1 in /usr/local/lib/python3.7/dist-packages (from argon2-cffi-bindings-&gt;argon2-cffi-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (1.15.1)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.7/dist-packages (from cffi&gt;=1.0.1-&gt;argon2-cffi-bindings-&gt;argon2-cffi-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (2.21)
+Requirement already satisfied: webencodings in /usr/local/lib/python3.7/dist-packages (from bleach-&gt;nbconvert&gt;=6.4.4-&gt;jupyter-server~=1.16-&gt;jupyterlab&gt;=3-&gt;geemap) (0.5.1)
+Requirement already satisfied: filelock in /usr/local/lib/python3.7/dist-packages (from gdown-&gt;geemap) (3.8.0)
+Requirement already satisfied: tqdm in /usr/local/lib/python3.7/dist-packages (from gdown-&gt;geemap) (4.64.1)
+Requirement already satisfied: click in /usr/local/lib/python3.7/dist-packages (from geocoder-&gt;geemap) (7.1.2)
+Collecting ratelim
+  Downloading ratelim-0.1.6-py2.py3-none-any.whl (4.0 kB)
+Requirement already satisfied: google-resumable-media&lt;0.5.0dev,&gt;=0.3.1 in /usr/local/lib/python3.7/dist-packages (from google-cloud-storage-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (0.4.1)
+Requirement already satisfied: google-cloud-core&lt;2.0dev,&gt;=1.0.0 in /usr/local/lib/python3.7/dist-packages (from google-cloud-storage-&gt;earthengine-api&gt;=0.1.304-&gt;geemap) (1.0.3)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.7/dist-packages (from matplotlib-&gt;geemap) (0.11.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.7/dist-packages (from matplotlib-&gt;geemap) (1.4.4)
+Collecting notebook-shim&gt;=0.1.0
+  Downloading notebook_shim-0.1.0-py3-none-any.whl (13 kB)
+Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;folium&gt;=0.11.0-&gt;geemap) (1.7.1)
+Building wheels for collected packages: ee-extra, sankee, pycrs
+  Building wheel for ee-extra (setup.py) ... done
+  Created wheel for ee-extra: filename=ee_extra-0.0.14-py3-none-any.whl size=209114 sha256=84c43ef88c7184c5afb39b6928c62fcea68f3f279cee5e9c01e3610e3f82d4b4
+  Stored in directory: /root/.cache/pip/wheels/50/1f/56/c638a525bcb6972c82e422747430d756edea7d57b539229bb3
+  Building wheel for sankee (setup.py) ... done
+  Created wheel for sankee: filename=sankee-0.2.0-py3-none-any.whl size=28745 sha256=a84564bd97ad102e0089fcfdd93a3fc2ca133b2f39c7ddd45199fdab4ca650d7
+  Stored in directory: /root/.cache/pip/wheels/36/b4/ac/84c3f06e5c44d3fe5029713232438862881e6e1f26657d5fd8
+  Building wheel for pycrs (setup.py) ... done
+  Created wheel for pycrs: filename=PyCRS-1.0.2-py3-none-any.whl size=32704 sha256=c1e9c2b2042507e7b2597ad26a84b80e9b854131a9e1902a46f8e4375d550aa2
+  Stored in directory: /root/.cache/pip/wheels/3e/ce/32/1ec0aba6b9770681a423e82f0274c57d09ad2c20c2864901f9
+Successfully built ee-extra sankee pycrs
+Installing collected packages: traitlets, tornado, soupsieve, nest-asyncio, jedi, tinycss2, nbclient, mistune, jupyterlab-pygments, jinja2, beautifulsoup4, sniffio, nbconvert, argon2-cffi-bindings, websocket-client, prometheus-client, argon2-cffi, anyio, jupyter-server, notebook-shim, json5, xyzservices, whitebox, traittypes, ratelim, nbclassic, logzero, jupyterlab-server, ipytree, ipyfilechooser, whiteboxgui, scooby, sankee, python-box, pyshp, pycrs, jupyterlab, ipyleaflet, ipyevents, geojson, geocoder, geeadd, ffmpeg-python, ee-extra, colour, bqplot, geemap
+  Attempting uninstall: traitlets
+    Found existing installation: traitlets 5.1.1
+    Uninstalling traitlets-5.1.1:
+      Successfully uninstalled traitlets-5.1.1
+  Attempting uninstall: tornado
+    Found existing installation: tornado 5.1.1
+    Uninstalling tornado-5.1.1:
+      Successfully uninstalled tornado-5.1.1
+  Attempting uninstall: mistune
+    Found existing installation: mistune 0.8.4
+    Uninstalling mistune-0.8.4:
+      Successfully uninstalled mistune-0.8.4
+  Attempting uninstall: jinja2
+    Found existing installation: Jinja2 2.11.3
+    Uninstalling Jinja2-2.11.3:
+      Successfully uninstalled Jinja2-2.11.3
+  Attempting uninstall: beautifulsoup4
+    Found existing installation: beautifulsoup4 4.6.3
+    Uninstalling beautifulsoup4-4.6.3:
+      Successfully uninstalled beautifulsoup4-4.6.3
+  Attempting uninstall: nbconvert
+    Found existing installation: nbconvert 5.6.1
+    Uninstalling nbconvert-5.6.1:
+      Successfully uninstalled nbconvert-5.6.1
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+google-colab 1.0.0 requires tornado~=5.1.0, but you have tornado 6.2 which is incompatible.
+flask 1.1.4 requires Jinja2&lt;3.0,&gt;=2.10.1, but you have jinja2 3.1.2 which is incompatible.
+Successfully installed anyio-3.6.1 argon2-cffi-21.3.0 argon2-cffi-bindings-21.2.0 beautifulsoup4-4.11.1 bqplot-0.12.36 colour-0.1.5 ee-extra-0.0.14 ffmpeg-python-0.2.0 geeadd-0.5.6 geemap-0.17.1 geocoder-1.38.1 geojson-2.5.0 ipyevents-2.0.1 ipyfilechooser-0.6.0 ipyleaflet-0.17.1 ipytree-0.2.2 jedi-0.18.1 jinja2-3.1.2 json5-0.9.10 jupyter-server-1.19.1 jupyterlab-3.4.8 jupyterlab-pygments-0.2.2 jupyterlab-server-2.15.2 logzero-1.7.0 mistune-2.0.4 nbclassic-0.4.4 nbclient-0.6.8 nbconvert-7.1.0 nest-asyncio-1.5.6 notebook-shim-0.1.0 prometheus-client-0.14.1 pycrs-1.0.2 pyshp-2.3.1 python-box-6.0.2 ratelim-0.1.6 sankee-0.2.0 scooby-0.6.0 sniffio-1.3.0 soupsieve-2.3.2.post1 tinycss2-1.1.1 tornado-6.2 traitlets-5.4.0 traittypes-0.2.1 websocket-client-1.4.1 whitebox-2.1.4 whiteboxgui-0.7.0 xyzservices-2022.9.0</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.colab-display-data+json</code></pre>
+</div>
+</div>
+<section id="import-geemap-library" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="import-geemap-library"><span class="header-section-number">6.1</span> Import geemap library</h2>
+<p>The <a href="https://github.com/giswqs/geemap">geemap</a> Python package has two plotting backends: <a href="https://github.com/jupyter-widgets/ipyleaflet">ipyleaflet</a> and <a href="https://github.com/python-visualization/folium">folium</a>. A key difference between folium and ipyleaflet is that ipyleaflet is built upon ipywidgets and allows bidirectional communication between the front-end and the backend enabling the use of the map to capture user input, while folium is meant for displaying static data only (<a href="https://blog.jupyter.org/interactive-gis-in-jupyter-with-ipyleaflet-52f9657fa7a">source</a>). Note that Google Colab currently does not support ipyleaflet (<a href="https://github.com/googlecolab/colabtools/issues/60#issuecomment-596225619">source</a>). Therefore, if you are using geemap with Google Colab, you should use <code>import geemap.eefolium as geemap</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ee</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geemap.eefolium <span class="im">as</span> geemap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-an-interactive-map" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="create-an-interactive-map"><span class="header-section-number">6.2</span> Create an interactive map</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Map <span class="op">=</span> geemap.Map()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Map</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="add-earth-engine-data" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="add-earth-engine-data"><span class="header-section-number">6.3</span> Add Earth Engine data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add Earth Engine dataset</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> ee.Image(<span class="st">'USGS/SRTMGL1_003'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set visualization parameters.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>vis_params <span class="op">=</span> {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'min'</span>: <span class="dv">0</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'max'</span>: <span class="dv">4000</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'palette'</span>: [<span class="st">'006633'</span>, <span class="st">'E5FFCC'</span>, <span class="st">'662A00'</span>, <span class="st">'D8D8D8'</span>, <span class="st">'F5F5F5'</span>]}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the elevation of Mount Everest.</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>xy <span class="op">=</span> ee.Geometry.Point([<span class="fl">86.9250</span>, <span class="fl">27.9881</span>])</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>elev <span class="op">=</span> image.sample(xy, <span class="dv">30</span>).first().get(<span class="st">'elevation'</span>).getInfo()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mount Everest elevation (m):'</span>, elev)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add Earth Engine layers to Map</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>Map.addLayer(image, vis_params, <span class="st">'DEM'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>Map.addLayer(xy, {<span class="st">'color'</span>: <span class="st">'red'</span>}, <span class="st">'Mount Everest'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Center the map based on an Earth Engine object or coordinates (longitude, latitude)</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Map.centerObject(xy, 4)</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>Map.setCenter(<span class="fl">86.9250</span>, <span class="fl">27.9881</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="display-the-map" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="display-the-map"><span class="header-section-number">6.4</span> Display the map</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Map.addLayerControl() </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./SyriaNTL.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">War at Night</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
