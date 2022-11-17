@@ -1,5 +1,6 @@
-# Data Acquisition
-
+---
+title: "Data Acquisition"
+---
 One of the main advantages of GEE is that it hosts several Petabytes of satellite imagery and other spatial data sets, [all in one place](https://developers.google.com/earth-engine/datasets). Among these are a many that could prove useful to those investigating illegal mining and logging, estimating conflict-induced damage, monitoring pollution from extractive industries, conducting maritime surveillance without relying on ship transponders, verifying the locations of artillery strikes, tracking missile defense systems, and many other topics. 
 
 This section highlights ten categories of geospatial data available natively in the GEE catalogue ranging from optical satellite imagery, to atmospheric data, to building footprints. Each sub-section provides an overview of the given data type, suggests potential applications, and lists the corresponding datasets in the GEE catalogue. The datasets listed under each heading are **not** an exhaustive list-- there are over 500 in the whole catalogue, and the ones listed in this section are simply the ones with the most immediate relevance to open source investigations. If a particular geospatial dataset you want to work with isn't hosted in the GEE catalog, you can upload your own data. We'll cover that in the next section. 
@@ -30,17 +31,26 @@ F-->G
 C-->H
 ```
 
-This is, of course, a bit of an exaggeration. But if you're interested in a visible phenomenon that happens outdoors and that isn't very tiny, chances are an earth-observing satellite has taken a picture of it. What that picture can tell you naturally depends on what you're interested in learning. 
+This is, of course, a bit of an exaggeration. But if you're interested in a visible phenomenon that happens outdoors and that isn't very tiny, chances are an earth-observing satellite has taken a picture of it. What that picture can tell you naturally depends on what you're interested in learning. For a deeper dive into analyzing optical satellite imagery, see the subsection on [multispectral remote sensing.](ch3.qmd#multispectral-remote-sensing-remote_sensing).
 
-For a deeper dive into analyzing optical satellite imagery, see the subsection on [multispectral remote sensing.](ch3.qmd#multispectral-remote-sensing-remote_sensing).
+There are several different types of optical satellite imagery available in the GEE catalogue. The main collections are the Landsat and Sentinel series of satellites, which are operated by NASA and the European Space Agency, respectively. Landsat satellites have been in orbit since 1972, and Sentinel satellites have been in orbit since 2015. Norway's International Climate and Forest Initiative (NICFI) has also contributed to the GEE catalogue by providing a collection of optical imagery from Planet's PlanetScope satellites. These are higher resolution (4.7 meters per pixel) than Landsat (30m/px) and Sentinel-2 (10m/px), but are only available for the tropics. Even higher resolution imagery (60cm/px) is available from the GEE catalogue from the National Agriculture Imagery Program, but it is only available for the United States. For more details, see the "Datasets" section below.
 
 ### Applications {.unnumbered}
 
 * Geolocating pictures
+    - Some of Bellingcat's [earliest work](https://www.bellingcat.com/resources/how-tos/2014/07/09/verification-and-geolocation-tricks-and-tips-with-google-earth/) involved figuring out where a picture was taken by cross-referencing it with optical satellite imagery.
 * General surveillance
-* Change/Damage detection 
-* Verifying the locations of artillery strikes 
+    - [Monitoring](https://web.archive.org/web/20220415054905/https://fas.org/blogs/security/2021/11/a-closer-look-at-chinas-missile-silo-construction/) Chinese missile silo construction.
+    - Amassing [evidence](https://www.nytimes.com/2022/04/04/world/europe/bucha-ukraine-bodies.html) of genocide in Bucha, Ukraine
+* Damage detection 
+    - [Ukraine](https://www.theguardian.com/world/2022/oct/27/before-and-after-satellite-imagery-will-track-ukraine-cultural-damage-un-says)
+    - [Mali](https://reliefweb.int/report/mali/satellite-imagery-conflict-affected-areas-how-technology-can-support-wfp-emergency)
+    - [Around the World](https://www.pnas.org/doi/pdf/10.1073/pnas.2025400118)
+* Verifying the locations of artillery/missile/drone strikes 
+    - The [2019 attack](https://www.cnbc.com/2019/09/17/satellite-photos-show-extent-of-damage-to-saudi-aramco-plants.html) on Saudi Arabia's Abqaiq oil processing facility.
 * Monitoring illegal mining/logging
+    - Global Witness [investigation](https://www.globalwitness.org/en/campaigns/natural-resource-governance/myanmars-poisoned-mountains/) into illegal mining by militias in Myanmar.
+    - Tracking [illegal logging](https://www.theguardian.com/environment/2016/mar/02/new-satellite-mapping-a-game-changer-against-illegal-logging) across the world.
 
 
 ### Datasets {.unnumbered}
@@ -59,6 +69,7 @@ For a deeper dive into analyzing optical satellite imagery, see the subsection o
 ## Radar Imagery 
 ![Ships and interference from a radar system are visible in Zhuanghe Wan, near North Korea.](./images/radar%20ships.jpg)
 
+Alongside 
 
 ### Applications {.unnumbered}
 
@@ -77,6 +88,10 @@ For a deeper dive into analyzing optical satellite imagery, see the subsection o
 ## Nighttime Lights 
 ![A timelapse of nighttime lights over Northern Iraq showing the capture and liberation of Mosul by ISIS.](./images/Figure_1.gif)
 
+Satellite images of the Earth at night a useful proxy for human activity. The brightness of a given area at night is a function of the number of people living there and the nature of their activities. The effects of conflict, natural disasters, and economic development can all be inferred from changes in nighttime lights. 
+
+The timelapse above reveals a number of interesting things: The capture of Mosul by ISIS in 2014 and the destruction of its infrastructure during the fighting (shown as the city darkening), as well as the liberation of the city by the Iraqi military in 2017 are all visible in nighttime lights. The code to create this gif, as well as a more in-depth tutorial on the uses of nighttime lights, can be found in the ["War at Night"](SyriaNTL.qmd) case study.
+
 ### Applications {.unnumbered}
 
 * Damage detection 
@@ -94,6 +109,10 @@ For a deeper dive into analyzing optical satellite imagery, see the subsection o
 
 ## Climate and Atmospheric Data
 ![Sulphur Dioxide plume resulting from ISIS attack on the Al-Mishraq Sulphur Plant in Iraq](./images/mishraq_small.gif)
+
+Climate and atmospheric data can be used to track the effects of conflict on the environment. The European Space Agency's Sentinel-5p satellites measure the concentration of a number of atmospheric gases, including nitrogen dioxide, methane, and ozone. Measurements are available on a daily basis at a fairly high resolution (1km), allowing for the detection of localized sources of pollution such as oil refineries or power plants. For example, see this [Bellingcat article](https://www.bellingcat.com/resources/2021/04/15/what-oil-satellite-technology-and-iraq-can-tell-us-about-pollution/) in which Wim Zwijnenburg and I trace pollution to specific facilities operated by multinational oil companies in Iraq.
+
+The Copernicus Atmosphere Monitoring Service (CAMS) provides similar data at a lower spatial resolution (45km), but measurements are avaialble on an hourly basis. The timelapse above utilizes CAMS data to show a sulphur dioxide plume resulting from an ISIS attack on the Al-Mishraq Sulphur Plant in Iraq. The plant was used to produce sulphuric acid, for use in fertilizers and pesticides. The attack destroyed the plant, causing a fire which burned for a month and released [21 kilotons](https://earthobservatory.nasa.gov/images/88994/sulfur-dioxide-spreads-over-iraq) of sulphur dioxide into the atmosphere per day; the largest human-made release of sulphur dioxide in history. 
 
 ### Applications {.unnumbered}
 
@@ -114,10 +133,14 @@ For a deeper dive into analyzing optical satellite imagery, see the subsection o
 ## Mineral Deposits
 ![Zinc deposits across Central Africa](./images/mining.jpg)
 
+Mining activities often play an important role in conflict. According to an influential [study](https://www.aeaweb.org/articles?id=10.1257/aer.20150774), "the historical rise in mineral prices might explain up to one-fourth of the average level of violence across African countries" between 1997 and 2010. Data on the location of mineral deposits can be used to identify areas where mining activities are likely to be taking place, and several such datasets are available in Google Earth Engine.
+
 ### Applications {.unnumbered}
 
 * Monitoring mining activity
+* Identifying areas where mining activities are likely to be taking place
 * Mapping the distribution of resources in rebel held areas in conflicts fueled by resource extraction
+
 
 
 ### Datasets {.unnumbered}
