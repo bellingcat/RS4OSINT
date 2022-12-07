@@ -20,7 +20,7 @@ As geospatial datasets—particularly satellite imagery collections—increase i
 
 GEE is free and allows users to write open-source code that can be run by others in one click, thereby yielding fully reproducible results. These features have put GEE on the cutting edge of scientific research. The following plot visualizes the number of journal articles conducted using different geospatial analysis software platforms:
 
-![](/images/WoS%20Articles.png)
+![](../images/WoS%20Articles.png)
 
 Despite only being released in 2015, the number of geospatial journal articles using Google Earth Engine (shown in red above) has outpaced every other major geospatial analysis software, including ArcGIS, Python, and R in just five years. By storing and running computations on google servers, GEE is far more accessible to those who don’t have significant local computational resources; all you need is an internet connection. 
 
