@@ -23,11 +23,9 @@ book:
   repo-actions: [edit]
   downloads: [pdf, epub]
   sharing: [twitter, facebook]
+  favicon: favicon.ico
   sidebar:
     logo: logo_white.png
-
-
-
 
 
 bibliography: references.bib
