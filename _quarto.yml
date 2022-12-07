@@ -19,6 +19,7 @@ book:
         - SyriaNTL.qmd
         - RojavaRefineries.qmd
   repo-url: https://github.com/oballinger/GEE_OSINT/
+  google-analytics: G-RK9ZLZQ6GL
   repo-actions: [edit]
   downloads: [pdf, epub]
   sharing: [twitter, facebook]

@@ -69,7 +69,7 @@ There are several different types of optical satellite imagery available in the 
 ## Radar Imagery 
 ![Ships and interference from a radar system are visible in Zhuanghe Wan, near North Korea.](./images/radar%20ships.jpg)
 
-Alongside 
+Synthetic Aperture Radar imagery (SAR) is a type of remote sensing that uses radio waves to detect objects on the ground. SAR imagery is useful for detecting objects that are small, or that are obscured by clouds or other weather phenomena. SAR imagery is also useful for detecting objects that are moving, such as ships or cars. 
 
 ### Applications {.unnumbered}
 

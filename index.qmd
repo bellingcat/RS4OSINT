@@ -1,12 +1,18 @@
 # Introduction {.unnumbered}
 
-The analysis of satellite imagery is a foundational element of open source investigations. Though no-code platforms such as Sentinelhub have been invaluable in allowing the OSINT community to access and process satellite imagery, the analytical capabilities of these platforms are limited. [Google Earth Engine (GEE)](https://earthengine.google.com/#intro) is a cloud-based platform that stores petabytes of satellite imagery from a variety of sources and allows users to perform advanced analyses on Google servers for free using a browser-based interface. This textbook is designed for investigators who want to perform more sophisticated analysis using geospatial data, and assumes no prior knowledge of coding or remote sensing (satellite imagery analysis). It is organized into four chapters:
+The analysis of satellite imagery is a foundational element of open source investigations. In the past decade, the quantity, quality, and availability thereof has increased dramatically. Capabilities and insights that were once only available to governments are now accessible to the general public. Satellite imagery is being used to collect evidence of genocide and other war crimes in [Ukraine](https://www.nbcnews.com/science/science-news/ukraine-satellites-war-crimes-rcna26291), [Nigeria](https://www.amnesty.org/en/latest/news/2016/04/nigeria-military-cover-up-of-mass-slaughter-at-zaria-exposed/), [Burundi](https://www.amnesty.org/en/latest/news/2016/01/burundi-satellite-evidence-supports-witness-accounts-of-mass-graves/), [Cameroon](https://www.amnesty.org/en/latest/news/2021/07/cameroon-satellite-images-reveal-devastation-in-anglophone-regions-2/), [the DRC](https://www.aaas.org/resources/satellite-imagery-assessment-forced-relocations-near-luiswishi-mine), [South Sudan](https://gsp.yale.edu/case-studies/sudan/maps-satellite-images/other-darfur-satellite-imagery), [Papua](https://gsp.yale.edu/resources/maps-satellite-images/papua), and [Venezuela](https://www.hrw.org/report/2016/04/04/unchecked-power/police-and-military-raids-low-income-and-immigrant-communities). It has been used to [monitor environmental degradation](https://www.theguardian.com/environment/2016/mar/02/new-satellite-mapping-a-game-changer-against-illegal-logging) and hold extractive industries to account from [Iraq](https://www.bellingcat.com/resources/2021/04/15/what-oil-satellite-technology-and-iraq-can-tell-us-about-pollution/) to [Guatemala](https://www.planet.com/pulse/the-observatory-of-extractive-industries-oie-shines-a-light-on-the-mining-industry-using-planets-satellite-data/). The ability to analyze satellite imagery is a critical skill for anyone interested in open source investigations.
 
-1. Data Acquisition
-2. Getting Started
-3. Algorithms 
-4. Application Development 
-5. Case Studies
+Though no-code platforms such as Sentinelhub have been invaluable in allowing the OSINT community to access and process satellite imagery, the analytical capabilities of these platforms are limited. [Google Earth Engine (GEE)](https://earthengine.google.com/#intro) is a cloud-based platform that stores petabytes of satellite imagery from a variety of sources and allows users to perform advanced analyses on Google servers for free using a browser-based interface. This textbook is designed for investigators who want to perform more sophisticated analysis using geospatial data, and assumes no prior knowledge of coding or remote sensing (satellite imagery analysis). It is organized into two parts-- an introduction to remote sensing and GEE, and a series of case studies that demonstrate how to use GEE for open source investigations:
+
+## Table of Contents
+- Learning
+    1. [Remote Sensing](ch1.qmd)
+    2. [Data Acquisition](ch2.qmd)
+    3. [Algorithms](ch3.qmd)
+    4. [Application Development](ch4.qmd)
+- Case Studies
+    1. [War at Night](SyriaNTL.qmd)
+    2. [Refinery Detection](RojavaRefineries.qmd)
 
 ## What is Google Earth Engine?
 
