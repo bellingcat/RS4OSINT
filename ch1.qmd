@@ -1,10 +1,15 @@
 # Remote Sensing 
 
+Before learning how to load, process, and analyze satellite imagery in Google Earth Engine, it will be helpful to know a few basic principles of remote sensing. This section provides a brief overview of some important concepts and terminology that will be used throughout the course, including active and passive sensors; spatial, spectral, and temporal resolution; and orbits.
+
+## Active and Passive Sensors
+
 [Remote sensing](https://www.sciencedirect.com/topics/medicine-and-dentistry/remote-sensing) is the science of obtaining information about an object or phenomenon without making physical contact with the object. Remote sensing can be done with various types of electromagnetic radiation such as visible, infrared, or microwave. The electromagnetic radiation is either emitted or reflected from the object being sensed. The reflected radiation is then collected by a sensor and processed to obtain information about the object.
 
 ![](./images/diagram.png)
 
-passive remote sensing is the collection of information about an object or phenomenon without the use of an active energy source. Passive remote sensing is done by collecting the energy emitted or reflected from the object being sensed. Passive remote sensing is done with various types of electromagnetic radiation such as visible, infrared, or microwave. The electromagnetic radiation is either emitted or reflected from the object being sensed. The reflected radiation is then collected by a sensor and processed to obtain information about the object.
+
+While most satellite imagery is optical, meaning it captures sunlight reflected by the earth’s surface, Synthetic Aperture Radar (SAR) satellites such as Sentinel-1 work by emitting pulses of radio waves and measuring how much of the signal is reflected back. This is similar to the way a bat uses sonar to “see” in the dark: by emitting calls and listening to echoes.
 
 ## Resolution
 
@@ -19,10 +24,6 @@ Most of the optical imagery that is freely available has relatively low spatial 
 ![](./images/Landsat.png)
 ![](./images/Sentinel2.png)
 ![](./images/Maxar.png)
-
-
-![](./images/kh11.png)
-
 
 ### Spectral Resolution 
 
