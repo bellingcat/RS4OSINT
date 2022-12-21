@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Google Earth Engine for OSINT - 4&nbsp; Interpreting Images</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./F4.html" rel="next">
+<link href="./F1.html" rel="prev">
+<link href="./favicon.ico" rel="icon">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-RK9ZLZQ6GL"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
+</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interpreting Images</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo_white.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Google Earth Engine for OSINT</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/oballinger/GEE_OSINT/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="./Google-Earth-Engine-for-OSINT.pdf">
+            <i class="bi bi-bi-file-pdf pe-1"></i>
+          Download PDF
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="./Google-Earth-Engine-for-OSINT.epub">
+            <i class="bi bi-bi-journal pe-1"></i>
+          Download ePub
+          </a>
+        </li>
+    </ul>
+    <a href="" title="Share" id="sidebar-tool-dropdown-1" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-1">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Remote Sensing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Acquisition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interpreting Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Interpreting Image Series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Vectors and Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Topics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Case Studies</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lights.html" class="sidebar-item-text sidebar-link">War at Night</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refineries.html" class="sidebar-item-text sidebar-link">Refinery Detection</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ships.html" class="sidebar-item-text sidebar-link">Refinery Detection</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#image-manipulation-bands-arithmetic-thresholds-and-masks" id="toc-image-manipulation-bands-arithmetic-thresholds-and-masks" class="nav-link active" data-scroll-target="#image-manipulation-bands-arithmetic-thresholds-and-masks"><span class="toc-section-number">5</span>  Image Manipulation: Bands, Arithmetic, Thresholds, and Masks</a>
+  <ul class="collapse">
+  <li><a href="#band-arithmetic-in-earth-engine" id="toc-band-arithmetic-in-earth-engine" class="nav-link" data-scroll-target="#band-arithmetic-in-earth-engine"><span class="toc-section-number">5.1</span>  Band Arithmetic in Earth Engine</a>
+  <ul class="collapse">
+  <li><a href="#arithmetic-calculation-of-ndvi" id="toc-arithmetic-calculation-of-ndvi" class="nav-link" data-scroll-target="#arithmetic-calculation-of-ndvi"><span class="toc-section-number">5.1.1</span>  Arithmetic&nbsp;Calculation of NDVI</a></li>
+  <li><a href="#single-operation-computation-of-normalized-difference-for-ndvi" id="toc-single-operation-computation-of-normalized-difference-for-ndvi" class="nav-link" data-scroll-target="#single-operation-computation-of-normalized-difference-for-ndvi"><span class="toc-section-number">5.1.2</span>  Single-Operation Computation of Normalized Difference for NDVI</a></li>
+  <li><a href="#using-normalized-difference-for-ndwi" id="toc-using-normalized-difference-for-ndwi" class="nav-link" data-scroll-target="#using-normalized-difference-for-ndwi"><span class="toc-section-number">5.1.3</span>  Using Normalized Difference for NDWI</a></li>
+  </ul></li>
+  <li><a href="#thresholding-masking-and-remapping-images" id="toc-thresholding-masking-and-remapping-images" class="nav-link" data-scroll-target="#thresholding-masking-and-remapping-images"><span class="toc-section-number">5.2</span>  Thresholding, Masking, and Remapping Images</a>
+  <ul class="collapse">
+  <li><a href="#implementing-a-threshold" id="toc-implementing-a-threshold" class="nav-link" data-scroll-target="#implementing-a-threshold"><span class="toc-section-number">5.2.1</span>  Implementing a Threshold</a></li>
+  <li><a href="#building-complex-categorizations-with-.where" id="toc-building-complex-categorizations-with-.where" class="nav-link" data-scroll-target="#building-complex-categorizations-with-.where"><span class="toc-section-number">5.2.2</span>  Building&nbsp;Complex Categorizations with .where</a></li>
+  <li><a href="#masking-specific-values-in-an-image" id="toc-masking-specific-values-in-an-image" class="nav-link" data-scroll-target="#masking-specific-values-in-an-image"><span class="toc-section-number">5.2.3</span>  Masking Specific Values in an Image</a></li>
+  <li><a href="#remapping-values-in-an-image" id="toc-remapping-values-in-an-image" class="nav-link" data-scroll-target="#remapping-values-in-an-image"><span class="toc-section-number">5.2.4</span>  Remapping Values in an Image</a></li>
+  </ul></li>
+  <li><a href="#synthesis" id="toc-synthesis" class="nav-link" data-scroll-target="#synthesis">Synthesis</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  <li><a href="#interpreting-an-image-classification" id="toc-interpreting-an-image-classification" class="nav-link" data-scroll-target="#interpreting-an-image-classification"><span class="toc-section-number">6</span>  Interpreting&nbsp;an Image: Classification</a>
+  <ul class="collapse">
+  <li><a href="#supervised-classification" id="toc-supervised-classification" class="nav-link" data-scroll-target="#supervised-classification"><span class="toc-section-number">6.1</span>  Supervised Classification</a></li>
+  <li><a href="#unsupervised-classification" id="toc-unsupervised-classification" class="nav-link" data-scroll-target="#unsupervised-classification"><span class="toc-section-number">6.2</span>  Unsupervised Classification</a></li>
+  <li><a href="#synthesis-1" id="toc-synthesis-1" class="nav-link" data-scroll-target="#synthesis-1">Synthesis</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
+  <li><a href="#references-1" id="toc-references-1" class="nav-link" data-scroll-target="#references-1">References</a></li>
+  </ul></li>
+  <li><a href="#accuracy-assessment-quantifying-classification-quality" id="toc-accuracy-assessment-quantifying-classification-quality" class="nav-link" data-scroll-target="#accuracy-assessment-quantifying-classification-quality"><span class="toc-section-number">7</span>  Accuracy Assessment: Quantifying Classification Quality</a>
+  <ul class="collapse">
+  <li><a href="#quantifying-classification-accuracy-through-a-confusion-matrix" id="toc-quantifying-classification-accuracy-through-a-confusion-matrix" class="nav-link" data-scroll-target="#quantifying-classification-accuracy-through-a-confusion-matrix"><span class="toc-section-number">7.1</span>  Quantifying Classification Accuracy Through a Confusion Matrix</a></li>
+  <li><a href="#hyperparameter-tuning" id="toc-hyperparameter-tuning" class="nav-link" data-scroll-target="#hyperparameter-tuning"><span class="toc-section-number">7.2</span>  Hyperparameter tuning</a></li>
+  <li><a href="#synthesis-2" id="toc-synthesis-2" class="nav-link" data-scroll-target="#synthesis-2">Synthesis</a></li>
+  <li><a href="#conclusion-2" id="toc-conclusion-2" class="nav-link" data-scroll-target="#conclusion-2">Conclusion</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/oballinger/GEE_OSINT/edit/main/F2.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interpreting Images</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Now that you know how images are viewed and what kinds of images exist in Earth Engine, how do we manipulate them? To gain the skills of interpreting images, you’ll work with bands, combining values to form indices and masking unwanted pixels. Then, you’ll learn some of the techniques available in Earth Engine for classifying images and interpreting the results.</p>
+<section id="image-manipulation-bands-arithmetic-thresholds-and-masks" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Image Manipulation: Bands, Arithmetic, Thresholds, and Masks</h1>
+<hr>
+<section id="author" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="author">Author</h2>
+<p>Karen Dyson, Andréa Puzzi Nicolau, David Saah, and Nicholas Clinton</p>
+</section>
+<section id="overview" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="overview">Overview</h2>
+<p>Once images have been identified in Earth Engine, they can be viewed in a wide array of band combinations for targeted purposes. For users who are already versed in remote sensing concepts, this chapter shows how to do familiar tasks on this platform; for those who are entirely new to such concepts, it introduces the idea of band combinations.</p>
+</section>
+<section id="learning-outcomes" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
+<ul>
+<li>Understanding what spectral indices are and why they are useful.</li>
+<li>Being introduced to a range of example spectral indices used for a variety of purposes.</li>
+</ul>
+</section>
+<section id="assumes-you-know-how-to" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to">Assumes you know how to:</h2>
+<ul>
+<li>Import images and image collections, filter, and visualize (Part F1).</li>
+</ul>
+<hr>
+</section>
+<section id="introduction-to-theory" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory">Introduction to Theory</h2>
+<p>Spectral indices are based on the fact that different objects and land covers on the Earth’s surface reflect different amounts of light from the Sun at different wavelengths. In the visible part of the spectrum, for example, a healthy green plant reflects a large amount of green light while absorbing&nbsp;blue and red light—which is why it appears green to our eyes. Light also arrives from the Sun at wavelengths outside what the human eye can see, and there are large differences in reflectances between living and nonliving land covers, and between different types of vegetation, both in the visible and outside the visible wavelengths. We visualized this earlier, in Chaps. F1.1 and F1.3&nbsp;when we mapped color-infrared images (Fig. F2.0.1).</p>
+<p><img src="F2/image39.png" class="img-fluid"></p>
+<p>Fig. F2.0.1&nbsp;Mapped color-IR images from multiple satellite sensors that we mapped in Chap. F1.3.&nbsp;The near infrared spectrum is mapped as red, showing where there are high amounts of healthy vegetation.</p>
+<p>If we graph the amount of light (reflectance) at different wavelengths that an object or land cover reflects, we can visualize this more easily (Fig. F2.0.2). For example, look at the reflectance curves for soil and water in the graph below. Soil and water both have relatively low reflectance at wavelengths around 300 nm (ultraviolet and violet light). Conversely, at wavelengths above 700 nm (red and infrared light) soil has relatively high reflectance, while water has very low reflectance. Vegetation, meanwhile, generally reflects large amounts of near infrared light, relative to other land covers.</p>
+<p><img src="F2/image32.png" class="img-fluid"></p>
+<p>Fig. F2.0.2&nbsp;A graph of the amount of reflectance for different objects on the Earth’s surface at different wavelengths in the visible and infrared portions of the electromagnetic spectrum. 1 micrometer (µm) = 1,000 nanometers (nm).</p>
+<p>Spectral indices use math to express how objects reflect light across multiple portions of the spectrum as a single number. Indices combine multiple bands, often with simple operations of subtraction and division, to create a single value across an image that is intended to help to distinguish particular land uses or land covers of interest. Using Fig. F2.0.2, you can imagine which wavelengths might be the most informative for distinguishing among a variety of land covers.&nbsp;We will explore a variety of calculations made from combinations of bands in the following sections.</p>
+<p>Indices derived from satellite imagery are used as the basis of many remote-sensing analyses. Indices have been used in thousands of applications, from detecting anthropogenic deforestation to examining crop health. For example, the growth of economically important crops such as wheat and cotton can be monitored throughout the growing season: Bare soil reflects more red wavelengths, whereas growing crops reflect more of the near-infrared (NIR) wavelengths. Thus, calculating a ratio of these two bands can help monitor how well crops are growing (Jackson and Huete 1991).</p>
+</section>
+<section id="band-arithmetic-in-earth-engine" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="band-arithmetic-in-earth-engine"><span class="header-section-number">5.1</span> Band Arithmetic in Earth Engine</h2>
+<p>If you have not already done so, be sure to add the book’s code repository to the Code Editor by entering&nbsp;<a href="https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&amp;sa=D&amp;source=editors&amp;ust=1671458829783542&amp;usg=AOvVaw2f8xfEZP6c0zP_Ke8jL26U"></a><a href="https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&amp;sa=D&amp;source=editors&amp;ust=1671458829783919&amp;usg=AOvVaw2i09J44MzpMZkjV_JLEnNR">https://code.earthengine.google.com/?accept_repo=projects/gee-edu/book</a>&nbsp;into your browser. The book’s scripts will then be available in the script manager panel. If you have trouble finding the repo, you can visit <a href="https://www.google.com/url?q=https://docs.google.com/presentation/d/1Kt6wGNoesYm__Cu3k3bnlbbyPN6m9SF4hQHK-pIDHfc/edit%23slide%3Did.g18a7b4b055d_0_624&amp;sa=D&amp;source=editors&amp;ust=1671458829784270&amp;usg=AOvVaw1Kr82KG60ZeFLYC8cOZ67A">this link</a>&nbsp;for help.</p>
+<p>Many indices can be calculated using band arithmetic in Earth Engine. Band arithmetic is the process of adding, subtracting, multiplying, or dividing two or more bands from an image. Here we’ll first do this manually, and then show you some more efficient ways to perform band arithmetic in Earth Engine.</p>
+<section id="arithmetic-calculation-of-ndvi" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="arithmetic-calculation-of-ndvi"><span class="header-section-number">5.1.1</span> Arithmetic&nbsp;Calculation of NDVI</h3>
+<p>The red and near-infrared bands provide a lot of information about vegetation due to vegetation’s high reflectance in these wavelengths. Take a look at Fig. F2.0.2 and note, in particular, that vegetation curves (graphed in green) have relatively high reflectance in the NIR range (approximately 750–900 nm). Also note that vegetation has low reflectance in the red range (approximately 630–690 nm), where sunlight is absorbed by chlorophyll. This suggests that if the red and near-infrared bands could be combined, they would provide substantial information about vegetation.</p>
+<p>Soon after the launch of Landsat 1 in 1972, analysts worked to devise a robust single value that would convey the health of vegetation along a scale of −1 to 1. This yielded the NDVI, using the formula:</p>
+<p><img src="F2/image1.png" class="img-fluid">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(F2.0.1)</p>
+<p>where NIR&nbsp;and red&nbsp;refer to the brightness of each of those two bands. As seen in Chaps. F1.1&nbsp;and F1.2, this brightness might be conveyed in units of reflectance, radiance, or digital number (DN); the NDVI is intended to give nearly equivalent values across platforms that use these wavelengths. The general form of this equation is called a “normalized difference”—the numerator is the “difference” and the denominator “normalizes” the value. Outputs for NDVI vary between −1 and 1. High amounts of green vegetation have values around 0.8–0.9. Absence of green leaves gives values near 0, and water gives values near −1.</p>
+<p>To compute the NDVI, we will introduce Earth Engine’s implementation of band arithmetic. Cloud-based band arithmetic is one of the most powerful aspects of Earth Engine, because the platform’s computers are optimized for this type of heavy processing. Arithmetic on bands can be done even at planetary scale very quickly—an idea that was out of reach before the advent of cloud-based remote sensing. Earth Engine automatically partitions calculations across a large number of computers as needed, and assembles the answer for display.</p>
+<p>As an example, let’s examine an image of San Francisco (​​Fig. F2.0.3).</p>
+<p>/////<br>
+// Band Arithmetic<br>
+/////</p>
+<p>// Calculate NDVI using Sentinel 2</p>
+<p>// Import and filter imagery by location and date.<br>
+var&nbsp;sfoPoint = ee.Geometry.Point(-122.3774, 37.6194);<br>
+var&nbsp;sfoImage = ee.ImageCollection(‘COPERNICUS/S2’)<br>
+&nbsp; &nbsp;.filterBounds(sfoPoint)<br>
+&nbsp; &nbsp;.filterDate(‘2020-02-01’, ‘2020-04-01’)<br>
+&nbsp; &nbsp;.first();</p>
+<p>// Display the image as a false color composite.<br>
+Map.centerObject(sfoImage, 11);<br>
+Map.addLayer(sfoImage, {<br>
+&nbsp; &nbsp;bands: [‘B8’, ‘B4’, ‘B3’],<br>
+&nbsp; &nbsp;min: 0,<br>
+&nbsp; &nbsp;max: 2000}, ‘False color’);</p>
+<p><img src="F2/image46.png" class="img-fluid"></p>
+<p>Fig. F2.0.3&nbsp;False color Sentinel-2 imagery of San Francisco and surroundings</p>
+<p>The simplest mathematical operations in Earth Engine are the&nbsp;add, subtract, multiply, and&nbsp;divide&nbsp;methods. Let’s select the near-infrared and red bands and use these operations to calculate NDVI for our image.</p>
+<p>// Extract the near infrared and red bands.<br>
+var&nbsp;nir = sfoImage.select(‘B8’);<br>
+var&nbsp;red = sfoImage.select(‘B4’);</p>
+<p>// Calculate the numerator and the denominator using subtraction and addition respectively.<br>
+var&nbsp;numerator = nir.subtract(red);<br>
+var&nbsp;denominator = nir.add(red);</p>
+<p>// Now calculate NDVI.<br>
+var&nbsp;ndvi = numerator.divide(denominator);</p>
+<p>// Add the layer to our map with a palette.<br>
+var&nbsp;vegPalette = [‘red’, ‘white’, ‘green’];<br>
+Map.addLayer(ndvi, {<br>
+&nbsp; &nbsp;min: -1,<br>
+&nbsp; &nbsp;max: 1,<br>
+&nbsp; &nbsp;palette: vegPalette<br>
+}, ‘NDVI Manual’);</p>
+<p>Examine the resulting index, using the Inspector to pick out pixel values in areas of vegetation and non-vegetation if desired.</p>
+<p><img src="F2/image50.png" class="img-fluid"></p>
+<p>Fig. F2.0.4&nbsp;NDVI calculated using Sentinel-2. Remember that outputs for NDVI vary between −1 and 1. High amounts of green vegetation have values around 0.8–0.9. Absence of green leaves gives values near 0, and water gives values near −1.</p>
+<p>Using these simple arithmetic tools, you can build almost any index, or develop and visualize your own. Earth Engine allows you to quickly and easily calculate and display the index across a large area.</p>
+</section>
+<section id="single-operation-computation-of-normalized-difference-for-ndvi" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="single-operation-computation-of-normalized-difference-for-ndvi"><span class="header-section-number">5.1.2</span> Single-Operation Computation of Normalized Difference for NDVI</h3>
+<p>Normalized differences like NDVI are so common in remote sensing that Earth Engine provides the ability to do that particular sequence of subtraction, addition, and division in a single step, using the&nbsp;normalizedDifference&nbsp;method. This method takes an input image, along with bands you specify, and creates a normalized difference of those two bands. The NDVI computation previously created with band arithmetic can be replaced with one line of code:</p>
+<p>// Now use the built-in&nbsp;normalizedDifference function to achieve the same outcome.<br>
+var&nbsp;ndviND = sfoImage.normalizedDifference([‘B8’, ‘B4’]);<br>
+Map.addLayer(ndviND, {<br>
+&nbsp; &nbsp;min: -1,<br>
+&nbsp; &nbsp;max: 1,<br>
+&nbsp; &nbsp;palette: vegPalette<br>
+}, ‘NDVI normalizedDiff’);</p>
+<p>Note that the order in which you provide the two bands to normalizedDifference&nbsp;is important. We use B8, the near-infrared band, as the first parameter, and the red band B4 as the second. If your two computations of NDVI do not look identical when drawn to the screen, check to make sure that the order you have for the NIR and red bands is correct.</p>
+</section>
+<section id="using-normalized-difference-for-ndwi" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="using-normalized-difference-for-ndwi"><span class="header-section-number">5.1.3</span> Using Normalized Difference for NDWI</h3>
+<p>As mentioned, the normalized difference approach is used for many different indices. Let’s apply the same normalizedDifference&nbsp;method to another index.</p>
+<p>The Normalized Difference Water Index (NDWI) was developed by Gao (1996)&nbsp;as an index of vegetation water content. The index is sensitive to changes in the liquid content of vegetation canopies. This means that the index can be used, for example, to detect vegetation experiencing drought conditions or differentiate crop irrigation levels. In dry areas, crops that are irrigated can be differentiated from natural vegetation. It is also sometimes called the Normalized Difference Moisture Index (NDMI). NDWI is formulated as follows:</p>
+<p><img src="F2/image2.png" class="img-fluid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(F2.0.2)</p>
+<p>where NIR is near-infrared, centered near 860 nm (0.86 μm), and SWIR is short-wave infrared, centered near 1,240 nm (1.24 μm).</p>
+<p>Compute and display NDWI in Earth Engine using the normalizedDifference&nbsp;method. Remember that for Sentinel-2, B8 is the NIR band and B11 is the SWIR band (refer to Chaps. F1.1 and F1.3&nbsp;to find information about imagery bands).</p>
+<p>// Use normalizedDifference to calculate NDWI<br>
+var&nbsp;ndwi = sfoImage.normalizedDifference([‘B8’, ‘B11’]);<br>
+var&nbsp;waterPalette = [‘white’, ‘blue’];<br>
+Map.addLayer(ndwi, {<br>
+&nbsp; &nbsp;min: -0.5,<br>
+&nbsp; &nbsp;max: 1,<br>
+&nbsp; &nbsp;palette: waterPalette<br>
+}, ‘NDWI’);</p>
+<p>Examine the areas of the map that NDVI identified as having a lot of vegetation. Notice which are more blue. This is vegetation that has higher water content.</p>
+<p><img src="F2/image40.png" class="img-fluid"></p>
+<p>Fig. F2.0.5&nbsp;NDWI displayed for Sentinel-2 over San Francisco</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code Checkpoint F20a.&nbsp;The book’s repository contains a script that shows what your code should look like at this point.&nbsp;</p>
+</div>
+</div>
+</section>
+</section>
+<section id="thresholding-masking-and-remapping-images" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="thresholding-masking-and-remapping-images"><span class="header-section-number">5.2</span> Thresholding, Masking, and Remapping Images</h2>
+<p>The previous section in this chapter discussed how to use band arithmetic to manipulate images. Those methods created new continuous values by combining bands within an image. This section uses&nbsp;logical operators to categorize band or index values to create a categorized image.</p>
+<section id="implementing-a-threshold" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="implementing-a-threshold"><span class="header-section-number">5.2.1</span> Implementing a Threshold</h3>
+<p>Implementing a threshold uses a number (the threshold value) and logical operators to help us partition the variability of images into categories. For example, recall our map of NDVI. High amounts of vegetation have NDVI values near 1 and non-vegetated areas are near 0. If we want to see what areas of the map have vegetation, we can use a threshold to generalize the NDVI value in each pixel as being either “no vegetation” or “vegetation”. That is a substantial simplification, to be sure, but can help us to better comprehend the rich variation on the Earth’s surface. This type of categorization may be useful if, for example, we want to look at the proportion of a city that is vegetated.&nbsp;Let’s create a Sentinel-2 map of NDVI near Seattle, Washington, USA. Enter the code below in a new script.</p>
+<p>// Create an NDVI image using Sentinel 2.<br>
+var&nbsp;seaPoint = ee.Geometry.Point(-122.2040, 47.6221);<br>
+var&nbsp;seaImage = ee.ImageCollection(‘COPERNICUS/S2’)<br>
+&nbsp; &nbsp;.filterBounds(seaPoint)<br>
+&nbsp; &nbsp;.filterDate(‘2020-08-15’, ‘2020-10-01’)<br>
+&nbsp; &nbsp;.first();</p>
+<p>var&nbsp;seaNDVI = seaImage.normalizedDifference([‘B8’, ‘B4’]);</p>
+<p>// And map it.<br>
+Map.centerObject(seaPoint, 10);<br>
+var&nbsp;vegPalette = [‘red’, ‘white’, ‘green’];<br>
+Map.addLayer(seaNDVI,<br>
+&nbsp; &nbsp;{<br>
+&nbsp; &nbsp; &nbsp; &nbsp;min: -1,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;max: 1,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;palette: vegPalette<br>
+&nbsp; &nbsp;},&nbsp; &nbsp;‘NDVI Seattle’);</p>
+<p><img src="F2/image30.png" class="img-fluid"></p>
+<p>Fig. F2.0.6&nbsp;NDVI image of Sentinel-2 imagery over Seattle, Washington, USA</p>
+<p>Inspect the image. We can see that vegetated areas are darker green while non-vegetated locations are white and water is pink. If we use the Inspector&nbsp;to query our image, we can see that parks and other forested areas have an NDVI over about 0.5. Thus, it would make sense to define areas with NDVI values greater than 0.5 as forested, and those below that threshold as not forested.</p>
+<p>Now let’s define that value as a threshold and use it to threshold our vegetated areas.</p>
+<p>// Implement a threshold.<br>
+var&nbsp;seaVeg = seaNDVI.gt(0.5);</p>
+<p>// Map the threshold.<br>
+Map.addLayer(seaVeg,<br>
+&nbsp; &nbsp;{<br>
+&nbsp; &nbsp; &nbsp; &nbsp;min: 0,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;max: 1,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;palette: [‘white’, ‘green’]<br>
+&nbsp; &nbsp;},&nbsp; &nbsp;‘Non-forest vs.&nbsp;Forest’);</p>
+<p>The gt&nbsp;method is from the family of Boolean operators—that is, gt&nbsp;is a function that performs a test in each pixel and returns the value 1 if the test evaluates to true, and 0 otherwise. Here, for every pixel in the image, it tests whether the NDVI value is greater than 0.5.&nbsp;When this condition is met, the layer seaVeg&nbsp;gets the value 1. When the condition is false, it receives the value 0.</p>
+<p><img src="F2/image47.png" class="img-fluid"></p>
+<p>Fig. F2.0.7&nbsp;Thresholded forest and non-forest image based on NDVI for Seattle, Washington, USA</p>
+<p>Use the Inspector&nbsp;tool to explore this new layer. If you click on a green location, that NDVI should be greater than 0.5. If you click on a white pixel, the NDVI value should be equal to or less than 0.5.</p>
+<p>Other operators in this Boolean family include less than (lt), less than or equal to (lte), equal to (eq), not equal to (neq), and greater than or equal to (gte) and more.</p>
+</section>
+<section id="building-complex-categorizations-with-.where" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="building-complex-categorizations-with-.where"><span class="header-section-number">5.2.2</span> Building&nbsp;Complex Categorizations with .where</h3>
+<p>A binary map classifying NDVI is very useful. However, there are situations where you may want to split your image into more than two bins. Earth Engine provides a tool, the where&nbsp;method, that conditionally evaluates to true or false within each pixel depending on the outcome of a test. This is analogous to an&nbsp;if&nbsp;statement seen commonly in other languages. However, to perform this logic when programming for Earth Engine, we avoid using the JavaScript if&nbsp;statement. Importantly, JavaScript if&nbsp;commands are not calculated on Google’s servers, and can create serious problems when running your code—in effect, the servers try to ship all of the information to be executed to your own computer’s browser, which is very underequipped for such enormous tasks. Instead, we use the where&nbsp;clause for conditional logic.</p>
+<p>Suppose instead of just splitting the forested areas from the non-forested areas in our NDVI, we want to split the image into likely water, non-forested, and forested areas. We can use where&nbsp;and thresholds of -0.1 and 0.5. We will start by creating an image using ee.Image. We then clip the new image so that it covers the same area as our seaNDVI&nbsp;layer.</p>
+<p>// Implement .where.<br>
+// Create a starting image with all values = 1.<br>
+var&nbsp;seaWhere = ee.Image(1)&nbsp; &nbsp;// Use clip to constrain the size of the new image.&nbsp; &nbsp;.clip(seaNDVI.geometry());</p>
+<p>// Make all NDVI values less than -0.1 equal 0.<br>
+seaWhere = seaWhere.where(seaNDVI.lte(-0.1), 0);</p>
+<p>// Make all NDVI values greater than 0.5 equal 2.<br>
+seaWhere = seaWhere.where(seaNDVI.gte(0.5), 2);</p>
+<p>// Map our layer that has been divided into three classes.<br>
+Map.addLayer(seaWhere,<br>
+&nbsp; &nbsp;{<br>
+&nbsp; &nbsp; &nbsp; &nbsp;min: 0,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;max: 2,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;palette: [‘blue’, ‘white’, ‘green’]<br>
+&nbsp; &nbsp;},&nbsp; &nbsp;‘Water, Non-forest, Forest’);</p>
+<p>There are a few interesting things to note about this code that you may not have seen before. First, we’re not defining a new variable for each where&nbsp;call. As a result, we can perform many where&nbsp;calls without creating a new variable each time and needing to keep track of them. Second, when we created the starting image, we set the value to 1. This means that we could easily set the bottom and top values with one where&nbsp;clause each. Finally, while we did not do it here, we can combine multiple where&nbsp;clauses using and&nbsp;and or. For example, we could identify pixels with an intermediate level of NDVI using seaNDVI.gte(-0.1).and(seaNDVI.lt(0.5)).</p>
+<p><img src="F2/image37.png" class="img-fluid"></p>
+<p>Fig. F2.0.8&nbsp;Thresholded water, forest, and non-forest image based on NDVI for Seattle, Washington, USA.</p>
+</section>
+<section id="masking-specific-values-in-an-image" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="masking-specific-values-in-an-image"><span class="header-section-number">5.2.3</span> Masking Specific Values in an Image</h3>
+<p>Masking an image is a technique that removes specific areas of an image—those covered by the mask—from being displayed or analyzed. Earth Engine allows you to both view the current mask and update the mask.</p>
+<p>// Implement masking.<br>
+// View the seaVeg layer’s current mask.<br>
+Map.centerObject(seaPoint, 9);<br>
+Map.addLayer(seaVeg.mask(), {}, ‘seaVeg Mask’);</p>
+<p><img src="F2/image23.png" class="img-fluid"></p>
+<p>Fig. F2.0.9&nbsp;The existing mask for the seaVeg&nbsp;layer we created previously</p>
+<p>You can use the Inspector to see that the black area is masked and the white area has a constant value of 1. This means that data values are mapped and available for analysis within the white area only.</p>
+<p>Now suppose we only want to display and conduct analyses in the forested areas. Let’s mask out the non-forested areas from our image. First, we create a binary mask using the equals (eq)&nbsp;method.</p>
+<p>// Create a binary mask of non-forest.<br>
+var&nbsp;vegMask = seaVeg.eq(1);</p>
+<p>In making a mask, you set the values you want to see and analyze to be a number greater than 0. The idea is to set unwanted values to get the value of 0. Pixels that had 0 values become masked out (in practice, they do not appear on the screen at all) once we use the updateMask&nbsp;method to add these values to the existing mask.</p>
+<p>// Update the seaVeg mask with the non-forest mask.<br>
+var&nbsp;maskedVeg = seaVeg.updateMask(vegMask);</p>
+<p>// Map the updated Veg layer<br>
+Map.addLayer(maskedVeg,<br>
+&nbsp; &nbsp;{<br>
+&nbsp; &nbsp; &nbsp; &nbsp;min: 0,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;max: 1,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;palette: [‘green’]<br>
+&nbsp; &nbsp;},&nbsp; &nbsp;‘Masked Forest Layer’);</p>
+<p>Turn off all of the other layers. You can see how the maskedVeg&nbsp;layer now has masked out all non-forested areas.</p>
+<p><img src="F2/image26.png" class="img-fluid"></p>
+<p>Fig. F2.0.10&nbsp;An updated mask now displays only the forested areas. Non-forested areas are masked out and transparent.</p>
+<p>Map the updated mask for the layer and you can see why this is.</p>
+<p>// Map the updated mask<br>
+Map.addLayer(maskedVeg.mask(), {}, ‘maskedVeg Mask’);</p>
+<p><img src="F2/image33.png" class="img-fluid"></p>
+<p>Fig. F2.0.11&nbsp;The updated mask. Areas of non-forest are now masked out as well (black areas of the image).</p>
+</section>
+<section id="remapping-values-in-an-image" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="remapping-values-in-an-image"><span class="header-section-number">5.2.4</span> Remapping Values in an Image</h3>
+<p>Remapping takes specific values in an image and assigns them a different value. This is particularly useful for categorical datasets, including those you read about in Chap. F1.2 and those we have created earlier in this chapter.</p>
+<p>Let’s use the remap&nbsp;method to change the values for our seaWhere&nbsp;layer. Note that since we’re changing the middle value to be the largest, we’ll need to adjust our palette as well.</p>
+<p>// Implement remapping.<br>
+// Remap the values from the seaWhere layer.<br>
+var&nbsp;seaRemap = seaWhere.remap([0, 1, 2], // Existing values.&nbsp; &nbsp;[9, 11, 10]); // Remapped values.</p>
+<p>Map.addLayer(seaRemap,<br>
+&nbsp; &nbsp;{<br>
+&nbsp; &nbsp; &nbsp; &nbsp;min: 9,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;max: 11,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;palette: [‘blue’, ‘green’, ‘white’]<br>
+&nbsp; &nbsp;},&nbsp; &nbsp;‘Remapped Values’);</p>
+<p>Use the inspector to compare values between our original seaWhere&nbsp;(displayed as Water, Non-Forest, Forest) and the seaRemap, marked as “Remapped Values.” Click on a forested area and you should see that the Remapped Values should be 10, instead of 2 (Fig. F2.0.12).</p>
+<p><img src="F2/image28.png" class="img-fluid"></p>
+<p>Fig. F2.0.12&nbsp;For forested areas, the remapped layer has a value of 10, compared with the original layer, which has a value of 2. You may have more layers in your Inspector.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code Checkpoint F20b.&nbsp;The book’s repository contains a script that shows what your code should look like at this point.&nbsp;</p>
+</div>
+</div>
+</section>
+</section>
+<section id="synthesis" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="synthesis">Synthesis</h2>
+<p>Assignment 1. In addition to vegetation indices and other land cover indices, you can use properties of different soil types to create&nbsp;geological indices. The Clay Minerals Ratio (CMR) is one of these. This index highlights soils containing clay and alunite, which absorb radiation in the SWIR portion (2.0–2.3 μm) of the spectrum.</p>
+<p><img src="F2/image3.png" class="img-fluid"></p>
+<p>SWIR 1 should be in the 1.55–1.75 µm&nbsp;range, and SWIR 2 should be in the 2.08–2.35 µm range. Calculate and display CMR at the following point: ee.Geometry.Point(-100.543, 33.456). Don’t forget to use Map.centerObject.</p>
+<p>We’ve selected an area of Texas known&nbsp;for its clay soils. Compare this with an area without clay soils (for example, try an area around Seattle or Tacoma, Washington, USA). Note that this index will also pick up roads and other paved areas.</p>
+<p>Assignment 2. Calculate the Iron Oxide Ratio, which can be used to detect hydrothermally altered rocks (e.g., from volcanoes) that contain iron-bearing sulfides which have been oxidized (Segal, 1982).</p>
+<p>Here’s the formula:</p>
+<p><img src="F2/image4.png" class="img-fluid"></p>
+<p>Red should be the 0.63–0.69 µm spectral range and Blue the 0.45–0.52 µm. Using Landsat 8, you can also find an interesting area to map by considering where these types&nbsp;of rocks might occur.</p>
+<p>Assignment 3. Calculate the Normalized Difference Built-Up Index (NDBI) for the sfoImage&nbsp;used in this chapter.</p>
+<p>The NDBI was developed by&nbsp;Zha et al.&nbsp;(2003)&nbsp;to aid in differentiating urban areas (e.g., densely clustered buildings and roads) from other land cover types. The index exploits the fact that urban areas, which generally have a great deal of impervious surface cover, reflect SWIR very strongly. If you like, refer back to Fig. F2.0.2.</p>
+<p>The formula is:</p>
+<p><img src="F2/image5.png" class="img-fluid"></p>
+<p>Using what we know about Sentinel-2 bands, compute NDBI and display it.</p>
+<p>Bonus: Note that NDBI is the negative of NDWI computed earlier. We can prove this by using the JavaScript reverse&nbsp;method to reverse the palette used for NDWI in Earth Engine. This method reverses the order of items in the JavaScript list. Create a new palette for NDBI using the reverse method and display the map. As a hint, here is code to use the reverse method.</p>
+<p>var&nbsp;barePalette = waterPalette.reverse();</p>
+</section>
+<section id="conclusion" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this chapter, you learned how to select multiple bands from an image and calculate indices. You also learned about thresholding values in an image, slicing them into multiple categories using thresholds. It is also possible to work with one set of class numbers and remap them quickly to another set. Using these techniques, you have some of the basic tools of image manipulation. In subsequent chapters you will encounter more complex and specialized image manipulation techniques, including pixel-based image transformations&nbsp;(Chap. F3.1), neighborhood-based image transformations (Chap.&nbsp;F3.2), and object-based image analysis (Chap. F3.3).</p>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<p>Baig MHA, Zhang L, Shuai T, Tong Q (2014) Derivation of a tasselled cap transformation based on Landsat 8 at-satellite reflectance. Remote Sens Lett 5:423–431. https://doi.org/10.1080/2150704X.2014.915434</p>
+<p>Crist EP (1985) A TM tasseled cap equivalent transformation for reflectance factor data. Remote Sens Environ 17:301–306. https://doi.org/10.1016/0034-4257(85)90102-6</p>
+<p>Drury SA (1987) Image interpretation in geology. Geocarto Int 2:48. https://doi.org/10.1080/10106048709354098</p>
+<p>Gao BC (1996) NDWI - A normalized difference water index for remote sensing of vegetation liquid water from space. Remote Sens Environ 58:257–266. https://doi.org/10.1016/S0034-4257(96)00067-3</p>
+<p>Huang C, Wylie B, Yang L, et al (2002) Derivation of a tasselled cap transformation based on Landsat 7 at-satellite reflectance. Int J Remote Sens 23:1741–1748. https://doi.org/10.1080/01431160110106113</p>
+<p>Jackson RD, Huete AR (1991) Interpreting vegetation indices. Prev Vet Med 11:185–200. https://doi.org/10.1016/S0167-5877(05)80004-2</p>
+<p>Martín MP (1998) Cartografía e inventario de incendios forestales en la Península Ibérica a partir de imágenes NOAA-AVHRR. Universidad de Alcalá</p>
+<p>McFeeters SK (1996) The use of the Normalized Difference Water Index (NDWI) in the delineation of open water features. Int J Remote Sens 17:1425–1432. https://doi.org/10.1080/01431169608948714</p>
+<p>Nath B, Niu Z, Mitra AK (2019) Observation of short-term variations in the clay minerals ratio after the 2015 Chile great earthquake (8.3 Mw) using Landsat 8 OLI data. J Earth Syst Sci 128:1–21. https://doi.org/10.1007/s12040-019-1129-2</p>
+<p>Schultz M, Clevers JGPW, Carter S, et al (2016) Performance of vegetation indices from Landsat time series in deforestation monitoring. Int J Appl Earth Obs Geoinf 52:318–327. https://doi.org/10.1016/j.jag.2016.06.020</p>
+<p>Segal D (1982) Theoretical basis for differentiation of ferric-iron bearing minerals, using Landsat MSS data. In: Proceedings of Symposium for Remote Sensing of Environment, 2nd Thematic Conference on Remote Sensing for Exploratory Geology, Fort Worth, TX. pp 949–951</p>
+<p>Souza Jr CM, Roberts DA, Cochrane MA (2005) Combining spectral and spatial information to map canopy damage from selective logging and forest fires. Remote Sens Environ 98:329–343. https://doi.org/10.1016/j.rse.2005.07.013</p>
+<p>Souza Jr CM, Siqueira JV, Sales MH, et al (2013) Ten-year Landsat classification of deforestation and forest degradation in the Brazilian Amazon. Remote Sens 5:5493–5513. https://doi.org/10.3390/rs5115493</p>
+</section>
+</section>
+<section id="interpreting-an-image-classification" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Interpreting&nbsp;an Image: Classification</h1>
+<hr>
+<section id="author-1" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="author-1">Author</h2>
+<p>Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton</p>
+</section>
+<section id="overview-1" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="overview-1">Overview</h2>
+<p>Image&nbsp;classification is a fundamental goal of remote sensing. It takes the user from viewing an image to labeling its contents. This chapter introduces readers to the concept of classification and walks users through the many options for image classification in Earth Engine. You will explore the processes of training data collection, classifier selection, classifier training, and image classification.</p>
+</section>
+<section id="learning-outcomes-1" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes-1">Learning Outcomes</h2>
+<ul>
+<li>Running a classification in Earth Engine.</li>
+<li>Understanding the difference between supervised and unsupervised classification.</li>
+<li>Learning how to use Earth Engine geometry drawing tools.</li>
+<li>Learning how to collect sample data in Earth Engine.</li>
+<li>Learning the basics of the hexadecimal numbering system.</li>
+</ul>
+</section>
+<section id="assumes-you-know-how-to-1" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to-1">Assumes you know how to:</h2>
+<ul>
+<li>Import images and image collections, filter, and visualize (Part F1).</li>
+<li>Understand bands and how to select them (Chap. F1.2, Chap. F2.0).</li>
+</ul>
+</section>
+<section id="introduction-to-theory-1" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-1">Introduction to Theory</h2>
+<hr>
+<p>Classification is addressed in a broad range&nbsp;of fields, including mathematics, statistics, data mining, machine learning, and more. For a deeper treatment of classification, interested readers may see some of the following suggestions: Witten et al.&nbsp;(2011), Hastie et al.&nbsp;(2009), Goodfellow et al.&nbsp;(2016), Gareth et al.&nbsp;(2013), Géron (2019),&nbsp;Müller&nbsp;et al.&nbsp;(2016), or Witten et al.&nbsp;(2005). Unlike regression, which predicts continuous variables, classification predicts categorical, or discrete, variables—variables with a finite number of categories (e.g., age range).</p>
+<p>In remote sensing, image classification is an attempt to categorize all pixels in an image into a finite number of labeled land cover and/or land use classes. The resulting classified image is a simplified thematic map derived from the original image (Fig.&nbsp;F2.1.1). Land cover and land use information is essential for many environmental and socioeconomic applications, including natural resource management, urban planning, biodiversity conservation, agricultural monitoring, and carbon accounting.</p>
+<p><img src="F2/image48.png" class="img-fluid"></p>
+<p>Fig.&nbsp;F2.1.1&nbsp;Image classification concept</p>
+<p>Image classification techniques for generating land cover and land use information have been in use since the 1980s (Li et al.&nbsp;2014). Here, we will cover the concepts of pixel-based supervised and unsupervised classifications, testing out different classifiers. Chapter F3.3 covers the concept and application of object-based classification.</p>
+<p>It is important to define land use and land cover. Land cover relates to the physical characteristics of the surface: simply put, it documents whether an area of the Earth’s surface is covered by forests, water, impervious surfaces, etc.&nbsp;Land use refers to how this land is being used by people. For example, herbaceous vegetation is considered a land cover but can indicate different land uses: the grass in a pasture is an agricultural land use, whereas the grass in an urban area can be classified as a park.</p>
+</section>
+<section id="supervised-classification" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="supervised-classification"><span class="header-section-number">6.1</span> Supervised Classification</h2>
+<p>If you have not already done so, be sure to add the book’s code repository to the Code Editor by entering&nbsp;<a href="https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&amp;sa=D&amp;source=editors&amp;ust=1671458829866098&amp;usg=AOvVaw16x5swm9HlorS5Mbw7E42X"></a><a href="https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&amp;sa=D&amp;source=editors&amp;ust=1671458829866485&amp;usg=AOvVaw0-N-JCWWgnM493BKa7Ichm">https://code.earthengine.google.com/?accept_repo=projects/gee-edu/book</a>&nbsp;into your browser. The book’s scripts will then be available in the script manager panel. If you have trouble finding the repo, you can visit <a href="https://www.google.com/url?q=https://docs.google.com/presentation/d/1Kt6wGNoesYm__Cu3k3bnlbbyPN6m9SF4hQHK-pIDHfc/edit%23slide%3Did.g18a7b4b055d_0_624&amp;sa=D&amp;source=editors&amp;ust=1671458829866823&amp;usg=AOvVaw0ytMyRvutssBcVr2GdcBHA">this link</a>&nbsp;for help.</p>
+<p>Supervised classification&nbsp;uses a training dataset with known labels&nbsp;and representing the spectral characteristics of each land cover class of interest to “supervise” the classification. The overall approach of a supervised classification in Earth Engine&nbsp;is summarized as follows:</p>
+<ol type="1">
+<li>Get a scene.</li>
+<li>Collect training data.</li>
+<li>Select and train a classifier using the training data.</li>
+<li>Classify the image using the selected classifier.</li>
+</ol>
+<p>We will begin by creating&nbsp;training data&nbsp;manually, based on a clear Landsat image (Fig. F2.1.2). Copy&nbsp;the code block below to define your Landsat 8 scene variable and add it to the map. We will use a point in Milan, Italy, as the center of the area for our image classification.</p>
+<p>// Create an Earth Engine Point object over Milan.<br>
+var&nbsp;pt = ee.Geometry.Point([9.453, 45.424]);</p>
+<p>// Filter the Landsat 8 collection and select the least cloudy image.<br>
+var&nbsp;landsat = ee.ImageCollection(‘LANDSAT/LC08/C02/T1_L2’)<br>
+&nbsp; &nbsp;.filterBounds(pt)<br>
+&nbsp; &nbsp;.filterDate(‘2019-01-01’, ‘2020-01-01’)<br>
+&nbsp; &nbsp;.sort(‘CLOUD_COVER’)<br>
+&nbsp; &nbsp;.first();</p>
+<p>// Center the map on that image.<br>
+Map.centerObject(landsat, 8);</p>
+<p>// Add Landsat image to the map.<br>
+var&nbsp;visParams = {<br>
+&nbsp; &nbsp;bands: [‘SR_B4’, ‘SR_B3’, ‘SR_B2’],<br>
+&nbsp; &nbsp;min: 7000,<br>
+&nbsp; &nbsp;max: 12000<br>
+};<br>
+Map.addLayer(landsat, visParams, ‘Landsat 8 image’);</p>
+<p><img src="F2/image44.png" class="img-fluid"></p>
+<p>Fig. F2.1.2&nbsp;Landsat image</p>
+<p>Using the Geometry Tools, we will create points on the Landsat image that represent land cover classes of interest to use as our training data. We’ll need to do two things: (1) identify where each land cover occurs on the ground, and (2) label the points with the proper class number. For this exercise, we will use the classes and codes shown in Table 2.1.1.</p>
+<p>Table 2.1.1&nbsp;Land cover classes</p>
+<p>Class</p>
+<p>Class code</p>
+<p>Forest</p>
+<p>0</p>
+<p>Developed</p>
+<p>1</p>
+<p>Water</p>
+<p>2</p>
+<p>Herbaceous</p>
+<p>3</p>
+<p>In the Geometry Tools, click on the marker option (Fig. F2.1.3). This will create a point geometry which will show up as an import named&nbsp;“geometry”. Click on the gear icon to configure this import.</p>
+<p><img src="F2/image22.png" class="img-fluid"></p>
+<p>Fig. F2.1.3&nbsp;Creating a new layer in the Geometry Imports</p>
+<p>We will start by collecting forest points, so name the import forest. Import it as a FeatureCollection, and then click + Property. Name the new property “class” and give it a value of 0 (Fig. F2.1.4). We can also choose a color to represent this class. For a forest class, it is natural to choose a green color. You can choose the color you prefer by clicking on it, or, for more control, you can use a hexadecimal value.</p>
+<p>Hexadecimal values are used throughout the digital world to represent specific colors across computers and operating systems. They are specified by six values arranged in three pairs, with one pair each for the red, green, and blue brightness values. If you’re unfamiliar with hexadecimal values, imagine for a moment that colors were specified in pairs of base 10 numbers instead of pairs of base 16. In that case, a bright pure red value would be “990000”; a bright pure green value would be “009900”; and a bright pure blue value would be “000099”. A value like “501263” would be a mixture of the three colors, not especially bright, having roughly equal amounts of blue and red, and much less green: a color that would be a shade of purple. To create numbers in the hexadecimal system, which might feel entirely natural if humans had evolved to have 16 fingers, sixteen “digits” are needed: a base 16 counter goes 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F, then 10, 11, and so on. Given that counting framework, the number “FF” is like “99” in base 10: the largest two-digit number. The hexadecimal color used for coloring the letters of the word FeatureCollection&nbsp;in this book, a color with roughly equal amounts of blue and red, and much less green, is “7F1FA2” &nbsp;</p>
+<p>Returning to the coloring of the forest&nbsp;points, the hexadecimal value “589400” is a little bit of red, about twice as much green, and no blue: the deep green seen in Figure F2.1.4. Enter that value, with or without the “#” in front, and click OK&nbsp;after finishing the configuration.</p>
+<p><img src="F2/image36.png" class="img-fluid"></p>
+<p>Fig. F2.1.4&nbsp;Edit geometry layer properties</p>
+<p>Now, in the Geometry Imports, we will see that the import has been renamed forest. Click on it to activate the drawing mode (Fig. F2.1.5) in order to start collecting forest&nbsp;points.</p>
+<p><img src="F2/image29.png" class="img-fluid"></p>
+<p>Fig. F2.1.5 Activate forest layer to start collection</p>
+<p>Now, start collecting points over forested areas (Fig. F2.1.6). Zoom in and out as needed. You can use the satellite basemap to assist you, but the basis of your collection should be the Landsat image. Remember that the more points you collect, the more the classifier will learn from the information you provide. For now, let’s set a goal to collect 25 points per class. Click Exit&nbsp;next to Point drawing&nbsp;(Fig. F2.1.5) when finished.</p>
+<p><img src="F2/image38.png" class="img-fluid"></p>
+<p>Fig. F2.1.6 Forest points</p>
+<p>Repeat the same process for the other classes by creating new layers (Fig. F2.1.7). Don’t forget to import using the FeatureCollection&nbsp;option as mentioned above. For the developed&nbsp;class, collect points over urban areas. For the water&nbsp;class, collect points over the Ligurian Sea, and also look for other bodies of water, like rivers. For the herbaceous&nbsp;class, collect points over agricultural fields. Remember to set the “class” property for each class to its corresponding code (see Table 2.1.1) and click Exit&nbsp;once you finalize collecting points for each class as mentioned above. We will be using the following hexadecimal colors for the other classes: #FF0000 for developed, #1A11FF for water, and #D0741E for herbaceous.&nbsp;</p>
+<p><img src="F2/image41.png" class="img-fluid"></p>
+<p>Fig. F2.1.7&nbsp;New layer option in Geometry Imports</p>
+<p>You should now have four FeatureCollection&nbsp;imports named&nbsp;forest, developed, water,&nbsp;and herbaceous&nbsp;(Fig. F2.1.8).</p>
+<p><img src="F2/image42.png" class="img-fluid"></p>
+<p>Fig. F2.1.8 Example of&nbsp;training points</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code Checkpoint F21a.&nbsp;The book’s repository contains a script that shows what your code should look like at this point.</p>
+</div>
+</div>
+<p>If you wish to have the exact same results demonstrated in this chapter from now on, continue beginning with this Code Checkpoint. If you use the points collected yourself, the results may vary from this point forward.</p>
+<p>The next step is to combine all the training feature collections into one. Copy and paste the code below to combine them into one FeatureCollection&nbsp;called trainingFeatures. Here, we use the flatten&nbsp;method to avoid having a collection of feature collections—we want individual features within our FeatureCollection.</p>
+<p>// Combine training feature collections.<br>
+var&nbsp;trainingFeatures = ee.FeatureCollection([<br>
+&nbsp; &nbsp;forest, developed, water, herbaceous<br>
+]).flatten();</p>
+<p>Note:&nbsp;Alternatively, you could use an existing set of reference data. For example, the&nbsp;European Space Agency (ESA)&nbsp;WorldCover&nbsp;dataset is a global map of land use and land cover derived from ESA’s Sentinel-2 imagery at 10 m resolution. With existing datasets, we can randomly place points on pixels classified as the classes of interest (if you are curious, you can explore the Earth Engine documentation to learn about the ee.Image.stratifiedSample&nbsp;and the ee.FeatureCollection.randomPoints&nbsp;methods). The drawback is that these global datasets will not always contain the specific classes of interest for your region, or may not be entirely accurate at the local scale. Another option is to use samples that were collected in the field (e.g., GPS points). In Chap. F5.0,&nbsp;you will see how to upload your own data as Earth Engine assets.</p>
+<p>In the combined FeatureCollection, each Feature&nbsp;point should have a property called “class”. The class values are consecutive integers from 0 to 3&nbsp;(you could verify that this is true by printing trainingFeatures&nbsp;and checking the properties of the features).</p>
+<p>Now that we have our training points, copy and paste the code below to extract the band information for each class at each point location. First, we define the prediction bands to extract different spectral and thermal information from different bands for each class. Then, we use the sampleRegions&nbsp;method to sample the information from the Landsat image at each point location. This method requires information about the FeatureCollection&nbsp;(our reference points), the property to extract (“class”), and the pixel scale (in meters).</p>
+<p>// Define prediction bands.<br>
+var&nbsp;predictionBands = [&nbsp; &nbsp;‘SR_B1’, ‘SR_B2’, ‘SR_B3’, ‘SR_B4’, ‘SR_B5’, ‘SR_B6’, ‘SR_B7’,&nbsp; &nbsp;‘ST_B10’<br>
+];</p>
+<p>// Sample training points.<br>
+var&nbsp;classifierTraining = landsat.select(predictionBands)<br>
+&nbsp; &nbsp;.sampleRegions({<br>
+&nbsp; &nbsp; &nbsp; &nbsp;collection: trainingFeatures,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;properties: [‘class’],<br>
+&nbsp; &nbsp; &nbsp; &nbsp;scale: 30&nbsp; &nbsp;});</p>
+<p>You can check whether the classifierTraining&nbsp;object extracted the properties of interest by printing it and expanding the first feature. You should see the band and class information (Fig. F2.1.9).</p>
+<p><img src="F2/image20.png" class="img-fluid"></p>
+<p>Fig. F2.1.9&nbsp;Example of extracted band information for one point of class 0 (forest)</p>
+<p>Now we can choose a classifier. The choice of classifier is not always obvious, and there are many options from which to pick—you can quickly expand the ee.Classifier&nbsp;object under Docs&nbsp;to get an idea of how many options we have for image classification. Therefore, we will be testing different classifiers and comparing their results. We will start with a Classification and Regression Tree (CART) classifier, a well-known classification algorithm&nbsp;(Fig. F2.1.10)&nbsp;that has been around for decades.</p>
+<p><img src="F2/image25.png" class="img-fluid"></p>
+<p>Fig. F2.1.10&nbsp;Example of a decision tree for satellite image classification. Values and classes are hypothetical.</p>
+<p>Copy and paste the code below to instantiate a CART classifier (ee.Classifier.smileCart)&nbsp;and train it.</p>
+<p>//////////////// CART Classifier ///////////////////</p>
+<p>// Train a CART Classifier.<br>
+var&nbsp;classifier = ee.Classifier.smileCart().train({<br>
+&nbsp; &nbsp;features: classifierTraining,<br>
+&nbsp; &nbsp;classProperty: ‘class’,<br>
+&nbsp; &nbsp;inputProperties: predictionBands<br>
+});</p>
+<p>Essentially, the classifier contains the mathematical rules that link labels to spectral information. If you print the variable classifier&nbsp;and expand its properties, you can confirm the basic characteristics of the object (bands, properties, and classifier being used). If you print classifier.explain, you can find a property called “tree” that contains the decision rules.</p>
+<p>After training the classifier, copy and paste the code below to classify the Landsat image and add it to the Map.</p>
+<p>// Classify the Landsat image.<br>
+var&nbsp;classified = landsat.select(predictionBands).classify(classifier);</p>
+<p>// Define classification image visualization parameters.<br>
+var&nbsp;classificationVis = {<br>
+&nbsp; &nbsp;min: 0,<br>
+&nbsp; &nbsp;max: 3,<br>
+&nbsp; &nbsp;palette: [‘589400’, ‘ff0000’, ‘1a11ff’, ‘d0741e’]<br>
+};</p>
+<p>// Add the classified image to the map.<br>
+Map.addLayer(classified, classificationVis, ‘CART classified’);</p>
+<p>Note that, in the visualization parameters, we define a palette&nbsp;parameter which in this case represents colors for each pixel value (0–3, our class codes). We use the same hexadecimal colors used when creating our training points for each class. This way, we can associate a color with a class when visualizing the classified image in the Map.</p>
+<p>Inspect the result: Activate the Landsat composite layer and the satellite basemap to overlay with the classified images (Fig. F2.1.11). Change the layers’ transparency to inspect some areas. What do you notice? The result might not look very satisfactory in some areas (e.g., confusion between developed&nbsp;and herbaceous&nbsp;classes). Why do you think this is happening? There are a few options to handle misclassification errors:</p>
+<ul>
+<li>Collect more training data&nbsp;We can try incorporating more points to have a more representative sample of the classes.</li>
+<li>Tune the model&nbsp;Classifiers typically have “hyperparameters,” which are set to default values. In the case of classification trees, there are ways to tune the number of leaves in the tree, for example. Tuning models is addressed in Chap. F2.2.</li>
+<li>Try other classifiers&nbsp;If a classifier’s results are unsatisfying, we can try some of the other classifiers in Earth Engine to see if the result is better or different.</li>
+<li>Expand the collection location&nbsp;It is good practice to collect points across the entire image and not just focus on one location. Also, look for pixels of the same class that show variability (e.g., for the developed&nbsp;class, building&nbsp;rooftops look different than house rooftops; for the herbaceous&nbsp;class, crop fields&nbsp;show distinctive seasonality/phenology).&nbsp;</li>
+<li>Add more predictors&nbsp;We can try adding spectral indices to the input variables; this way, we are feeding the classifier new, unique information about each class. For example, there is a good chance that a vegetation index specialized for detecting vegetation health (e.g., NDVI) would improve the developed&nbsp;versus herbaceous&nbsp;classification.</li>
+</ul>
+<p><img src="F2/image21.png" class="img-fluid"></p>
+<p>Fig. F2.1.11&nbsp;CART classification</p>
+<p>For now, we will try another supervised learning classifier that is widely used: Random Forests (RF). The RF algorithm (Breiman 2001,&nbsp;Pal 2005) builds on the concept of decision trees, but adds strategies to make them more powerful. It is called a “forest” because it operates by constructing a multitude of decision trees. As mentioned previously, a decision tree creates the rules which are used to make decisions. A Random Forest will randomly choose features and make observations, build a forest of decision trees, and then use the full set of trees to estimate the class. It is a great choice when you do not have a lot of insight about the training data.</p>
+<p><img src="F2/image27.png" class="img-fluid"></p>
+<p>Fig. F2.1.12 General concept of Random Forests</p>
+<p>Copy and paste the code below to train the RF classifier (ee.Classifier.smileRandomForest) and apply the classifier to the image. The RF algorithm requires, as its argument, the number of trees to build. We will use 50 trees.</p>
+<p>/////////////// Random Forest Classifier /////////////////////</p>
+<p>// Train RF classifier.<br>
+var&nbsp;RFclassifier = ee.Classifier.smileRandomForest(50).train({<br>
+&nbsp; &nbsp;features: classifierTraining,<br>
+&nbsp; &nbsp;classProperty: ‘class’,<br>
+&nbsp; &nbsp;inputProperties: predictionBands<br>
+});</p>
+<p>// Classify Landsat image.<br>
+var&nbsp;RFclassified = landsat.select(predictionBands).classify(<br>
+&nbsp; &nbsp;RFclassifier);</p>
+<p>// Add classified image to the map.<br>
+Map.addLayer(RFclassified, classificationVis, ‘RF classified’);</p>
+<p>Note that in the ee.Classifier.smileRandomForest&nbsp;documentation (Docs&nbsp;tab), there is a seed&nbsp;(random number) parameter. Setting a seed&nbsp;allows you to exactly replicate your model each time you run it. Any number is acceptable as a seed.</p>
+<p>Inspect the result (Fig. F2.1.13). How does this classified image differ from the CART one? Is the classifications better or worse? Zoom in and out and change the transparency of layers as needed. In Chap. F2.2, you will see more systematic ways to assess what is better or worse, based on accuracy metrics.</p>
+<p><img src="F2/image34.png" class="img-fluid"></p>
+<p>Fig. F2.1.13 Random Forest classified image</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code Checkpoint F21b.&nbsp;The book’s repository contains a script that shows what your code should look like at this point.</p>
+</div>
+</div>
+</section>
+<section id="unsupervised-classification" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="unsupervised-classification"><span class="header-section-number">6.2</span> Unsupervised Classification</h2>
+<p>In an unsupervised classification, we have the opposite process of supervised classification. Spectral classes are grouped first and then categorized into clusters. Therefore, in Earth Engine, these classifiers are ee.Clusterer&nbsp;objects. They are “self-taught” algorithms that do not use a set of labeled training data (i.e., they are “unsupervised”). You can think of it as performing a task that you have not experienced before, starting by gathering as much information as possible. For example, imagine learning a new language without knowing the basic grammar, learning only by watching a TV series in that language, listening to examples, and finding patterns.</p>
+<p>Similar to the supervised classification, unsupervised classification in Earth Engine&nbsp;has this workflow:</p>
+<ol type="1">
+<li>Assemble features with numeric properties in which to find clusters (training data).</li>
+<li>Select and instantiate a clusterer.</li>
+<li>Train the clusterer with the training data.</li>
+<li>Apply the clusterer to the scene (classification).</li>
+<li>Label the clusters.</li>
+</ol>
+<p>In order to generate training data, we will use the sample&nbsp;method, which randomly takes samples from a region (unlike sampleRegions, which takes samples from predefined locations). We will use the image’s footprint as the region by calling the geometry&nbsp;method. Additionally, we will define the number of pixels (numPixels) to sample—in this case, 1000 pixels—and define a tileScale&nbsp;of 8 to avoid computation errors due to the size of the region. Copy and paste the code below to sample 1000 pixels from the Landsat image. You should add to the same script as before to compare supervised versus unsupervised classification results at the end.</p>
+<p>//////////////// Unsupervised classification ////////////////</p>
+<p>// Make the training dataset.<br>
+var&nbsp;training = landsat.sample({<br>
+&nbsp; &nbsp;region: landsat.geometry(),<br>
+&nbsp; &nbsp;scale: 30,<br>
+&nbsp; &nbsp;numPixels: 1000,<br>
+&nbsp; &nbsp;tileScale: 8<br>
+});</p>
+<p>Now we can instantiate a clusterer and train it. As with the supervised algorithms, there are many unsupervised algorithms to choose from. We will use the k-means clustering algorithm, which is a commonly used approach in remote sensing. This algorithm identifies groups of pixels near each other in the spectral space (image x bands) by using an iterative regrouping strategy. We define a number of clusters, k, and then the method randomly distributes that number of seed points into the spectral space. A large sample of pixels is then grouped into its closest seed, and the mean spectral value of this group is calculated. That mean value is akin to a center of mass of the points, and is known as the centroid. Each iteration recalculates the class means and reclassifies pixels with respect to the new means. This process is repeated until the centroids remain relatively stable and only a few pixels change from class to class on subsequent iterations.</p>
+<p><img src="F2/image35.png" class="img-fluid"></p>
+<p>Fig. F2.1.14&nbsp;K-means visual concept</p>
+<p>Copy and paste the code below to request&nbsp;four clusters, the same number as for the supervised classification, in order to directly compare them.</p>
+<p>// Instantiate the clusterer and train it.<br>
+var&nbsp;clusterer = ee.Clusterer.wekaKMeans(4).train(training);</p>
+<p>Now copy and paste the code below to apply the clusterer to the image and add the resulting classification to the Map&nbsp;(Fig. F2.1.15). Note that we are using a method called randomVisualizer&nbsp;to assign colors for the visualization. We are not associating the unsupervised classes with the color palette we defined earlier in the supervised classification. Instead, we are assigning random colors to the classes, since we do not yet know which of the unsupervised classes best corresponds to each of the named classes (e.g., forest&nbsp;, herbaceous). Note that the colors in Fig. F1.2.15 might not be the same as you see on your Map,&nbsp;since they are assigned randomly.</p>
+<p>// Cluster the input using the trained clusterer.<br>
+var&nbsp;Kclassified = landsat.cluster(clusterer);</p>
+<p>// Display the clusters with random colors.<br>
+Map.addLayer(Kclassified.randomVisualizer(), {},&nbsp; &nbsp;‘K-means classified - random colors’);</p>
+<p><img src="F2/image31.png" class="img-fluid"></p>
+<p>Fig. F2.1.15&nbsp;K-means classification</p>
+<p>Inspect&nbsp;the results. How does this classification compare to the previous ones? If preferred, use the Inspector&nbsp;to check which classes were assigned to each pixel value (“cluster” band) and change the last line of your code to apply the same palette used for the supervised classification results (see Code Checkpoint below for an example).</p>
+<p>Another key point of classification is the accuracy assessment of the results. This will be covered in Chap. F2.2.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code Checkpoint F21c.&nbsp;The book’s repository contains a script that shows what your code should look like at this point.</p>
+</div>
+</div>
+</section>
+<section id="synthesis-1" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="synthesis-1">Synthesis</h2>
+<p>Test if you can improve the classifications by completing the following assignments.</p>
+<p>Assignment 1. For the supervised classification, try collecting more points for each class. The more points you have, the more spectrally represented the classes are. It is good practice to collect points across the entire composite and not just focus on one location. Also look for pixels of the same class that show variability. For example, for the water class, collect pixels in parts of rivers that vary in color. For the developed class, collect pixels from different rooftops.</p>
+<p>Assignment 2. Add more predictors. Usually, the more spectral information you feed the classifier, the easier it is to separate classes. Try calculating and incorporating a band of &nbsp;NDVI or the Normalized Difference Water Index (Chap. F2.0) as a predictor band. Does this help the classification? Check for developed&nbsp;areas that were being classified as herbaceous&nbsp;or vice versa.</p>
+<p>Assignment 3. Use more trees in the Random Forest classifier. Do you see any improvements compared to 50 trees? Note that the more trees you have, the longer it will take to compute the results, and that more trees&nbsp;might not always mean better results.</p>
+<p>Assignment 4. Increase the number of samples that are extracted from the composite in the unsupervised classification. Does that improve the result?</p>
+<p>Assignment 5. Increase the number k&nbsp;of clusters for the k-means algorithm. What would happen if you tried 10 classes? Does the classified map result in meaningful classes?</p>
+<p>Assignment 6. Test other clustering algorithms. We only used k-means; try other options under the ee.Clusterer&nbsp;object.</p>
+</section>
+<section id="conclusion-1" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="conclusion-1">Conclusion</h2>
+<p>Classification algorithms are key for many different applications because they allow you to predict categorical variables. You should now understand the difference between supervised and unsupervised classification and have the basic knowledge on how to handle misclassifications. By being able to map the landscape for land use and land cover, we will also be able to monitor how it changes (Part F4).</p>
+</section>
+<section id="references-1" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references-1">References</h2>
+<p>Breiman L (2001) Random forests. Mach Learn 45:5–32. https://doi.org/10.1023/A:1010933404324</p>
+<p>Gareth J, Witten D, Hastie T, Tibshirani R (2013) An Introduction to Statistical Learning. Springer</p>
+<p>Géron A (2019) Hands-on Machine Learning with Scikit-Learn, Keras and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. O’Reilly Media, Inc.</p>
+<p>Goodfellow I, Bengio Y, Courville A (2016) Deep Learning. MIT Press</p>
+<p>Hastie T, Tibshirani R, Friedman JH (2009) The Elements of Statistical Learning: Data Mining, Inference, and Prediction. Springer</p>
+<p>Li M, Zang S, Zhang B, et al (2014) A review of remote sensing image classification techniques: The role of spatio-contextual information. Eur J Remote Sens 47:389–411. https://doi.org/10.5721/EuJRS20144723</p>
+<p>Müller AC, Guido S (2016) Introduction to Machine Learning with Python: A Guide for Data Scientists. O’Reilly Media, Inc.</p>
+<p>Pal M (2005) Random forest classifier for remote sensing classification. Int J Remote Sens 26:217–222. https://doi.org/10.1080/01431160412331269698</p>
+<p>Witten IH, Frank E, Hall MA, et al (2005) Practical machine learning tools and techniques. In: Data Mining. pp 4</p>
+</section>
+</section>
+<section id="accuracy-assessment-quantifying-classification-quality" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Accuracy Assessment: Quantifying Classification Quality</h1>
+<hr>
+<section id="author-2" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="author-2">Author</h2>
+<p>Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton</p>
+</section>
+<section id="overview-2" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="overview-2">Overview</h2>
+<p>This chapter will enable you to assess the accuracy of an image classification. You will learn about different metrics and ways to quantify classification quality in Earth Engine. Upon completion, you should be able to evaluate whether your classification needs improvement and know how to proceed when it does.</p>
+</section>
+<section id="learning-outcomes-2" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes-2">Learning Outcomes</h2>
+<ul>
+<li>Learning how to perform accuracy assessment in Earth Engine.</li>
+<li>Understanding how to generate and read a confusion matrix.</li>
+<li>Understanding overall accuracy and the kappa coefficient.</li>
+<li>Understanding the difference between user’s and producer’s accuracy, and the difference between omission and commission errors.</li>
+</ul>
+</section>
+<section id="assumes-you-know-how-to-2" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to-2">Assumes you know how to:</h2>
+<ul>
+<li>​​Create a graph using ui.Chart&nbsp;(Chap. F1.3).</li>
+<li>Perform a supervised Random Forest image classification (Chap. F2.1).</li>
+</ul>
+</section>
+<section id="introduction-to-theory-2" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-2">Introduction to Theory</h2>
+<hr>
+<p>Any map or remotely sensed product is a generalization or model that will have inherent errors. Products derived from remotely sensed data used for scientific purposes and policymaking require a quantitative measure of accuracy to strengthen the confidence in the information generated (Foody 2002, Strahler et al.&nbsp;2006, Olofsson et al.&nbsp;2014). Accuracy assessment is a crucial part of any classification project, as it measures the degree to which the classification agrees with another data source that is considered to be accurate, ground-truth data (i.e., “reality”).</p>
+<p>The history of accuracy assessment reveals increasing detail and rigor in the analysis, moving from a basic visual appraisal of the derived map (Congalton 1994, Foody 2002) to the definition of best practices for sampling and response designs and the calculation of accuracy metrics (Foody 2002, Stehman 2013, Olofsson et al.&nbsp;2014, Stehman and Foody 2019). The confusion matrix (also called the “error matrix”) (Stehman 1997) summarizes key accuracy metrics used to assess products derived from remotely sensed data.</p>
+<p>In Chap. F2.1,&nbsp;we asked whether the classification results were satisfactory. In remote sensing, the quantification of the answer to that question is called accuracy assessment. In the classification context, accuracy measurements are often derived from a confusion matrix.</p>
+<p>In a thorough accuracy assessment, we think carefully about the sampling design, the response design, and the analysis (Olofsson et al.&nbsp;2014). Fundamental protocols are taken into account to produce scientifically rigorous and transparent estimates of accuracy and area, which requires robust planning and time. In a standard setting, we would calculate the number of samples needed for measuring accuracy (sampling design). Here, we will focus mainly on the last step, analysis, by examining the confusion matrix and learning how to calculate the accuracy metrics. This will be done by partitioning the existing data into training and testing&nbsp;sets.</p>
+</section>
+<section id="quantifying-classification-accuracy-through-a-confusion-matrix" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="quantifying-classification-accuracy-through-a-confusion-matrix"><span class="header-section-number">7.1</span> Quantifying Classification Accuracy Through a Confusion Matrix</h2>
+<p>If you have not already done so, be sure to add the book’s code repository to the Code Editor by entering&nbsp;<a href="https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&amp;sa=D&amp;source=editors&amp;ust=1671458829937499&amp;usg=AOvVaw3qqOwSX_A-Pllh6X3X31q4"></a><a href="https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&amp;sa=D&amp;source=editors&amp;ust=1671458829937976&amp;usg=AOvVaw0WioXIhzue8-WoaX4UtabH">https://code.earthengine.google.com/?accept_repo=projects/gee-edu/book</a>&nbsp;into your browser. The book’s scripts will then be available in the script manager panel. If you have trouble finding the repo, you can visit <a href="https://www.google.com/url?q=https://docs.google.com/presentation/d/1Kt6wGNoesYm__Cu3k3bnlbbyPN6m9SF4hQHK-pIDHfc/edit%23slide%3Did.g18a7b4b055d_0_624&amp;sa=D&amp;source=editors&amp;ust=1671458829938470&amp;usg=AOvVaw2CH8V3-_qV99EcgMxUAaSO">this link</a>&nbsp;for help.</p>
+<p>To illustrate some of the basic ideas about&nbsp;classification accuracy,&nbsp;we will revisit the data and location of part of Chap. F2.1, where we tested different classifiers and classified a Landsat image of the area around Milan, Italy. We will name this dataset ‘data’. This variable is a FeatureCollection&nbsp;with features containing the “class” values (Table F2.2.1) and spectral information of four land cover / land use classes: forest, developed, water, and herbaceous (see Fig. F2.1.8 and Fig. F2.1.9 for a refresher). We will also define a variable, predictionBands, which is a list of bands that will be used for prediction (classification)—the spectral information in the data&nbsp;variable.</p>
+<p>Table&nbsp;F2.2.1&nbsp;Land cover classes</p>
+<p>Class</p>
+<p>Class value</p>
+<p>Forest</p>
+<p>0</p>
+<p>Developed</p>
+<p>1</p>
+<p>Water</p>
+<p>2</p>
+<p>Herbaceous</p>
+<p>3</p>
+<p>The first step is to partition the set of known values into training and testing sets&nbsp;in order to have something for the classifier to predict over that it has not been shown before (the testing set), mimicking unseen data that the model might see in the future. We add a column of random numbers to our FeatureCollection&nbsp;using the randomColumn&nbsp;method. Then, we filter the features into about 80% for training and 20% for testing using ee.Filter. Copy and paste the code below to partition the data and filter features based on the random number.</p>
+<p>// Import the reference dataset.<br>
+var&nbsp;data = ee.FeatureCollection(&nbsp; &nbsp;‘projects/gee-book/assets/F2-2/milan_data’);</p>
+<p>// Define the prediction bands.<br>
+var&nbsp;predictionBands = [&nbsp; &nbsp;‘SR_B1’, ‘SR_B2’, ‘SR_B3’, ‘SR_B4’, ‘SR_B5’, ‘SR_B6’, ‘SR_B7’,&nbsp; &nbsp;‘ST_B10’,&nbsp; &nbsp;‘ndvi’, ‘ndwi’<br>
+];</p>
+<p>// Split the dataset into training and testing sets.<br>
+var&nbsp;trainingTesting = data.randomColumn();<br>
+var&nbsp;trainingSet = trainingTesting<br>
+&nbsp; &nbsp;.filter(ee.Filter.lessThan(‘random’, 0.8));<br>
+var&nbsp;testingSet = trainingTesting<br>
+&nbsp; &nbsp;.filter(ee.Filter.greaterThanOrEquals(‘random’, 0.8));</p>
+<p>Note that randomColumn&nbsp;creates pseudorandom numbers in a deterministic way. This makes it possible to generate a reproducible pseudorandom sequence by defining the seed&nbsp;parameter (Earth Engine uses a seed of 0 by default). In other words, given a starting value (i.e., the seed), randomColumn&nbsp;will always provide the same sequence of pseudorandom numbers.</p>
+<p>Copy and paste the code below to train a Random Forest classifier with 50 decision trees using the trainingSet.</p>
+<p>// Train the Random Forest Classifier with the trainingSet.<br>
+var&nbsp;RFclassifier = ee.Classifier.smileRandomForest(50).train({<br>
+&nbsp; &nbsp;features: trainingSet,<br>
+&nbsp; &nbsp;classProperty: ‘class’,<br>
+&nbsp; &nbsp;inputProperties: predictionBands<br>
+});</p>
+<p>Now, let’s discuss what a confusion matrix is. A confusion matrix describes the quality of a classification by comparing the predicted values to the actual values. A simple example is a confusion matrix for a binary classification into the classes “positive” and “negative,” as shown in Table F2.2.1.</p>
+<p>Table F2.2.1&nbsp;Confusion matrix for a binary classification where the classes are “positive” and “negative”</p>
+<p>Actual values</p>
+<p>Positive</p>
+<p>Negative</p>
+<p>Predicted values</p>
+<p>Positive</p>
+<p>TP&nbsp;(true positive)</p>
+<p>FP&nbsp;(false positive)</p>
+<p>Negative</p>
+<p>FN&nbsp;(false negative)</p>
+<p>TN&nbsp;(true negative)</p>
+<p>In Table F2.2.1, the columns represent the actual values (the truth), while the rows represent the predictions (the classification). “True positive” (TP) and “true negative” (TN) mean that the classification of a pixel matches the truth (e.g., a water pixel correctly classified as water). “False positive” (FP) and “false negative” (FN) mean that the classification of a pixel does not match the truth (e.g., a non-water pixel incorrectly classified as water).</p>
+<ul>
+<li>TP: classified as positive and the actual class is positive</li>
+<li>FP: classified as positive and the actual class is negative</li>
+<li>FN: classified as negative and the actual class is positive</li>
+<li>TN: classified as negative and the actual class is negative</li>
+</ul>
+<p>We can extract some statistical information from a confusion matrix.. Let’s look at an example to make this clearer. Table F2.2.2 is a confusion matrix for a sample of 1,000 pixels for a classifier that identifies whether a pixel is forest (positive) or non-forest (negative), a binary classification.</p>
+<p>Table F2.2.2&nbsp;Confusion matrix for a binary classification where the classes are “positive” (forest) and “negative” (non-forest)</p>
+<p>Actual values</p>
+<p>Positive</p>
+<p>Negative</p>
+<p>Predicted values</p>
+<p>Positive</p>
+<p>307</p>
+<p>18</p>
+<p>Negative</p>
+<p>14</p>
+<p>661</p>
+<p>In this case, the classifier correctly identified 307 forest pixels, wrongly classified 18 non-forest pixels as forest, correctly identified 661 non-forest pixels, and wrongly classified 14 forest pixels as non-forest. Therefore, the classifier was correct 968 times and wrong 32 times. Let’s calculate the main accuracy metrics for this example.</p>
+<p>The overall accuracy tells us what proportion of the reference data was classified correctly, and is calculated as the total number of correctly identified pixels divided by the total number of pixels in the sample.</p>
+<p><img src="F2/image6.png" class="img-fluid"></p>
+<p>In this case, the overall accuracy is 96.8%, calculated using (<img src="F2/image7.png" class="img-fluid">.</p>
+<p>Two other important accuracy metrics are the producer’s accuracy and the user’s accuracy, also referred to as the “recall” and the “precision,” respectively. Importantly, these metrics quantify aspects of per-class accuracy.</p>
+<p>The producer’s accuracy is the accuracy of the map from the point of view of the map maker (the “producer”), and is calculated as the number of correctly identified pixels of a given class divided by the total number of pixels actually in that class. The producer’s accuracy for a given class tells us the proportion of the pixels in that class that were classified correctly.</p>
+<p><img src="F2/image8.png" class="img-fluid"></p>
+<p><img src="F2/image9.png" class="img-fluid"></p>
+<p>In this case, the producer’s accuracy for the forest class is 95.6%, calculated using <img src="F2/image10.png" class="img-fluid">). The producer’s accuracy for the non-forest class is 97.3%, calculated from <img src="F2/image11.png" class="img-fluid">).</p>
+<p>The user’s accuracy (also called the “consumer’s accuracy”) is the accuracy of the map from the point of view of a map user, and is calculated as the number of correctly identified pixels of a given class divided by the total number of pixels claimed to be in that class. The user’s accuracy for a given class tells us the proportion of the pixels identified on the map as being in that class that are actually in that class on the ground.</p>
+<p><img src="F2/image12.png" class="img-fluid"></p>
+<p><img src="F2/image13.png" class="img-fluid"></p>
+<p>In this case, the user’s accuracy for the forest class is 94.5%, calculated using <img src="F2/image14.png" class="img-fluid">). The&nbsp;user’s accuracy for the non-forest class is 97.9%, calculated from <img src="F2/image15.png" class="img-fluid">).</p>
+<p>Fig. F2.2.1 helps visualize the rows and columns used to calculate each accuracy.</p>
+<p><img src="F2/image43.png" class="img-fluid"></p>
+<p>Fig. F2.2.1&nbsp;Confusion matrix for a binary classification where the classes are “positive” (forest) and “negative” (non-forest), with accuracy metrics</p>
+<p>It is very common to talk about two types of error when addressing remote-sensing classification accuracy: omission errors and commission errors. Omission errors refer to the reference pixels that were left out of (omitted from) the correct class in the classified map. In a two-class system, an error of omission in one class will be counted as an error of commission in another class. Omission errors are complementary to the producer’s accuracy.</p>
+<p><img src="F2/image16.png" class="img-fluid">&nbsp;</p>
+<p>Commission errors refer to the class pixels that were erroneously classified in the map and are complementary to the user’s accuracy.</p>
+<p><img src="F2/image17.png" class="img-fluid"></p>
+<p>Finally, another commonly used accuracy metric is the kappa coefficient, which &nbsp;evaluates how well the classification performed as compared to random. The value of the kappa coefficient can range from −1 to 1: a negative value indicates that the classification is worse than a random assignment of categories would have been; a value of 0 indicates that the classification is no better or worse than random; and a positive value indicates that the classification is better than random.</p>
+<p><img src="F2/image18.png" class="img-fluid"></p>
+<p>The chance agreement is calculated as the sum of the product of row and column totals for each class, and the observed accuracy is the overall accuracy. Therefore, for our example, the kappa coefficient is 0.927.</p>
+<p><img src="F2/image19.png" class="img-fluid"></p>
+<p>Now, let’s go back to the script. In Earth Engine, there are API calls for these operations. Note that our confusion matrix will be a 4 x 4 table, since we have four different classes.</p>
+<p>Copy and paste the code below to classify the testingSet&nbsp;and get a confusion matrix using the method errorMatrix. Note that the classifier automatically adds a property called “classification,” which is compared to the “class” property of the reference dataset.</p>
+<p>// Now, to test the classification (verify model’s accuracy),<br>
+// we classify the testingSet and get a confusion matrix.<br>
+var&nbsp;confusionMatrix = testingSet.classify(RFclassifier)<br>
+&nbsp; &nbsp;.errorMatrix({<br>
+&nbsp; &nbsp; &nbsp; &nbsp;actual: ‘class’,<br>
+&nbsp; &nbsp; &nbsp; &nbsp;predicted: ‘classification’&nbsp; &nbsp;});</p>
+<p>Copy and paste the code below to print the confusion matrix and accuracy metrics. Expand the confusion matrix object to inspect it. The entries represent the number of pixels. Items on the diagonal represent correct classification. Items off the diagonal are misclassifications, where the class in row i&nbsp;is classified as column j&nbsp;(values from 0 to 3 correspond to our class&nbsp;codes: forest, developed, water, and herbaceous, respectively). Also expand the producer’s accuracy, user’s accuracy (consumer’s accuracy), and kappa coefficient objects to inspect them.</p>
+<p>// Print the results.<br>
+print(‘Confusion matrix:’, confusionMatrix);<br>
+print(‘Overall Accuracy:’, confusionMatrix.accuracy());<br>
+print(‘Producers Accuracy:’, confusionMatrix.producersAccuracy());<br>
+print(‘Consumers Accuracy:’, confusionMatrix.consumersAccuracy());<br>
+print(‘Kappa:’, confusionMatrix.kappa());</p>
+<p>How is the classification accuracy? Which classes have higher accuracy compared to the others? Can you think of any reasons why? (Hint: Check where the errors in these classes are in the confusion matrix—i.e., being&nbsp;committed and omitted.)</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code Checkpoint F22a.&nbsp;The book’s repository contains a script that shows what your code should look like at this point.</p>
+</div>
+</div>
+</section>
+<section id="hyperparameter-tuning" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="hyperparameter-tuning"><span class="header-section-number">7.2</span> Hyperparameter tuning</h2>
+<p>We can also assess how the number of trees in the Random Forest classifier affects the classification accuracy. Copy and paste the code below to create a function that charts the overall accuracy versus the number of trees used. The code tests from 5 to 100 trees at increments of 5, producing Fig. F2.2.2. (Do not worry too much about fully understanding each item at this stage of your learning. If you want to find out how these operations work, you can see more in Chaps. F4.0 and F4.1.)</p>
+<p>// Hyperparameter tuning.<br>
+var&nbsp;numTrees = ee.List.sequence(5, 100, 5);</p>
+<p>var&nbsp;accuracies = numTrees.map(function(t) {&nbsp; &nbsp;var&nbsp;classifier = ee.Classifier.smileRandomForest(t)<br>
+&nbsp; &nbsp; &nbsp; &nbsp;.train({<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;features: trainingSet,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;classProperty: ‘class’,<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inputProperties: predictionBands<br>
+&nbsp; &nbsp; &nbsp; &nbsp;});&nbsp; &nbsp;return&nbsp;testingSet<br>
+&nbsp; &nbsp; &nbsp; &nbsp;.classify(classifier)<br>
+&nbsp; &nbsp; &nbsp; &nbsp;.errorMatrix(‘class’, ‘classification’)<br>
+&nbsp; &nbsp; &nbsp; &nbsp;.accuracy();<br>
+});</p>
+<p>print(ui.Chart.array.values({<br>
+&nbsp; &nbsp;array: ee.Array(accuracies),<br>
+&nbsp; &nbsp;axis: 0,<br>
+&nbsp; &nbsp;xLabels: numTrees<br>
+}).setOptions({<br>
+&nbsp; &nbsp;hAxis: {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;title: ‘Number of trees’&nbsp; &nbsp;},<br>
+&nbsp; &nbsp;vAxis: {<br>
+&nbsp; &nbsp; &nbsp; &nbsp;title: ‘Accuracy’&nbsp; &nbsp;},<br>
+&nbsp; &nbsp;title: ‘Accuracy per number of trees’<br>
+}));</p>
+<p><img src="F2/image45.png" class="img-fluid"></p>
+<p>Fig. F2.2.2&nbsp;Chart showing accuracy per number of Random Forest trees</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code Checkpoint F22b.&nbsp;The book’s repository contains a script that shows what your code should look like at this point.</p>
+</div>
+</div>
+<p>Section 3. Spatial&nbsp;autocorrelation</p>
+<p>We might also want to ensure that the samples from the training set are uncorrelated with the samples from the testing set. This might result from the spatial autocorrelation of the phenomenon being predicted. One way to exclude samples that might be correlated in this manner is to remove samples that are within some distance to any other sample. In Earth Engine, this can be accomplished with a spatial join. The following Code Checkpoint replicates Sect. 1 but with a spatial join that excludes training points that are less than 1000 meters distant from testing points.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code Checkpoint F22c.&nbsp;The book’s repository contains a script that shows what your code should look like at this point.</p>
+</div>
+</div>
+</section>
+<section id="synthesis-2" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="synthesis-2">Synthesis</h2>
+<p>Assignment 1. Based on Sect. 1, test other classifiers (e.g., a Classification and Regression Tree&nbsp;or Support Vector Machine classifier) and compare the accuracy results with the Random Forest results. Which model performs better?</p>
+<p>Assignment 2. Try setting a different seed in the randomColumn&nbsp;method and see how that affects the accuracy results. You can also change the split between the training and testing sets (e.g., 70/30 or 60/40).</p>
+</section>
+<section id="conclusion-2" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="conclusion-2">Conclusion</h2>
+<p>You should now understand how to calculate how well your classifier is performing on the data used to build the model. This is a useful way to understand how a classifier is performing, because it can help indicate which classes are performing better than others. A poorly modeled class can sometimes be improved by, for example, collecting more training points for that class.</p>
+<p>Nevertheless, a model may work well on training data but work poorly in locations randomly chosen in the study area. To understand&nbsp;a model’s behavior on testing data, analysts employ protocols required to produce scientifically rigorous and transparent estimates of the accuracy and area of each class in the study region. We will not explore those practices in this chapter, but if you are interested, there are tutorials and papers available online that can guide you through the process. Links to some of those tutorials can be found in the “For Further Reading” section of this book.</p>
+<p>References</p>
+<p>Congalton R (1994) Accuracy assessment of remotely sensed data: Future needs and directions. In: Proceedings of Pecora 12 land information from space-based systems. pp 385–388</p>
+<p>Foody GM (2002) Status of land cover classification accuracy assessment. Remote Sens Environ 80:185–201. https://doi.org/10.1016/S0034-4257(01)00295-4</p>
+<p>Olofsson P, Foody GM, Herold M, et al (2014) Good practices for estimating area and assessing accuracy of land change. Remote Sens Environ 148:42–57. https://doi.org/10.1016/j.rse.2014.02.015</p>
+<p>Stehman SV (2013) Estimating area from an accuracy assessment error matrix. Remote Sens Environ 132:202–211. https://doi.org/10.1016/j.rse.2013.01.016</p>
+<p>Stehman SV (1997) Selecting and interpreting measures of thematic classification accuracy. Remote Sens Environ 62:77–89. https://doi.org/10.1016/S0034-4257(97)00083-7</p>
+<p>Stehman SV, Foody GM (2019) Key issues in rigorous accuracy assessment of land cover products. Remote Sens Environ 231:111199. https://doi.org/10.1016/j.rse.2019.05.018</p>
+<p>Strahler AH, Boschetti L, Foody GM, et al (2006) Global land cover validation: Recommendations for evaluation and accuracy assessment of global land cover maps. Eur Communities, Luxemb 51:1–60</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./F1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Getting Started</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./F4.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Interpreting Image Series</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

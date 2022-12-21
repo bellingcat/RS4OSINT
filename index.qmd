@@ -8,13 +8,19 @@ Though no-code platforms such as Sentinelhub have been invaluable in allowing th
 - Learning
     1. [Remote Sensing](ch1.qmd)
     2. [Data Acquisition](ch2.qmd)
-    3. [Algorithms](ch3.qmd)
     4. [Application Development](ch4.qmd)
 - Case Studies
-    1. [War at Night](SyriaNTL.qmd)
-    2. [Refinery Detection](RojavaRefineries.qmd)
+    1. [War at Night](lights.qmd)
+    2. [Refinery Detection](refineries.qmd)
+    3. [Deforestation](trees.qmd)
+    4. [Ship Detection](ships.qmd)
+
+Recently, a team of over 100 scientists came together to write a book called ["Cloud-Based Remote Sensing with Google Earth Engine: Fundamentals and Applications"](https://www.eefabook.org/). It's a great resource for learning about remote sensing and Earth Engine. The material in this chapter is a subset of the book, edited to fit the scope of this guide. If you're interested in learning more, check out the full book.
+
+
 
 ## What is Google Earth Engine?
+
 
 As geospatial datasets—particularly satellite imagery collections—increase in size, researchers are increasingly relying on cloud computing platforms such as Google Earth Engine (GEE) to analyze vast quantities of data. 
 

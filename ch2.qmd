@@ -31,7 +31,7 @@ F-->G
 C-->H
 ```
 
-This is, of course, a bit of an exaggeration. But if you're interested in a visible phenomenon that happens outdoors and that isn't very tiny, chances are an earth-observing satellite has taken a picture of it. What that picture can tell you naturally depends on what you're interested in learning. For a deeper dive into analyzing optical satellite imagery, see the subsection on [multispectral remote sensing.](ch3.qmd#multispectral-remote-sensing-remote_sensing).
+This is, of course, a bit of an exaggeration. But if you're interested in a visible phenomenon that happens outdoors and that isn't very tiny, chances are an earth-observing satellite has taken a picture of it. What that picture can tell you naturally depends on what you're interested in learning. For a deeper dive into analyzing optical satellite imagery, see the subsection on [multispectral remote sensing.](ch2.qmd#multispectral-remote-sensing-remote_sensing).
 
 There are several different types of optical satellite imagery available in the GEE catalogue. The main collections are the Landsat and Sentinel series of satellites, which are operated by NASA and the European Space Agency, respectively. Landsat satellites have been in orbit since 1972, and Sentinel satellites have been in orbit since 2015. Norway's International Climate and Forest Initiative (NICFI) has also contributed to the GEE catalogue by providing a collection of optical imagery from Planet's PlanetScope satellites. These are higher resolution (4.7 meters per pixel) than Landsat (30m/px) and Sentinel-2 (10m/px), but are only available for the tropics. Even higher resolution imagery (60cm/px) is available from the GEE catalogue from the National Agriculture Imagery Program, but it is only available for the United States. For more details, see the "Datasets" section below.
 
@@ -90,7 +90,7 @@ Synthetic Aperture Radar imagery (SAR) is a type of remote sensing that uses rad
 
 Satellite images of the Earth at night a useful proxy for human activity. The brightness of a given area at night is a function of the number of people living there and the nature of their activities. The effects of conflict, natural disasters, and economic development can all be inferred from changes in nighttime lights. 
 
-The timelapse above reveals a number of interesting things: The capture of Mosul by ISIS in 2014 and the destruction of its infrastructure during the fighting (shown as the city darkening), as well as the liberation of the city by the Iraqi military in 2017 are all visible in nighttime lights. The code to create this gif, as well as a more in-depth tutorial on the uses of nighttime lights, can be found in the ["War at Night"](SyriaNTL.qmd) case study.
+The timelapse above reveals a number of interesting things: The capture of Mosul by ISIS in 2014 and the destruction of its infrastructure during the fighting (shown as the city darkening), as well as the liberation of the city by the Iraqi military in 2017 are all visible in nighttime lights. The code to create this gif, as well as a more in-depth tutorial on the uses of nighttime lights, can be found in the ["War at Night"](lights.qmd) case study.
 
 ### Applications {.unnumbered}
 

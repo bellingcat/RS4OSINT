@@ -12,12 +12,16 @@ book:
       chapters:
         - ch1.qmd
         - ch2.qmd
-        - ch3.qmd
-        - ch4.qmd
+        - F1.qmd
+        - F2.qmd
+        - F4.qmd
+        - F5.qmd
+        - F6.qmd
     - part: "Case Studies"
       chapters:
-        - SyriaNTL.qmd
-        - RojavaRefineries.qmd
+        - lights.qmd
+        - refineries.qmd
+        - ships.qmd
   repo-url: https://github.com/oballinger/GEE_OSINT/
   google-analytics: G-RK9ZLZQ6GL
   repo-actions: [edit]
