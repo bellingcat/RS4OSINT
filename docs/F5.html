@@ -272,7 +272,7 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
   </ul></li>
   <li><a href="#zonal-statistics" id="toc-zonal-statistics" class="nav-link" data-scroll-target="#zonal-statistics"><span class="toc-section-number">9</span>  Zonal Statistics</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-theory-1" id="toc-introduction-to-theory-1" class="nav-link" data-scroll-target="#introduction-to-theory-1"><span class="toc-section-number">9.1</span>  Introduction to Theory&nbsp;</a></li>
+  <li><a href="#introduction-to-theory" id="toc-introduction-to-theory" class="nav-link" data-scroll-target="#introduction-to-theory"><span class="toc-section-number">9.1</span>  Introduction to Theory&nbsp;</a></li>
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">9.2</span>  Functions</a>
   <ul class="collapse">
   <li><a href="#function-bufferpointsradius-bounds" id="toc-function-bufferpointsradius-bounds" class="nav-link" data-scroll-target="#function-bufferpointsradius-bounds"><span class="toc-section-number">9.2.1</span>  Function: bufferPoints(radius, bounds)</a></li>
@@ -336,7 +336,7 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 <p>In addition to raster data processing, Earth Engine supports a rich set of vector processing tools. This Part introduces you to the vector framework in Earth Engine, shows you how to create and to import your vector data, and how to combine vector and raster data for analyses.</p>
 <section id="exploring-vectors" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Exploring Vectors</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author">Author</h2>
 <p>AJ Purdy, Ellen Brock, David Saah</p>
@@ -617,7 +617,16 @@ Note
 </section>
 <section id="rastervector-conversions" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Raster/Vector Conversions</h1>
-<hr>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Chapter Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <section id="author-1" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-1">Author</h2>
 <p>Keiko Nomura, Samuel Bowers</p>
@@ -648,9 +657,10 @@ Note
 <li>Use reduceRegions&nbsp;to summarize an image in irregular shapes (Chap. F5.0).</li>
 </ul>
 </section>
-<section id="introduction-to-theory" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory">Introduction to Theory</h2>
-<hr>
+</div>
+</div>
+<section id="introduction" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Raster data consists of regularly spaced pixels arranged into rows and columns, familiar as the format of satellite images. Vector data contains geometry features (i.e., points, lines, and polygons) describing locations and areas. Each data format has its advantages, and both will be encountered as part of GIS&nbsp;operations.</p>
 <p>Raster and vector data are commonly combined (e.g., extracting image information for a given location or clipping an image to an area of interest); however, there are also situations in which conversion between the two formats is useful. In making such conversions, it is important to consider the key advantages of each format. Rasters can store data efficiently where each pixel has a numerical value, while vector data can more effectively represent geometric features where homogenous areas have shared properties. Each format lends itself to distinctive analytical operations, and combining them can be powerful.</p>
 <p>In this exercise, we’ll use topographic elevation and forest change images in Colombia as well as a protected area feature collection to practice the conversion between raster and vector formats, and to identify situations in which this is worthwhile.</p>
@@ -1151,7 +1161,7 @@ Note
 </section>
 <section id="zonal-statistics" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Zonal Statistics</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-2" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-2">Author</h2>
 <p>&nbsp;</p>
@@ -1185,8 +1195,8 @@ Note
 <li>Write a function and map&nbsp;it over a FeatureCollection&nbsp;(Chap. F5.1).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-1" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="introduction-to-theory-1"><span class="header-section-number">9.1</span> Introduction to Theory&nbsp;</h2>
+<section id="introduction-to-theory" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="introduction-to-theory"><span class="header-section-number">9.1</span> Introduction to Theory&nbsp;</h2>
 <p>Anyone working with field data collected at plots will likely need to summarize raster-based data associated with those plots. For instance, they need to know the Normalized Difference Vegetation Index (NDVI), precipitation, or elevation for each plot (or surrounding region). Calculating statistics from a raster within given regions is called zonal statistics. Zonal statistics were calculated in Chaps. F5.0 and F5.1&nbsp;using ee.Image.ReduceRegions. Here, we present a more general approach to calculating zonal statistics with a custom function that works for both ee.Image&nbsp;and ee.ImageCollection&nbsp;objects. In addition to its flexibility, the reduction method used here is less prone to “Computed value is too large”&nbsp;errors that can occur when using ReduceRegions&nbsp;with very large or complex ee.FeatureCollection&nbsp;object inputs.</p>
 <p>The&nbsp;zonal statistics function in this chapter works for an Image&nbsp;or an ImageCollection. Running the function over an ImageCollection&nbsp;will produce a table with values from each image in the collection per point. Image collections can be processed before extraction as needed—for example, by masking clouds from satellite imagery or by constraining the dates needed for a particular research question. In this tutorial, the data extracted from rasters are exported to a table for analysis, where each row of the table corresponds to a unique point-image combination.</p>
 <p>In fieldwork, researchers often work with plots, which are commonly recorded as polygon files or as a center point with a set radius. It is rare that plots will be set directly in the center of pixels from your desired raster dataset, and many field GPS units have positioning errors. Because of these issues, it may be important to use a statistic of adjacent pixels (as described in Chap. F3.2) to estimate the central value in what’s often called a neighborhood mean or focal mean (Cansler and McKenzie 2012, Miller and Thode 2007).</p>
@@ -1655,7 +1665,7 @@ Note
 </section>
 <section id="advanced-vector-operations" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Advanced Vector Operations</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-3" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-3">Author</h2>
 <p>&nbsp;</p>

@@ -4,9 +4,13 @@ One of the paradigm-changing features of Earth Engine is the ability to access d
 
 # Filter, Map, Reduce
 
-* * * 
+ 
+
+::: {.callout-tip} 
+# Chapter Information
 
 ## Author {.unlisted .unnumbered}
+
 
 Jeffrey A. Cardille
 
@@ -29,8 +33,9 @@ The purpose of this chapter is to teach you important programming concepts as th
 *   Import images and image collections, filter, and visualize (Part F1).
 *   Perform basic image analysis: select bands, compute indices, create masks (Part F2).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Prior chapters focused on exploring individual images—for example, viewing the characteristics of single satellite images by displaying different combinations of bands (Chap. F1.1), viewing single images from different datasets (Chap. F1.2, Chap. F1.3), and exploring image processing principles (Parts F2, F3) as they are implemented for cloud-based remote sensing in Earth Engine. Each image encountered in those chapters was pulled from a larger assemblage of images taken from the same sensor. The chapters used a few ways to narrow down the number of images in order to view just one for inspection (Part F1) or manipulation (Part F2, Part F3).
 
@@ -233,8 +238,12 @@ In this chapter, you learned about the paradigm of filter, map, reduce. You lea
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Gennadii Donchyts
@@ -434,8 +443,12 @@ Wilson AM, Jetz W (2016) Remotely sensed high-resolution global cloud dynamics f
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Ujaval Gandhi
@@ -469,8 +482,9 @@ This chapter will cover the techniques for aggregating individual images from a 
 *   Summarize an ImageCollection with reducers (Chap. F4.0, Chap. F4.1).
 *   Inspect an Image and an ImageCollection, as well as their properties (Chap. F4.1).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 CHIRPS is a high-resolution global gridded rainfall dataset that combines satellite-measured precipitation with ground station data in a consistent, long time-series dataset. The data are provided by the University of California, Santa Barbara, and are available from 1981 to the present. This dataset is extremely useful in drought monitoring and assessing global environmental change over land. The satellite data are calibrated with ground station observations to create the final product.
 
@@ -654,8 +668,12 @@ Okamoto K, Ushio T, Iguchi T, et al (2005) The global satellite mapping of preci
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 :
 
 Txomin Hermosilla, Saverio Francini, Andréa P. Nicolau, Michael A. Wulder, Joanne C. White, Nicholas C. Coops, Gherardo Chirici
@@ -685,8 +703,9 @@ The purpose of this chapter is to provide necessary context and demonstrate di
 *   Write a function and map it over an ImageCollection (Chap. F4.0).
 *   Summarize an ImageCollection with reducers (Chap. F4.0, Chap. F4.1).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 In many respects, satellite remote sensing is an ideal source of data for monitoring large or remote regions. However, cloud cover is one of the most common limitations of optical sensors in providing continuous time series of data for surface mapping and monitoring. This is particularly relevant in tropical, polar, mountainous, and high-latitude areas, where clouds are often present. Many studies have addressed the extent to which cloudiness can restrict the monitoring of various regions (Zhu and Woodcock 2012, 2014; Eberhardt et al. 2016; Martins et al. 2018).
 
@@ -1048,8 +1067,12 @@ Zhu Z, Woodcock CE (2012) Object-based cloud and cloud shadow detection in Lands
 # Change Detection
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Karis Tenneson, John Dilger, Crystal Wespestad, Brian Zutta, Andréa P Nicolau, Karen Dyson, Paula Paz
@@ -1075,8 +1098,9 @@ This chapter introduces change detection mapping. It will teach you how to make 
 *   Import images and image collections, filter, and visualize (Part F1).
 *   Perform basic image analysis: select bands, compute indices, create masks (Part F2).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Change detection is the process of assessing how landscape conditions are changing by looking at differences in images acquired at different times. This can be used to quantify changes in forest cover—such as those following a volcanic eruption, logging activity, or wildfire—or when crops are harvested (Fig. F4.4.1). For example, using time-series change detection methods, Hansen et al. (2013) quantified annual changes in forest loss and regrowth. Change detection mapping is important for observing, monitoring, and quantifying changes in landscapes over time. Key questions that can be answered using these techniques include identifying whether a change has occurred, measuring the area or the spatial extent of the region undergoing change, characterizing the nature of the change, and measuring the pattern (configuration or composition) of the change (MacLeod and Congalton 1998).
 
@@ -1290,8 +1314,12 @@ Woodcock CE, Loveland TR, Herold M, Bauer ME (2020) Transitioning from change de
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Robert Kennedy, Justin Braaten, Peter Clary
@@ -1317,8 +1345,9 @@ Time-series analysis of change can be achieved by fitting the entire spectral tr
 *   Calculate and interpret vegetation indices (Chap. F2.0)
 *   Interpret bands and indices in terms of land surface characteristics (Chap. F2.0).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Land surface change happens all the time, and satellite sensors witness it. If a spectral index is chosen to match the type of change being sought, surface change can be inferred from changes in spectral index values. Over time, the progression of spectral values witnessed in each pixel tells a story of the processes of change, such as growth and disturbance. Time-series algorithms are designed to leverage many observations of spectral values over time to isolate and describe changes of interest, while ignoring uninteresting change or noise.
 
@@ -1505,8 +1534,12 @@ Kennedy RE, Yang Z, Gorelick N, et al (2018) Implementation of the LandTrendr al
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Andréa Puzzi Nicolau, Karen Dyson, Biplov Bhandari, David Saah, Nicholas Clinton
@@ -1535,8 +1568,9 @@ The purpose of this chapter is to establish a foundation for time-series analysi
 *   Write a function and map it over an ImageCollection (Chap. F4.0).
 *   Mask cloud, cloud shadow, snow/ice, and other undesired pixels (Chap. F4.3).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Many natural and man-made phenomena exhibit important annual, interannual, or longer-term trends that recur—that is, they occur at roughly regular intervals. Examples include seasonality in leaf patterns in deciduous forests and seasonal crop growth patterns. Over time, indices such as the Normalized Difference Vegetation Index (NDVI) will show regular increases (e.g., leaf-on, crop growth) and decreases (e.g., leaf-off, crop senescence), and typically have a long-term, if noisy, trend such as a gradual increase in NDVI value as an area recovers from a disturbance.
 
@@ -1889,8 +1923,12 @@ Tang X, Bullock EL, Olofsson P, et al (2019) Near real-time monitoring of tropic
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
  
 
 Paulo Arévalo, Pontus Olofsson
@@ -2333,8 +2371,12 @@ Zhu Z, Woodcock CE (2014) Continuous change detection and classification of land
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Jeffrey A. Cardille, Rylan Boothman, Mary Villamor, Elijah Perez, Eidan Willis, Flavie Pelletier
@@ -2361,8 +2403,9 @@ As the ability to rapidly produce classifications of satellite images grows, it 
 *   ​​Create a graph using ui.Chart (Chap. F1.3).
 *   Obtain accuracy metrics from classifications (Chap. F2.2).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 When working with multiple sensors, we are often presented with a challenge: What to do with classification noise? It’s almost impossible to remove all noise from a classification. Given the information contained in a stream of classifications, however, you should be able to use the temporal context to distinguish noise from true changes in the landscape.
 
@@ -2707,8 +2750,12 @@ Millard C (2006) The River of Doubt: Theodore Roosevelt’s Darkest Journey. Anc
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton
@@ -2738,8 +2785,9 @@ In this chapter, we will introduce lagged effects to build on previous work in m
 *   Mask cloud, cloud shadow, snow/ice, and other undesired pixels (Chap. F4.3).
 *   Fit linear and nonlinear functions with regression in an ImageCollection time series (Chap. F4.6).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 While fitting functions to time series allows you to account for seasonality in your models, sometimes the impact of a seasonal event does not impact your dependent variable until the next month, the next year, or even multiple years later. For example, coconuts take 18–24 months to develop from flower to harvestable size. Heavy rains during the flower development stage can severely reduce the number of coconuts that can be harvested months later, with significant negative economic repercussions. These patterns—where events in one time period impact our variable of interest in later time periods—are important to be able to include in our models.
 

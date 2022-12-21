@@ -8,8 +8,12 @@ Now that you know how images are viewed and what kinds of images exist in Earth 
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 Karen Dyson, Andréa Puzzi Nicolau, David Saah, and Nicholas Clinton
 
@@ -30,8 +34,9 @@ Once images have been identified in Earth Engine, they can be viewed in a wide a
 
 *   Import images and image collections, filter, and visualize (Part F1).
 
-* * *
-## Introduction to Theory {.unlisted .unnumbered}
+
+::: 
+## Introduction {.unlisted .unnumbered}
 
 Spectral indices are based on the fact that different objects and land covers on the Earth’s surface reflect different amounts of light from the Sun at different wavelengths. In the visible part of the spectrum, for example, a healthy green plant reflects a large amount of green light while absorbing blue and red light—which is why it appears green to our eyes. Light also arrives from the Sun at wavelengths outside what the human eye can see, and there are large differences in reflectances between living and nonliving land covers, and between different types of vegetation, both in the visible and outside the visible wavelengths. We visualized this earlier, in Chaps. F1.1 and F1.3 when we mapped color-infrared images (Fig. F2.0.1).
 
@@ -398,8 +403,12 @@ Souza Jr CM, Siqueira JV, Sales MH, et al (2013) Ten-year Landsat classification
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton
@@ -426,8 +435,9 @@ Image classification is a fundamental goal of remote sensing. It takes the user
 *   Import images and image collections, filter, and visualize (Part F1).
 *   Understand bands and how to select them (Chap. F1.2, Chap. F2.0).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Classification is addressed in a broad range of fields, including mathematics, statistics, data mining, machine learning, and more. For a deeper treatment of classification, interested readers may see some of the following suggestions: Witten et al. (2011), Hastie et al. (2009), Goodfellow et al. (2016), Gareth et al. (2013), Géron (2019), Müller et al. (2016), or Witten et al. (2005). Unlike regression, which predicts continuous variables, classification predicts categorical, or discrete, variables—variables with a finite number of categories (e.g., age range).
 
@@ -763,8 +773,12 @@ Witten IH, Frank E, Hall MA, et al (2005) Practical machine learning tools and t
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton
@@ -790,8 +804,9 @@ This chapter will enable you to assess the accuracy of an image classification. 
 *   ​​Create a graph using ui.Chart (Chap. F1.3).
 *   Perform a supervised Random Forest image classification (Chap. F2.1).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Any map or remotely sensed product is a generalization or model that will have inherent errors. Products derived from remotely sensed data used for scientific purposes and policymaking require a quantitative measure of accuracy to strengthen the confidence in the information generated (Foody 2002, Strahler et al. 2006, Olofsson et al. 2014). Accuracy assessment is a crucial part of any classification project, as it measures the degree to which the classification agrees with another data source that is considered to be accurate, ground-truth data (i.e., “reality”).
 

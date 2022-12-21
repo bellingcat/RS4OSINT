@@ -14,8 +14,12 @@ Although you now know the most basic fundamentals of Earth Engine, there is stil
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Gennadii Donchyts, Fedor Baart
@@ -43,8 +47,9 @@ This chapter should help users of Earth Engine to better understand raster data 
 *   Write a function and map it over an ImageCollection (Chap. F4.0).
 *   Inspect an Image and an ImageCollection, as well as their properties (Chap. F4.1).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Visualization is the step to transform data into a visual representation. You make a visualization as soon as you add your first layer to your map in Google Earth Engine. Sometimes you just want to have a first look at a dataset during the exploration phase. But as you move towards the dissemination phase, where you want to spread your results, it is good to think about a more structured approach to visualization. A typical workflow for creating visualization consists of the following steps:
 
@@ -712,8 +717,12 @@ Wilkinson L (2005) The Grammar of Graphics. Springer Verlag
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Sabrina H. Szeto
@@ -744,8 +753,9 @@ Many users find themselves needing to collaborate with others in Earth Engine at
 
 *   Sign up for an Earth Engine account, open the Code Editor, and save your script (Chap. F1.0).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Many people find themselves needing to share a script when they encounter a problem; they wish to share the script with someone else so they can ask a question. When this occurs, sharing a link to the script often suffices. The other person can then make comments or changes before sending a new link to the modified script.
 
@@ -1088,8 +1098,12 @@ Donchyts G, Baart F, Braaten J (2019) ee-palettes. https://github.com/gee-commun
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Jillian M. Deines, Stefania Di Tommaso, Nicholas Clinton, Noel Gorelick    
@@ -1118,8 +1132,9 @@ Commonly, when Earth Engine users move from tutorials to developing their own pr
 *   Understand distinctions among Image, ImageCollection, Feature and FeatureCollection Earth Engine objects (Part F1, Part F2, Part F5).
 *   Use the require function to load code from existing modules (Chap. F6.1).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Parts F1–F5 of this book have covered key remote sensing concepts and demonstrated how to implement them in Earth Engine. Most exercises have used local-scale examples to enhance understanding and complete tasks within a class-length time period. But Earth Engine’s power comes from its scalability—the ability to apply geospatial processing across large areas and many years.
 
@@ -1709,8 +1724,12 @@ Wilson G, Bryan J, Cranston K, et al (2017) Good enough practices in scientific 
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Qiusheng Wu
@@ -1740,8 +1759,9 @@ The purpose of this chapter is to demonstrate how to design and publish Earth E
 *   Import images and image collections, filter, and visualize (Part F1).
 *   Use the basic functions and logic of Python.
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Earth Engine has a user interface API that allows users to build and publish interactive web apps directly from the JavaScript Code Editor. Many readers will have encountered a call to ui.Chart in other chapters, but much more interface functionality is available. In particular, users can utilize the ui functions to construct an entire graphical user interface (GUI) for their Earth Engine script. The GUI may include simple widgets (e.g., labels, buttons, checkboxes, sliders, text boxes) as well as more complex widgets (e.g., charts, maps, panels) for controlling the GUI layout. A complete list of the ui widgets and more information about panels can be found at the links below. Once a GUI is constructed, users can publish the App from the JavaScript Code Editor by clicking the Apps button above the script panel in the Code Editor.
 
@@ -2168,8 +2188,12 @@ Chapter F6.4: Combining R and Earth Engine
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
  
 
 Cesar Aybar, David Montero, Antony Barja, Fernando Herrera, Andrea Gonzales, and Wendy Espinoza
@@ -2199,8 +2223,9 @@ The purpose of this chapter is to introduce rgee, a non-official API for Earth E
 *   Configure an environment variable and use .Renviron files.
 *   Create Python virtual environments.
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 R is a popular programming language established in statistical science with large support in reproducible research, geospatial analysis, data visualization, and much more. To get started with R, you will need to satisfy some extra software requirements. First, install an up-to-date R version (at least 4.0) in your work environment. The installation procedure will vary depending on your operating system (i.e., Windows, Mac, or Linux). Hands-On Programming with R (Garrett Grolemund 2014, Appendix A) explains step by step how to proceed. We strongly recommend that Windows users install Rtools to avoid compiling external static libraries.
 

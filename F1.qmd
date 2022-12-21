@@ -203,6 +203,9 @@ This chapter introduced the Earth Engine API. You also learned the basics of Jav
 
 # Exploring Images
 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author  {.unlisted .unnumbered}
 
 Jeff Howarth
@@ -222,6 +225,7 @@ Satellite images are at the heart of Google Earth Engine’s power. This chapter
 ## Assumes you know how to: {.unlisted .unnumbered}
 
 *   Sign up for an Earth Engine account, open the Code Editor, and save your script (Chap. F1.0).
+:::
 
 ## Accessing an Image
 
@@ -464,6 +468,9 @@ In this chapter, we looked at how an image is composed of one or more bands, whe
 
 The previous chapter introduced you to images, one of the core building blocks of remotely sensed imagery in Earth Engine. In this chapter, we will expand on this concept of images by introducing image collections. Image collections in Earth Engine organize many different images into one larger data storage structure. Image collections include information about the location, date collected, and other properties of each image, allowing you to sift through the ImageCollection for the exact image characteristics needed for your analysis.
 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Authors {.unlisted .unnumbered}
 
 Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton
@@ -483,6 +490,8 @@ The purpose of this chapter is to introduce you to the many types of collections
 *   Sign up for an Earth Engine account, open the Code Editor, and save your script. (Chap. F1.0)
 *   Locate the Earth Engine Inspector and Console tabs and understand their purposes (Chap. F1.0).
 *   Use the Inspector tab to assess pixel values (Chap. F1.1).
+
+:::
 
 ## Image Collections: An Organized Set of Images
 
@@ -828,7 +837,9 @@ Sulova A, Arsanjani JJ (2021) Exploratory analysis of driving force of wildfires
 
 # The Remote Sensing Vocabulary
 
-* * *
+::: {.callout-tip} 
+# Chapter Information
+
 ## Authors {.unlisted .unnumbered}
 
 Karen Dyson, Andréa Puzzi Nicolau, David Saah, Nicholas Clinton
@@ -847,7 +858,7 @@ The purpose of this chapter is to introduce some of the principal characteristic
 *   Navigate among Earth Engine result tabs (Chap. F1.0).
 *   Visualize images with a variety of false-color band combinations (Chap. F1.1).
 
-* * *
+:::
 
 ## Introduction {.unlisted .unnumbered}
 

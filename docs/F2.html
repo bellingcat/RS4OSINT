@@ -287,7 +287,16 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 <p>Now that you know how images are viewed and what kinds of images exist in Earth Engine, how do we manipulate them? To gain the skills of interpreting images, you’ll work with bands, combining values to form indices and masking unwanted pixels. Then, you’ll learn some of the techniques available in Earth Engine for classifying images and interpreting the results.</p>
 <section id="image-manipulation-bands-arithmetic-thresholds-and-masks" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Image Manipulation: Bands, Arithmetic, Thresholds, and Masks</h1>
-<hr>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Chapter Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <section id="author" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author">Author</h2>
 <p>Karen Dyson, Andréa Puzzi Nicolau, David Saah, and Nicholas Clinton</p>
@@ -308,10 +317,11 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 <ul>
 <li>Import images and image collections, filter, and visualize (Part F1).</li>
 </ul>
-<hr>
 </section>
-<section id="introduction-to-theory" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory">Introduction to Theory</h2>
+</div>
+</div>
+<section id="introduction" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Spectral indices are based on the fact that different objects and land covers on the Earth’s surface reflect different amounts of light from the Sun at different wavelengths. In the visible part of the spectrum, for example, a healthy green plant reflects a large amount of green light while absorbing&nbsp;blue and red light—which is why it appears green to our eyes. Light also arrives from the Sun at wavelengths outside what the human eye can see, and there are large differences in reflectances between living and nonliving land covers, and between different types of vegetation, both in the visible and outside the visible wavelengths. We visualized this earlier, in Chaps. F1.1 and F1.3&nbsp;when we mapped color-infrared images (Fig. F2.0.1).</p>
 <p><img src="F2/image39.png" class="img-fluid"></p>
 <p>Fig. F2.0.1&nbsp;Mapped color-IR images from multiple satellite sensors that we mapped in Chap. F1.3.&nbsp;The near infrared spectrum is mapped as red, showing where there are high amounts of healthy vegetation.</p>
@@ -584,7 +594,16 @@ Note
 </section>
 <section id="interpreting-an-image-classification" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Interpreting&nbsp;an Image: Classification</h1>
-<hr>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Chapter Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <section id="author-1" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-1">Author</h2>
 <p>Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton</p>
@@ -610,9 +629,10 @@ Note
 <li>Understand bands and how to select them (Chap. F1.2, Chap. F2.0).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-1" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-1">Introduction to Theory</h2>
-<hr>
+</div>
+</div>
+<section id="introduction-1" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-1">Introduction</h2>
 <p>Classification is addressed in a broad range&nbsp;of fields, including mathematics, statistics, data mining, machine learning, and more. For a deeper treatment of classification, interested readers may see some of the following suggestions: Witten et al.&nbsp;(2011), Hastie et al.&nbsp;(2009), Goodfellow et al.&nbsp;(2016), Gareth et al.&nbsp;(2013), Géron (2019),&nbsp;Müller&nbsp;et al.&nbsp;(2016), or Witten et al.&nbsp;(2005). Unlike regression, which predicts continuous variables, classification predicts categorical, or discrete, variables—variables with a finite number of categories (e.g., age range).</p>
 <p>In remote sensing, image classification is an attempt to categorize all pixels in an image into a finite number of labeled land cover and/or land use classes. The resulting classified image is a simplified thematic map derived from the original image (Fig.&nbsp;F2.1.1). Land cover and land use information is essential for many environmental and socioeconomic applications, including natural resource management, urban planning, biodiversity conservation, agricultural monitoring, and carbon accounting.</p>
 <p><img src="F2/image48.png" class="img-fluid"></p>
@@ -862,7 +882,16 @@ Note
 </section>
 <section id="accuracy-assessment-quantifying-classification-quality" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Accuracy Assessment: Quantifying Classification Quality</h1>
-<hr>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Chapter Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <section id="author-2" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-2">Author</h2>
 <p>Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton</p>
@@ -887,9 +916,10 @@ Note
 <li>Perform a supervised Random Forest image classification (Chap. F2.1).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-2" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-2">Introduction to Theory</h2>
-<hr>
+</div>
+</div>
+<section id="introduction-2" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-2">Introduction</h2>
 <p>Any map or remotely sensed product is a generalization or model that will have inherent errors. Products derived from remotely sensed data used for scientific purposes and policymaking require a quantitative measure of accuracy to strengthen the confidence in the information generated (Foody 2002, Strahler et al.&nbsp;2006, Olofsson et al.&nbsp;2014). Accuracy assessment is a crucial part of any classification project, as it measures the degree to which the classification agrees with another data source that is considered to be accurate, ground-truth data (i.e., “reality”).</p>
 <p>The history of accuracy assessment reveals increasing detail and rigor in the analysis, moving from a basic visual appraisal of the derived map (Congalton 1994, Foody 2002) to the definition of best practices for sampling and response designs and the calculation of accuracy metrics (Foody 2002, Stehman 2013, Olofsson et al.&nbsp;2014, Stehman and Foody 2019). The confusion matrix (also called the “error matrix”) (Stehman 1997) summarizes key accuracy metrics used to assess products derived from remotely sensed data.</p>
 <p>In Chap. F2.1,&nbsp;we asked whether the classification results were satisfactory. In remote sensing, the quantification of the answer to that question is called accuracy assessment. In the classification context, accuracy measurements are often derived from a confusion matrix.</p>

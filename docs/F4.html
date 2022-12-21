@@ -297,7 +297,7 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
   </ul></li>
   <li><a href="#interpreting-time-series-with-ccdc" id="toc-interpreting-time-series-with-ccdc" class="nav-link" data-scroll-target="#interpreting-time-series-with-ccdc"><span class="toc-section-number">13</span>  Interpreting Time Series with CCDC</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-theory-6" id="toc-introduction-to-theory-6" class="nav-link" data-scroll-target="#introduction-to-theory-6"><span class="toc-section-number">13.1</span>  Introduction to Theory&nbsp;</a></li>
+  <li><a href="#introduction-to-theory" id="toc-introduction-to-theory" class="nav-link" data-scroll-target="#introduction-to-theory"><span class="toc-section-number">13.1</span>  Introduction to Theory&nbsp;</a></li>
   <li><a href="#understanding-temporal-segmentation-with-ccdc" id="toc-understanding-temporal-segmentation-with-ccdc" class="nav-link" data-scroll-target="#understanding-temporal-segmentation-with-ccdc"><span class="toc-section-number">13.2</span>  Understanding Temporal Segmentation with CCDC</a></li>
   <li><a href="#running-ccdc" id="toc-running-ccdc" class="nav-link" data-scroll-target="#running-ccdc"><span class="toc-section-number">13.3</span>  Running CCDC</a></li>
   <li><a href="#extracting-break-information" id="toc-extracting-break-information" class="nav-link" data-scroll-target="#extracting-break-information"><span class="toc-section-number">13.4</span>  Extracting Break Information</a></li>
@@ -308,8 +308,6 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
   </ul></li>
   <li><a href="#data-fusion-merging-classification-streams" id="toc-data-fusion-merging-classification-streams" class="nav-link" data-scroll-target="#data-fusion-merging-classification-streams"><span class="toc-section-number">14</span>  Data Fusion: Merging Classification Streams</a>
   <ul class="collapse">
-  <li><a href="#imagery-and-classifications-of-the-roosevelt-river" id="toc-imagery-and-classifications-of-the-roosevelt-river" class="nav-link" data-scroll-target="#imagery-and-classifications-of-the-roosevelt-river"><span class="toc-section-number">14.1</span>  Imagery and Classifications of the Roosevelt River</a></li>
-  <li><a href="#basics-of-the-bulc-interface" id="toc-basics-of-the-bulc-interface" class="nav-link" data-scroll-target="#basics-of-the-bulc-interface"><span class="toc-section-number">14.2</span>  Basics of the BULC Interface</a></li>
   <li><a href="#detailed-lulc-inspection-with-bulc" id="toc-detailed-lulc-inspection-with-bulc" class="nav-link" data-scroll-target="#detailed-lulc-inspection-with-bulc"><span class="toc-section-number">14.3</span>  Detailed LULC Inspection with BULC</a></li>
   <li><a href="#change-detection-with-bulc-d" id="toc-change-detection-with-bulc-d" class="nav-link" data-scroll-target="#change-detection-with-bulc-d"><span class="toc-section-number">14.4</span>  Change Detection with BULC-D</a></li>
   <li><a href="#change-detection-with-bulc-and-dynamic-world" id="toc-change-detection-with-bulc-and-dynamic-world" class="nav-link" data-scroll-target="#change-detection-with-bulc-and-dynamic-world"><span class="toc-section-number">14.5</span>  Change Detection with BULC and Dynamic World</a>
@@ -356,7 +354,7 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 <p>One of the paradigm-changing features of Earth Engine is the ability to access decades of imagery without the previous limitation of needing to download all the data to a local disk for processing. Because&nbsp;remote-sensing data files can be enormous, this used to limit many projects to viewing two or three images from different periods. With Earth Engine, users can access tens or hundreds of thousands of images to understand the status of places across decades.</p>
 <section id="filter-map-reduce" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Filter, Map, Reduce</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author">Author</h2>
 <p>Jeffrey A. Cardille</p>
@@ -381,9 +379,8 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 <li>Perform basic image analysis: select bands, compute indices, create masks (Part F2).</li>
 </ul>
 </section>
-<section id="introduction-to-theory" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory">Introduction to Theory</h2>
-<hr>
+<section id="introduction" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Prior chapters focused on exploring individual images—for example, viewing the characteristics of single satellite images by displaying different combinations of bands (Chap. F1.1), viewing single images from different datasets (Chap. F1.2, Chap. F1.3), and exploring image processing principles (Parts F2, F3) as they are implemented for cloud-based remote sensing in Earth Engine. Each image encountered in those chapters was pulled from a larger assemblage of images taken from the same sensor. The chapters used a few ways to narrow down the number of images in order to view just one for inspection (Part F1) or manipulation (Part F2, Part F3).</p>
 <p>In this chapter and most of the chapters that follow, we will move from the domain of single images to the more complex and distinctive world of working with image collections, one of the fundamental data types within Earth Engine. The ability to conceptualize and manipulate entire image collections distinguishes Earth Engine and gives it considerable power for interpreting change and stability across space and time.</p>
 <p>When looking for change or seeking to understand differences in an area through time, we often proceed through three ordered stages, which we will color code&nbsp;in this first explanatory part of the lab:</p>
@@ -550,7 +547,7 @@ Note
 </section>
 <section id="exploring-image-collections" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Exploring Image Collections</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-1" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-1">Author</h2>
 <p>Gennadii Donchyts</p>
@@ -740,7 +737,7 @@ Note
 </section>
 <section id="aggregating-images-for-time-series" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Aggregating&nbsp;Images for Time Series</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-2" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-2">Author</h2>
 <p>Ujaval&nbsp;Gandhi</p>
@@ -771,9 +768,8 @@ Note
 <li>Inspect an Image and an ImageCollection, as well as their properties (Chap. F4.1).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-1" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-1">Introduction to Theory</h2>
-<hr>
+<section id="introduction-1" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-1">Introduction</h2>
 <p>CHIRPS is a high-resolution global gridded rainfall dataset that combines satellite-measured precipitation with ground station data in a consistent, long time-series dataset. The data are provided by the University of California, Santa Barbara, and are available from 1981 to the present. This dataset is extremely useful in drought monitoring and assessing global environmental change&nbsp;over land. The satellite data are calibrated with ground station observations to create the final product.</p>
 <p>In this exercise, we will work with the CHIRPS dataset using the pentad.&nbsp;A pentad represents the grouping of five days. There are six pentads in a calendar month, with five pentads of exactly five days each and one pentad with the remaining three to six days of the month. Pentads reset at the beginning of each month, and the first day&nbsp;of every month is the start of a new pentad. Values at a given pixel in the CHIRPS dataset represent the total precipitation in millimeters over the pentad.</p>
 </section>
@@ -949,7 +945,7 @@ print(yearlyCollection);</p>
 </section>
 <section id="clouds-and-image-compositing" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Clouds and Image Compositing</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-3" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-3">Author</h2>
 <p>:</p>
@@ -979,9 +975,8 @@ print(yearlyCollection);</p>
 <li>Summarize an ImageCollection with reducers (Chap. F4.0, Chap. F4.1).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-2" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-2">Introduction to Theory</h2>
-<hr>
+<section id="introduction-2" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-2">Introduction</h2>
 <p>In many respects, satellite remote sensing is an ideal source of data for monitoring large or remote regions. However, cloud cover is one of the most common limitations of optical sensors in providing continuous time series of data for surface mapping and monitoring. This is particularly relevant in tropical, polar, mountainous,&nbsp;and high-latitude areas, where clouds are often present. Many studies have addressed the extent to which cloudiness can restrict the monitoring of various regions (Zhu and Woodcock 2012, 2014; Eberhardt et al.&nbsp;2016; Martins et al.&nbsp;2018).</p>
 <p>Clouds and cloud shadows reduce the view of optical sensors and completely block or obscure the spectral response from Earth’s surface (Cao et al.&nbsp;2020). Working with pixels that are cloud-contaminated can significantly influence the accuracy and information content of products derived from a variety of remote sensing activities, including land cover classification, vegetation modeling, and especially change detection, where unscreened clouds might be mapped as false changes (Braaten et al.&nbsp;2015,&nbsp;Zhu et al.&nbsp;2015). Thus, the information provided by cloud detection algorithms is critical to exclude clouds and cloud shadows from subsequent processing steps.</p>
 <p>Historically, cloud detection algorithms derived the cloud information by considering a single date-image and sun illumination geometry (Irish et al.&nbsp;2006, Huang et al.&nbsp;2010). In contrast, current, more accurate cloud detection algorithms are based on the analysis of Landsat time series (Zhu and Woodcock 2014, Zhu and Helmer 2018). Cloud detection algorithms inform on the presence of clouds, cloud shadows, and other atmospheric conditions (e.g., presence of snow). The presence and extent of cloud contamination within a pixel is currently provided with Landsat and Sentinel-2 imagery as ancillary data via quality flags at the pixel level. Additionally, quality flags also inform on other acquisition-related conditions, including radiometric saturation and terrain occlusion, which enables us to assess the usefulness and convenience of inclusion of each pixel in subsequent analyses. The quality flags are ideally suited to reduce users’ manual supervision and maximize the automatic processing approaches.</p>
@@ -1264,7 +1259,7 @@ Note
 </section>
 <section id="change-detection" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Change Detection</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-4" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-4">Author</h2>
 <p>Karis Tenneson, John Dilger, Crystal Wespestad, Brian Zutta, Andréa P Nicolau, Karen Dyson, Paula Paz</p>
@@ -1289,9 +1284,8 @@ Note
 <li>Perform basic image analysis: select bands, compute indices, create masks (Part F2).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-3" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-3">Introduction to Theory</h2>
-<hr>
+<section id="introduction-3" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-3">Introduction</h2>
 <p>Change detection is the process of assessing how landscape conditions are changing by looking at differences in images acquired&nbsp;at different times. This can be used&nbsp;to quantify changes in forest cover—such as those following a volcanic eruption, logging activity, or wildfire—or when crops are&nbsp;harvested (Fig. F4.4.1). For example, using time-series&nbsp;change detection methods, Hansen et al.&nbsp;(2013) quantified annual changes in forest loss and regrowth. Change detection mapping is important for observing, monitoring, and quantifying changes in landscapes over time. Key questions that can be answered using these techniques include identifying whether a change has occurred, measuring the area or the spatial extent of the region undergoing change, characterizing the nature of the change, and measuring the pattern (configuration or composition) of the change (MacLeod and Congalton 1998).</p>
 <ol type="a">
 <li></li>
@@ -1469,7 +1463,7 @@ Note
 </section>
 <section id="interpreting-annual-time-series-with-landtrendr" class="level1" data-number="11">
 <h1 data-number="11"><span class="header-section-number">11</span> Interpreting Annual Time Series with LandTrendr</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-5" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-5">Author</h2>
 <p>Robert&nbsp;Kennedy, Justin Braaten, Peter Clary</p>
@@ -1494,9 +1488,8 @@ Note
 <li>Interpret bands and indices in terms of land surface characteristics (Chap. F2.0).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-4" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-4">Introduction to Theory</h2>
-<hr>
+<section id="introduction-4" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-4">Introduction</h2>
 <p>Land surface change happens all the time, and satellite sensors witness it. If a spectral index is chosen to match the type of change being sought, surface change can be inferred from changes in spectral index values. Over time, the progression of spectral values witnessed in each pixel tells a story of the processes of change, such as growth and disturbance. Time-series algorithms are designed to leverage many observations of spectral values over time to isolate and describe changes of interest, while ignoring uninteresting change or noise.</p>
 <p>In this lab, we use the LandTrendr time-series algorithms to map change. The LandTrendr algorithms apply “temporal segmentation” strategies to distill a multiyear time series into sequential straight-line segments that describe the change processes occurring in each pixel. We then isolate the segment of interest in each pixel and make maps of when, how long, and how intensely each process occurred. Similar strategies can be applied to more complicated descriptions of the time series, as is seen in some of the chapters that follow this one.</p>
 <p>For this lab, we will use a graphical user interface (GUI) to teach the concepts of LandTrendr.</p>
@@ -1627,7 +1620,7 @@ Note
 </section>
 <section id="fitting-functions-to-time-series" class="level1" data-number="12">
 <h1 data-number="12"><span class="header-section-number">12</span> Fitting Functions to Time Series</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-6" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-6">Author</h2>
 <p>Andréa Puzzi Nicolau, Karen Dyson, Biplov Bhandari, David Saah, Nicholas Clinton</p>
@@ -1655,9 +1648,8 @@ Note
 <li>Mask cloud, cloud shadow, snow/ice, and other undesired pixels (Chap. F4.3).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-5" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-5">Introduction to Theory</h2>
-<hr>
+<section id="introduction-5" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-5">Introduction</h2>
 <p>Many natural and man-made phenomena exhibit important annual, interannual, or longer-term trends that recur—that is, they occur at roughly regular intervals. Examples include seasonality in leaf patterns in deciduous forests and seasonal crop growth patterns. Over time, indices such as the Normalized Difference Vegetation Index (NDVI) will show regular increases (e.g., leaf-on, crop growth) and decreases (e.g., leaf-off, crop senescence), and typically have a long-term, if noisy, trend such as a gradual increase in NDVI value as an&nbsp;area recovers from a disturbance.</p>
 <p>Earth&nbsp;Engine supports the ability to do complex linear and non-linear regressions of values in each pixel of a study area. Simple linear regressions of indices can reveal linear trends that can span multiple years. Meanwhile, harmonic terms can be used to fit a sine-wave-like curve. Once you have the ability to fit these functions to time series, you can answer many important questions. For example, you can define vegetation dynamics over multiple time scales, identify phenology and track changes year to year, and identify deviations from the expected patterns (Bradley et al.&nbsp;2007, Bullock et al.&nbsp;2020). There are multiple applications for these analyses. For example, algorithms to detect deviations from the expected pattern can be used to identify disturbance events, including deforestation and forest degradation (Bullock et al.&nbsp;2020).</p>
 <p>If you have not already done so, be sure to add the book’s code repository to the Code Editor by entering <a href="https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&amp;sa=D&amp;source=editors&amp;ust=1671458868327546&amp;usg=AOvVaw0m0oT1feMKQKRq3rtuOxfY">https://code.earthengine.google.com/?accept_repo=projects/gee-edu/book</a>&nbsp;into your browser. The book’s scripts will then be available in the script manager panel.</p>
@@ -1988,7 +1980,7 @@ Note
 </section>
 <section id="interpreting-time-series-with-ccdc" class="level1" data-number="13">
 <h1 data-number="13"><span class="header-section-number">13</span> Interpreting Time Series with CCDC</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-7" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-7">Author</h2>
 <p>&nbsp;</p>
@@ -2020,8 +2012,8 @@ Note
 <li>Interpret fitted harmonic models (Chap. F4.6).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-6" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="introduction-to-theory-6"><span class="header-section-number">13.1</span> Introduction to Theory&nbsp;</h2>
+<section id="introduction-to-theory" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="introduction-to-theory"><span class="header-section-number">13.1</span> Introduction to Theory&nbsp;</h2>
 <p>“A time series is a sequence of observations taken sequentially in time. … An intrinsic feature of a time series is that, typically, adjacent observations are dependent. Time-series analysis is concerned with techniques for the analysis of this dependency.” This is the formal definition of time-series analysis by Box et al.&nbsp;(1994). In a remote sensing context, the observations of interest are measurements of radiation reflected from the surface of the Earth from the Sun or an instrument emitting energy toward Earth. Consecutive measurements made over a given area result in a time series of surface reflectance. By analyzing such time series, we can achieve a comprehensive characterization of ecosystem and land surface processes (Kennedy et al.&nbsp;2014). The result is a shift away from traditional, retrospective change-detection approaches based on data acquired over the same area at two or a few points in time to continuous monitoring of the landscape (Woodcock et al.&nbsp;2020). Previous obstacles related to data storage, preprocessing, and computing power have been largely overcome with the emergence of powerful cloud-computing platforms that provide direct access to the data (Gorelick et al.&nbsp;2017). In this chapter, we will illustrate how to study landscape dynamics in the Amazon river basin by analyzing dense time series of Landsat data using the CCDC algorithm. Unlike LandTrendr (Chap. F4.5), which uses anniversary images to fit straight line segments that describe the spectral trajectory over time, CCDC uses all available clear observations. This has multiple advantages, including the ability to detect changes within a year and capture seasonal patterns, although at the expense of much higher computational demands and more complexity to manipulate the outputs, compared to LandTrendr.</p>
 </section>
 <section id="understanding-temporal-segmentation-with-ccdc" class="level2" data-number="13.2">
@@ -2389,7 +2381,16 @@ Note
 </section>
 <section id="data-fusion-merging-classification-streams" class="level1" data-number="14">
 <h1 data-number="14"><span class="header-section-number">14</span> Data Fusion: Merging Classification Streams</h1>
-<hr>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Chapter Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <section id="author-8" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-8">Author</h2>
 <p>Jeffrey A. Cardille, Rylan Boothman, Mary Villamor, Elijah Perez, Eidan Willis, Flavie Pelletier</p>
@@ -2416,9 +2417,8 @@ Note
 <li>Obtain accuracy metrics from classifications (Chap. F2.2).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-7" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-7">Introduction to Theory</h2>
-<hr>
+<section id="introduction-6" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-6">Introduction</h2>
 <p>When working with multiple sensors, we are often presented with a challenge: What to do with classification noise? It’s almost impossible to remove all noise from a classification. Given the information contained in a stream of classifications, however, you should be able to use the temporal context to distinguish noise from true changes in the landscape.</p>
 <p>The Bayesian Updating of Land Cover (BULC) algorithm&nbsp;(Cardille and Fortin 2016) is designed to extract the signal from the noise in a stream of classifications made from any number of data sources. BULC’s&nbsp;principal job is to estimate, at each time step, the likeliest state of land use and land cover&nbsp;(LULC) in a study area given the accumulated evidence to that point. It takes a stack of provisional classifications as input; in keeping with the terminology of Bayesian statistics, these are referred to as “Events,”&nbsp;because they provide new evidence to the system. BULC then returns a stack of classifications as output that represents the estimated LULC&nbsp;time series implied by the Events.&nbsp;</p>
 <p>BULC estimates, at each time step, the most likely class from a set given the evidence up to that point in time. This is done by employing an accuracy assessment matrix like that seen in Chap. F2.2. At each time step, the algorithm quantifies the agreement between two classifications adjacent in time within a time series.</p>
@@ -2481,7 +2481,11 @@ Note
 </section>
 <section id="basics-of-the-bulc-interface" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="basics-of-the-bulc-interface"><span class="header-section-number">14.2</span> Basics of the BULC Interface</h2>
-<p>To see if BULC can successfully sift through these Events, we will use BULC’s&nbsp;GUI&nbsp;(Fig. F4.8.1), which makes interacting with the functionality straightforward. ::: {.callout-note} Code Checkpoint F48b&nbsp;in the book’s repository contains information about accessing that interface. ::: <img src="F4/image5.png" class="img-fluid"></p>
+<p>To see if BULC can successfully sift through these Events, we will use BULC’s&nbsp;GUI&nbsp;(Fig. F4.8.1), which makes interacting with the functionality straightforward. ::: {.callout-note} Code Checkpoint F48b&nbsp;in the book’s repository contains information about accessing that interface.</p>
+</section>
+</div>
+</div>
+<p><img src="F4/image5.png" class="img-fluid"></p>
 <p>Fig. F4.8.1&nbsp;BULC&nbsp;interface</p>
 <p>After you have run the script, BULC’s interface requires that a&nbsp;few parameters&nbsp;be set; these are specified using the left panel. Here, we describe and populate each of the required parameters, which are shown in&nbsp;red. As you proceed, the default red&nbsp;color will change&nbsp;to green when a parameter receives a value.</p>
 <ul>
@@ -2518,7 +2522,6 @@ Note
 <li>Zoom.&nbsp;This draws the final BULC classification at multiple scales, with the finest-scale image matching that shown in the Map&nbsp;window.</li>
 </ol>
 <p>Question 2.&nbsp;Select the BULC&nbsp;option, then select the Movie tool to view the result, and choose a drawing speed and resolution. When viewing the full area, would you assess the additional LULC changes since 2016 as being minor, moderate, or major compared to the changes that occurred before 2016?&nbsp;Explain the reasoning for your assessment.</p>
-</section>
 <section id="detailed-lulc-inspection-with-bulc" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="detailed-lulc-inspection-with-bulc"><span class="header-section-number">14.3</span> Detailed LULC Inspection with BULC</h2>
 <p>BULC results can be viewed interactively, allowing you to view more detailed estimations of the LULC around the study area. We will zoom into a specific area where change did occur after 2016. To do that, turn on the Satellite&nbsp;view and zoom in. Watching the scale bar in the lower right of the Map&nbsp;panel, continue zooming until the scale bar says 5 km. Then, enter “-60.742, -9.844” in the Earth Engine search tool, located above the code. The text will be interpreted as a longitude/latitude&nbsp;value and will offer you a nearby coordinate, indicated with a value for the degrees West and the degrees South. Click that entry and Earth Engine will move to that location, while keeping at the specified zoom level. Let’s compare the BULC result in this sector against the image from Earth Engine’s satellite view that is underneath it (Fig. 4.8.4).</p>
@@ -2665,7 +2668,7 @@ Note
 </section>
 <section id="exploring-lagged-effects-in-time-series" class="level1" data-number="15">
 <h1 data-number="15"><span class="header-section-number">15</span> Exploring Lagged Effects in Time Series&nbsp;</h1>
-<hr>
+<p>::: {.callout-tip} # Chapter Information</p>
 <section id="author-9" class="level2 unlisted unnumbered">
 <h2 class="unlisted unnumbered anchored" data-anchor-id="author-9">Author</h2>
 <p>Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton</p>
@@ -2694,9 +2697,8 @@ Note
 <li>Fit linear and nonlinear functions with regression in an ImageCollection&nbsp;time series (Chap. F4.6).</li>
 </ul>
 </section>
-<section id="introduction-to-theory-8" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-to-theory-8">Introduction to Theory</h2>
-<hr>
+<section id="introduction-7" class="level2 unlisted unnumbered">
+<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction-7">Introduction</h2>
 <p>While fitting functions to time series allows you to account for seasonality in your models, sometimes the impact of a seasonal event does not impact your dependent variable until the next month, the next year, or even multiple years later. For example, coconuts take 18–24 months to develop from flower to harvestable size. Heavy rains during the flower development stage can severely reduce the number of coconuts that can be harvested months later, with significant negative economic repercussions. These patterns—where events in one time period impact our variable of interest in later time periods—are important to be able to include in our models.</p>
 <p>In this chapter, we introduce lagged effects into our previous discussions on interpreting time-series data (Chaps. F4.6 and F4.7). Being able to integrate lagged effects into our time-series models allows us to address many important questions. For example, streamflow can be accurately modeled by taking into account previous streamflow, rainfall, and soil moisture; this improved understanding helps predict and mitigate the impacts of drought and flood events made more likely by climate change (Sazib et al.&nbsp;2020). As another example, time-series lag analysis was able to determine that decreased rainfall was associated with increases in livestock disease outbreaks one year later in India (Karthikeyan et al.&nbsp;2021).</p>
 </section>

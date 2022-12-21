@@ -12,8 +12,12 @@ In addition to raster data processing, Earth Engine supports a rich set of vecto
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 AJ Purdy, Ellen Brock, David Saah
 
@@ -325,8 +329,12 @@ In this chapter, you learned how to import features into Earth Engine. In Sect. 
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
 
 
 Keiko Nomura, Samuel Bowers
@@ -357,8 +365,9 @@ The purpose of this chapter is to review methods of converting between raster an
 *   Write a function and map it over an ImageCollection (Chap. F4.0).
 *   Use reduceRegions to summarize an image in irregular shapes (Chap. F5.0).
 
-## Introduction to Theory {.unlisted .unnumbered}
-* * *
+::: 
+## Introduction {.unlisted .unnumbered}
+
 
 Raster data consists of regularly spaced pixels arranged into rows and columns, familiar as the format of satellite images. Vector data contains geometry features (i.e., points, lines, and polygons) describing locations and areas. Each data format has its advantages, and both will be encountered as part of GIS operations.
 
@@ -951,8 +960,12 @@ In this chapter, you learned how to convert raster to vector and vice versa. Mor
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
  
 
 Sara Winsemius and Justin Braaten
@@ -1596,8 +1609,12 @@ Miller JD, Thode AE (2007) Quantifying burn severity in a heterogeneous landscap
 
 
 
-* * * 
+ 
+::: {.callout-tip} 
+# Chapter Information
+
 ## Author {.unlisted .unnumbered}
+
  
 
 Ujaval Gandhi
