@@ -1,24 +1,14 @@
-# Advanced Topics
-
-
-
+## Advanced Topics
 
 Although you now know the most basic fundamentals of Earth Engine, there is still much more that can be done. The Part presents some advanced topics that can help expand your skill set for doing larger and more complex projects. These include tools for sharing code among users, scaling up with efficient project design, creating apps for non-expert users, and combining R with other information processing platforms.
 
-
-
-# Advanced Raster Visualization
-
-
-
-
-
+## Advanced Raster Visualization
 
  
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
 
 
@@ -26,12 +16,12 @@ Gennadii Donchyts, Fedor Baart
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
 
 
 This chapter should help users of Earth Engine to better understand raster data by applying visualization algorithms such as hillshading, hill shadows, and custom colormaps. We will also learn how image collection datasets can be explored by animating them as well as by annotating with text labels, using, for example, attributes of images or values queried from images.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Understanding why perceptually uniform colormaps are better to present data and using them efficiently for raster visualization.
@@ -40,7 +30,7 @@ This chapter should help users of Earth Engine to better understand raster data 
 *   Animating image collections in multiple ways (animated GIFs, exporting video clips, interactive animations with UI controls).
 *   Adding hillshading and shadows to help visualize raster datasets.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 
 *   Import images and image collections, filter, and visualize (Part F1).
@@ -48,7 +38,7 @@ This chapter should help users of Earth Engine to better understand raster data 
 *   Inspect an Image and an ImageCollection, as well as their properties (Chap. F4.1).
 
 :::
-## Introduction {.unlisted .unnumbered}
+### Introduction {.unlisted .unnumbered}
 
 
 Visualization is the step to transform data into a visual representation. You make a visualization as soon as you add your first layer to your map in Google Earth Engine. Sometimes you just want to have a first look at a dataset during the exploration phase. But as you move towards the dissemination phase, where you want to spread your results, it is good to think about a more structured approach to visualization. A typical workflow for creating visualization consists of the following steps:
@@ -66,7 +56,7 @@ A good standard work on all the choices that one can make while creating a visua
 In this chapter, we will cover several aspects mentioned in the Grammar of Graphics to convert (raster) data into visual elements. The accurate representation of data is essential in science communication. However, color maps that visually distort data through uneven color gradients or are unreadable to those with color-vision deficiency remain prevalent in science (Crameri, 2020). You will also learn how to add annotation text and symbology, while improving your visualizations by mixing images with hillshading as you explore some of the amazing datasets that have been collected in recent years in Earth Engine.
 
 
-## Palettes
+### Palettes
 
 In this section we will explore examples of colormaps to visualize raster data. Colormaps translate values to colors for display on a map. This requires a set of colors (referred to as a “palette” in Earth Engine) and a range of values to map (specified by the min and max values in the visualization parameters).
 
@@ -182,7 +172,7 @@ If you zoom in (F6.0.3) you can see how long cracks have recently appeared near 
 :::{.callout-note}
 Code Checkpoint F60b. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Remapping and Palettes
+### Remapping and Palettes
 
 Classified rasters in Earth Engine have metadata attached that can help with analysis and visualization. This includes lists of the names, values, and colors associated with class. These are used as the default color palette for drawing a classification, as seen next. The USGS National Land Cover Database (NLCD) is one such example. Let’s access the NLCD dataset, name it nlcd, and view it (Fig. F6.0.4) with its built-in palette.
 
@@ -259,7 +249,7 @@ Using this remapping approach, we can properly visualize the new color palette (
 :::{.callout-note}
 Code Checkpoint F60c. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Annotations
+### Annotations
 
 Annotations are the way to visualize data on maps to provide additional information about raster values or any other data relevant to the context. In this case, this additional information is usually shown as geometries, text labels, diagrams, or other visual elements. Some annotations in Earth Engine can be added by making use of the ui portion of the Earth Engine API, resulting in graphical user interface elements such as labels or charts added on top of the map. However, it is frequently useful to render annotations as a part of images, such as by visualizing various image properties or to highlight specific areas.
 
@@ -410,7 +400,7 @@ Code Checkpoint F60f. The book’s repository contains a script that shows what 
 :::
 Try commenting that event handler and observe how annotation rendering changes when you zoom in or zoom out.
 
-## Animations
+### Animations
 
 Visualizing raster images as animations is a useful technique to explore changes in time-dependent datasets, but also, to render short animations to communicate how changing various parameters affects the resulting image—for example, varying thresholds of spectral indices resulting in different binary maps or the changing geometry of vector features.
 
@@ -590,7 +580,7 @@ The main advantage of the interactive animation API is that it provides a way to
 :::{.callout-note}
 Code Checkpoint F60i. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Terrain Visualization
+### Terrain Visualization
 
 This section introduces several raster visualization techniques useful to visualize terrain data such as:
 
@@ -695,21 +685,11 @@ Steps in visualizing a topographic dataset:
 :::{.callout-note}
 Code Checkpoint F60j. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Synthesis {.unnumbered}
-
-To synthesize what you have learned in this chapter, you can do the following assignments.
-
-Assignment 1. Experiment with different color palettes from the palettes library. Try combining palettes with image opacity (using ee.Image.updateMask call) to visualize different physical features (for example, hot or cold areas using temperature and elevation).
-
-Assignment 2. Render multiple text annotations when generating animations using image collection. For example, show other image properties in addition to date or image statistics generated using regional reducers for every image.
-
-Assignment 3. In addition to text annotations, try blending geometry elements (lines, polygons) to highlight specific areas of rendered images.
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 In this chapter we have learned about several techniques that can greatly improve visualization and analysis of images and image collections. Using predefined palettes can help to better comprehend and communicate Earth observation data, and combining with other visualization techniques such as hillshading and annotations can help to better understand processes studied with Earth Engine. When working with image collections, it is often very helpful to analyze their properties through time by visualizing them as animations. Usually, this step helps to better understand dynamics of the changes that are stored in image collections and to develop a proper algorithm to study these changes.
 
-## References {.unnumbered}
+### References {.unnumbered}
 
 Burrough PA, McDonnell RA, Lloyd CD (2015) Principles of Geographical Information Systems. Oxford University Press
 
@@ -731,16 +711,16 @@ Wilkinson L (2005) The Grammar of Graphics. Springer Verlag
 
 
 
-# Collaborating in Earth Engine with Scripts and Assets
+## Collaborating in Earth Engine with Scripts and Assets
 
 
 
 
  
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
 
 
@@ -748,12 +728,12 @@ Sabrina H. Szeto
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
 
 
 Many users find themselves needing to collaborate with others in Earth Engine at some point. Students may need to work on a group project, people from different organizations might want to collaborate on research together, or people may want to share a script or an asset they created with others. This chapter will show you how to collaborate with others and share your work.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Understanding when it is important to share a script or asset.
@@ -767,13 +747,13 @@ Many users find themselves needing to collaborate with others in Earth Engine at
 *   Using the require function to load modules.
 *   Creating a script to share as a module.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 
 *   Sign up for an Earth Engine account, open the Code Editor, and save your script (Chap. F1.0).
 
 :::
-## Introduction {.unlisted .unnumbered}
+### Introduction {.unlisted .unnumbered}
 
 
 Many people find themselves needing to share a script when they encounter a problem; they wish to share the script with someone else so they can ask a question. When this occurs, sharing a link to the script often suffices. The other person can then make comments or changes before sending a new link to the modified script.
@@ -787,7 +767,7 @@ If you or your group members find yourselves repeatedly reusing certain function
 
 Let’s get started. For this lab, you will need to work in small groups or pairs.
 
-## Using Get Link to Share a Script
+### Using Get Link to Share a Script
 
 Copy and paste the following code into the Code Editor.
 
@@ -809,7 +789,7 @@ Question 2. What happens when you check the box for Hide code panel or Disable a
 
 Answer. Hide code panel will minimize the code panel so the person you send the script to will see the Map maximized. This is useful when you want to draw the person’s attention to the results rather than to the code. To expand the code panel, they have to click on the Show code button. Disable auto-run is helpful when you do not want the script to start running when the person you sent it to opens it. Perhaps your script takes very long to run or requires particular user inputs and you just want to share the code with the person.
 
-## Sharing Assets from Your Asset Manager
+### Sharing Assets from Your Asset Manager
 
 When you clicked the Get Link button earlier, you may have noticed a note in the popup reading: “To give others access to assets in the code snapshot, you may need to share them.” If your script uses an asset that you have uploaded into your Asset Manager, you will need to share that asset as well. If not, an error message will appear when the person you shared the script with tries to run it.
 
@@ -841,7 +821,7 @@ Question 4. Share an asset with a group member and give them writer access. Send
 
 Answer: You can view details about the asset and import it for use in a script in the Code Editor. You can also share the asset with others and delete the asset.
 
-## Working with Shared Repositories
+### Working with Shared Repositories
 
 Now that you know how to share assets and scripts, let’s move on to sharing repositories. In this section, you will learn about different types of repositories and how to add a repository that someone else shared with you. You will also learn how to view previous versions of a script and how to revert back to an earlier version.
 
@@ -937,7 +917,7 @@ Answer: The script reverts to the previous version, in which the only line of co
 
 print('The owner of this repository is GroupMemberName.');
 
-## Using the Require Function to Load a Module
+### Using the Require Function to Load a Module
 
 In earlier chapters, you may have noticed that the require function allows you to reuse code that has already been written without having to copy and paste it into your current script. For example, you might have written a function for cloud masking that you would like to use in multiple scripts. Saving this function as a module enables you to share the code across your own scripts and with other people. Or you might discover a new module with capabilities you need written by other authors. This section will show you how to use the require function to create and share your own module or to load a module that someone else has shared.
 
@@ -1093,15 +1073,11 @@ Map.addLayer(composite, {
 });
 
 ```
-## Synthesis {.unnumbered}
-
-Apply what you learned in this chapter by setting up a shared repository for your project, lab group, or organization. What scripts would you share? What permissions should different users have? Are there any scripts that you would turn into modules?
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 In this chapter, you learned how to collaborate with others in the Earth Engine Code Editor through sharing scripts, assets, and repositories. You learned about different roles and permissions available for sharing and when it is appropriate to use each. In addition, you are now able to see what changes have been made to a script and revert to a previous version. Lastly, you loaded and used a module that was shared with you and created your own module for sharing. You are now ready to start collaborating and developing scripts with others.
 
-## References {.unnumbered}
+### References {.unnumbered}
 
 Chang A (2017) Making it easier to reuse code with Earth Engine script modules. In: Google Earth and Earth Engine. https://medium.com/google-earth/making-it-easier-to-reuse-code-with-earth-engine-script-modules-2e93f49abb13. Accessed 24 Feb 2022
 
@@ -1109,16 +1085,16 @@ Donchyts G, Baart F, Braaten J (2019) ee-palettes. https://github.com/gee-commun
 
 
 
-# Scaling Up in Earth Engine
+## Scaling Up in Earth Engine
 
 
 
 
  
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
 
 
@@ -1126,12 +1102,12 @@ Jillian M. Deines, Stefania Di Tommaso, Nicholas Clinton, Noel Gorelick
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
 
 
 Commonly, when Earth Engine users move from tutorials to developing their own processing scripts, they encounter the dreaded error messages, “computation timed out” or “user memory limit exceeded.” Computational resources are never unlimited, and the team at Earth Engine has designed a robust system with built-in checks to ensure server capacity is available to everyone. This chapter will introduce general tips for creating efficient Earth Engine workflows that accomplish users’ ambitious research objectives within the constraints of the Earth Engine ecosystem. We use two example case studies: 1) extracting a daily climate time series for many locations across two decades, and 2) generating a regional, cloud-free median composite from Sentinel-2 imagery.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Understanding constraints on Earth Engine resource use.
@@ -1139,7 +1115,7 @@ Commonly, when Earth Engine users move from tutorials to developing their own pr
 *   Managing large projects and multistage workflows.
 *   Recognizing when using the Python API may be advantageous to execute large batches of tasks.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 
 *   Import images and image collections, filter, and visualize (Part F1).
@@ -1149,7 +1125,7 @@ Commonly, when Earth Engine users move from tutorials to developing their own pr
 *   Use the require function to load code from existing modules (Chap. F6.1).
 
 :::
-## Introduction {.unlisted .unnumbered}
+### Introduction {.unlisted .unnumbered}
 
 
 Parts F1–F5 of this book have covered key remote sensing concepts and demonstrated how to implement them in Earth Engine. Most exercises have used local-scale examples to enhance understanding and complete tasks within a class-length time period. But Earth Engine’s power comes from its scalability—the ability to apply geospatial processing across large areas and many years.
@@ -1161,7 +1137,7 @@ How we go from small to large scales is influenced by Earth Engine’s design. E
 3.  Breaking up jobs across space.
 4.  Building a multipart workflow and exporting intermediate assets.
 
-### Earth Engine: Under the Hood
+#### Earth Engine: Under the Hood
 
 As you use Earth Engine, you may begin to have questions about how it works and how you can use that knowledge to optimize your workflow. In general, the inner workings are opaque to users. Typical fixes and approaches that data scientists use to manage memory constraints often don’t apply. It’s helpful to know what users can and cannot control, and how your scripts translate to Earth Engine’s server operations.
 
@@ -1221,7 +1197,7 @@ Table assets
 
 Maximum of 100 million features, 1000 properties (columns), and 100,000 vertices for a geometry.
 
-### The Importance of Coding Best Practices
+#### The Importance of Coding Best Practices
 
 Good code scales better than bad code. But what is good code? Generally, for Earth Engine, good code means 1) using Earth Engine’s server-side operators; 2) avoiding multiple passes through the same image collection; 3) avoiding unnecessary conversions; and 4) setting the processing scale or sample numbers appropriate for your use case, i.e., avoid using very fine scales or large samples without reason.
 
@@ -1230,11 +1206,11 @@ We encourage readers to become familiar with the “Coding Best Practices” pag
 In addition, some Earth Engine functions are more efficient than others. For example, Image.reduceRegions is more efficient than Image.sampleRegions, because sampleRegions regenerates the geometries under the hood. These types of best practices are trickier to enumerate and somewhat idiosyncratic. We encourage users to learn about and make use of the Profiler tab, which will track and display the resources used for each operation within your script. This can help identify areas to focus efficiency improvements. Note that the profiler itself increases resource use, so only use it when necessary to develop a script and remove it for production-level execution. Other ways to discover best practices include following/posting questions to GIS StackExchange or the Earth Engine Developer’s Discussion Group, swapping code with others, and experimentation.
 
 
-## Scaling Across Time
+### Scaling Across Time
 
 In this section we use an example of extracting climate data at features (points or polygons) to demonstrate how to scale an operation across many features (Sect. 1.1) and how to break up large jobs by time units when necessary (e.g, by years; Sect. 1.2).
 
-### 1.1. Scaling Up with Earth Engine Operators: Annual Daily Climate Data
+#### 1.1. Scaling Up with Earth Engine Operators: Annual Daily Climate Data
 
 Earth Engine’s operators are designed to parallelize queries on the backend without user intervention. In many cases, they are sufficient to accomplish a scaling operation.
 
@@ -1355,7 +1331,7 @@ Perhaps even more important if you are seeking to scale up an analysis, includin
 
 For example, when we ran the same job as above but did not use the selectors argument, the output dataset was 5.7 GB (versus 6.8 MB!) and the runtime was slower. This is a cumbersomely large file, with no real benefit. We generally recommend dropping the .geo column and other unnecessary properties. To retain spatial information, a unique identifier for each feature can be used for downstream joins with the spatial data or other properties. If working with point data, latitude and longitude columns can be added prior to export to maintain easily accessible geographic information, although the .geo column for point data is far smaller than for irregularly shaped polygon features.
 
-### 1.2. Scaling Across Time by Batching: Get 20 Years of Daily Climate Data
+#### 1.2. Scaling Across Time by Batching: Get 20 Years of Daily Climate Data
 
 Above, we extracted one year of daily data for our 293 counties. Let’s say we want to do the same thing, but for 2001–2020. We have already written our script to flexibly specify years, so it’s fairly adaptable to this new use case:
 
@@ -1447,7 +1423,7 @@ Note: If at any time you have submitted several tasks to the server but want to 
 
 In order to auto-execute jobs in batch mode, we’d need to use the Python API. Interested users can see the Earth Engine User Guide Python API tutorial for further details about the Python API. 
 
-## Scaling Across Space via Spatial Tiling
+### Scaling Across Space via Spatial Tiling
 
 Breaking up jobs in space is another key strategy for scaling operations in Earth Engine. Here, we will focus on making a cloud-free composite from the Sentinel-2 Level 2A Surface Reflectance product. The approach is similar to that in Chap. F4.3, which explores cloud-free compositing. The main difference is that Landsat scenes come with a reliable quality band for each scene, whereas the process for Sentinel-2 is a bit more complicated and computationally intense (see below).
 
@@ -1467,7 +1443,7 @@ These three image collections all contain 10 m resolution data for every Sentine
 
 To sum up, the cloud masking approach is computationally costly, thus requiring some thought when applying it at scale.
 
-### 2.1. Generate a Cloud-Free Satellite Composite: Limits to On-the-Fly Computing
+#### 2.1. Generate a Cloud-Free Satellite Composite: Limits to On-the-Fly Computing
 
 Note: Our focus here is on code structure for implementing spatial tiling. Below, we import existing tested functions for cloud masking using the require command.
 
@@ -1559,7 +1535,7 @@ Map.addLayer(median, viz, 'median');
 
 As you can see, this is an excellent candidate for an export task rather than running in “on-the-fly” interactive mode, as above.
 
-### 2.2. Generate a Regional Composite Through Spatial Tiling
+#### 2.2. Generate a Regional Composite Through Spatial Tiling
 
 Our goal is to apply the cloud masking method in Sect. 2.1 to the state of Washington, United States. In our testing, we successfully exported one Sentinel-2 composite for this area in about nine hours, but for this tutorial, let’s presume we need to split the task up to be successful.
 
@@ -1593,8 +1569,8 @@ Map.addLayer(roi, {}, 'roi');
 Map.addLayer(grid, {}, 'grid');
 
 ```
-![Fig. F6.2.7 Visualization of the regular spatial grid generated for use in spatial batch processing](F6/image12.png)
 
+![Fig. F6.2.7 Visualization of the regular spatial grid generated for use in spatial batch processing](F6/image12.png)
 
 Next, create a new, empty ImageCollection asset to use as our export destination (Assets > New > Image Collection; Fig. F6.2.8). Name the image collection 'S2_composite_WA' and specify the asset location in your user folder (e.g., "path/to/your/asset/s2_composite_WA").
 
@@ -1675,7 +1651,7 @@ Code Checkpoint F62e. The book’s repository contains a script that shows what 
 
 Note the ease, speed, and joy of panning and zooming to explore the pre-computed composite asset (Fig. F6.2.10) compared to the on-the-fly version discussed in Sect. 2.1.
 
-## Multistep Workflows and Intermediate Assets
+### Multistep Workflows and Intermediate Assets
 
 Often, our goals require several processing steps that cannot be completed within one Earth Engine computational chain. In these cases, the best strategy becomes breaking down tasks into individual pieces that are created, stored in assets, and used across several scripts. Each sequential script creates an intermediate output, and this intermediate output becomes the input to the next script.
 
@@ -1734,463 +1710,11 @@ Tip 4. Consider Google Cloud Platform for hosting larger intermediates
 
 If you are working with very large or very many files, you can link Earth Engine with Cloud Projects on Google Cloud Platform. See the Earth Engine documentation on “Setting Up Earth Engine Enabled Cloud Projects” for more information.
 
-## Synthesis {.unnumbered}
-
-Earth Engine is built to be scaled. Scaling up working scripts, however, can present challenges when the computations take too long or return results that are too large or numerous. We have covered some key strategies to use when you encounter memory or computational limits. Generally, they involve 1) optimizing your code based on Earth Engine’s functions and infrastructure; 2) working at scales appropriate for your data, question, and region of interest, and not at higher resolutions than necessary; and 3) breaking up tasks into discrete units.
-
-## References {.unnumbered}
-
-Abatzoglou JT (2013) Development of gridded surface meteorological data for ecological applications and modelling. Int J Climatol 33:121–131. https://doi.org/10.1002/joc.3413
-
-Frantz D, Haß E, Uhl A, et al (2018) Improvement of the Fmask algorithm for Sentinel-2 images: Separating clouds from bright surfaces based on parallax effects. Remote Sens Environ 215:471–481. https://doi.org/10.1016/j.rse.2018.04.046
-
-Gorelick N, Hancher M, Dixon M, et al (2017) Google Earth Engine: Planetary-scale geospatial analysis for everyone. Remote Sens Environ 202:18–27. https://doi.org/10.1016/j.rse.2017.06.031
-
-Wilson G, Bryan J, Cranston K, et al (2017) Good enough practices in scientific computing. PLoS Comput Biol 13:e1005510. https://doi.org/10.1371/journal.pcbi.1005510
-
-
-
-# Sharing Work in Earth Engine: Basic UI and Apps
-
-
-
-
- 
-:::{.callout-tip}
-# Chapter Information
-
-## Author {.unlisted .unnumbered}
-
-
-
-Qiusheng Wu
-
-
-
-## Overview {.unlisted .unnumbered}
-
-
-The purpose of this chapter is to demonstrate how to design and publish Earth Engine Apps using both JavaScript and Python. You will be introduced to the Earth Engine User Interface JavaScript API and the geemap Python package. Upon completion of this chapter, you will be able to publish an Earth Engine App with a split-panel map for visualizing land cover change.
-
-## Learning Outcomes {.unlisted .unnumbered}
-
-
-*   Designing a user interface for an Earth Engine App using JavaScript.
-*   Publishing an Earth Engine App for visualizing land cover change.
-*   Developing an Earth Engine App using Python and geemap.
-*   Deploying an Earth Engine App using a local computer as a web server.
-*   Publishing an Earth Engine App using Python and free cloud platforms.
-*   Creating a conda environment using Anaconda/Miniconda.
-*   Installing Python packages and using Jupyter Notebook.
-*   Commiting changes to a GitHub repository.
-
-## Assumes you know how to:{.unlisted .unnumbered}
-
-
-*   Import images and image collections, filter, and visualize (Part F1).
-*   Use the basic functions and logic of Python.
-
-:::
-## Introduction {.unlisted .unnumbered}
-
-
-Earth Engine has a user interface API that allows users to build and publish interactive web apps directly from the JavaScript Code Editor. Many readers will have encountered a call to ui.Chart in other chapters, but much more interface functionality is available. In particular, users can utilize the ui functions to construct an entire graphical user interface (GUI) for their Earth Engine script. The GUI may include simple widgets (e.g., labels, buttons, checkboxes, sliders, text boxes) as well as more complex widgets (e.g., charts, maps, panels) for controlling the GUI layout. A complete list of the ui widgets and more information about panels can be found at the links below. Once a GUI is constructed, users can publish the App from the JavaScript Code Editor by clicking the Apps button above the script panel in the Code Editor.
-
-*   Widgets: [https://developers.google.com/earth-engine/guides/ui_widgets](https://www.google.com/url?q=https://developers.google.com/earth-engine/guides/ui_widgets&sa=D&source=editors&ust=1671458841273029&usg=AOvVaw10aLP4KU7kHJTwcnM5Pr4-)
-*   Panels: [https://developers.google.com/earth-engine/guides/ui_panels](https://www.google.com/url?q=https://developers.google.com/earth-engine/guides/ui_panels&sa=D&source=editors&ust=1671458841273501&usg=AOvVaw1XwxHFyCULBnago_-VpDUq) 
-
-Unlike the Earth Engine JavaScript API, the Earth Engine Python API does not provide functionality for building interactive user interfaces. Fortunately, the Jupyter ecosystem has ipywidgets, an architecture for creating interactive user interface controls (e.g., buttons, sliders, checkboxes, text boxes, dropdown lists) in Jupyter notebooks that communicate with Python code. The integration of graphical widgets into the Jupyter Notebook workflow allows users to configure ad hoc control panels to interactively sweep over parameters using graphical widget controls. One very powerful widget is the output widget, which can be used to display rich output generated by IPython, such as text, images, charts, and videos. A complete list of widgets and more information about the output widget can be found at the links below. By integrating ipyleaflet (for creating interactive maps) and ipywidgets (for designing interactive user interfaces), the geemap Python package ([https://geemap.org](https://www.google.com/url?q=https://geemap.org&sa=D&source=editors&ust=1671458841274245&usg=AOvVaw3rVUS8lKoS9clb8r42oxe0)) makes it much easier to explore and analyze massive Earth Engine datasets via a web browser in a Jupyter environment suitable for interactive exploration, teaching, and sharing. Users can build interactive Earth Engine Apps using geemap with minimal coding (Fig. F6.3.1).
-
-*   Widgets: [https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html](https://www.google.com/url?q=https://ipywidgets.readthedocs.io/en/latest/examples/Widget%2520List.html&sa=D&source=editors&ust=1671458841274780&usg=AOvVaw2SzMGW9F4r3E-llbiCksCA) 
-*   Output: [https://ipywidgets.readthedocs.io/en/latest/examples/Output%20Widget.html](https://www.google.com/url?q=https://ipywidgets.readthedocs.io/en/latest/examples/Output%2520Widget.html&sa=D&source=editors&ust=1671458841275255&usg=AOvVaw13a3qsly2f0mg0egoTAMqw) 
-
-![Fig. F6.3.1 The GUI of geemap in a Jupyter environment](F6/image1.png)
-
-
-
-## Building an Earth Engine App Using JavaScript
-
-In this section, you will learn how to design a user interface for an Earth Engine App using JavaScript and the Earth Engine User Interface API. Upon completion of this section, you will have an Earth Engine App with a split-panel map for visualizing land cover change using the Landsat-based United States Geological Survey National Land Cover Database (NLCD).
-
-First, let’s define a function for filtering the NLCD ImageCollection by year and select the landcover band. The function returns an Earth Engine ui.Map.Layer of the landcover band of the selected NLCD image. Note that as of this writing, NLCD spans nine epochs: 1992, 2001, 2004, 2006, 2008, 2011, 2013, 2016, and 2019. The 1992 data are primarily based on unsupervised classification of Landsat data, while the rest of the images rely on the imperviousness data layer for the urban classes and on a decision-tree classification for the rest. The 1992 image is not directly comparable to any later editions of NLCD (see the Earth Engine Data Catalog for more details, if needed). Therefore, we will use only the eight epochs after 2000 in this lab.  
-
-```js
-// Get an NLCD image by year.  
-var getNLCD = function(year) {   // Import the NLCD collection.   var dataset = ee.ImageCollection(       'USGS/NLCD_RELEASES/2019_REL/NLCD');   // Filter the collection by year.   var nlcd = dataset.filter(ee.Filter.eq('system:index', year))  
-       .first();   // Select the land cover band.   var landcover = nlcd.select('landcover');   return ui.Map.Layer(landcover, {}, year);  
-};
-
-```
-Our intention is to create a dropdown list so that when a particular epoch is selected, the corresponding NLCD image layer will be displayed on the map. We’ll define a dictionary with each NLCD epoch as the key and its corresponding NLCD image layer as the value. The keys of the dictionary (i.e., the eight NLCD epochs) will be used as the input to the dropdown lists (ui.Select) on the split-level map.
-
-```js
-// Create a dictionary with each year as the key  
-// and its corresponding NLCD image layer as the value.  
-var images = {   '2001': getNLCD('2001'),   '2004': getNLCD('2004'),   '2006': getNLCD('2006'),   '2008': getNLCD('2008'),   '2011': getNLCD('2011'),   '2013': getNLCD('2013'),   '2016': getNLCD('2016'),   '2019': getNLCD('2019'),  
-};
-
-```
-The split-panel map is composed of two individual maps, leftMap and rightMap. The map controls (e.g., zoomControl, scaleControl, mapTypeControl) will be shown only on rightMap. A control panel (ui.Panel) composed of a label (ui.Label) and a dropdown list (ui.Select) is added to each map. When an NLCD epoch is selected from a dropdown list, the function updateMap will be called to show the corresponding image layer of the selected epoch.
-
-```js
-// Create the left map, and have it display the first layer.  
-var leftMap = ui.Map();  
-leftMap.setControlVisibility(false);  
-var leftSelector = addLayerSelector(leftMap, 0, 'top-left');  
-  
-// Create the right map, and have it display the last layer.  
-var rightMap = ui.Map();  
-rightMap.setControlVisibility(true);  
-var rightSelector = addLayerSelector(rightMap, 7, 'top-right');  
-  
-// Adds a layer selection widget to the given map, to allow users to  
-// change which image is displayed in the associated map.  
-function addLayerSelector(mapToChange, defaultValue, position) {   var label = ui.Label('Select a year:');   // This function changes the given map to show the selected image.   function updateMap(selection) {  
-       mapToChange.layers().set(0, images[selection]);  
-   }   // Configure a selection dropdown to allow the user to choose   // between images, and set the map to update when a user   // makes a selection.   var select = ui.Select({  
-       items: Object.keys(images),  
-       onChange: updateMap  
-   });  
-   select.setValue(Object.keys(images)[defaultValue], true);   var controlPanel =       ui.Panel({  
-           widgets: [label, select],  
-           style: {  
-               position: position  
-           }  
-       });  
-  
-   mapToChange.add(controlPanel);  
-}
-
-When displaying a land cover classification image on the Map, it would be useful to add a legend to make it easier for users to interpret the land cover type associated with each color. Let’s define a dictionary that will be used to construct the legend. The dictionary contains two keys: names (a list of land cover types) and colors (a list of colors associated with each land cover type). The legend will be placed in the bottom right of the Map.    
-
-// Set the legend title.  
-var title = 'NLCD Land Cover Classification';  
-  
-// Set the legend position.  
-var position = 'bottom-right';  
-  
-// Define a dictionary that will be used to make a legend  
-var dict = {   'names': [       '11        Open Water',       '12        Perennial Ice/Snow',       '21        Developed, Open Space',       '22        Developed, Low Intensity',       '23        Developed, Medium Intensity',       '24        Developed, High Intensity',       '31        Barren Land (Rock/Sand/Clay)',       '41        Deciduous Forest',       '42        Evergreen Forest',       '43        Mixed Forest',       '51        Dwarf Scrub',       '52        Shrub/Scrub',       '71        Grassland/Herbaceous',       '72        Sedge/Herbaceous',       '73        Lichens',       '74        Moss',       '81        Pasture/Hay',       '82        Cultivated Crops',       '90        Woody Wetlands',       '95        Emergent Herbaceous Wetlands',  
-   ],   'colors': [       '#466b9f', '#d1def8', '#dec5c5', '#d99282', '#eb0000',       '#ab0000',       '#b3ac9f', '#68ab5f', '#1c5f2c', '#b5c58f', '#af963c',       '#ccb879',       '#dfdfc2', '#d1d182', '#a3cc51', '#82ba9e', '#dcd939',       '#ab6c28',       '#b8d9eb', '#6c9fb8',  
-   ]  
-};
-
-```
-With the legend dictionary defined above, we can now create a panel to hold the legend widget and add it to the Map. Each row on the legend widget is composed of a color box followed by its corresponding land cover type.
-
-```js
-// Create a panel to hold the legend widget.  
-var legend = ui.Panel({  
-   style: {  
-       position: position,  
-       padding: '8px 15px'   }  
-});// Function to generate the legend.  
-function addCategoricalLegend(panel, dict, title) {   // Create and add the legend title.   var legendTitle = ui.Label({  
-       value: title,  
-       style: {  
-           fontWeight: 'bold',  
-           fontSize: '18px',  
-           margin: '0 0 4px 0',  
-           padding: '0'       }  
-   });  
-   panel.add(legendTitle);   var loading = ui.Label('Loading legend...', {  
-       margin: '2px 0 4px 0'   });  
-   panel.add(loading);   // Creates and styles 1 row of the legend.   var makeRow = function(color, name) {       // Create the label that is actually the colored box.       var colorBox = ui.Label({  
-           style: {  
-               backgroundColor: color,               // Use padding to give the box height and width.               padding: '8px',  
-               margin: '0 0 4px 0'           }  
-       });       // Create the label filled with the description text.       var description = ui.Label({  
-           value: name,  
-           style: {  
-               margin: '0 0 4px 6px'           }  
-       });       return ui.Panel({  
-           widgets: [colorBox, description],  
-           layout: ui.Panel.Layout.Flow('horizontal')  
-       });  
-   };   // Get the list of palette colors and class names from the image.   var palette = dict.colors;   var names = dict.names;  
-   loading.style().set('shown', false);   for (var i = 0; i < names.length; i++) {  
-       panel.add(makeRow(palette[i], names[i]));  
-   }  
-  
-   rightMap.add(panel);  
-  
-}
-
-The last step is to create a split-panel map to hold the linked maps (leftMap and rightMap) and tie everything together. When users pan and zoom one map, the other map will also be panned and zoomed to the same extent automatically. When users select a year from a dropdown list, the image layer will be updated accordingly. Users can use the slider to swipe through and visualize land cover change easily (Fig. F6.3.2). Please make sure you minimize the Code Editor and maximize the Map so that you can see the dropdown widget in the upper-right corner of the map.
-
-addCategoricalLegend(legend, dict, title);  
-  
-// Create a SplitPanel to hold the adjacent, linked maps.  
-var splitPanel = ui.SplitPanel({  
-   firstPanel: leftMap,  
-   secondPanel: rightMap,  
-   wipe: true,  
-   style: {  
-       stretch: 'both'   }  
-});// Set the SplitPanel as the only thing in the UI root.  
-ui.root.widgets().reset([splitPanel]);  
-var linker = ui.Map.Linker([leftMap, rightMap]);  
-leftMap.setCenter(-100, 40, 4);
-
-```
-:::{.callout-note}
-Code Checkpoint F63a. The book’s repository contains a script that shows what your code should look like at this point.
-:::
-![Fig. F6.3.2 A split-panel map for visualizing land cover change using NLCD](F6/image32.png)
-
-
-## Publishing an Earth Engine App from the Code Editor
-
-The goal of this section is to publish the Earth Engine App that we created in Sect. 1. The look and feel of interfaces changes often; if the exact windows described below change over time, the concepts should remain stable to help you to publish your App. First, load the script (see the Code Checkpoint in Sect. 1) into the Code Editor. Then, open the Manage Apps panel by clicking the Apps button above the script panel in the Code Editor (Fig. F6.3.3).
-
-![Fig. F6.3.3 The Apps button in the JavaScript Code Editor](F6/image14.png)
-
-
-Now click on the New App button (Fig. F6.3.4).
-
-![Fig. F6.3.4 The New App button](F6/image61.png)
-
-
-In the Publish New App dialog (Fig. F6.3.5), choose a name for the App (e.g., NLCD Land Cover Change), select a Google Cloud Project, provide a thumbnail to be shown in the Public Apps Gallery, and specify the location of the App’s source code. You may restrict access to the App to a particular Google Group or make it publicly accessible. Check Feature this app in your Public Apps Gallery if you would like this App to appear in your public gallery of Apps available at https://USERNAME.users.earthengine.app. When all fields are filled out and validated, the Publish button will be enabled; click it to complete publishing the App. 
-
-![Fig. F6.3.5 The Publish New App dialog](F6/image37.png)
-
-
-To manage an App from the Code Editor, open the Manage Apps panel (Fig. F6.3.6) by clicking the Apps button above the script panel in the Code Editor (Fig. F6.3.3). There, you can update your App’s configuration or delete the App.
-
-![Fig. F6.3.6 The Manage Apps panel](F6/image65.png)
-
-
-## Developing an Earth Engine App Using geemap
-
-In this section, you will learn how to develop an Earth Engine App using the geemap Python package and Jupyter Notebook. The geemap package is available on both [PyPI](https://www.google.com/url?q=https://pypi.org/project/leafmap&sa=D&source=editors&ust=1671458841303040&usg=AOvVaw25Lg4yxDI4b31VJovOcUOc) (pip) and [conda-forge](https://www.google.com/url?q=https://anaconda.org/conda-forge/leafmap&sa=D&source=editors&ust=1671458841303462&usg=AOvVaw267tbdQ3NyyHL53Jmk4W4k). It is highly recommended that you create a fresh conda environment to install geemap.
-
-:::{.callout-note}
-Code Checkpoint F63b. The book’s repository contains information about setting up a conda environment and installing geemap.
-:::
-Once you have launched a Jupyter notebook in your browser, you can continue with the next steps of the lab.
-
-On the Jupyter Notebook interface, click the New button in the upper-right corner and select Python 3 to create a new notebook. Change the name of the notebook from “Untitled” to something meaningful (e.g., “nlcd_app”). With the newly created notebook, we can start writing and executing Python code.
-
-First, let’s import the Earth Engine and geemap libraries. Press Alt + Enter to execute the code and create a new cell below.
-
-import eeimport geemap
-
-Create an interactive map by specifying the map center (latitude, longitude) and zoom level (1–18). If this is the first time you use geemap and the Earth Engine Python API, a new tab will open in your browser asking you to authenticate Earth Engine. Follow the on-screen instructions to authenticate Earth Engine.
-
-Map = geemap.Map(center=[40, -100], zoom=4)  
-Map
-
-Retrieve the NLCD 2019 image by filtering the NLCD ImageCollection and selecting the landcover band. Display the NLCD 2019 image on the interactive Map by using Map.addLayer.
-
-# Import the NLCD collection.  
-dataset = ee.ImageCollection('USGS/NLCD_RELEASES/2019_REL/NLCD')  
-  
-# Filter the collection to the 2019 product.  
-nlcd2019 = dataset.filter(ee.Filter.eq('system:index', '2019')).first()  
-  
-# Select the land cover band.  
-landcover = nlcd2019.select('landcover')  
-  
-# Display land cover on the map.Map.addLayer(landcover, {}, 'NLCD 2019')  
-Map
-
-Next, add the NLCD legend to the Map. The geemap package has several built-in legends, including the NLCD legend. Therefore, you can add the NLCD legend to the Map by using just one line of code (Map.add_legend).
-
-title = 'NLCD Land Cover Classification'  
-Map.add_legend(legend_title=title, builtin_legend='NLCD')
-
-Alternatively, if you want to add a custom legend, you can define a legend dictionary with labels as keys and colors as values, then you can use Map.add_legend to add the custom legend to the Map.  
-
-legend_dict = {   '11 Open Water': '466b9f',   '12 Perennial Ice/Snow': 'd1def8',   '21 Developed, Open Space': 'dec5c5',   '22 Developed, Low Intensity': 'd99282',   '23 Developed, Medium Intensity': 'eb0000',   '24 Developed High Intensity': 'ab0000',   '31 Barren Land (Rock/Sand/Clay)': 'b3ac9f',   '41 Deciduous Forest': '68ab5f',   '42 Evergreen Forest': '1c5f2c',   '43 Mixed Forest': 'b5c58f',   '51 Dwarf Scrub': 'af963c',   '52 Shrub/Scrub': 'ccb879',   '71 Grassland/Herbaceous': 'dfdfc2',   '72 Sedge/Herbaceous': 'd1d182',   '73 Lichens': 'a3cc51',   '74 Moss': '82ba9e',   '81 Pasture/Hay': 'dcd939',   '82 Cultivated Crops': 'ab6c28',   '90 Woody Wetlands': 'b8d9eb',   '95 Emergent Herbaceous Wetlands': '6c9fb8'}  
-title = 'NLCD Land Cover Classification'  
-Map.add_legend(legend_title=title, legend_dict=legend_dict)
-
-The Map with the NLCD 2019 image and legend should look like Fig. F6.3.7.
-
-![Fig. F6.3.7 The NLCD 2019 image layer displayed in geemap](F6/image60.png)
-
-
-The Map above shows only the NLCD 2019 image. To create an Earth Engine App for visualizing land cover change, we need a stack of NLCD images. Let’s print the list of system IDs of all available NLCD images.
-
-dataset.aggregate_array('system:id').getInfo()
-
-The output should look like this.
-
-['USGS/NLCD_RELEASES/2019_REL/NLCD/2001',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2004',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2006',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2008',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2011',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2013',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2016',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2019']
-
-Select the eight NLCD epochs after 2000.
-
-years = ['2001', '2004', '2006', '2008', '2011', '2013', '2016', '2019']
-
-Define a function for filtering the NLCD ImageCollection by year and select the 'landcover' band.
-
-# Get an NLCD image by year.  
-def getNLCD(year):   # Import the NLCD collection.   dataset = ee.ImageCollection('USGS/NLCD_RELEASES/2019_REL/NLCD')   # Filter the collection by year.   nlcd = dataset.filter(ee.Filter.eq('system:index', year)).first()    # Select the land cover band.   landcover = nlcd.select('landcover');   return landcover
-
-Create an NLCD ImageCollection to be used in the split-panel map.
-
-# Create an NLCD image collection for the selected years.  
-collection = ee.ImageCollection(ee.List(years).map(lambda year: getNLCD(year)))
-
-Print out the list of system IDs of the selected NLCD images covering the contiguous United States.
-
-collection.aggregate_array('system:id').getInfo()
-
-The output should look like this.
-
-['USGS/NLCD_RELEASES/2019_REL/NLCD/2001',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2004',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2006',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2008',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2011',
-
- 'USGS/NLCD_RELEASES/2019_REL/NLCD/2013',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2016',  
-'USGS/NLCD_RELEASES/2019_REL/NLCD/2019']
-
-Next, create a list of labels to populate the dropdown list.
-
-labels = [f'NLCD {year}' for year in years]  
-labels
-
-The output should look like this.
-
-['NLCD 2001',  
-'NLCD 2004',  
-'NLCD 2006',  
-'NLCD 2008',  
-'NLCD 2011',  
-'NLCD 2013',
-
- 'NLCD 2016',  
-'NLCD 2019']
-
-The last step is to create a split-panel map by passing the NLCD ImageCollection and list of labels to Map.ts_inspector.
-
-Map.ts_inspector(left_ts=collection, right_ts=collection, left_names=labels, right_names=labels)  
-Map
-
-The split-panel map should look like Fig. F6.3.8.
-
-![Fig. F6.3.8 A split-panel map for visualizing land cover change with geemap](F6/image34.png)
-
-
-To visualize land cover change, choose one NLCD image from the left dropdown list and another image from the right dropdown list, then use the slider to swipe through to visualize land cover change interactively. Click the close button in the bottom-right corner to close the split-panel map and return to the NLCD 2019 image shown in Fig. F6.3.7.
-
-:::{.callout-note}
-Code Checkpoint F63c. The book’s repository contains information about what your code should look like at this point.
-:::
-## Publishing an Earth Engine App Using a Local Web Server
-
-In this section, you will learn how to deploy an Earth Engine App using a local computer as a web server. Assume that you have completed Sect. 3 and created a Jupyter notebook named nlcd_app.ipynb. First, you need to download ngrok, a program that can turn your computer into a secure web server and connect it to the ngrok cloud service, which accepts traffic on a public address. Download ngrok from [https://ngrok.com](https://www.google.com/url?q=https://ngrok.com&sa=D&source=editors&ust=1671458841326366&usg=AOvVaw20VcUaADMd_4ptInlJt5X1) and unzip it to a directory on your computer, then copy  nlcd_app.ipynb to the same directory. Open the Anaconda Prompt (on Windows) or the Terminal (on macOS/Linux) and enter the following commands. Make sure you change /path/to/ngrok/dir to your computer directory where the ngrok executable is located, e.g., ~/Downloads.  
-
-cd /path/to/ngrok/dir
-
-conda activate gee  
-voila --no-browser nlcd_app.ipynb
-
-The output of the terminal should look like this.
-
-![Fig. F6.3.9 The output of the terminal running Voilà](F6/image38.png)
-
-
-[Voilà](https://www.google.com/url?q=https://voila.readthedocs.io/en/stable/&sa=D&source=editors&ust=1671458841329454&usg=AOvVaw16GCXDSkxu4fUl6f6LFafy) can be used to run, convert, and serve a Jupyter notebook as a standalone app. Click the link (e.g., [http://localhost:8866](https://www.google.com/url?q=http://localhost:8866&sa=D&source=editors&ust=1671458841329837&usg=AOvVaw052EvlmJeJTl9zIHvFobLl)) shown in the terminal window to launch the interactive dashboard. Note that the port number is 8866, which is needed in the next step to launch ngrok. Open another terminal and enter the following command.
-
-cd /path/to/ngrok/dir
-
-ngrok http 8866
-
-The output of the terminal should look like Fig. F6.3.10. Click the link shown in the terminal window to launch the interactive dashboard. The link should look like https://random-string.ngrok.io, which is publicly accessible. Anyone with the link will be able to launch the interactive dashboard and use the split-panel map to visualize NLCD land cover change. Keep in mind that the dashboard might take several seconds to load, so please be patient.
-
-![Fig. F6.3.10 The output of the terminal running ngrok](F6/image8.png)
-
-
-To stop the web server, press Ctrl + C on both terminal windows. See below for some optional settings for running Voilà and ngrok.
-
-To show code cells from your App, run the following from the terminal.
-
-voila --no-browser --strip_sources=False nlcd_app.ipynb
-
-To protect your App with a password, run the following.
-
-ngrok http -auth="username:password" 8866
-
-## Publish an Earth Engine App Using Cloud Platforms
-
-In this section, you will learn how to deploy an Earth Engine App on cloud platforms, such as Heroku and Google App Engine. Heroku is a “platform as a service” that enables developers to build, run, and operate applications entirely in the cloud. It has a free tier with limited computing hours, which would be sufficient for this lab. Follow the steps below to deploy the Earth Engine App on Heroku.
-
-First, go to [https://github.com/signup](https://www.google.com/url?q=https://github.com/signup&sa=D&source=editors&ust=1671458841334585&usg=AOvVaw3ZgJomY_82B7WiuJEZym5g) to sign up for a GitHub account if you don’t have one already. Once your GitHub account has been created, log into your account and navigate to the sample app repository: [https://github.com/giswqs/earthengine-apps](https://www.google.com/url?q=https://github.com/giswqs/earthengine-apps&sa=D&source=editors&ust=1671458841335025&usg=AOvVaw1IQJyv6EFLU5bCmsOsYkfX). Click the Fork button in the top-right corner to fork this repository into your account. Two important files in the repository are worth mentioning here: [requirements.txt](https://www.google.com/url?q=https://github.com/giswqs/earthengine-apps/blob/master/requirements.txt&sa=D&source=editors&ust=1671458841335397&usg=AOvVaw23DFUPWYa0pVU-kSzjGeHr) lists the required packages (e.g., geemap) to run the App, while [Procfile](https://www.google.com/url?q=https://github.com/giswqs/earthengine-apps/blob/master/Procfile&sa=D&source=editors&ust=1671458841335755&usg=AOvVaw2_QbFT8c3ahut0eHTdTmUh) specifies the commands that are executed by the App on startup. The content of [Procfile](https://www.google.com/url?q=https://github.com/giswqs/earthengine-apps/blob/master/Procfile&sa=D&source=editors&ust=1671458841336035&usg=AOvVaw2MdhcFIHFTRIbZBL-XZFCb) should look like this.
-
-web: voila --port=$PORT --no-browser --strip_sources=True --enable_nbextensions=True --MappingKernelManager.cull_interval=60 --MappingKernelManager.cull_idle_timeout=120 notebooks/
-
-The above command instructs the server to hide the source code and periodically check for idle kernels—in this example, every 60 seconds—and cull them if they have been idle for more than 120 seconds. This can avoid idle kernels using up the server computing resources. The page served by Voilà will contain a list of any notebooks in the [notebooks](https://www.google.com/url?q=https://github.com/giswqs/earthengine-apps/tree/master/notebooks&sa=D&source=editors&ust=1671458841337601&usg=AOvVaw1pHGG9qzGbdG7h7tVr7C9e) directory.
-
-Next, go to [https://signup.heroku.com](https://www.google.com/url?q=https://signup.heroku.com&sa=D&source=editors&ust=1671458841338152&usg=AOvVaw03SbXy3optdTU9A2yG-bBq) to sign up for a Heroku account if you don’t have one already. Log into your account and click the New button in the top-right corner, then choose Create new app from the dropdown list (Fig. F6.3.11).
-
-![Fig. F6.3.11 Creating a new app in Heroku](F6/image5.png)
-
-
-Choose a name for your App (Fig. F6.3.12). Note that the App name must be unique; if an App name has already been taken, you won’t be able to use it.
-
-![Fig. F6.3.12 Choosing an App name](F6/image73.png)
-
-
-Once the Heroku App has been created, click the Deploy tab and choose GitHub as the deployment method. Connect to your GitHub account and enter earthengine-apps in the search box. The repository should be listed beneath the search box. Click the Connect button to connect the repository to Heroku (Fig. F6.3.13).
-
-![Fig. F6.3.13 Connecting a GitHub account to Heroku](F6/image27.png)
-
-
-Under the same Deploy tab, scroll down and click Enable Automatic Deploys (Fig. F6.3.14). This will enable Heroku to deploy a new version of the App whenever the GitHub repository gets updated.
-
-![Fig. F6.3.14 Enabling Automatic Deploys on Heroku](F6/image31.png)
-
-
-Since using Earth Engine requires authentication, we need to set the Earth Engine token as an environment variable so that the web App can pass the Earth Engine authentication. If you have completed Sect. 3, you have successfully authenticated Earth Engine on your computer and the token can be found in the following file path, depending on the operating system you are using. Note that you might need to show the hidden directories on your computer in order to see the .config folder under the home directory.
-
-Windows: C:UsersUSERNAME.configearthenginecredentialsLinux: /home/USERNAME/.config/earthengine/credentials  
-MacOS: /Users/USERNAME/.config/earthengine/credentials
-
-Open the credentials file using a text editor. Select and copy the long string wrapped by the double quotes (Fig. F6.3.15). Do not include the double quotes in the copied string.
-
-![Fig. F6.3.15 The Earth Engine authentication token](F6/image68.png)
-
-
-Next, navigate to your web App on Heroku. Click the Settings tab, then click Reveal Config Vars on the page. Enter EARTHENGINE_TOKEN as the key and paste the string copied above as the value. Click the Add button to set EARTHENGINE_TOKEN as an environment variable (Fig. F6.3.16) that will be used by geemap to authenticate Earth Engine.
-
-![Fig. F6.3.16 Setting the Earth Engine token as an environment variable on Heroku](F6/image4.png)
-
-
-The last step is to commit some changes to your forked GitHub repository to trigger Heroku to build and deploy the App. If you are familiar with [Git](https://www.google.com/url?q=https://git-scm.com/book/en/v2/Getting-Started-Installing-Git&sa=D&source=editors&ust=1671458841348079&usg=AOvVaw0sqY5Rw_8XGKlIcdI82G_f) commands, you can push changes to the repository from your local computer to GitHub. If you have not used Git before, you can navigate to your repository on GitHub and make changes directly using the browser. For example, you can navigate to [README.md](https://www.google.com/url?q=https://github.com/giswqs/earthengine-apps/blob/master/README.md&sa=D&source=editors&ust=1671458841348610&usg=AOvVaw1JFdaBCpAIcitrc-P7DHhR) and click the Edit icon on the page to start editing the file. Simply place the cursor at the end of the file and press Enter to add an empty line to the file, then click the Commit changes button at the bottom of the page to save changes. This should trigger Heroku to build the App. Check the build status under the latest activities of the Overview tab. Once the App has been built and deployed successfully, you can click the Open app button in the top-right corner to launch the web App (Fig. F6.3.17). When the App is open in your browser, click nlcd_app.ipynb to launch the split-panel map for visualizing land cover change. This is the same notebook that we developed in Sect. 3. The App URL should look like this: [https://APP-NAME.herokuapp.com/voila/render/nlcd_app.ipynb](https://www.google.com/url?q=https://app-name.herokuapp.com/voila/render/nlcd_app.ipynb&sa=D&source=editors&ust=1671458841349532&usg=AOvVaw2GAtxe9X-ymmUvBhjV_PBD).
-
-Congratulations! You have successfully deployed the Earth Engine App on Heroku.
-
-![Fig. F6.3.17 Setting the Earth Engine token as an environment variable on Heroku](F6/image51.png)
-
-
-:::{.callout-note}
-Code Checkpoint F63d. The book’s repository contains information about what your code should look like at this point.
-:::
-Question 1. What are the pros and cons of designing Earth Engine Apps using geemap and ipywidgets, compared to the JavaScript Earth Engine User Interface API?
-
-Question 2. What are the pros and cons of deploying Earth Engine Apps on Heroku, compared to a local web server and the Earth Engine Code Editor?
-
-## Synthesis {.unnumbered}
-
-Assignment 1. Replace the NLCD datasets with other multitemporal land cover datasets (e.g., United States Department of Agriculture National Agricultural Statistics Service Cropland Data Layers, visible in the Earth Engine Data Catalog) and modify the web App for visualizing land cover change using the chosen land cover datasets. Deploy the web App using multiple platforms (i.e., JavaScript Code Editor, ngrok, and Heroku). More land cover datasets can be found at  [https://developers.google.com/earth-engine/datasets/tags/landcover](https://www.google.com/url?q=https://developers.google.com/earth-engine/datasets/tags/landcover&sa=D&source=editors&ust=1671458841352828&usg=AOvVaw0rYGxg8JD8U1d92jnx8V1i).
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 In this chapter, you learned how to design Earth Engine Apps using both the Earth Engine User Interface API (JavaScript) and geemap (Python). You also learned how to deploy Earth Engine Apps on multiple platforms, such as the JavaScript Code Editor, a local web server, and Heroku. The skill of designing and deploying interactive Earth Engine Apps is essential for making your research and data products more accessible to the scientific community and the general public. Anyone with the link to your web App can analyze and visualize Earth Engine datasets without needing an Earth Engine account.
 
-## References {.unnumbered}
+### References {.unnumbered}
 
 *   Earth Engine User Interface API: [https://developers.google.com/earth-engine/guides/ui](https://www.google.com/url?q=https://developers.google.com/earth-engine/guides/ui&sa=D&source=editors&ust=1671458841355402&usg=AOvVaw1ZgOA5XvSnn5Uo83ccgHPT) 
 *   Earth Engine Apps: [https://developers.google.com/earth-engine/guides/apps](https://www.google.com/url?q=https://developers.google.com/earth-engine/guides/apps&sa=D&source=editors&ust=1671458841355890&usg=AOvVaw1ZYwRsMtxZ2RPAn-dC-E0n) 
@@ -2212,9 +1736,9 @@ Chapter F6.4: Combining R and Earth Engine
 
  
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
  
 
@@ -2222,12 +1746,12 @@ Cesar Aybar, David Montero, Antony Barja, Fernando Herrera, Andrea Gonzales, and
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
 
 
 The purpose of this chapter is to introduce rgee, a non-official API for Earth Engine. You will explore the main features available in rgee and how to set up an environment that integrates rgee with third-party R and Python packages. After this chapter, you will be able to combine R, Python, and JavaScript in the same workflow.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Becoming familiar with rgee, the Earth Engine R API interface.
@@ -2236,7 +1760,7 @@ The purpose of this chapter is to introduce rgee, a non-official API for Earth E
 *   Integrating Python and R packages using reticulate.
 *   Combining Earth Engine JavaScript and Python APIs with R.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 
 *   Install the Python environment (Chap. F6.3).
@@ -2246,7 +1770,7 @@ The purpose of this chapter is to introduce rgee, a non-official API for Earth E
 *   Create Python virtual environments.
 
 :::
-## Introduction {.unlisted .unnumbered}
+### Introduction {.unlisted .unnumbered}
 
 
 R is a popular programming language established in statistical science with large support in reproducible research, geospatial analysis, data visualization, and much more. To get started with R, you will need to satisfy some extra software requirements. First, install an up-to-date R version (at least 4.0) in your work environment. The installation procedure will vary depending on your operating system (i.e., Windows, Mac, or Linux). Hands-On Programming with R (Garrett Grolemund 2014, Appendix A) explains step by step how to proceed. We strongly recommend that Windows users install Rtools to avoid compiling external static libraries.
@@ -2255,7 +1779,7 @@ If you are new to R, a good starting point is the book Geocomputation with R (Lo
 
 The following R packages must be installed (find more information in the R manual) in order to go through the practicum section.
 
-# Use install.packages to install R packages from the CRAN repository.  
+## Use install.packages to install R packages from the CRAN repository.  
 install.packages('reticulate') # Connect Python with R.  
 install.packages('rayshader') # 2D and 3D data visualizations in R.  
 install.packages('remotes') # Install R packages from remote repositories.  
@@ -2277,7 +1801,7 @@ Earth Engine officially supports client libraries only for the JavaScript and Py
 Figure F6.4.1 illustrates how rgee bridges the Earth Engine platform with the R ecosystem. When an Earth Engine request is created in R, rgee transforms this piece of code into Python. Next, the Earth Engine Python API converts the Python code into JSON. Finally, the JSON file request is received by the server through a Web REST API. Users could get the response using the getInfo method by following the same path in reverse.
 
 
-## Installing rgee 
+### Installing rgee 
 
 To run, rgee needs a Python environment with two packages: NumPy and earthengine-api. Because instructions change frequently, installation is explained at the following checkpoint:
 
@@ -2288,17 +1812,17 @@ After installing both the R and Python requirements, you can now initialize your
 
 The Google Drive and GCS APIs will allow you to transfer your Earth Engine completed task exports to a local environment automatically. In these practice sessions, we will use only the Earth Engine and Google Drive APIs. Users that are interested in GCS can look up and explore the GCS vignette. To initialize your Earth Engine account alongside Google Drive, use the following commands.
 
-# Initialize just Earth Engine  
+## Initialize just Earth Engine  
 ee_Initialize()  
   
-# Initialize Earth Engine and GDee_Initialize(drive = TRUE)
+## Initialize Earth Engine and GDee_Initialize(drive = TRUE)
 
 If the Google account is verified and the permission is granted, you will be directed to an authentication token. Copy and paste this token into your R console. Consider that the GCS API requires setting up credentials manually; look up and explore the rgee vignette for more information. The verification step is only required once; after that, rgee saves the credentials in your system.
 
 :::{.callout-note}
 Code Checkpoint F64b. The book’s repository contains information about what your code should look like at this point.
 :::
-## Creating a 3D Population Density Map with rgee and rayshader
+### Creating a 3D Population Density Map with rgee and rayshader
 
 First, import the rgee, rayshader, and raster packages.
 
@@ -2373,7 +1897,7 @@ render_snapshot(
 :::{.callout-note}
 Code Checkpoint F64c. The book’s repository contains information about what your code should look like at this point.
 :::
-## Displaying Maps Interactively
+### Displaying Maps Interactively
 
 Similar to the Code Editor, rgee supports the interactive visualization of spatial Earth Engine objects by Map$addLayer. First, let’s import the rgee and cptcity packages. The cptcity R package is a wrapper to the cpt-city color gradients web archive.
 
@@ -2433,17 +1957,17 @@ Map$addLayer(building) # eeObject is a ee$FeatureCollection
 
 The rgee functionality also supports the display of ee$ImageCollection via Map$addLayers (note the extra “s” at the end). Map$addLayers will use the same visualization parameters for all the images (Fig. F6.4.6). If you need different visualization parameters per image, use a Map$addLayer within a for loop.
 
-# Define a ImageCollection  
+## Define a ImageCollection  
 etp <- ee$ImageCollection$Dataset$MODIS_NTSG_MOD16A2_105 %>%  
  ee$ImageCollection$select("ET") %>%  
  ee$ImageCollection$filterDate('2014-04-01', '2014-06-01')  
   
-# Set viz paramsviz <- list(  
+## Set viz paramsviz <- list(  
  min = 0,  max = 300,  
  palette = cpt(pal = "grass_bcyr", rev = TRUE)  
 )  
   
-# Print map results interactively  
+## Print map results interactively  
 Map$setCenter(0, 0, 1)  
 etpmap <- Map$addLayers(etp, visParams = viz)  
 etpmap
@@ -2492,7 +2016,7 @@ m2  | m1
 :::{.callout-note}
 Code Checkpoint F64d. The book’s repository contains information about what your code should look like at this point.
 :::
-## Integrating rgee with Other Python Packages
+### Integrating rgee with Other Python Packages
 
 As noted in Sect. 1, rgee set up a Python environment with NumPy and earthengine-api in your system. However, there is no need to limit it to just two Python packages. In this section, you will learn how to use the Python package ndvi2gif to perform a Normalized Difference Vegetation Index (NDVI) multi-seasonal analysis in the Ocoña Valley without leaving R.
 
@@ -2549,10 +2073,10 @@ myclass <- ngif$NdviSeasonality(
  sat = 'Sentinel', # 'Sentinel', 'Landsat', 'MODIS', 'sar' key = 'max' # 'max', 'median', 'perc_90'  
 )  
   
-# Estimate the median of the yearly composites from 2016 to 2020.  
+## Estimate the median of the yearly composites from 2016 to 2020.  
 median <- myclass$get_year_composite()$median()  
   
-# Estimate the median of the winter season composites from 2016 to 2020.  
+## Estimate the median of the winter season composites from 2016 to 2020.  
 wintermax <- myclass$get_year_composite()$select('winter')$max()
 
 We can display maps interactively using the Map$addLayer (Fig. F6.4.9), and use the leaflet layers control to switch between basemaps.
@@ -2572,7 +2096,7 @@ To get more information about the ndvi2gif package, visit its [GitHub](https://w
 :::{.callout-note}
 Code Checkpoint F64e. The book’s repository contains information about what your code should look like at this point.
 :::
-## Converting JavaScript Modules to R
+### Converting JavaScript Modules to R
 
 In recent years, the Earth Engine community has developed a lot of valuable third-party modules. Some incredible ones are geeSharp (Zuspan 2020), ee-palettes (Donchyts et al. 2020), spectral (Montero 2021), and LandsatLST (Ermida et al. 2020). While some of these modules have been implemented in Python and JavaScript (e.g., geeSharp and spectral), most are available only for JavaScript. This is a critical drawback, because it divides the Earth Engine community by programming languages. For example, if an R user wants to use tagee (Safanelli et al. 2020), the user will have to first translate the entire module to R.
 
@@ -2676,15 +2200,11 @@ Question 1. When and why might users prefer to use R instead of Python to connec
 
 Question 2. What are the advantages and disadvantages of using rgee instead of the Earth Engine JavaScript Code Editor?
 
-## Synthesis {.unnumbered}
-
-Assignment 1. Estimate the Gaussian curvature map from a digital elevation model using rgee and rgeeExtra. Hint: Use the module 'users/joselucassafanelli/TAGEE:TAGEE-functions'.
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 In this chapter, you learned how to use Earth Engine and R in the same workflow. Since rgee uses reticulate, rgee also permits integration with third-party Earth Engine Python packages. You also learned how to use Map$addLayer, which works similarly to the Earth Engine User Interface API (Code Editor). Finally, we also introduced rgeeExtra, a new R package that extends the Earth Engine API and supports JavaScript module execution.
 
-## References {.unnumbered}
+### References {.unnumbered}
 
 Aybar C, Wu Q, Bautista L, et al (2020) rgee: An R package for interacting with Google Earth Engine. J Open Source Softw 5:2272. https://doi.org/10.21105/joss.02272
 

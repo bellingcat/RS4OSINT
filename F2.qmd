@@ -1,38 +1,37 @@
-# Interpreting Images
+## Interpreting Images
 
 Now that you know how images are viewed and what kinds of images exist in Earth Engine, how do we manipulate them? To gain the skills of interpreting images, you’ll work with bands, combining values to form indices and masking unwanted pixels. Then, you’ll learn some of the techniques available in Earth Engine for classifying images and interpreting the results.
 
 
-# Image Manipulation: Bands, Arithmetic, Thresholds, and Masks
+## Image Manipulation: Bands, Arithmetic, Thresholds, and Masks
 
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
 
 Karen Dyson, Andréa Puzzi Nicolau, David Saah, and Nicholas Clinton
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
 
 
 Once images have been identified in Earth Engine, they can be viewed in a wide array of band combinations for targeted purposes. For users who are already versed in remote sensing concepts, this chapter shows how to do familiar tasks on this platform; for those who are entirely new to such concepts, it introduces the idea of band combinations.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Understanding what spectral indices are and why they are useful.
 *   Being introduced to a range of example spectral indices used for a variety of purposes.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 *   Import images and image collections, filter, and visualize (Part F1).
-
-
 :::
-## Introduction {.unlisted .unnumbered}
+
+### Introduction {.unlisted .unnumbered}
 
 Spectral indices are based on the fact that different objects and land covers on the Earth’s surface reflect different amounts of light from the Sun at different wavelengths. In the visible part of the spectrum, for example, a healthy green plant reflects a large amount of green light while absorbing blue and red light—which is why it appears green to our eyes. Light also arrives from the Sun at wavelengths outside what the human eye can see, and there are large differences in reflectances between living and nonliving land covers, and between different types of vegetation, both in the visible and outside the visible wavelengths. We visualized this earlier, in Chaps. F1.1 and F1.3 when we mapped color-infrared images (Fig. F2.0.1).
 
@@ -49,13 +48,13 @@ Spectral indices use math to express how objects reflect light across multiple p
 Indices derived from satellite imagery are used as the basis of many remote-sensing analyses. Indices have been used in thousands of applications, from detecting anthropogenic deforestation to examining crop health. For example, the growth of economically important crops such as wheat and cotton can be monitored throughout the growing season: Bare soil reflects more red wavelengths, whereas growing crops reflect more of the near-infrared (NIR) wavelengths. Thus, calculating a ratio of these two bands can help monitor how well crops are growing (Jackson and Huete 1991).
 
 
-## Band Arithmetic in Earth Engine
+### Band Arithmetic in Earth Engine
 
 If you have not already done so, be sure to add the book’s code repository to the Code Editor by entering [](https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&sa=D&source=editors&ust=1671458829783542&usg=AOvVaw2f8xfEZP6c0zP_Ke8jL26U)[https://code.earthengine.google.com/?accept_repo=projects/gee-edu/book](https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&sa=D&source=editors&ust=1671458829783919&usg=AOvVaw2i09J44MzpMZkjV_JLEnNR) into your browser. The book’s scripts will then be available in the script manager panel. If you have trouble finding the repo, you can visit [this link](https://www.google.com/url?q=https://docs.google.com/presentation/d/1Kt6wGNoesYm__Cu3k3bnlbbyPN6m9SF4hQHK-pIDHfc/edit%23slide%3Did.g18a7b4b055d_0_624&sa=D&source=editors&ust=1671458829784270&usg=AOvVaw1Kr82KG60ZeFLYC8cOZ67A) for help.
 
 Many indices can be calculated using band arithmetic in Earth Engine. Band arithmetic is the process of adding, subtracting, multiplying, or dividing two or more bands from an image. Here we’ll first do this manually, and then show you some more efficient ways to perform band arithmetic in Earth Engine.
 
-### Arithmetic Calculation of NDVI
+#### Arithmetic Calculation of NDVI
 
 The red and near-infrared bands provide a lot of information about vegetation due to vegetation’s high reflectance in these wavelengths. Take a look at Fig. F2.0.2 and note, in particular, that vegetation curves (graphed in green) have relatively high reflectance in the NIR range (approximately 750–900 nm). Also note that vegetation has low reflectance in the red range (approximately 630–690 nm), where sunlight is absorbed by chlorophyll. This suggests that if the red and near-infrared bands could be combined, they would provide substantial information about vegetation.
 
@@ -124,7 +123,7 @@ Examine the resulting index, using the Inspector to pick out pixel values in are
 
 Using these simple arithmetic tools, you can build almost any index, or develop and visualize your own. Earth Engine allows you to quickly and easily calculate and display the index across a large area.
 
-### Single-Operation Computation of Normalized Difference for NDVI
+#### Single-Operation Computation of Normalized Difference for NDVI
 
 Normalized differences like NDVI are so common in remote sensing that Earth Engine provides the ability to do that particular sequence of subtraction, addition, and division in a single step, using the normalizedDifference method. This method takes an input image, along with bands you specify, and creates a normalized difference of those two bands. The NDVI computation previously created with band arithmetic can be replaced with one line of code:
 
@@ -140,7 +139,7 @@ Map.addLayer(ndviND, {
 ```
 Note that the order in which you provide the two bands to normalizedDifference is important. We use B8, the near-infrared band, as the first parameter, and the red band B4 as the second. If your two computations of NDVI do not look identical when drawn to the screen, check to make sure that the order you have for the NIR and red bands is correct.
 
-### Using Normalized Difference for NDWI
+#### Using Normalized Difference for NDWI
 
 As mentioned, the normalized difference approach is used for many different indices. Let’s apply the same normalizedDifference method to another index.
 
@@ -171,11 +170,11 @@ Examine the areas of the map that NDVI identified as having a lot of vegetation.
 :::{.callout-note}
 Code Checkpoint F20a. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Thresholding, Masking, and Remapping Images
+### Thresholding, Masking, and Remapping Images
 
 The previous section in this chapter discussed how to use band arithmetic to manipulate images. Those methods created new continuous values by combining bands within an image. This section uses logical operators to categorize band or index values to create a categorized image.
 
-### Implementing a Threshold
+#### Implementing a Threshold
 
 Implementing a threshold uses a number (the threshold value) and logical operators to help us partition the variability of images into categories. For example, recall our map of NDVI. High amounts of vegetation have NDVI values near 1 and non-vegetated areas are near 0. If we want to see what areas of the map have vegetation, we can use a threshold to generalize the NDVI value in each pixel as being either “no vegetation” or “vegetation”. That is a substantial simplification, to be sure, but can help us to better comprehend the rich variation on the Earth’s surface. This type of categorization may be useful if, for example, we want to look at the proportion of a city that is vegetated. Let’s create a Sentinel-2 map of NDVI near Seattle, Washington, USA. Enter the code below in a new script.
 
@@ -229,7 +228,7 @@ Use the Inspector tool to explore this new layer. If you click on a green locati
 
 Other operators in this Boolean family include less than (lt), less than or equal to (lte), equal to (eq), not equal to (neq), and greater than or equal to (gte) and more.
 
-### Building Complex Categorizations with .where
+#### Building Complex Categorizations with .where
 
 A binary map classifying NDVI is very useful. However, there are situations where you may want to split your image into more than two bins. Earth Engine provides a tool, the where method, that conditionally evaluates to true or false within each pixel depending on the outcome of a test. This is analogous to an if statement seen commonly in other languages. However, to perform this logic when programming for Earth Engine, we avoid using the JavaScript if statement. Importantly, JavaScript if commands are not calculated on Google’s servers, and can create serious problems when running your code—in effect, the servers try to ship all of the information to be executed to your own computer’s browser, which is very underequipped for such enormous tasks. Instead, we use the where clause for conditional logic.
 
@@ -260,7 +259,7 @@ There are a few interesting things to note about this code that you may not have
 ![Fig. F2.0.8 Thresholded water, forest, and non-forest image based on NDVI for Seattle, Washington, USA.](F2/image37.png)
 
 
-### Masking Specific Values in an Image
+#### Masking Specific Values in an Image
 
 Masking an image is a technique that removes specific areas of an image—those covered by the mask—from being displayed or analyzed. Earth Engine allows you to both view the current mask and update the mask.
 
@@ -313,7 +312,7 @@ Map.addLayer(maskedVeg.mask(), {}, 'maskedVeg Mask');
 ![Fig. F2.0.11 The updated mask. Areas of non-forest are now masked out as well (black areas of the image).](F2/image33.png)
 
 
-### Remapping Values in an Image
+#### Remapping Values in an Image
 
 Remapping takes specific values in an image and assigns them a different value. This is particularly useful for categorical datasets, including those you read about in Chap. F1.2 and those we have created earlier in this chapter.
 
@@ -340,43 +339,11 @@ Use the inspector to compare values between our original seaWhere (displayed as 
 :::{.callout-note}
 Code Checkpoint F20b. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Synthesis {.unnumbered}
-
-Assignment 1. In addition to vegetation indices and other land cover indices, you can use properties of different soil types to create geological indices. The Clay Minerals Ratio (CMR) is one of these. This index highlights soils containing clay and alunite, which absorb radiation in the SWIR portion (2.0–2.3 μm) of the spectrum.
-
-![](F2/image3.png)
-
-SWIR 1 should be in the 1.55–1.75 µm range, and SWIR 2 should be in the 2.08–2.35 µm range. Calculate and display CMR at the following point: ee.Geometry.Point(-100.543, 33.456). Don’t forget to use Map.centerObject.
-
-We’ve selected an area of Texas known for its clay soils. Compare this with an area without clay soils (for example, try an area around Seattle or Tacoma, Washington, USA). Note that this index will also pick up roads and other paved areas.
-
-Assignment 2. Calculate the Iron Oxide Ratio, which can be used to detect hydrothermally altered rocks (e.g., from volcanoes) that contain iron-bearing sulfides which have been oxidized (Segal, 1982).
-
-Here’s the formula:
-
-![](F2/image4.png)
-
-Red should be the 0.63–0.69 µm spectral range and Blue the 0.45–0.52 µm. Using Landsat 8, you can also find an interesting area to map by considering where these types of rocks might occur.
-
-Assignment 3. Calculate the Normalized Difference Built-Up Index (NDBI) for the sfoImage used in this chapter.
-
-The NDBI was developed by Zha et al. (2003) to aid in differentiating urban areas (e.g., densely clustered buildings and roads) from other land cover types. The index exploits the fact that urban areas, which generally have a great deal of impervious surface cover, reflect SWIR very strongly. If you like, refer back to Fig. F2.0.2.
-
-The formula is:
-
-![](F2/image5.png)
-
-Using what we know about Sentinel-2 bands, compute NDBI and display it.
-
-Bonus: Note that NDBI is the negative of NDWI computed earlier. We can prove this by using the JavaScript reverse method to reverse the palette used for NDWI in Earth Engine. This method reverses the order of items in the JavaScript list. Create a new palette for NDBI using the reverse method and display the map. As a hint, here is code to use the reverse method.
-
-var barePalette = waterPalette.reverse();
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 In this chapter, you learned how to select multiple bands from an image and calculate indices. You also learned about thresholding values in an image, slicing them into multiple categories using thresholds. It is also possible to work with one set of class numbers and remap them quickly to another set. Using these techniques, you have some of the basic tools of image manipulation. In subsequent chapters you will encounter more complex and specialized image manipulation techniques, including pixel-based image transformations (Chap. F3.1), neighborhood-based image transformations (Chap. F3.2), and object-based image analysis (Chap. F3.3).
 
-## References {.unnumbered}
+### References {.unnumbered}
 
 Baig MHA, Zhang L, Shuai T, Tong Q (2014) Derivation of a tasselled cap transformation based on Landsat 8 at-satellite reflectance. Remote Sens Lett 5:423–431. https://doi.org/10.1080/2150704X.2014.915434
 
@@ -406,16 +373,16 @@ Souza Jr CM, Siqueira JV, Sales MH, et al (2013) Ten-year Landsat classification
 
 
 
-# Interpreting an Image: Classification
+## Interpreting an Image: Classification
 
 
 
 
  
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
 
 
@@ -423,12 +390,12 @@ Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
 
 
 Image classification is a fundamental goal of remote sensing. It takes the user from viewing an image to labeling its contents. This chapter introduces readers to the concept of classification and walks users through the many options for image classification in Earth Engine. You will explore the processes of training data collection, classifier selection, classifier training, and image classification.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Running a classification in Earth Engine.
@@ -437,14 +404,14 @@ Image classification is a fundamental goal of remote sensing. It takes the user 
 *   Learning how to collect sample data in Earth Engine.
 *   Learning the basics of the hexadecimal numbering system.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 
 *   Import images and image collections, filter, and visualize (Part F1).
 *   Understand bands and how to select them (Chap. F1.2, Chap. F2.0).
 
 :::
-## Introduction {.unlisted .unnumbered}
+### Introduction {.unlisted .unnumbered}
 
 
 Classification is addressed in a broad range of fields, including mathematics, statistics, data mining, machine learning, and more. For a deeper treatment of classification, interested readers may see some of the following suggestions: Witten et al. (2011), Hastie et al. (2009), Goodfellow et al. (2016), Gareth et al. (2013), Géron (2019), Müller et al. (2016), or Witten et al. (2005). Unlike regression, which predicts continuous variables, classification predicts categorical, or discrete, variables—variables with a finite number of categories (e.g., age range).
@@ -459,7 +426,7 @@ Image classification techniques for generating land cover and land use informati
 
 It is important to define land use and land cover. Land cover relates to the physical characteristics of the surface: simply put, it documents whether an area of the Earth’s surface is covered by forests, water, impervious surfaces, etc. Land use refers to how this land is being used by people. For example, herbaceous vegetation is considered a land cover but can indicate different land uses: the grass in a pasture is an agricultural land use, whereas the grass in an urban area can be classified as a park.
 
-## Supervised Classification
+### Supervised Classification
 
 If you have not already done so, be sure to add the book’s code repository to the Code Editor by entering [](https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&sa=D&source=editors&ust=1671458829866098&usg=AOvVaw16x5swm9HlorS5Mbw7E42X)[https://code.earthengine.google.com/?accept_repo=projects/gee-edu/book](https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&sa=D&source=editors&ust=1671458829866485&usg=AOvVaw0-N-JCWWgnM493BKa7Ichm) into your browser. The book’s scripts will then be available in the script manager panel. If you have trouble finding the repo, you can visit [this link](https://www.google.com/url?q=https://docs.google.com/presentation/d/1Kt6wGNoesYm__Cu3k3bnlbbyPN6m9SF4hQHK-pIDHfc/edit%23slide%3Did.g18a7b4b055d_0_624&sa=D&source=editors&ust=1671458829866823&usg=AOvVaw0ytMyRvutssBcVr2GdcBHA) for help.
 
@@ -679,7 +646,7 @@ Inspect the result (Fig. F2.1.13). How does this classified image differ from th
 :::{.callout-note}
 Code Checkpoint F21b. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Unsupervised Classification
+### Unsupervised Classification
 
 In an unsupervised classification, we have the opposite process of supervised classification. Spectral classes are grouped first and then categorized into clusters. Therefore, in Earth Engine, these classifiers are ee.Clusterer objects. They are “self-taught” algorithms that do not use a set of labeled training data (i.e., they are “unsupervised”). You can think of it as performing a task that you have not experienced before, starting by gathering as much information as possible. For example, imagine learning a new language without knowing the basic grammar, learning only by watching a TV series in that language, listening to examples, and finding patterns.
 
@@ -737,27 +704,11 @@ Another key point of classification is the accuracy assessment of the results. T
 :::{.callout-note}
 Code Checkpoint F21c. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Synthesis {.unnumbered}
-
-Test if you can improve the classifications by completing the following assignments.
-
-Assignment 1. For the supervised classification, try collecting more points for each class. The more points you have, the more spectrally represented the classes are. It is good practice to collect points across the entire composite and not just focus on one location. Also look for pixels of the same class that show variability. For example, for the water class, collect pixels in parts of rivers that vary in color. For the developed class, collect pixels from different rooftops.
-
-Assignment 2. Add more predictors. Usually, the more spectral information you feed the classifier, the easier it is to separate classes. Try calculating and incorporating a band of  NDVI or the Normalized Difference Water Index (Chap. F2.0) as a predictor band. Does this help the classification? Check for developed areas that were being classified as herbaceous or vice versa.
-
-Assignment 3. Use more trees in the Random Forest classifier. Do you see any improvements compared to 50 trees? Note that the more trees you have, the longer it will take to compute the results, and that more trees might not always mean better results.
-
-Assignment 4. Increase the number of samples that are extracted from the composite in the unsupervised classification. Does that improve the result?
-
-Assignment 5. Increase the number k of clusters for the k-means algorithm. What would happen if you tried 10 classes? Does the classified map result in meaningful classes?
-
-Assignment 6. Test other clustering algorithms. We only used k-means; try other options under the ee.Clusterer object.
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 Classification algorithms are key for many different applications because they allow you to predict categorical variables. You should now understand the difference between supervised and unsupervised classification and have the basic knowledge on how to handle misclassifications. By being able to map the landscape for land use and land cover, we will also be able to monitor how it changes (Part F4).
 
-## References {.unnumbered}
+### References {.unnumbered}
 
 Breiman L (2001) Random forests. Mach Learn 45:5–32. https://doi.org/10.1023/A:1010933404324
 
@@ -779,16 +730,16 @@ Witten IH, Frank E, Hall MA, et al (2005) Practical machine learning tools and t
 
 
 
-# Accuracy Assessment: Quantifying Classification Quality
+## Accuracy Assessment: Quantifying Classification Quality
 
 
 
 
  
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
 
 
@@ -796,12 +747,12 @@ Andréa Puzzi Nicolau, Karen Dyson, David Saah, Nicholas Clinton
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
 
 
 This chapter will enable you to assess the accuracy of an image classification. You will learn about different metrics and ways to quantify classification quality in Earth Engine. Upon completion, you should be able to evaluate whether your classification needs improvement and know how to proceed when it does.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Learning how to perform accuracy assessment in Earth Engine.
@@ -809,14 +760,14 @@ This chapter will enable you to assess the accuracy of an image classification. 
 *   Understanding overall accuracy and the kappa coefficient.
 *   Understanding the difference between user’s and producer’s accuracy, and the difference between omission and commission errors.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 
 *   ​​Create a graph using ui.Chart (Chap. F1.3).
 *   Perform a supervised Random Forest image classification (Chap. F2.1).
 
 :::
-## Introduction {.unlisted .unnumbered}
+### Introduction {.unlisted .unnumbered}
 
 
 Any map or remotely sensed product is a generalization or model that will have inherent errors. Products derived from remotely sensed data used for scientific purposes and policymaking require a quantitative measure of accuracy to strengthen the confidence in the information generated (Foody 2002, Strahler et al. 2006, Olofsson et al. 2014). Accuracy assessment is a crucial part of any classification project, as it measures the degree to which the classification agrees with another data source that is considered to be accurate, ground-truth data (i.e., “reality”).
@@ -828,7 +779,7 @@ In Chap. F2.1, we asked whether the classification results were satisfactory. In
 
 In a thorough accuracy assessment, we think carefully about the sampling design, the response design, and the analysis (Olofsson et al. 2014). Fundamental protocols are taken into account to produce scientifically rigorous and transparent estimates of accuracy and area, which requires robust planning and time. In a standard setting, we would calculate the number of samples needed for measuring accuracy (sampling design). Here, we will focus mainly on the last step, analysis, by examining the confusion matrix and learning how to calculate the accuracy metrics. This will be done by partitioning the existing data into training and testing sets.
 
-## Quantifying Classification Accuracy Through a Confusion Matrix
+### Quantifying Classification Accuracy Through a Confusion Matrix
 
 If you have not already done so, be sure to add the book’s code repository to the Code Editor by entering [](https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&sa=D&source=editors&ust=1671458829937499&usg=AOvVaw3qqOwSX_A-Pllh6X3X31q4)[https://code.earthengine.google.com/?accept_repo=projects/gee-edu/book](https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&sa=D&source=editors&ust=1671458829937976&usg=AOvVaw0WioXIhzue8-WoaX4UtabH) into your browser. The book’s scripts will then be available in the script manager panel. If you have trouble finding the repo, you can visit [this link](https://www.google.com/url?q=https://docs.google.com/presentation/d/1Kt6wGNoesYm__Cu3k3bnlbbyPN6m9SF4hQHK-pIDHfc/edit%23slide%3Did.g18a7b4b055d_0_624&sa=D&source=editors&ust=1671458829938470&usg=AOvVaw2CH8V3-_qV99EcgMxUAaSO) for help.
 
@@ -1018,7 +969,7 @@ How is the classification accuracy? Which classes have higher accuracy compared 
 :::{.callout-note}
 Code Checkpoint F22a. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Hyperparameter tuning
+### Hyperparameter tuning
 
 We can also assess how the number of trees in the Random Forest classifier affects the classification accuracy. Copy and paste the code below to create a function that charts the overall accuracy versus the number of trees used. The code tests from 5 to 100 trees at increments of 5, producing Fig. F2.2.2. (Do not worry too much about fully understanding each item at this stage of your learning. If you want to find out how these operations work, you can see more in Chaps. F4.0 and F4.1.)
 
@@ -1063,13 +1014,7 @@ We might also want to ensure that the samples from the training set are uncorrel
 :::{.callout-note}
 Code Checkpoint F22c. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Synthesis {.unnumbered}
-
-Assignment 1. Based on Sect. 1, test other classifiers (e.g., a Classification and Regression Tree or Support Vector Machine classifier) and compare the accuracy results with the Random Forest results. Which model performs better?
-
-Assignment 2. Try setting a different seed in the randomColumn method and see how that affects the accuracy results. You can also change the split between the training and testing sets (e.g., 70/30 or 60/40).
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 You should now understand how to calculate how well your classifier is performing on the data used to build the model. This is a useful way to understand how a classifier is performing, because it can help indicate which classes are performing better than others. A poorly modeled class can sometimes be improved by, for example, collecting more training points for that class.
 

@@ -1,4 +1,4 @@
-# Vectors and Tables
+## Vectors and Tables
 
 
 
@@ -7,29 +7,30 @@ In addition to raster data processing, Earth Engine supports a rich set of vecto
 
 
 
-# Exploring Vectors
+## Exploring Vectors
 
 
 
 
  
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
 
 AJ Purdy, Ellen Brock, David Saah
 
 
-
-Overview
+#### Overview {.unlisted .unnumbered}
 
 In this chapter, you will learn about features and feature collections and how to use them in conjunction with images and image collections in Earth Engine. Maps are useful for understanding spatial patterns, but scientists often need to extract statistics to answer a question. For example, you may make a false-color composite showing which areas of San Francisco are more “green”—i.e., have more healthy vegetation—than others, but you will likely not be able to directly determine which block in a neighborhood is the most green. This tutorial will demonstrate how to do just that by utilizing vectors.
 
 As described in Chap. F4.0, an important way to summarize and simplify data in Earth Engine is through the use of reducers. Reducers operating across space were used in Chap. F3.0, for example, to enable image regression between bands. More generally, chapters in Part F3 and Part F4 used reducers mostly to summarize the values across bands or images on a pixel-by-pixel basis. What if you wanted to summarize information within the confines of given spatial elements- for example, within a set of polygons? In this chapter, we will illustrate and explore Earth Engine’s method for doing that, which is through a reduceRegions call.
 
-Learning Outcomes
+#### Learning Outcomes {.unlisted .unnumbered}
+
+
 
 *   Uploading and working with a shapefile as an asset to use in Earth Engine.
 *   Creating a new feature using the geometry tools.
@@ -38,13 +39,14 @@ Learning Outcomes
 *   Use reduceRegions to summarize an image in irregular neighborhoods.
 *   Exporting calculated data to tables with Tasks.
 
-Assumes you know how to:
+### Assumes you know how to: {.unlisted .unnumbered}
 
 *   Import images and image collections, filter, and visualize (Part F1).
 *   Calculate and interpret vegetation indices (Chap. F2.0).
 *   Use drawing tools to create points, lines, and polygons (Chap. F2.1).
+:::
 
-Introduction to Theory 
+### Introduction {.unlisted .unnumbered}
 
 In the world of geographic information systems (GIS), data is typically thought of in one of two basic data structures: raster and vector. In previous chapters, we have principally been focused on raster data—data using the remote sensing vocabulary of pixels, spatial resolution, images, and image collections. Working within the vector framework is also a crucial skill to master. If you don’t know much about GIS, you can find any number of online explainers of the distinctions between these data types, their strengths and limitations, and analyses using both data types. Being able to move fluidly between a raster conception and a vector conception of the world is powerful, and is facilitated with specialized functions and approaches in Earth Engine.    
 
@@ -55,7 +57,7 @@ As you have seen, raster features in Earth Engine are stored as an Image or as p
 In the following example, you will use features and feature collections to identify which city block near the University of San Francisco (USF) campus is the most green.
 
 
-## Using Geometry Tools to Create Features in Earth Engine
+### Using Geometry Tools to Create Features in Earth Engine
 
 To demonstrate how geometry tools in Earth Engine work, let’s start by creating a point, and two polygons to represent different elements on the USF campus.
 
@@ -76,7 +78,7 @@ After you create these layers, rename the geometry imports at the top of your sc
 :::{.callout-note}
 Code Checkpoint F50a. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Loading Existing Features and Feature Collections in Earth Engine
+### Loading Existing Features and Feature Collections in Earth Engine
 
 If you wish to have the exact same geometry imports in this chapter for the rest of this exercise, begin this section using the code at the Code Checkpoint above.
 
@@ -92,11 +94,11 @@ Map.addLayer(tiger, {   'color': 'black'}, 'Tiger', false);
 ```
 You should now have the geometry for USF’s campus and a layer added to your map that is not visualized for census blocks across the United States. Next, we will use neighborhood data to spatially filter the TIGER feature collection for blocks near USF’s campus.
 
-## Importing Features into Earth Engine
+### Importing Features into Earth Engine
 
 There are many image collections loaded in Earth Engine, and they can cover a very large area that you might want to study. Borders can be quite intricate (for example, a detailed coastline), and fortunately there is no need for you to digitize the intricate boundary of a large geographic area. Instead, we will show how to find a spatial dataset online, download the data, and load this into Earth Engine as an asset for use.
 
-### Find a Spatial Dataset of San Francisco Neighborhoods
+#### Find a Spatial Dataset of San Francisco Neighborhoods
 
 Use your internet searching skills to locate the “Analysis Neighborhoods” dataset covering San Francisco. This data might be located in a number of places, including DataSF, the City of San Francisco’s public-facing data repository.
 
@@ -107,14 +109,14 @@ After you find the Analysis Neighborhoods layer, click Export and select Shapefi
 
 Extract the folder to your computer. When you open the folder, you will see that there are actually many files. The extensions (.shp, .dbf, .shx, .prj) all provide a different piece of information to display vector-based data. The .shp file provides data on the geometry. The .dbf file provides data about the attributes. The .shx file is an index file. Lastly, the .prj file describes the map projection of the coordinate information for the shapefile. You will need to load all four files to create a new feature asset in Earth Engine.
 
-### Upload SF Neighborhoods File as an Asset
+#### Upload SF Neighborhoods File as an Asset
 
 Navigate to the Assets tab (near Scripts). Select New > Table Upload > Shape files (Fig. F5.0.4).
 
 ![Fig. F5.0.4 Import an asset as a zipped folder](F5/image52.png)
 
 
-### Select Files and Name Asset
+#### Select Files and Name Asset
 
 Click the Select button and then use the file navigator to select the component files of the shapefile structure (i.e., .shp, .dbf, .shx, and .prj) (Fig. F5.0.5). Assign an Asset Name so you can recognize this asset.
 
@@ -140,9 +142,9 @@ Note that if you have any trouble with loading the FeatureCollection using the t
 :::{.callout-note}
 Code Checkpoint F50b. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Filtering Feature Collections by Attributes
+### Filtering Feature Collections by Attributes
 
-### Filter by Geometry of Another Feature
+#### Filter by Geometry of Another Feature
 
 First, let’s find the neighborhood associated with USF. Use the first point you created to find the neighborhood that intersects this point; filterBounds is the tool that does that, returning a filtered feature.
 
@@ -159,7 +161,7 @@ var usfTiger = tiger.filterBounds(usfNeighborhood);
 Map.addLayer(usfTiger, {}, 'usf_Tiger');
 
 ```
-### Filter by Feature (Attribute) Properties
+#### Filter by Feature (Attribute) Properties
 
 In addition to filtering a FeatureCollection by the location of another feature, you can also filter it by its properties. First, let’s print the usfTiger variable to the Console and inspect the object.
 
@@ -187,7 +189,7 @@ Map.addLayer(housing10_g50_l250, {   'color': 'Magenta'}, 'housing');
 
 We have combined spatial and attribute information to narrow the set to only those blocks that meet our criteria of having between 50 and 250 housing units.
 
-### Print Feature (Attribute) Properties to Console
+#### Print Feature (Attribute) Properties to Console
 
 We can print out attribute information about these features. The block of code below prints out the area of the resultant geometry in square meters.
 
@@ -208,13 +210,13 @@ Both of the above sections of code provide meaningful information about each fea
 :::{.callout-note}
 Code Checkpoint F50c. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Reducing Images Using Feature Geometry
+### Reducing Images Using Feature Geometry
 
 Now that we have identified the blocks around USF’s campus that have the right housing density, let’s find which blocks are the greenest.
 
 The Normalized Difference Vegetation Index (NDVI), presented in detail in Chap. F2.0, is often used to compare the greenness of pixels in different locations. Values on land range from 0 to 1, with values closer to 1 representing healthier and greener vegetation than values near 0.
 
-### Create an NDVI Image
+#### Create an NDVI Image
 
 The code below imports the Landsat 8 ImageCollection as landsat8. Then, the code filters for images in 2021. Lastly, the code sorts the images from 2021 to find the least cloudy day.
 
@@ -237,7 +239,7 @@ var nir = image.select('B5');
 var red = image.select('B4');  
 var ndvi = nir.subtract(red).divide(nir.add(red)).rename('NDVI');
 
-### Clip the NDVI Image to the Blocks Near USF
+#### Clip the NDVI Image to the Blocks Near USF
 
 Next, you will clip the NDVI layer to only show NDVI over USF’s neighborhood.
 
@@ -257,7 +259,7 @@ Map.centerObject(usf_point, 14);
 
 The NDVI map for all of San Francisco is interesting, and shows variability across the region. Now, let’s compute mean NDVI values for each block of the city.
 
-### Compute NDVI Statistics by Block
+#### Compute NDVI Statistics by Block
 
 The code below uses the clipped image ndviUSFblocks and computes the mean NDVI value within each boundary. The scale provides a spatial resolution for the mean values to be computed on.
 
@@ -272,7 +274,7 @@ var ndviPerBlock = ndviUSFblocks.reduceRegions({
 ```
 Now we’ll use Earth Engine to find out which block is greenest.  
 
-### Export Table of NDVI Data by Block from Earth Engine to Google Drive
+#### Export Table of NDVI Data by Block from Earth Engine to Google Drive
 
 Just as we loaded a feature into Earth Engine, we can export information from Earth Engine. Here, we will export the NDVI data, summarized by block, from Earth Engine to a Google Drive space so that we can interpret it in a program like Google Sheets or Excel.
 
@@ -294,7 +296,7 @@ After you run the task, the file will be saved to your Google Drive. You have no
 :::{.callout-note}
 Code Checkpoint F50d. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Identifying the Block in the Neighborhood Surrounding USF with the Highest NDVI
+### Identifying the Block in the Neighborhood Surrounding USF with the Highest NDVI
 
 You are already familiar with filtering datasets by their attributes. Now you will sort a table and select the first element of the table.
 
@@ -318,34 +320,19 @@ Map.addLayer(GreenHousing, {   'color': 'yellow'}, 'Green Housing!');
 :::{.callout-note}
 Code Checkpoint F50e. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Synthesis {.unnumbered}
-
-Now it’s your turn to use both feature classes and to reduce data using a geographic boundary. Create a new script for an area of interest and accomplish the following assignments.
-
-Assignment 1. Create a study area map zoomed to a certain feature class that you made.
-
-Assignment 2. Filter one feature collection using feature properties.
-
-Assignment 3. Filter one feature collection based on another feature’s location in space.
-
-Assignment 4. Reduce one image to the geometry of a feature in some capacity; e.g., extract a mean value or a value at a point.
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 In this chapter, you learned how to import features into Earth Engine. In Sect. 1, you created new features using the geometry tools and loaded a feature from Earth Engine’s Data Catalog. In Sect. 2, you loaded a shapefile to an Earth Engine asset. In Sect. 3, you filtered feature collections based on their properties and locations. Finally, in Sects. 4 and 5, you used a feature collection to reduce an image, then exported the data from Earth Engine. Now you have all the tools you need to load, filter, and apply features to extract meaningful information from images using vector features in Earth Engine.
 
 
 
-# Raster/Vector Conversions
-
-
-
+## Raster/Vector Conversions
 
  
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
 
 
@@ -353,12 +340,12 @@ Keiko Nomura, Samuel Bowers
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
  
 
 The purpose of this chapter is to review methods of converting between raster and vector data formats, and to understand the circumstances in which this is useful. By way of example, this chapter focuses on topographic elevation and forest cover change in Colombia, but note that these are generic methods that can be applied in a wide variety of situations.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Understanding raster and vector data in Earth Engine and their differing properties.
@@ -366,7 +353,7 @@ The purpose of this chapter is to review methods of converting between raster an
 *   Knowing how and why to convert from vector to raster.
 *   Write a function and map it over a FeatureCollection.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 
 *   Import images and image collections, filter, and visualize (Part F1).
@@ -378,7 +365,7 @@ The purpose of this chapter is to review methods of converting between raster an
 *   Use reduceRegions to summarize an image in irregular shapes (Chap. F5.0).
 
 :::
-## Introduction {.unlisted .unnumbered}
+### Introduction {.unlisted .unnumbered}
 
 
 Raster data consists of regularly spaced pixels arranged into rows and columns, familiar as the format of satellite images. Vector data contains geometry features (i.e., points, lines, and polygons) describing locations and areas. Each data format has its advantages, and both will be encountered as part of GIS operations.
@@ -388,9 +375,9 @@ Raster and vector data are commonly combined (e.g., extracting image information
 In this exercise, we’ll use topographic elevation and forest change images in Colombia as well as a protected area feature collection to practice the conversion between raster and vector formats, and to identify situations in which this is worthwhile.
 
 
-## Raster to Vector Conversion 
+### Raster to Vector Conversion 
 
-### Raster to Polygons
+#### Raster to Polygons
 
 In this section we will convert an elevation image (raster) to a feature collection (vector). We will start by loading the Global Multi-Resolution Terrain Elevation Data 2010 and the Global Administrative Unit Layers 2015 dataset to focus on Colombia. The elevation image is a raster at 7.5 arc-second spatial resolution containing a continuous measure of elevation in meters in each pixel.
 
@@ -497,7 +484,7 @@ We can see now that the polygons have more distinct shapes with many fewer small
 ![Fig. F5.1.2 Before (left) and after (right) applying focalMode](F5/image37.png)
 
 
-### Raster to Points
+#### Raster to Points
 
 Lastly, we will convert a small part of this elevation image into a point vector dataset. For this exercise, we will use the same example and build on the code from the previous subsection. This might be useful when you want to use geospatial data in a tabular format in combination with other conventional datasets such as economic indicators (Fig. F5.1.3).
 
@@ -508,6 +495,7 @@ Lastly, we will convert a small part of this elevation image into a point vector
 
 The easiest way to do this is to use sample while activating the geometries parameter. This will extract the points at the centroid of the elevation pixel.
 
+```js
 var geometry = ee.Geometry.Polygon([  
    [-89.553, -0.929],  
    [-89.436, -0.929],  
@@ -516,7 +504,7 @@ var geometry = ee.Geometry.Polygon([
    [-89.553, -0.929]  
 ]);  
   
-```js
+
 // To zoom into the area, un-comment and run below  
 // Map.centerObject(geometry,12);  
 Map.addLayer(geometry, {}, 'Areas to extract points');  
@@ -563,7 +551,7 @@ Map.addLayer(elevationSamplesStratified, {}, 'Stratified samples');
 :::{.callout-note}
 Code Checkpoint F51a. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-##3. A More Complex Example
+###3. A More Complex Example
 
 In this section we’ll use two global datasets, one to represent raster formats and the other vectors:
 
@@ -716,7 +704,7 @@ Map.addLayer(deforestationLargeOutline, {
 :::{.callout-note}
 Code Checkpoint F51b. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-### Raster Properties to Vector Fields
+#### Raster Properties to Vector Fields
 
 Sometimes we want to extract information from a raster to be included in an existing vector dataset. An example might be estimating a deforestation rate for a set of protected areas. Rather than perform this task on a case-by-case basis, we can attach information generated from an image as a property of a feature.
 
@@ -784,11 +772,11 @@ print(wdpaSubset.reduceColumns({
 :::{.callout-note}
 Code Checkpoint F51c. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Vector-to-Raster Conversion
+### Vector-to-Raster Conversion
 
 In Sect. 1, we used the protected area feature collection as its original vector format. In this section, we will rasterize the protected area polygons to produce a mask and use this to assess rates of forest change.
 
-### Polygons to a Mask
+#### Polygons to a Mask
 
 The most common operation to convert from vector to raster is the production of binary image masks, describing whether a pixel intersects a line or falls within a polygon. To convert from vector to a raster mask, we can use the ee.FeatureCollection.reduceToImage method. Let’s continue with our example of the WDPA database and Global Forest Change data from the previous section:
 
@@ -852,7 +840,7 @@ This output can be useful when performing large-scale raster operations, such as
 :::{.callout-note}
 Code Checkpoint F51d. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-### A More Complex Example
+#### A More Complex Example
 
 The reduceToImage method is not the only way to convert a feature collection to an image. We will create a distance image layer from the boundary of the protected area using distance. For this example, we return to the La Paya protected area explored in Sect. 1.
 
@@ -965,37 +953,18 @@ print('Deforestation within a 1km buffer outside the protected area (ha)',
 :::{.callout-note}
 Code Checkpoint F51e. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Synthesis {.unnumbered}
-
-Question 1. In this lab, we quantified rates of deforestation in La Paya. There is another protected area in the Colombian Amazon named Tinigua. By modifying the existing scripts, determine how the dynamics of forest change in Tinigua compare to those in La Paya with respect to:
-
-*   the number of deforestation events
-*   the year with the greatest number of change events
-*   the mean average area of change events
-*   the total area of loss
-
-Question 2. In Sect. 1.4, we only considered losses of tree cover, but many protected areas will also have increases in tree cover from regrowth (which is typical of shifting agriculture). Calculate growth in hectares using the Global Forest Change dataset’s gain layer for the six protected areas in Sect. 1.4 by extracting the raster properties and adding them to vector fields. Which has the greatest area of regrowth? Is this likely to be sufficient to balance out the rates of forest loss? Note: The gain layer shows locations where tree cover has increased for the period 2001–2012 (0 = no gain, 1 = tree cover increase), so for comparability use deforestation between the same time period of 2001–2012.
-
-Question 3. In Sect. 2.2, we considered rates of deforestation in a buffer zone around La Paya. Estimate the deforestation rates inside of La Paya using buffer zones. Is forest loss more common close to the boundary of the reserve?
-
-Question 4. Sometimes it’s advantageous to perform processing using raster operations, particularly at large scales. It is possible to perform many of the tasks in Sect. 1.3 and 1.4 by first converting the protected area vector to raster, and then using only raster operations. As an example, can you display only deforestation events >10 ha in La Paya using only raster data? (Hint: Consider using ee.Image.connectedPixelCount. You may also want to also look at Sect. 2.1).
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 In this chapter, you learned how to convert raster to vector and vice versa. More importantly, you now have a better understanding of why and when such conversions are useful. Our examples should give you practical applications and ideas for using these techniques.
 
 
 
-# Zonal Statistics
+## Zonal Statistics
 
-
-
-
- 
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
  
 
@@ -1003,12 +972,12 @@ Sara Winsemius and Justin Braaten
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
 
 
 The purpose of this chapter is to extract values from rasters for intersecting points or polygons. We will lay out the process and a function to calculate zonal statistics, which includes optional parameters to modify the function, and then apply the process to three examples using different raster datasets and combinations of parameters.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
  
 
 *   Buffering points as square or circular regions.
@@ -1017,7 +986,7 @@ The purpose of this chapter is to extract values from rasters for intersecting p
 *   Exporting computation results to a table.
 *   Copying properties from one image to another.
 
-## Assumes you know how to:{.unlisted .unnumbered}
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 
 *   Recognize similarities and differences among Landsat 5, 7, and 8 spectral bands (Part F1, Part F2, Part F3).
@@ -1028,8 +997,10 @@ The purpose of this chapter is to extract values from rasters for intersecting p
 *   Export calculated data to tables with Tasks (Chap. F5.0).
 *   Understand the differences between raster and vector data (Chap. F5.0, Chap. F5.1).
 *   Write a function and map it over a FeatureCollection (Chap. F5.1).
+:::
 
-## Introduction to Theory 
+### Introduction {.unlisted .unnumbered}
+
 
 Anyone working with field data collected at plots will likely need to summarize raster-based data associated with those plots. For instance, they need to know the Normalized Difference Vegetation Index (NDVI), precipitation, or elevation for each plot (or surrounding region). Calculating statistics from a raster within given regions is called zonal statistics. Zonal statistics were calculated in Chaps. F5.0 and F5.1 using ee.Image.ReduceRegions. Here, we present a more general approach to calculating zonal statistics with a custom function that works for both ee.Image and ee.ImageCollection objects. In addition to its flexibility, the reduction method used here is less prone to “Computed value is too large” errors that can occur when using ReduceRegions with very large or complex ee.FeatureCollection object inputs.
 
@@ -1040,14 +1011,14 @@ In fieldwork, researchers often work with plots, which are commonly recorded as 
 To choose the size of your neighborhood, you will need to consider your research questions, the spatial resolution of the dataset, the size of your field plot, and the error from your GPS. For example, the raster value extracted for randomly placed 20 m diameter plots would likely merit use of a neighborhood mean when using Sentinel-2 or Landsat 8—at 10 m and 30 m spatial resolution, respectively—while using a thermal band from MODIS (Moderate Resolution Imaging Spectroradiometer) at 1000 m may not. While much of this tutorial is written with plot points and buffers in mind, a polygon asset with predefined regions will serve the same purpose.
 
 
-## Functions
+### Functions
 
 Two functions are provided; copy and paste them into your script:
 
 *   A function to generate circular or square regions from buffered points
 *   A function to extract image pixel neighborhood statistics for a given region
 
-### Function: bufferPoints(radius, bounds)
+#### Function: bufferPoints(radius, bounds)
 
 Our first function, bufferPoints, returns a function for adding a buffer to points and optionally transforming to rectangular bounds (see Table F5.2.1).
 
@@ -1077,7 +1048,7 @@ function bufferPoints(radius, bounds) {   return function(pt) {
    };  
 }
 
-### Function: zonalStats(fc, params)
+#### Function: zonalStats(fc, params)
 
 The second function, zonalStats, reduces images in an ImageCollection by regions defined in a FeatureCollection. Note that reductions can return null statistics that you might want to filter out of the resulting feature collection. Null statistics occur when there are no valid pixels intersecting the region being reduced. This situation can be caused by points that are outside of an image or in regions that are masked for quality or clouds.
 
@@ -1187,7 +1158,7 @@ function zonalStats(ic, fc, params) {   // Initialize internal params dictionary
            });       // Converts the feature collection of feature collections to a single       //feature collection.   }).flatten();   return results;  
 }
 
-## Point Collection Creation
+### Point Collection Creation
 
 Below, we create a set of points that form the basis of the zonal statistics calculations. Note that a unique plot_id property is added to each point. A unique plot or point ID is important to include in your vector dataset for future filtering and joining.
 
@@ -1202,7 +1173,7 @@ var pts = ee.FeatureCollection([   ee.Feature(ee.Geometry.Point([-118.6010, 37.0
 :::{.callout-note}
 Code Checkpoint F52a. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Neighborhood Statistic Examples
+### Neighborhood Statistic Examples
 
 The following examples demonstrate extracting raster neighborhood statistics for the following:
 
@@ -1212,11 +1183,11 @@ The following examples demonstrate extracting raster neighborhood statistics for
 
 In each example, the points created in the previous section will be buffered and then used as regions to extract zonal statistics for each image in the image collection.
 
-### Topographic Variables
+#### Topographic Variables
 
 This example demonstrates how to calculate zonal statistics for a single multiband image. This Digital Elevation Model (DEM) contains a single topographic band representing elevation.
 
-###Buffer the Points
+####Buffer the Points
 
 Nex, we will apply a 45 m radius buffer to the points defined previously by mapping the bufferPoints function over the feature collection. The radius is set to 45 m to correspond to the 90 m pixel resolution of the DEM. In this case, circles are used instead of squares (set the second argument as false, i.e., do not use bounds).
 
@@ -1225,7 +1196,7 @@ Nex, we will apply a 45 m radius buffer to the points defined previously by mapp
 var ptsTopo = pts.map(bufferPoints(45, false));
 
 ```
-###Calculate Zonal Statistics
+####Calculate Zonal Statistics
 
 There are two important things to note about the zonalStats function that this example addresses:
 
@@ -1345,17 +1316,17 @@ slope
 
 29.4
 
-### MODIS Time Series
+#### MODIS Time Series
 
 A time series of MODIS eight-day surface reflectance composites demonstrates how to calculate zonal statistics for a multiband ImageCollection that requires no preprocessing, such as cloud masking or computation. Note that there is no built-in function for performing region reductions on ImageCollection objects. The zonalStats function that we are using for reduction is mapping the reduceRegions function over an ImageCollection.
 
-###Buffer the Points
+####Buffer the Points
 
 In this example, suppose the point collection represents center points for field plots that are 100 m x 100 m, and apply a 50 m radius buffer to the points to match the size of the plot. Since we want zonal statistics for square plots, set the second argument of the bufferPoints function to true, so that the bounds of the buffered points are returned.
 
 var ptsModis = pts.map(bufferPoints(50, true));
 
-###Calculate Zonal Statistic
+####Calculate Zonal Statistic
 
 Import the MODIS 500 m global eight-day surface reflectance composite collection and filter the collection to include data for July, August, and September from 2015 through 2019.
 
@@ -1383,13 +1354,13 @@ var ptsModisStats = zonalStats(modisCol, ptsModis, params);print('Limited MODIS 
 ```
 The result is a feature collection with a feature for all combinations of plots and images. Interpreted as a table, the result has 200 rows (5 plots times 40 images) and as many columns as there are feature properties. Feature properties include those from the plot asset and the image, and any associated non-system image properties. Note that the printed results are limited to the first 50 features for brevity.
 
-### Landsat Time Series
+#### Landsat Time Series
 
 This example combines Landsat surface reflectance imagery across three instruments: Thematic Mapper (TM) from Landsat 5, Enhanced Thematic Mapper Plus (ETM+) from Landsat 7, and Operational Land Imager (OLI) from Landsat 8.
 
 The following section prepares these collections so that band names are consistent and cloud masks are applied. Reflectance among corresponding bands are roughly congruent for the three sensors when using the surface reflectance product; therefore the processing steps that follow do not address inter-sensor harmonization. Review the current literature on inter-sensor harmonization practices if you'd like to apply a correction.
 
-###Prepare the Landsat Image Collection
+####Prepare the Landsat Image Collection
 
 First, define the function to mask cloud and shadow pixels (See Chap. F4.3 for more detail on cloud masking).
 
@@ -1450,7 +1421,7 @@ Merge the prepared sensor collections.
 
 var landsatCol = oliCol.merge(etmCol).merge(tmCol);
 
-###Calculate Zonal Statistics
+####Calculate Zonal Statistics
 
 Reduce each image in the collection by each plot according to the following parameters. Note that this example defines the imgProps and imgPropsRename parameters to copy over and rename just two selected image properties: Landsat image ID and the satellite that collected the data. It also uses the max reducer, which, as an unweighted reducer, will return the maximum value from pixels that have their centroid within the buffer (see Sect. 4.1 below for more details).
 
@@ -1475,7 +1446,7 @@ print('Limited Landsat zonal stats table', ptsLandsatStats.limit(50));
 ```
 The result is a feature collection with a feature for all combinations of plots and images.
 
-###Dealing with Large Collections
+####Dealing with Large Collections
 
 If your browser times out, try exporting the results (as described in Chap. F6.2). It’s likely that point feature collections that cover a large area or contain many points (point-image observations) will need to be exported as a batch task by either exporting the final feature collection as an asset or as a CSV/shapefile/GeoJSON to Google Drive or GCS.
 
@@ -1496,15 +1467,15 @@ Export.table.toDrive({
 :::{.callout-note}
 Code Checkpoint F52b. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Additional Notes
+### Additional Notes
 
-### Weighted Versus Unweighted Region Reduction
+#### Weighted Versus Unweighted Region Reduction
 
 A region used for calculation of zonal statistics often bisects multiple pixels. Should partial pixels be included in zonal statistics? Earth Engine lets you decide by allowing you to define a reducer as either weighted or unweighted (or you can provide per-pixel weight specification as an image band). A weighted reducer will include partial pixels in the zonal statistic calculation by weighting each pixel's contribution according to the fraction of the area intersecting the region. An unweighted reducer, on the other hand, gives equal weight to all pixels whose cell center intersects the region; all other pixels are excluded from calculation of the statistic.
 
 For aggregate reducers like ee.Reducer.mean and ee.Reducer.median, the default mode is weighted, while identifier reducers such as ee.Reducer.min and ee.Reducer.max are unweighted. You can adjust the behavior of weighted reducers by calling unweighted on them, as in ee.Reducer.mean.unweighted. You may also specify the weights by modifying the reducer with splitWeights; however, that is beyond the scope of this book.
 
-### Copy Properties to Computed Images
+#### Copy Properties to Computed Images
 
 Derived, computed images do not retain the properties of their source image, so be sure to copy properties to computed images if you want them included in the region reduction table. For instance, consider the simple computation of unscaling Landsat SR data:
 
@@ -1537,7 +1508,7 @@ print('Selected image properties retained', computedImg
 ```
 Now selected properties are included. Use this technique when returning computed, derived images in a mapped function, and in single-image operations.
 
-### Understanding Which Pixels are Included in Polygon Statistics
+#### Understanding Which Pixels are Included in Polygon Statistics
 
 If you want to visualize what pixels are included in a polygon for a region reducer, you can adapt the following code to use your own region (by replacing geometry), dataset, desired scale, and CRS parameters. The important part to note is that the image data you are adding to the map is reprojected using the same scale and CRS as that used in your region reduction (see Fig. F5.2.3).
 
@@ -1617,32 +1588,11 @@ Finally, here are some notes on CRS and scale:
 *   Specifying the CRS and scale in both the reduceRegion and addLayer functions allows the map visualization to align with the information printed in the Console.
 *   The Earth Engine default, WGS 84 lat long (EPSG:4326), is a generic CRS that works worldwide. The code above reprojects to EPSG:5070, North American Equal Albers, which is a CRS that preserves area for North American locations. Use the CRS that is best for your use case when adapting this to your own project, or maintain (and specify) the CRS of the image using, for example, crs: 'img.projection().crs()'.
 
-## Synthesis {.unnumbered}
-
-Question 1. Look at the MODIS example (Sect. 3.2), which uses the median reducer. Try modifying the reducer to be unweighted, either by specifying unweighted or using an identifier reducer like max. What happens, and why?
-
-Question 2. Calculate zonal statistics for your own buffered points or polygons using a raster and reducer of interest. Be sure to consider the spatial scale of the raster and whether a weighted or unweighted reducer would be more appropriate for your interests.
-
-If the point or polygon file is stored in a local shapefile or CSV file, first upload the data to your Earth Engine assets. All columns in your vector file, such as the plot name, will be retained through this process. Once you have an Earth Engine table asset ready, import the asset into your script by hovering over the name of the asset and clicking the arrow at the right side, or by calling it in your script with the following code.
-
-var pts = ee.FeatureCollection('users/yourUsername/yourAsset');
-
-If you prefer to define points or polygons dynamically rather than loading an asset, you can add them to your script using the geometry tools. See Chap. F2.1 and F5.0 for more detail on adding and creating vector data.
-
-Question 3. Try the code from Sect. 4.3 using the MODIS data and the first point from the pts variable. Among other modifications, you will need to create a buffer for the point, take a single MODIS image from the collection, and change visualization parameters.
-
-*   Think about the CRS in the code: The code reprojects to EPSG:5070, but MODIS is collected in the sinusoidal projection SR-ORG:6974. Try that CRS and describe how the image changes.
-*   Is the count reducer weighted or unweighted? Give an example of a circumstance to use a weighted reducer and an example for an unweighted reducer. Specify the buffer size you would use and the spatial resolution of your dataset.
-
-Question 4. In the examples above, only a single ee.Reducer is passed to the zonalStats function, which means that only a single statistic is calculated (for example, zonal mean or median or maximum). What if you want multiple statistics—can you alter the code in Sect. 3.1 to (1) make the point buffer 500 instead of 45; (2) add the reducer parameter to the params dictionary; and (3) as its argument, supply a combined ee.Reducer that will calculate minimum, maximum, standard deviation, and mean statistics?
-
-To achieve this you’ll need to chain several ee.Reducer.combine functions together. Note that if you accept all the individual ee.Reducer and ee.Reducer.combine function defaults, you’ll run into two problems related to reducer weighting differences, and whether or not the image inputs are shared among the combined set of reducers. How can you manipulate the individual ee.Reducer and ee.Reducer.combine functions to achieve the goal of calculating multiple zonal statistics in one call to the zonalStats function?
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 In this chapter, you used functions containing optional parameters to extract raster values for collocated points. You also learned how to buffer points, and apply weighted and unweighted reducers to get different types of zonal statistics. These functions were applied to three examples that differed by raster dataset, reducer, spatial resolution, and scale. Lastly, you covered related topics like weighting of reducers and buffer visualization. Now you’re ready to apply these ideas to your own work!
 
-## References {.unnumbered}
+### References {.unnumbered}
 
 Cansler CA, McKenzie D (2012) How robust are burn severity indices when applied in a new region? Evaluation of alternate field-based and remote-sensing methods. Remote Sens 4:456–483. https://doi.org/10.3390/rs4020456
 
@@ -1650,18 +1600,12 @@ Miller JD, Thode AE (2007) Quantifying burn severity in a heterogeneous landscap
 
 
 
-# Advanced Vector Operations
+## Advanced Vector Operations
 
-
-
-
-
-
- 
 :::{.callout-tip}
-# Chapter Information
+## Chapter Information
 
-## Author {.unlisted .unnumbered}
+#### Author {.unlisted .unnumbered}
 
  
 
@@ -1669,26 +1613,25 @@ Ujaval Gandhi
 
 
 
-## Overview {.unlisted .unnumbered}
+#### Overview {.unlisted .unnumbered}
  
 
 This chapter covers advanced techniques for visualizing and analyzing vector data in Earth Engine. There are many ways to visualize feature collections, and you will learn how to pick the appropriate method to create visualizations, such as a choropleth map. We will also cover geoprocessing techniques involving multiple vector layers, such as selecting features in one layer by their proximity to features in another layer and performing spatial joins.
 
-## Learning Outcomes {.unlisted .unnumbered}
+#### Learning Outcomes {.unlisted .unnumbered}
 
 
 *   Visualizing any vector dataset and creating a thematic map.
 *   Understanding joins in Earth Engine.
 *   Carrying out geoprocessing tasks with vector layers in Earth Engine.
 
-## Assumes you know how to:{.unlisted .unnumbered}
-
+#### Assumes you know how to:{.unlisted .unnumbered}
 
 *   Filter a FeatureCollection to obtain a subset (Chap. F5.0, Chap. F5.1).
 *   Write a function and map it over a FeatureCollection (Chap. F5.1, Chap. F5.2).
+:::
 
-
-## Visualizing Feature Collections
+### Visualizing Feature Collections
 
 There is a distinct difference between how rasters and vectors are visualized. While images are typically visualized based on pixel values, vector layers use feature properties (i.e., attributes) to create a visualization. Vector layers are rendered on the Map by assigning a value to the red, green, and blue channels for each pixel on the screen based on the geometry and attributes of the features. The functions used for vector data visualization in Earth Engine are listed below in increasing order of complexity.
 
@@ -1699,12 +1642,12 @@ There is a distinct difference between how rasters and vectors are visualized. W
 
 In the exercises below, we will learn how to use each of these functions and see how they can generate different types of maps.
 
-### Creating a Choropleth Map
+#### Creating a Choropleth Map
 
 We will use the TIGER: US Census Blocks layer, which stores census block boundaries and their characteristics within the United States, along with the San Francisco neighborhoods layer from Chap. F5.0 to create a population density map for the city of San Francisco.
 
 We start by loading the census blocks and San Francisco neighborhoods layers. We use ee.Filter.bounds to filter the census blocks layer to the San Francisco boundary.
-
+```js
 var blocks = ee.FeatureCollection('TIGER/2010/Blocks');  
 var roads = ee.FeatureCollection('TIGER/2016/Roads');  
 var sfNeighborhoods = ee.FeatureCollection(   'projects/gee-book/assets/F5-0/SFneighborhoods');  
@@ -1712,7 +1655,6 @@ var sfNeighborhoods = ee.FeatureCollection(   'projects/gee-book/assets/F5-0/SFn
 var geometry = sfNeighborhoods.geometry();  
 Map.centerObject(geometry);  
   
-```js
 // Filter blocks to the San Francisco boundary.  
 var sfBlocks = blocks.filter(ee.Filter.bounds(geometry));
 
@@ -1732,7 +1674,13 @@ The census blocks table has a property named 'pop10' containing the population t
 
 ```js
 // Add a pop_density column.  
-var sfBlocks = sfBlocks.map(function(f) {   // Get the polygon area in square miles.   var area_sqmi = f.area().divide(2.59e6);   var population = f.get('pop10');   // Calculate population density.   var density = ee.Number(population).divide(area_sqmi);   return f.set({       'area_sqmi': area_sqmi,       'pop_density': density  
+var sfBlocks = sfBlocks.map(function(f) {   // Get the polygon area in square miles.   
+var area_sqmi = f.area().divide(2.59e6);   
+var population = f.get('pop10');   // Calculate population density.   
+var density = ee.Number(population).divide(area_sqmi);   
+return f.set({       
+    'area_sqmi': area_sqmi,       
+    'pop_density': density  
    });  
 });
 
@@ -1747,8 +1695,6 @@ print(stats);
 ```
 You will see that the population density values have a large range. We also have values that are greater than 100,000, so we need to make sure we select a data type that can store values of this size. We create an empty image and cast it to int32, which is able to hold large integer values.
 
-D
-
 The result is an image with pixel values representing the population density of the polygons. We can now use the standard image visualization method to add this layer to the Map (Fig. F5.3.2). Then, we need to determine minimum and maximum values for the visualization parameters.A reliable technique to produce a good visualization is to find minimum and maximum values that are within one standard deviation. From the statistics that we calculated earlier, we can estimate good minimum and maximum values to be 0 and 50000, respectively.
 
 var palette = ['fee5d9', 'fcae91', 'fb6a4a', 'de2d26', 'a50f15'];  
@@ -1762,7 +1708,7 @@ Map.addLayer(sfBlocksPaint.clip(geometry), visParams,   'Population Density');
 ![Fig. F5.3.2 San Francisco population density](F5/image41.png)
 
 
-### Creating a Categorical Map
+#### Creating a Categorical Map
 
 Continuing the exploration of styling methods, we will now learn about draw and style. These are the preferred methods of styling for points and line layers. Let’s see how we can visualize the TIGER: US Census Roads layer to create a categorical map.
 
@@ -1923,7 +1869,7 @@ Code Checkpoint F53a. The book’s repository contains a script that shows what 
 :::
 Save your script for your own future use, as outlined in Chap. F1.0. Then, refresh the Code Editor to begin with a new script for the next section.
 
-## Joins with Feature Collections
+### Joins with Feature Collections
 
 Earth Engine was designed as a platform for processing raster data, and that is where it shines. Over the years, it has acquired advanced vector data processing capabilities, and users are now able to carry out complex geoprocessing tasks within Earth Engine. You can leverage the distributed processing power of Earth Engine to process large vector layers in parallel.
 
@@ -1934,7 +1880,7 @@ This section shows how you can do spatial queries and spatial joins using multip
 
 Joins are one of the harder skills to master, but doing so will help you perform many complex analysis tasks within Earth Engine. We will go through practical examples that will help you understand these concepts and the workflow better.
 
-### Selecting by Location
+#### Selecting by Location
 
 In this section, we will learn how to select features from one layer that are within a specified distance from features in another layer. We will continue to work with the San Francisco census blocks and roads datasets from the previous section. We will implement a join to select all blocks in San Francisco that are within 1 km of an interstate highway.
 
@@ -2001,7 +1947,7 @@ Map.addLayer(closeBlocksDrawn, {}, 'Blocks within 1km');
 ![Fig. F5.3.6 Selected blocks within 1 km of an interstate highway](F5/image40.png)
 
 
-### Spatial Joins
+#### Spatial Joins
 
 A spatial join allows you to query two collections based on the spatial relationship. We will now implement a spatial join to count points in polygons. We will work with a dataset of tree locations in San Francisco and polygons of neighborhoods to produce a CSV file with the total number of trees in each neighborhood.
 
@@ -2094,10 +2040,6 @@ The final result is a CSV file with the neighborhood names and total numbers of 
 :::{.callout-note}
 Code Checkpoint F53b. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-## Synthesis {.unnumbered}
-
-Assignment 1. What join would you use if you wanted to know which neighborhood each tree belongs to? Modify the code above to do a join and post-process the result to add a neighborhood property to each tree point. Export the results as a shapefile.
-
-## Conclusion {.unnumbered}
+### Conclusion {.unnumbered}
 
 This chapter covered visualization and analysis using vector data in Earth Engine. You should now understand different functions for FeatureCollection visualization and be able to create thematic maps with vector layers. You also learned techniques for doing spatial queries and spatial joins within Earth Engine. Earth Engine is capable of handling large feature collections and can be effectively used for many spatial analysis tasks.

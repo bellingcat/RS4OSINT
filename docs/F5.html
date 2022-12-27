@@ -290,87 +290,35 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exploring-vectors" id="toc-exploring-vectors" class="nav-link active" data-scroll-target="#exploring-vectors"><span class="toc-section-number">7</span>  Exploring Vectors</a>
+  <li><a href="#exploring-vectors" id="toc-exploring-vectors" class="nav-link active" data-scroll-target="#exploring-vectors"><span class="toc-section-number">6.1</span>  Exploring Vectors</a>
   <ul class="collapse">
-  <li><a href="#using-geometry-tools-to-create-features-in-earth-engine" id="toc-using-geometry-tools-to-create-features-in-earth-engine" class="nav-link" data-scroll-target="#using-geometry-tools-to-create-features-in-earth-engine"><span class="toc-section-number">7.1</span>  Using Geometry Tools to Create Features in Earth Engine</a></li>
-  <li><a href="#loading-existing-features-and-feature-collections-in-earth-engine" id="toc-loading-existing-features-and-feature-collections-in-earth-engine" class="nav-link" data-scroll-target="#loading-existing-features-and-feature-collections-in-earth-engine"><span class="toc-section-number">7.2</span>  Loading Existing Features and Feature Collections in Earth Engine</a></li>
-  <li><a href="#importing-features-into-earth-engine" id="toc-importing-features-into-earth-engine" class="nav-link" data-scroll-target="#importing-features-into-earth-engine"><span class="toc-section-number">7.3</span>  Importing Features into Earth Engine</a>
-  <ul class="collapse">
-  <li><a href="#find-a-spatial-dataset-of-san-francisco-neighborhoods" id="toc-find-a-spatial-dataset-of-san-francisco-neighborhoods" class="nav-link" data-scroll-target="#find-a-spatial-dataset-of-san-francisco-neighborhoods"><span class="toc-section-number">7.3.1</span>  Find a Spatial Dataset of San Francisco Neighborhoods</a></li>
-  <li><a href="#upload-sf-neighborhoods-file-as-an-asset" id="toc-upload-sf-neighborhoods-file-as-an-asset" class="nav-link" data-scroll-target="#upload-sf-neighborhoods-file-as-an-asset"><span class="toc-section-number">7.3.2</span>  Upload SF Neighborhoods File as an Asset</a></li>
-  <li><a href="#select-files-and-name-asset" id="toc-select-files-and-name-asset" class="nav-link" data-scroll-target="#select-files-and-name-asset"><span class="toc-section-number">7.3.3</span>  Select Files and Name Asset</a></li>
-  </ul></li>
-  <li><a href="#filtering-feature-collections-by-attributes" id="toc-filtering-feature-collections-by-attributes" class="nav-link" data-scroll-target="#filtering-feature-collections-by-attributes"><span class="toc-section-number">7.4</span>  Filtering Feature Collections by Attributes</a>
-  <ul class="collapse">
-  <li><a href="#filter-by-geometry-of-another-feature" id="toc-filter-by-geometry-of-another-feature" class="nav-link" data-scroll-target="#filter-by-geometry-of-another-feature"><span class="toc-section-number">7.4.1</span>  Filter by Geometry of Another Feature</a></li>
-  <li><a href="#filter-by-feature-attribute-properties" id="toc-filter-by-feature-attribute-properties" class="nav-link" data-scroll-target="#filter-by-feature-attribute-properties"><span class="toc-section-number">7.4.2</span>  Filter by Feature (Attribute) Properties</a></li>
-  <li><a href="#print-feature-attribute-properties-to-console" id="toc-print-feature-attribute-properties-to-console" class="nav-link" data-scroll-target="#print-feature-attribute-properties-to-console"><span class="toc-section-number">7.4.3</span>  Print Feature (Attribute) Properties to Console</a></li>
-  </ul></li>
-  <li><a href="#reducing-images-using-feature-geometry" id="toc-reducing-images-using-feature-geometry" class="nav-link" data-scroll-target="#reducing-images-using-feature-geometry"><span class="toc-section-number">7.5</span>  Reducing Images Using Feature Geometry</a>
-  <ul class="collapse">
-  <li><a href="#create-an-ndvi-image" id="toc-create-an-ndvi-image" class="nav-link" data-scroll-target="#create-an-ndvi-image"><span class="toc-section-number">7.5.1</span>  Create an NDVI Image</a></li>
-  <li><a href="#clip-the-ndvi-image-to-the-blocks-near-usf" id="toc-clip-the-ndvi-image-to-the-blocks-near-usf" class="nav-link" data-scroll-target="#clip-the-ndvi-image-to-the-blocks-near-usf"><span class="toc-section-number">7.5.2</span>  Clip the NDVI Image to the Blocks Near USF</a></li>
-  <li><a href="#compute-ndvi-statistics-by-block" id="toc-compute-ndvi-statistics-by-block" class="nav-link" data-scroll-target="#compute-ndvi-statistics-by-block"><span class="toc-section-number">7.5.3</span>  Compute NDVI Statistics by Block</a></li>
-  <li><a href="#export-table-of-ndvi-data-by-block-from-earth-engine-to-google-drive" id="toc-export-table-of-ndvi-data-by-block-from-earth-engine-to-google-drive" class="nav-link" data-scroll-target="#export-table-of-ndvi-data-by-block-from-earth-engine-to-google-drive"><span class="toc-section-number">7.5.4</span>  Export Table of NDVI Data by Block from Earth Engine to Google Drive</a></li>
-  </ul></li>
-  <li><a href="#identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi" id="toc-identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi" class="nav-link" data-scroll-target="#identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi"><span class="toc-section-number">7.6</span>  Identifying the Block in the Neighborhood Surrounding USF with the Highest NDVI</a></li>
-  <li><a href="#synthesis" id="toc-synthesis" class="nav-link" data-scroll-target="#synthesis">Synthesis</a></li>
+  <li><a href="#using-geometry-tools-to-create-features-in-earth-engine" id="toc-using-geometry-tools-to-create-features-in-earth-engine" class="nav-link" data-scroll-target="#using-geometry-tools-to-create-features-in-earth-engine"><span class="toc-section-number">6.1.1</span>  Using Geometry Tools to Create Features in Earth Engine</a></li>
+  <li><a href="#loading-existing-features-and-feature-collections-in-earth-engine" id="toc-loading-existing-features-and-feature-collections-in-earth-engine" class="nav-link" data-scroll-target="#loading-existing-features-and-feature-collections-in-earth-engine"><span class="toc-section-number">6.1.2</span>  Loading Existing Features and Feature Collections in Earth Engine</a></li>
+  <li><a href="#importing-features-into-earth-engine" id="toc-importing-features-into-earth-engine" class="nav-link" data-scroll-target="#importing-features-into-earth-engine"><span class="toc-section-number">6.1.3</span>  Importing Features into Earth Engine</a></li>
+  <li><a href="#filtering-feature-collections-by-attributes" id="toc-filtering-feature-collections-by-attributes" class="nav-link" data-scroll-target="#filtering-feature-collections-by-attributes"><span class="toc-section-number">6.1.4</span>  Filtering Feature Collections by Attributes</a></li>
+  <li><a href="#reducing-images-using-feature-geometry" id="toc-reducing-images-using-feature-geometry" class="nav-link" data-scroll-target="#reducing-images-using-feature-geometry"><span class="toc-section-number">6.1.5</span>  Reducing Images Using Feature Geometry</a></li>
+  <li><a href="#identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi" id="toc-identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi" class="nav-link" data-scroll-target="#identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi"><span class="toc-section-number">6.1.6</span>  Identifying the Block in the Neighborhood Surrounding USF with the Highest NDVI</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
-  <li><a href="#rastervector-conversions" id="toc-rastervector-conversions" class="nav-link" data-scroll-target="#rastervector-conversions"><span class="toc-section-number">8</span>  Raster/Vector Conversions</a>
+  <li><a href="#rastervector-conversions" id="toc-rastervector-conversions" class="nav-link" data-scroll-target="#rastervector-conversions"><span class="toc-section-number">6.2</span>  Raster/Vector Conversions</a>
   <ul class="collapse">
-  <li><a href="#raster-to-vector-conversion" id="toc-raster-to-vector-conversion" class="nav-link" data-scroll-target="#raster-to-vector-conversion"><span class="toc-section-number">8.1</span>  Raster to Vector Conversion</a>
-  <ul class="collapse">
-  <li><a href="#raster-to-polygons" id="toc-raster-to-polygons" class="nav-link" data-scroll-target="#raster-to-polygons"><span class="toc-section-number">8.1.1</span>  Raster to Polygons</a></li>
-  <li><a href="#raster-to-points" id="toc-raster-to-points" class="nav-link" data-scroll-target="#raster-to-points"><span class="toc-section-number">8.1.2</span>  Raster to Points</a></li>
-  <li><a href="#raster-properties-to-vector-fields" id="toc-raster-properties-to-vector-fields" class="nav-link" data-scroll-target="#raster-properties-to-vector-fields"><span class="toc-section-number">8.1.3</span>  Raster Properties to Vector Fields</a></li>
-  </ul></li>
-  <li><a href="#vector-to-raster-conversion" id="toc-vector-to-raster-conversion" class="nav-link" data-scroll-target="#vector-to-raster-conversion"><span class="toc-section-number">8.2</span>  Vector-to-Raster Conversion</a>
-  <ul class="collapse">
-  <li><a href="#polygons-to-a-mask" id="toc-polygons-to-a-mask" class="nav-link" data-scroll-target="#polygons-to-a-mask"><span class="toc-section-number">8.2.1</span>  Polygons to a Mask</a></li>
-  <li><a href="#a-more-complex-example" id="toc-a-more-complex-example" class="nav-link" data-scroll-target="#a-more-complex-example"><span class="toc-section-number">8.2.2</span>  A More Complex Example</a></li>
-  </ul></li>
-  <li><a href="#synthesis-1" id="toc-synthesis-1" class="nav-link" data-scroll-target="#synthesis-1">Synthesis</a></li>
+  <li><a href="#raster-to-vector-conversion" id="toc-raster-to-vector-conversion" class="nav-link" data-scroll-target="#raster-to-vector-conversion"><span class="toc-section-number">6.2.1</span>  Raster to Vector Conversion</a></li>
+  <li><a href="#vector-to-raster-conversion" id="toc-vector-to-raster-conversion" class="nav-link" data-scroll-target="#vector-to-raster-conversion"><span class="toc-section-number">6.2.2</span>  Vector-to-Raster Conversion</a></li>
   <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
   </ul></li>
-  <li><a href="#zonal-statistics" id="toc-zonal-statistics" class="nav-link" data-scroll-target="#zonal-statistics"><span class="toc-section-number">9</span>  Zonal Statistics</a>
+  <li><a href="#zonal-statistics" id="toc-zonal-statistics" class="nav-link" data-scroll-target="#zonal-statistics"><span class="toc-section-number">6.3</span>  Zonal Statistics</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-theory" id="toc-introduction-to-theory" class="nav-link" data-scroll-target="#introduction-to-theory"><span class="toc-section-number">9.1</span>  Introduction to Theory</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">9.2</span>  Functions</a>
-  <ul class="collapse">
-  <li><a href="#function-bufferpointsradius-bounds" id="toc-function-bufferpointsradius-bounds" class="nav-link" data-scroll-target="#function-bufferpointsradius-bounds"><span class="toc-section-number">9.2.1</span>  Function: bufferPoints(radius, bounds)</a></li>
-  <li><a href="#function-zonalstatsfc-params" id="toc-function-zonalstatsfc-params" class="nav-link" data-scroll-target="#function-zonalstatsfc-params"><span class="toc-section-number">9.2.2</span>  Function: zonalStats(fc, params)</a></li>
-  </ul></li>
-  <li><a href="#point-collection-creation" id="toc-point-collection-creation" class="nav-link" data-scroll-target="#point-collection-creation"><span class="toc-section-number">9.3</span>  Point Collection Creation</a></li>
-  <li><a href="#neighborhood-statistic-examples" id="toc-neighborhood-statistic-examples" class="nav-link" data-scroll-target="#neighborhood-statistic-examples"><span class="toc-section-number">9.4</span>  Neighborhood Statistic Examples</a>
-  <ul class="collapse">
-  <li><a href="#topographic-variables" id="toc-topographic-variables" class="nav-link" data-scroll-target="#topographic-variables"><span class="toc-section-number">9.4.1</span>  Topographic Variables</a></li>
-  <li><a href="#modis-time-series" id="toc-modis-time-series" class="nav-link" data-scroll-target="#modis-time-series"><span class="toc-section-number">9.4.2</span>  MODIS Time Series</a></li>
-  <li><a href="#landsat-time-series" id="toc-landsat-time-series" class="nav-link" data-scroll-target="#landsat-time-series"><span class="toc-section-number">9.4.3</span>  Landsat Time Series</a></li>
-  </ul></li>
-  <li><a href="#additional-notes" id="toc-additional-notes" class="nav-link" data-scroll-target="#additional-notes"><span class="toc-section-number">9.5</span>  Additional Notes</a>
-  <ul class="collapse">
-  <li><a href="#weighted-versus-unweighted-region-reduction" id="toc-weighted-versus-unweighted-region-reduction" class="nav-link" data-scroll-target="#weighted-versus-unweighted-region-reduction"><span class="toc-section-number">9.5.1</span>  Weighted Versus Unweighted Region Reduction</a></li>
-  <li><a href="#copy-properties-to-computed-images" id="toc-copy-properties-to-computed-images" class="nav-link" data-scroll-target="#copy-properties-to-computed-images"><span class="toc-section-number">9.5.2</span>  Copy Properties to Computed Images</a></li>
-  <li><a href="#understanding-which-pixels-are-included-in-polygon-statistics" id="toc-understanding-which-pixels-are-included-in-polygon-statistics" class="nav-link" data-scroll-target="#understanding-which-pixels-are-included-in-polygon-statistics"><span class="toc-section-number">9.5.3</span>  Understanding Which Pixels are Included in Polygon Statistics</a></li>
-  </ul></li>
-  <li><a href="#synthesis-2" id="toc-synthesis-2" class="nav-link" data-scroll-target="#synthesis-2">Synthesis</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">6.3.1</span>  Functions</a></li>
+  <li><a href="#point-collection-creation" id="toc-point-collection-creation" class="nav-link" data-scroll-target="#point-collection-creation"><span class="toc-section-number">6.3.2</span>  Point Collection Creation</a></li>
+  <li><a href="#neighborhood-statistic-examples" id="toc-neighborhood-statistic-examples" class="nav-link" data-scroll-target="#neighborhood-statistic-examples"><span class="toc-section-number">6.3.3</span>  Neighborhood Statistic Examples</a></li>
+  <li><a href="#additional-notes" id="toc-additional-notes" class="nav-link" data-scroll-target="#additional-notes"><span class="toc-section-number">6.3.4</span>  Additional Notes</a></li>
   <li><a href="#conclusion-2" id="toc-conclusion-2" class="nav-link" data-scroll-target="#conclusion-2">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
-  <li><a href="#advanced-vector-operations" id="toc-advanced-vector-operations" class="nav-link" data-scroll-target="#advanced-vector-operations"><span class="toc-section-number">10</span>  Advanced Vector Operations</a>
+  <li><a href="#advanced-vector-operations" id="toc-advanced-vector-operations" class="nav-link" data-scroll-target="#advanced-vector-operations"><span class="toc-section-number">6.4</span>  Advanced Vector Operations</a>
   <ul class="collapse">
-  <li><a href="#visualizing-feature-collections" id="toc-visualizing-feature-collections" class="nav-link" data-scroll-target="#visualizing-feature-collections"><span class="toc-section-number">10.1</span>  Visualizing Feature Collections</a>
-  <ul class="collapse">
-  <li><a href="#creating-a-choropleth-map" id="toc-creating-a-choropleth-map" class="nav-link" data-scroll-target="#creating-a-choropleth-map"><span class="toc-section-number">10.1.1</span>  Creating a Choropleth Map</a></li>
-  <li><a href="#creating-a-categorical-map" id="toc-creating-a-categorical-map" class="nav-link" data-scroll-target="#creating-a-categorical-map"><span class="toc-section-number">10.1.2</span>  Creating a Categorical Map</a></li>
-  </ul></li>
-  <li><a href="#joins-with-feature-collections" id="toc-joins-with-feature-collections" class="nav-link" data-scroll-target="#joins-with-feature-collections"><span class="toc-section-number">10.2</span>  Joins with Feature Collections</a>
-  <ul class="collapse">
-  <li><a href="#selecting-by-location" id="toc-selecting-by-location" class="nav-link" data-scroll-target="#selecting-by-location"><span class="toc-section-number">10.2.1</span>  Selecting by Location</a></li>
-  <li><a href="#spatial-joins" id="toc-spatial-joins" class="nav-link" data-scroll-target="#spatial-joins"><span class="toc-section-number">10.2.2</span>  Spatial Joins</a></li>
-  </ul></li>
-  <li><a href="#synthesis-3" id="toc-synthesis-3" class="nav-link" data-scroll-target="#synthesis-3">Synthesis</a></li>
+  <li><a href="#visualizing-feature-collections" id="toc-visualizing-feature-collections" class="nav-link" data-scroll-target="#visualizing-feature-collections"><span class="toc-section-number">6.4.1</span>  Visualizing Feature Collections</a></li>
+  <li><a href="#joins-with-feature-collections" id="toc-joins-with-feature-collections" class="nav-link" data-scroll-target="#joins-with-feature-collections"><span class="toc-section-number">6.4.2</span>  Joins with Feature Collections</a></li>
   <li><a href="#conclusion-3" id="toc-conclusion-3" class="nav-link" data-scroll-target="#conclusion-3">Conclusion</a></li>
   </ul></li>
   </ul>
@@ -397,16 +345,29 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 </header>
 
 <p>In addition to raster data processing, Earth Engine supports a rich set of vector processing tools. This Part introduces you to the vector framework in Earth Engine, shows you how to create and to import your vector data, and how to combine vector and raster data for analyses.</p>
-<section id="exploring-vectors" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Exploring Vectors</h1>
-<p>:::{.callout-tip} # Chapter Information</p>
-<section id="author" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="author">Author</h2>
+<section id="exploring-vectors" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="exploring-vectors"><span class="header-section-number">6.1</span> Exploring Vectors</h2>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Chapter Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<section id="author" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="author">Author</h4>
 <p>AJ Purdy, Ellen Brock, David Saah</p>
-<p>Overview</p>
+</section>
+<section id="overview" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="overview">Overview</h4>
 <p>In this chapter, you will learn about features and feature collections and how to use them in conjunction with images and image collections in Earth Engine. Maps are useful for understanding spatial patterns, but scientists often need to extract statistics to answer a question. For example, you may make a false-color composite showing which areas of San Francisco are more “green”—i.e., have more healthy vegetation—than others, but you will likely not be able to directly determine which block in a neighborhood is the most green. This tutorial will demonstrate how to do just that by utilizing vectors.</p>
 <p>As described in Chap. F4.0, an important way to summarize and simplify data in Earth Engine is through the use of reducers. Reducers operating across space were used in Chap. F3.0, for example, to enable image regression between bands. More generally, chapters in Part F3 and Part F4 used reducers mostly to summarize the values across bands or images on a pixel-by-pixel basis. What if you wanted to summarize information within the confines of given spatial elements- for example, within a set of polygons? In this chapter, we will illustrate and explore Earth Engine’s method for doing that, which is through a reduceRegions call.</p>
-<p>Learning Outcomes</p>
+</section>
+<section id="learning-outcomes" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h4>
 <ul>
 <li>Uploading and working with a shapefile as an asset to use in Earth Engine.</li>
 <li>Creating a new feature using the geometry tools.</li>
@@ -415,20 +376,26 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 <li>Use reduceRegions to summarize an image in irregular neighborhoods.</li>
 <li>Exporting calculated data to tables with Tasks.</li>
 </ul>
-<p>Assumes you know how to:</p>
+</section>
+<section id="assumes-you-know-how-to" class="level3 unlisted unnumbered">
+<h3 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to">Assumes you know how to:</h3>
 <ul>
 <li>Import images and image collections, filter, and visualize (Part F1).</li>
 <li>Calculate and interpret vegetation indices (Chap. F2.0).</li>
 <li>Use drawing tools to create points, lines, and polygons (Chap. F2.1).</li>
 </ul>
-<p>Introduction to Theory</p>
+</section>
+</div>
+</div>
+<section id="introduction" class="level3 unlisted unnumbered">
+<h3 class="unlisted unnumbered anchored" data-anchor-id="introduction">Introduction</h3>
 <p>In the world of geographic information systems (GIS), data is typically thought of in one of two basic data structures: raster and vector. In previous chapters, we have principally been focused on raster data—data using the remote sensing vocabulary of pixels, spatial resolution, images, and image collections. Working within the vector framework is also a crucial skill to master. If you don’t know much about GIS, you can find any number of online explainers of the distinctions between these data types, their strengths and limitations, and analyses using both data types. Being able to move fluidly between a raster conception and a vector conception of the world is powerful, and is facilitated with specialized functions and approaches in Earth Engine.</p>
 <p>For our purposes, you can think of vector data as information represented as points (e.g., locations of sample sites), lines (e.g., railroad tracks), or polygons (e.g., the boundary of a national park or a neighborhood). Line data and polygon data are built up from points: for example, the latitude and longitude of the sample sites, the points along the curve of the railroad tracks, and the corners of the park that form its boundary. These points each have a highly specific location on Earth’s surface, and the vector data formed from them can be used for calculations with respect to other layers. As will be seen in this chapter, for example, a polygon can be used to identify which pixels in an image are contained within its borders. Point-based data have already been used in earlier chapters for filtering image collections by location (see Part F1), and can also be used to extract values from an image at a point or a set of points (see Chap. F5.2). Lines possess the dimension of length and have similar capabilities for filtering image collections and accessing their values along a transect. In addition to using polygons to summarize values within a boundary, they can be used for other, similar purposes—for example, to clip an image.</p>
 <p>As you have seen, raster features in Earth Engine are stored as an Image or as part of an ImageCollection. Using a similar conceptual model, vector data in Earth Engine is stored as a Feature or as part of a FeatureCollection. Features and feature collections provide useful data to filter images and image collections by their location, clip images to a boundary, or statistically summarize the pixel values within a region.</p>
 <p>In the following example, you will use features and feature collections to identify which city block near the University of San Francisco (USF) campus is the most green.</p>
 </section>
-<section id="using-geometry-tools-to-create-features-in-earth-engine" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="using-geometry-tools-to-create-features-in-earth-engine"><span class="header-section-number">7.1</span> Using Geometry Tools to Create Features in Earth Engine</h2>
+<section id="using-geometry-tools-to-create-features-in-earth-engine" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="using-geometry-tools-to-create-features-in-earth-engine"><span class="header-section-number">6.1.1</span> Using Geometry Tools to Create Features in Earth Engine</h3>
 <p>To demonstrate how geometry tools in Earth Engine work, let’s start by creating a point, and two polygons to represent different elements on the USF campus.</p>
 <p>Click on the geometry tools in the top left of the Map pane and create a point feature. Place a new point where USF is located (see Fig. F5.0.1).</p>
 <div class="quarto-figure quarto-figure-center">
@@ -460,8 +427,8 @@ Note
 </div>
 </div>
 </section>
-<section id="loading-existing-features-and-feature-collections-in-earth-engine" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="loading-existing-features-and-feature-collections-in-earth-engine"><span class="header-section-number">7.2</span> Loading Existing Features and Feature Collections in Earth Engine</h2>
+<section id="loading-existing-features-and-feature-collections-in-earth-engine" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="loading-existing-features-and-feature-collections-in-earth-engine"><span class="header-section-number">6.1.2</span> Loading Existing Features and Feature Collections in Earth Engine</h3>
 <p>If you wish to have the exact same geometry imports in this chapter for the rest of this exercise, begin this section using the code at the Code Checkpoint above.</p>
 <p>Next, you will load a city block dataset to determine the amount of vegetation on blocks near USF. The code below imports an existing feature dataset in Earth Engine. The Topologically Integrated Geographic Encoding and Referencing (TIGER) boundaries are census-designated boundaries that are a useful resource when comparing socioeconomic and diversity metrics with environmental datasets in the United States.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Import the Census Tiger Boundaries from GEE.  </span></span>
@@ -471,11 +438,11 @@ Note
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(tiger<span class="op">,</span> {   <span class="st">'color'</span><span class="op">:</span> <span class="st">'black'</span>}<span class="op">,</span> <span class="st">'Tiger'</span><span class="op">,</span> <span class="kw">false</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You should now have the geometry for USF’s campus and a layer added to your map that is not visualized for census blocks across the United States. Next, we will use neighborhood data to spatially filter the TIGER feature collection for blocks near USF’s campus.</p>
 </section>
-<section id="importing-features-into-earth-engine" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="importing-features-into-earth-engine"><span class="header-section-number">7.3</span> Importing Features into Earth Engine</h2>
+<section id="importing-features-into-earth-engine" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="importing-features-into-earth-engine"><span class="header-section-number">6.1.3</span> Importing Features into Earth Engine</h3>
 <p>There are many image collections loaded in Earth Engine, and they can cover a very large area that you might want to study. Borders can be quite intricate (for example, a detailed coastline), and fortunately there is no need for you to digitize the intricate boundary of a large geographic area. Instead, we will show how to find a spatial dataset online, download the data, and load this into Earth Engine as an asset for use.</p>
-<section id="find-a-spatial-dataset-of-san-francisco-neighborhoods" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="find-a-spatial-dataset-of-san-francisco-neighborhoods"><span class="header-section-number">7.3.1</span> Find a Spatial Dataset of San Francisco Neighborhoods</h3>
+<section id="find-a-spatial-dataset-of-san-francisco-neighborhoods" class="level4" data-number="6.1.3.1">
+<h4 data-number="6.1.3.1" class="anchored" data-anchor-id="find-a-spatial-dataset-of-san-francisco-neighborhoods"><span class="header-section-number">6.1.3.1</span> Find a Spatial Dataset of San Francisco Neighborhoods</h4>
 <p>Use your internet searching skills to locate the “Analysis Neighborhoods” dataset covering San Francisco. This data might be located in a number of places, including DataSF, the City of San Francisco’s public-facing data repository.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -486,8 +453,8 @@ Note
 <p>After you find the Analysis Neighborhoods layer, click Export and select Shapefile (Fig. F5.0.3). Keep track of where you save the zipped file, as we will load this into Earth Engine. Shapefiles contain vector-based data—points, lines, polygons—and include a number of files, such as the location information, attribute information, and others.</p>
 <p>Extract the folder to your computer. When you open the folder, you will see that there are actually many files. The extensions (.shp, .dbf, .shx, .prj) all provide a different piece of information to display vector-based data. The .shp file provides data on the geometry. The .dbf file provides data about the attributes. The .shx file is an index file. Lastly, the .prj file describes the map projection of the coordinate information for the shapefile. You will need to load all four files to create a new feature asset in Earth Engine.</p>
 </section>
-<section id="upload-sf-neighborhoods-file-as-an-asset" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="upload-sf-neighborhoods-file-as-an-asset"><span class="header-section-number">7.3.2</span> Upload SF Neighborhoods File as an Asset</h3>
+<section id="upload-sf-neighborhoods-file-as-an-asset" class="level4" data-number="6.1.3.2">
+<h4 data-number="6.1.3.2" class="anchored" data-anchor-id="upload-sf-neighborhoods-file-as-an-asset"><span class="header-section-number">6.1.3.2</span> Upload SF Neighborhoods File as an Asset</h4>
 <p>Navigate to the Assets tab (near Scripts). Select New &gt; Table Upload &gt; Shape files (Fig. F5.0.4).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -496,8 +463,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="select-files-and-name-asset" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="select-files-and-name-asset"><span class="header-section-number">7.3.3</span> Select Files and Name Asset</h3>
+<section id="select-files-and-name-asset" class="level4" data-number="6.1.3.3">
+<h4 data-number="6.1.3.3" class="anchored" data-anchor-id="select-files-and-name-asset"><span class="header-section-number">6.1.3.3</span> Select Files and Name Asset</h4>
 <p>Click the Select button and then use the file navigator to select the component files of the shapefile structure (i.e., .shp, .dbf, .shx, and .prj) (Fig. F5.0.5). Assign an Asset Name so you can recognize this asset.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -530,10 +497,10 @@ Note
 </div>
 </section>
 </section>
-<section id="filtering-feature-collections-by-attributes" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="filtering-feature-collections-by-attributes"><span class="header-section-number">7.4</span> Filtering Feature Collections by Attributes</h2>
-<section id="filter-by-geometry-of-another-feature" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="filter-by-geometry-of-another-feature"><span class="header-section-number">7.4.1</span> Filter by Geometry of Another Feature</h3>
+<section id="filtering-feature-collections-by-attributes" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="filtering-feature-collections-by-attributes"><span class="header-section-number">6.1.4</span> Filtering Feature Collections by Attributes</h3>
+<section id="filter-by-geometry-of-another-feature" class="level4" data-number="6.1.4.1">
+<h4 data-number="6.1.4.1" class="anchored" data-anchor-id="filter-by-geometry-of-another-feature"><span class="header-section-number">6.1.4.1</span> Filter by Geometry of Another Feature</h4>
 <p>First, let’s find the neighborhood associated with USF. Use the first point you created to find the neighborhood that intersects this point; filterBounds is the tool that does that, returning a filtered feature.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Filter sfNeighborhoods by USF.  </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> usfNeighborhood <span class="op">=</span> sfNeighborhoods<span class="op">.</span><span class="fu">filterBounds</span>(usf_point)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -542,8 +509,8 @@ Note
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> usfTiger <span class="op">=</span> tiger<span class="op">.</span><span class="fu">filterBounds</span>(usfNeighborhood)<span class="op">;</span>  </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(usfTiger<span class="op">,</span> {}<span class="op">,</span> <span class="st">'usf_Tiger'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="filter-by-feature-attribute-properties" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="filter-by-feature-attribute-properties"><span class="header-section-number">7.4.2</span> Filter by Feature (Attribute) Properties</h3>
+<section id="filter-by-feature-attribute-properties" class="level4" data-number="6.1.4.2">
+<h4 data-number="6.1.4.2" class="anchored" data-anchor-id="filter-by-feature-attribute-properties"><span class="header-section-number">6.1.4.2</span> Filter by Feature (Attribute) Properties</h4>
 <p>In addition to filtering a FeatureCollection by the location of another feature, you can also filter it by its properties. First, let’s print the usfTiger variable to the Console and inspect the object.</p>
 <p>print(usfTiger);</p>
 <p>You can click on the feature collection name in the Console to uncover more information about the dataset. Click on the columns to learn about what attribute information is contained in this dataset. You will notice this feature collection contains information on both housing (‘housing10’) and population (‘pop10’).</p>
@@ -558,8 +525,8 @@ Note
 <p>Map.addLayer(housing10_g50_l250, { ‘color’: ‘Magenta’}, ‘housing’);</p>
 <p>We have combined spatial and attribute information to narrow the set to only those blocks that meet our criteria of having between 50 and 250 housing units.</p>
 </section>
-<section id="print-feature-attribute-properties-to-console" class="level3" data-number="7.4.3">
-<h3 data-number="7.4.3" class="anchored" data-anchor-id="print-feature-attribute-properties-to-console"><span class="header-section-number">7.4.3</span> Print Feature (Attribute) Properties to Console</h3>
+<section id="print-feature-attribute-properties-to-console" class="level4" data-number="6.1.4.3">
+<h4 data-number="6.1.4.3" class="anchored" data-anchor-id="print-feature-attribute-properties-to-console"><span class="header-section-number">6.1.4.3</span> Print Feature (Attribute) Properties to Console</h4>
 <p>We can print out attribute information about these features. The block of code below prints out the area of the resultant geometry in square meters.</p>
 <p>var housing_area = housing10_g50_l250.geometry().area();<br>
 print(‘housing_area:’, housing_area);</p>
@@ -585,12 +552,12 @@ Note
 </div>
 </section>
 </section>
-<section id="reducing-images-using-feature-geometry" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="reducing-images-using-feature-geometry"><span class="header-section-number">7.5</span> Reducing Images Using Feature Geometry</h2>
+<section id="reducing-images-using-feature-geometry" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="reducing-images-using-feature-geometry"><span class="header-section-number">6.1.5</span> Reducing Images Using Feature Geometry</h3>
 <p>Now that we have identified the blocks around USF’s campus that have the right housing density, let’s find which blocks are the greenest.</p>
 <p>The Normalized Difference Vegetation Index (NDVI), presented in detail in Chap. F2.0, is often used to compare the greenness of pixels in different locations. Values on land range from 0 to 1, with values closer to 1 representing healthier and greener vegetation than values near 0.</p>
-<section id="create-an-ndvi-image" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="create-an-ndvi-image"><span class="header-section-number">7.5.1</span> Create an NDVI Image</h3>
+<section id="create-an-ndvi-image" class="level4" data-number="6.1.5.1">
+<h4 data-number="6.1.5.1" class="anchored" data-anchor-id="create-an-ndvi-image"><span class="header-section-number">6.1.5.1</span> Create an NDVI Image</h4>
 <p>The code below imports the Landsat 8 ImageCollection as landsat8. Then, the code filters for images in 2021. Lastly, the code sorts the images from 2021 to find the least cloudy day.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Import the Landsat 8 TOA image collection.  </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> landsat8 <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">'LANDSAT/LC08/C02/T1_TOA'</span>)<span class="op">;</span>  </span>
@@ -607,8 +574,8 @@ Note
 var red = image.select(‘B4’);<br>
 var ndvi = nir.subtract(red).divide(nir.add(red)).rename(‘NDVI’);</p>
 </section>
-<section id="clip-the-ndvi-image-to-the-blocks-near-usf" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="clip-the-ndvi-image-to-the-blocks-near-usf"><span class="header-section-number">7.5.2</span> Clip the NDVI Image to the Blocks Near USF</h3>
+<section id="clip-the-ndvi-image-to-the-blocks-near-usf" class="level4" data-number="6.1.5.2">
+<h4 data-number="6.1.5.2" class="anchored" data-anchor-id="clip-the-ndvi-image-to-the-blocks-near-usf"><span class="header-section-number">6.1.5.2</span> Clip the NDVI Image to the Blocks Near USF</h4>
 <p>Next, you will clip the NDVI layer to only show NDVI over USF’s neighborhood.</p>
 <p>The first section of code provides visualization settings.</p>
 <p>var ndviParams = {<br>
@@ -622,8 +589,8 @@ Map.addLayer(ndviUSFblocks, ndviParams, ‘NDVI image’);<br>
 Map.centerObject(usf_point, 14);</p>
 <p>The NDVI map for all of San Francisco is interesting, and shows variability across the region. Now, let’s compute mean NDVI values for each block of the city.</p>
 </section>
-<section id="compute-ndvi-statistics-by-block" class="level3" data-number="7.5.3">
-<h3 data-number="7.5.3" class="anchored" data-anchor-id="compute-ndvi-statistics-by-block"><span class="header-section-number">7.5.3</span> Compute NDVI Statistics by Block</h3>
+<section id="compute-ndvi-statistics-by-block" class="level4" data-number="6.1.5.3">
+<h4 data-number="6.1.5.3" class="anchored" data-anchor-id="compute-ndvi-statistics-by-block"><span class="header-section-number">6.1.5.3</span> Compute NDVI Statistics by Block</h4>
 <p>The code below uses the clipped image ndviUSFblocks and computes the mean NDVI value within each boundary. The scale provides a spatial resolution for the mean values to be computed on.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Reduce image by feature to compute a statistic e.g. mean, max, min etc.  </span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ndviPerBlock <span class="op">=</span> ndviUSFblocks<span class="op">.</span><span class="fu">reduceRegions</span>({  </span>
@@ -633,8 +600,8 @@ Map.centerObject(usf_point, 14);</p>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now we’ll use Earth Engine to find out which block is greenest.</p>
 </section>
-<section id="export-table-of-ndvi-data-by-block-from-earth-engine-to-google-drive" class="level3" data-number="7.5.4">
-<h3 data-number="7.5.4" class="anchored" data-anchor-id="export-table-of-ndvi-data-by-block-from-earth-engine-to-google-drive"><span class="header-section-number">7.5.4</span> Export Table of NDVI Data by Block from Earth Engine to Google Drive</h3>
+<section id="export-table-of-ndvi-data-by-block-from-earth-engine-to-google-drive" class="level4" data-number="6.1.5.4">
+<h4 data-number="6.1.5.4" class="anchored" data-anchor-id="export-table-of-ndvi-data-by-block-from-earth-engine-to-google-drive"><span class="header-section-number">6.1.5.4</span> Export Table of NDVI Data by Block from Earth Engine to Google Drive</h4>
 <p>Just as we loaded a feature into Earth Engine, we can export information from Earth Engine. Here, we will export the NDVI data, summarized by block, from Earth Engine to a Google Drive space so that we can interpret it in a program like Google Sheets or Excel.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Get a table of data out of Google Earth Engine.  </span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Export<span class="op">.</span><span class="at">table</span><span class="op">.</span><span class="fu">toDrive</span>({  </span>
@@ -664,8 +631,8 @@ Note
 </div>
 </section>
 </section>
-<section id="identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi"><span class="header-section-number">7.6</span> Identifying the Block in the Neighborhood Surrounding USF with the Highest NDVI</h2>
+<section id="identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi" class="level3" data-number="6.1.6">
+<h3 data-number="6.1.6" class="anchored" data-anchor-id="identifying-the-block-in-the-neighborhood-surrounding-usf-with-the-highest-ndvi"><span class="header-section-number">6.1.6</span> Identifying the Block in the Neighborhood Surrounding USF with the Highest NDVI</h3>
 <p>You are already familiar with filtering datasets by their attributes. Now you will sort a table and select the first element of the table.</p>
 <p>ndviPerBlock = ndviPerBlock.select([‘blockid10’, ‘mean’]);<br>
 print(‘ndviPerBlock’, ndviPerBlock);<br>
@@ -692,21 +659,13 @@ Note
 </div>
 </div>
 </section>
-<section id="synthesis" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="synthesis">Synthesis</h2>
-<p>Now it’s your turn to use both feature classes and to reduce data using a geographic boundary. Create a new script for an area of interest and accomplish the following assignments.</p>
-<p>Assignment 1. Create a study area map zoomed to a certain feature class that you made.</p>
-<p>Assignment 2. Filter one feature collection using feature properties.</p>
-<p>Assignment 3. Filter one feature collection based on another feature’s location in space.</p>
-<p>Assignment 4. Reduce one image to the geometry of a feature in some capacity; e.g., extract a mean value or a value at a point.</p>
-</section>
-<section id="conclusion" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="conclusion" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="conclusion">Conclusion</h3>
 <p>In this chapter, you learned how to import features into Earth Engine. In Sect. 1, you created new features using the geometry tools and loaded a feature from Earth Engine’s Data Catalog. In Sect. 2, you loaded a shapefile to an Earth Engine asset. In Sect. 3, you filtered feature collections based on their properties and locations. Finally, in Sects. 4 and 5, you used a feature collection to reduce an image, then exported the data from Earth Engine. Now you have all the tools you need to load, filter, and apply features to extract meaningful information from images using vector features in Earth Engine.</p>
 </section>
 </section>
-<section id="rastervector-conversions" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Raster/Vector Conversions</h1>
+<section id="rastervector-conversions" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="rastervector-conversions"><span class="header-section-number">6.2</span> Raster/Vector Conversions</h2>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -717,16 +676,16 @@ Chapter Information
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<section id="author-1" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="author-1">Author</h2>
+<section id="author-1" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="author-1">Author</h4>
 <p>Keiko Nomura, Samuel Bowers</p>
 </section>
-<section id="overview" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="overview">Overview</h2>
+<section id="overview-1" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="overview-1">Overview</h4>
 <p>The purpose of this chapter is to review methods of converting between raster and vector data formats, and to understand the circumstances in which this is useful. By way of example, this chapter focuses on topographic elevation and forest cover change in Colombia, but note that these are generic methods that can be applied in a wide variety of situations.</p>
 </section>
-<section id="learning-outcomes" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
+<section id="learning-outcomes-1" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes-1">Learning Outcomes</h4>
 <ul>
 <li>Understanding raster and vector data in Earth Engine and their differing properties.</li>
 <li>Knowing how and why to convert from raster to vector.</li>
@@ -734,8 +693,8 @@ Chapter Information
 <li>Write a function and map it over a FeatureCollection.</li>
 </ul>
 </section>
-<section id="assumes-you-know-how-to" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to">Assumes you know how to:</h2>
+<section id="assumes-you-know-how-to-1" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to-1">Assumes you know how to:</h4>
 <ul>
 <li>Import images and image collections, filter, and visualize (Part F1).</li>
 <li>Understand distinctions among Image, ImageCollection, Feature and FeatureCollection Earth Engine objects (Part F1, Part F2, Part F5).</li>
@@ -748,16 +707,16 @@ Chapter Information
 </section>
 </div>
 </div>
-<section id="introduction" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction-1" class="level3 unlisted unnumbered">
+<h3 class="unlisted unnumbered anchored" data-anchor-id="introduction-1">Introduction</h3>
 <p>Raster data consists of regularly spaced pixels arranged into rows and columns, familiar as the format of satellite images. Vector data contains geometry features (i.e., points, lines, and polygons) describing locations and areas. Each data format has its advantages, and both will be encountered as part of GIS operations.</p>
 <p>Raster and vector data are commonly combined (e.g., extracting image information for a given location or clipping an image to an area of interest); however, there are also situations in which conversion between the two formats is useful. In making such conversions, it is important to consider the key advantages of each format. Rasters can store data efficiently where each pixel has a numerical value, while vector data can more effectively represent geometric features where homogenous areas have shared properties. Each format lends itself to distinctive analytical operations, and combining them can be powerful.</p>
 <p>In this exercise, we’ll use topographic elevation and forest change images in Colombia as well as a protected area feature collection to practice the conversion between raster and vector formats, and to identify situations in which this is worthwhile.</p>
 </section>
-<section id="raster-to-vector-conversion" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="raster-to-vector-conversion"><span class="header-section-number">8.1</span> Raster to Vector Conversion</h2>
-<section id="raster-to-polygons" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="raster-to-polygons"><span class="header-section-number">8.1.1</span> Raster to Polygons</h3>
+<section id="raster-to-vector-conversion" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="raster-to-vector-conversion"><span class="header-section-number">6.2.1</span> Raster to Vector Conversion</h3>
+<section id="raster-to-polygons" class="level4" data-number="6.2.1.1">
+<h4 data-number="6.2.1.1" class="anchored" data-anchor-id="raster-to-polygons"><span class="header-section-number">6.2.1.1</span> Raster to Polygons</h4>
 <p>In this section we will convert an elevation image (raster) to a feature collection (vector). We will start by loading the Global Multi-Resolution Terrain Elevation Data 2010 and the Global Administrative Unit Layers 2015 dataset to focus on Colombia. The elevation image is a raster at 7.5 arc-second spatial resolution containing a continuous measure of elevation in meters in each pixel.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Load raster (elevation) and vector (colombia) datasets.  </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> elevation <span class="op">=</span> ee<span class="op">.</span><span class="fu">Image</span>(<span class="st">'USGS/GMTED2010'</span>)<span class="op">.</span><span class="fu">rename</span>(<span class="st">'elevation'</span>)<span class="op">;</span>  </span>
@@ -846,8 +805,8 @@ Map.addLayer(smoothDrawn, {}, ‘Elevation zone polygon (smooth)’);</p>
 </figure>
 </div>
 </section>
-<section id="raster-to-points" class="level3" data-number="8.1.2">
-<h3 data-number="8.1.2" class="anchored" data-anchor-id="raster-to-points"><span class="header-section-number">8.1.2</span> Raster to Points</h3>
+<section id="raster-to-points" class="level4" data-number="6.2.1.2">
+<h4 data-number="6.2.1.2" class="anchored" data-anchor-id="raster-to-points"><span class="header-section-number">6.2.1.2</span> Raster to Points</h4>
 <p>Lastly, we will convert a small part of this elevation image into a point vector dataset. For this exercise, we will use the same example and build on the code from the previous subsection. This might be useful when you want to use geospatial data in a tabular format in combination with other conventional datasets such as economic indicators (Fig. F5.1.3).</p>
 <p><img src="F5/image24.png" class="img-fluid"></p>
 <div class="quarto-figure quarto-figure-center">
@@ -857,38 +816,40 @@ Map.addLayer(smoothDrawn, {}, ‘Elevation zone polygon (smooth)’);</p>
 </figure>
 </div>
 <p>The easiest way to do this is to use sample while activating the geometries parameter. This will extract the points at the centroid of the elevation pixel.</p>
-<p>var geometry = ee.Geometry.Polygon([<br>
-[-89.553, -0.929],<br>
-[-89.436, -0.929],<br>
-[-89.436, -0.866],<br>
-[-89.553, -0.866],<br>
-[-89.553, -0.929]<br>
-]);</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// To zoom into the area, un-comment and run below  </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Map.centerObject(geometry,12);  </span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(geometry<span class="op">,</span> {}<span class="op">,</span> <span class="st">'Areas to extract points'</span>)<span class="op">;</span>  </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> elevationSamples <span class="op">=</span> elevation<span class="op">.</span><span class="fu">sample</span>({  </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>   <span class="dt">region</span><span class="op">:</span> geometry<span class="op">,</span>  </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>   <span class="dt">projection</span><span class="op">:</span> projection<span class="op">,</span>  </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>   <span class="dt">scale</span><span class="op">:</span> scale<span class="op">,</span>  </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>   <span class="dt">geometries</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span>  </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span>  </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(elevationSamples<span class="op">,</span> {}<span class="op">,</span> <span class="st">'Points extracted'</span>)<span class="op">;</span>  </span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> geometry <span class="op">=</span> ee<span class="op">.</span><span class="at">Geometry</span><span class="op">.</span><span class="fu">Polygon</span>([  </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   [<span class="op">-</span><span class="fl">89.553</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.929</span>]<span class="op">,</span>  </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   [<span class="op">-</span><span class="fl">89.436</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.929</span>]<span class="op">,</span>  </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>   [<span class="op">-</span><span class="fl">89.436</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.866</span>]<span class="op">,</span>  </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>   [<span class="op">-</span><span class="fl">89.553</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.866</span>]<span class="op">,</span>  </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>   [<span class="op">-</span><span class="fl">89.553</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.929</span>]  </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>])<span class="op">;</span>  </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">// To zoom into the area, un-comment and run below  </span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Map.centerObject(geometry,12);  </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(geometry<span class="op">,</span> {}<span class="op">,</span> <span class="st">'Areas to extract points'</span>)<span class="op">;</span>  </span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">// Add three properties to the output table:  </span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">// 'Elevation', 'Longitude', and 'Latitude'.  </span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>elevationSamples <span class="op">=</span> elevationSamples<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(feature) {   <span class="kw">var</span> geom <span class="op">=</span> feature<span class="op">.</span><span class="fu">geometry</span>()<span class="op">.</span><span class="fu">coordinates</span>()<span class="op">;</span>   <span class="cf">return</span> ee<span class="op">.</span><span class="fu">Feature</span>(<span class="kw">null</span><span class="op">,</span> {       <span class="st">'Elevation'</span><span class="op">:</span> ee<span class="op">.</span><span class="fu">Number</span>(feature<span class="op">.</span><span class="fu">get</span>(           <span class="st">'elevation'</span>))<span class="op">,</span>       <span class="st">'Long'</span><span class="op">:</span> ee<span class="op">.</span><span class="fu">Number</span>(geom<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>))<span class="op">,</span>       <span class="st">'Lat'</span><span class="op">:</span> ee<span class="op">.</span><span class="fu">Number</span>(geom<span class="op">.</span><span class="fu">get</span>(<span class="dv">1</span>))  </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>   })<span class="op">;</span>  </span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span>  </span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">// Export as CSV.  </span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>Export<span class="op">.</span><span class="at">table</span><span class="op">.</span><span class="fu">toDrive</span>({  </span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>   <span class="dt">collection</span><span class="op">:</span> elevationSamples<span class="op">,</span>  </span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>   <span class="dt">description</span><span class="op">:</span> <span class="st">'extracted_points'</span><span class="op">,</span>  </span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>   <span class="dt">fileFormat</span><span class="op">:</span> <span class="st">'CSV'</span>  </span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> elevationSamples <span class="op">=</span> elevation<span class="op">.</span><span class="fu">sample</span>({  </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>   <span class="dt">region</span><span class="op">:</span> geometry<span class="op">,</span>  </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>   <span class="dt">projection</span><span class="op">:</span> projection<span class="op">,</span>  </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>   <span class="dt">scale</span><span class="op">:</span> scale<span class="op">,</span>  </span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>   <span class="dt">geometries</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span>  </span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span>  </span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(elevationSamples<span class="op">,</span> {}<span class="op">,</span> <span class="st">'Points extracted'</span>)<span class="op">;</span>  </span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">// Add three properties to the output table:  </span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">// 'Elevation', 'Longitude', and 'Latitude'.  </span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>elevationSamples <span class="op">=</span> elevationSamples<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(feature) {   <span class="kw">var</span> geom <span class="op">=</span> feature<span class="op">.</span><span class="fu">geometry</span>()<span class="op">.</span><span class="fu">coordinates</span>()<span class="op">;</span>   <span class="cf">return</span> ee<span class="op">.</span><span class="fu">Feature</span>(<span class="kw">null</span><span class="op">,</span> {       <span class="st">'Elevation'</span><span class="op">:</span> ee<span class="op">.</span><span class="fu">Number</span>(feature<span class="op">.</span><span class="fu">get</span>(           <span class="st">'elevation'</span>))<span class="op">,</span>       <span class="st">'Long'</span><span class="op">:</span> ee<span class="op">.</span><span class="fu">Number</span>(geom<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>))<span class="op">,</span>       <span class="st">'Lat'</span><span class="op">:</span> ee<span class="op">.</span><span class="fu">Number</span>(geom<span class="op">.</span><span class="fu">get</span>(<span class="dv">1</span>))  </span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>   })<span class="op">;</span>  </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span>  </span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co">// Export as CSV.  </span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>Export<span class="op">.</span><span class="at">table</span><span class="op">.</span><span class="fu">toDrive</span>({  </span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>   <span class="dt">collection</span><span class="op">:</span> elevationSamples<span class="op">,</span>  </span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>   <span class="dt">description</span><span class="op">:</span> <span class="st">'extracted_points'</span><span class="op">,</span>  </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>   <span class="dt">fileFormat</span><span class="op">:</span> <span class="st">'CSV'</span>  </span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We can also extract sample points per elevation zone. Below is an example of extracting 10 randomly selected points per elevation zone (Fig. F5.1.4). You can also set different values for each zone using classValues and classPoints parameters to modify the sampling intensity in each class. This may be useful, for instance, to generate point samples for a validation effort.</p>
 <p>var elevationSamplesStratified = zones.stratifiedSample({<br>
 numPoints: 10,<br>
@@ -918,7 +879,7 @@ Note
 <p>Code Checkpoint F51a. The book’s repository contains a script that shows what your code should look like at this point.</p>
 </div>
 </div>
-<p>##3. A More Complex Example</p>
+<p>###3. A More Complex Example</p>
 <p>In this section we’ll use two global datasets, one to represent raster formats and the other vectors:</p>
 <ul>
 <li>The Global Forest Change (GFC) dataset: a raster dataset describing global tree cover and change for 2001–present.</li>
@@ -1069,8 +1030,8 @@ Note
 </div>
 </div>
 </section>
-<section id="raster-properties-to-vector-fields" class="level3" data-number="8.1.3">
-<h3 data-number="8.1.3" class="anchored" data-anchor-id="raster-properties-to-vector-fields"><span class="header-section-number">8.1.3</span> Raster Properties to Vector Fields</h3>
+<section id="raster-properties-to-vector-fields" class="level4" data-number="6.2.1.3">
+<h4 data-number="6.2.1.3" class="anchored" data-anchor-id="raster-properties-to-vector-fields"><span class="header-section-number">6.2.1.3</span> Raster Properties to Vector Fields</h4>
 <p>Sometimes we want to extract information from a raster to be included in an existing vector dataset. An example might be estimating a deforestation rate for a set of protected areas. Rather than perform this task on a case-by-case basis, we can attach information generated from an image as a property of a feature.</p>
 <p>The following script shows how this can be used to quantify a deforestation rate for a set of protected areas in the Colombian Amazon.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Load required datasets.  </span></span>
@@ -1144,11 +1105,11 @@ Note
 </div>
 </section>
 </section>
-<section id="vector-to-raster-conversion" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="vector-to-raster-conversion"><span class="header-section-number">8.2</span> Vector-to-Raster Conversion</h2>
+<section id="vector-to-raster-conversion" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="vector-to-raster-conversion"><span class="header-section-number">6.2.2</span> Vector-to-Raster Conversion</h3>
 <p>In Sect. 1, we used the protected area feature collection as its original vector format. In this section, we will rasterize the protected area polygons to produce a mask and use this to assess rates of forest change.</p>
-<section id="polygons-to-a-mask" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="polygons-to-a-mask"><span class="header-section-number">8.2.1</span> Polygons to a Mask</h3>
+<section id="polygons-to-a-mask" class="level4" data-number="6.2.2.1">
+<h4 data-number="6.2.2.1" class="anchored" data-anchor-id="polygons-to-a-mask"><span class="header-section-number">6.2.2.1</span> Polygons to a Mask</h4>
 <p>The most common operation to convert from vector to raster is the production of binary image masks, describing whether a pixel intersects a line or falls within a polygon. To convert from vector to a raster mask, we can use the ee.FeatureCollection.reduceToImage method. Let’s continue with our example of the WDPA database and Global Forest Change data from the previous section:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Load required datasets.  </span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> gfc <span class="op">=</span> ee<span class="op">.</span><span class="fu">Image</span>(<span class="st">'UMD/hansen/global_forest_change_2020_v1_8'</span>)<span class="op">;</span>  </span>
@@ -1209,8 +1170,8 @@ Note
 </div>
 </div>
 </section>
-<section id="a-more-complex-example" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="a-more-complex-example"><span class="header-section-number">8.2.2</span> A More Complex Example</h3>
+<section id="a-more-complex-example" class="level4" data-number="6.2.2.2">
+<h4 data-number="6.2.2.2" class="anchored" data-anchor-id="a-more-complex-example"><span class="header-section-number">6.2.2.2</span> A More Complex Example</h4>
 <p>The reduceToImage method is not the only way to convert a feature collection to an image. We will create a distance image layer from the boundary of the protected area using distance. For this example, we return to the La Paya protected area explored in Sect. 1.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Load required datasets.  </span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> gfc <span class="op">=</span> ee<span class="op">.</span><span class="fu">Image</span>(<span class="st">'UMD/hansen/global_forest_change_2020_v1_8'</span>)<span class="op">;</span>  </span>
@@ -1316,37 +1277,33 @@ Note
 </div>
 </section>
 </section>
-<section id="synthesis-1" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="synthesis-1">Synthesis</h2>
-<p>Question 1. In this lab, we quantified rates of deforestation in La Paya. There is another protected area in the Colombian Amazon named Tinigua. By modifying the existing scripts, determine how the dynamics of forest change in Tinigua compare to those in La Paya with respect to:</p>
-<ul>
-<li>the number of deforestation events</li>
-<li>the year with the greatest number of change events</li>
-<li>the mean average area of change events</li>
-<li>the total area of loss</li>
-</ul>
-<p>Question 2. In Sect. 1.4, we only considered losses of tree cover, but many protected areas will also have increases in tree cover from regrowth (which is typical of shifting agriculture). Calculate growth in hectares using the Global Forest Change dataset’s gain layer for the six protected areas in Sect. 1.4 by extracting the raster properties and adding them to vector fields. Which has the greatest area of regrowth? Is this likely to be sufficient to balance out the rates of forest loss? Note: The gain layer shows locations where tree cover has increased for the period 2001–2012 (0 = no gain, 1 = tree cover increase), so for comparability use deforestation between the same time period of 2001–2012.</p>
-<p>Question 3. In Sect. 2.2, we considered rates of deforestation in a buffer zone around La Paya. Estimate the deforestation rates inside of La Paya using buffer zones. Is forest loss more common close to the boundary of the reserve?</p>
-<p>Question 4. Sometimes it’s advantageous to perform processing using raster operations, particularly at large scales. It is possible to perform many of the tasks in Sect. 1.3 and 1.4 by first converting the protected area vector to raster, and then using only raster operations. As an example, can you display only deforestation events &gt;10 ha in La Paya using only raster data? (Hint: Consider using ee.Image.connectedPixelCount. You may also want to also look at Sect. 2.1).</p>
-</section>
-<section id="conclusion-1" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="conclusion-1">Conclusion</h2>
+<section id="conclusion-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="conclusion-1">Conclusion</h3>
 <p>In this chapter, you learned how to convert raster to vector and vice versa. More importantly, you now have a better understanding of why and when such conversions are useful. Our examples should give you practical applications and ideas for using these techniques.</p>
 </section>
 </section>
-<section id="zonal-statistics" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Zonal Statistics</h1>
-<p>:::{.callout-tip} # Chapter Information</p>
-<section id="author-2" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="author-2">Author</h2>
+<section id="zonal-statistics" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="zonal-statistics"><span class="header-section-number">6.3</span> Zonal Statistics</h2>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Chapter Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<section id="author-2" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="author-2">Author</h4>
 <p>Sara Winsemius and Justin Braaten</p>
 </section>
-<section id="overview-1" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="overview-1">Overview</h2>
+<section id="overview-2" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="overview-2">Overview</h4>
 <p>The purpose of this chapter is to extract values from rasters for intersecting points or polygons. We will lay out the process and a function to calculate zonal statistics, which includes optional parameters to modify the function, and then apply the process to three examples using different raster datasets and combinations of parameters.</p>
 </section>
-<section id="learning-outcomes-1" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes-1">Learning Outcomes</h2>
+<section id="learning-outcomes-2" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes-2">Learning Outcomes</h4>
 <ul>
 <li>Buffering points as square or circular regions.</li>
 <li>Writing and applying functions with optional parameters.</li>
@@ -1355,8 +1312,8 @@ Note
 <li>Copying properties from one image to another.</li>
 </ul>
 </section>
-<section id="assumes-you-know-how-to-1" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to-1">Assumes you know how to:</h2>
+<section id="assumes-you-know-how-to-2" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to-2">Assumes you know how to:</h4>
 <ul>
 <li>Recognize similarities and differences among Landsat 5, 7, and 8 spectral bands (Part F1, Part F2, Part F3).</li>
 <li>Understand distinctions among Image, ImageCollection, Feature and FeatureCollection Earth Engine objects (Part F1, Part F2, Part F5).</li>
@@ -1368,22 +1325,24 @@ Note
 <li>Write a function and map it over a FeatureCollection (Chap. F5.1).</li>
 </ul>
 </section>
-<section id="introduction-to-theory" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="introduction-to-theory"><span class="header-section-number">9.1</span> Introduction to Theory</h2>
+</div>
+</div>
+<section id="introduction-2" class="level3 unlisted unnumbered">
+<h3 class="unlisted unnumbered anchored" data-anchor-id="introduction-2">Introduction</h3>
 <p>Anyone working with field data collected at plots will likely need to summarize raster-based data associated with those plots. For instance, they need to know the Normalized Difference Vegetation Index (NDVI), precipitation, or elevation for each plot (or surrounding region). Calculating statistics from a raster within given regions is called zonal statistics. Zonal statistics were calculated in Chaps. F5.0 and F5.1 using ee.Image.ReduceRegions. Here, we present a more general approach to calculating zonal statistics with a custom function that works for both ee.Image and ee.ImageCollection objects. In addition to its flexibility, the reduction method used here is less prone to “Computed value is too large” errors that can occur when using ReduceRegions with very large or complex ee.FeatureCollection object inputs.</p>
 <p>The zonal statistics function in this chapter works for an Image or an ImageCollection. Running the function over an ImageCollection will produce a table with values from each image in the collection per point. Image collections can be processed before extraction as needed—for example, by masking clouds from satellite imagery or by constraining the dates needed for a particular research question. In this tutorial, the data extracted from rasters are exported to a table for analysis, where each row of the table corresponds to a unique point-image combination.</p>
 <p>In fieldwork, researchers often work with plots, which are commonly recorded as polygon files or as a center point with a set radius. It is rare that plots will be set directly in the center of pixels from your desired raster dataset, and many field GPS units have positioning errors. Because of these issues, it may be important to use a statistic of adjacent pixels (as described in Chap. F3.2) to estimate the central value in what’s often called a neighborhood mean or focal mean (Cansler and McKenzie 2012, Miller and Thode 2007).</p>
 <p>To choose the size of your neighborhood, you will need to consider your research questions, the spatial resolution of the dataset, the size of your field plot, and the error from your GPS. For example, the raster value extracted for randomly placed 20 m diameter plots would likely merit use of a neighborhood mean when using Sentinel-2 or Landsat 8—at 10 m and 30 m spatial resolution, respectively—while using a thermal band from MODIS (Moderate Resolution Imaging Spectroradiometer) at 1000 m may not. While much of this tutorial is written with plot points and buffers in mind, a polygon asset with predefined regions will serve the same purpose.</p>
 </section>
-<section id="functions" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="functions"><span class="header-section-number">9.2</span> Functions</h2>
+<section id="functions" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="functions"><span class="header-section-number">6.3.1</span> Functions</h3>
 <p>Two functions are provided; copy and paste them into your script:</p>
 <ul>
 <li>A function to generate circular or square regions from buffered points</li>
 <li>A function to extract image pixel neighborhood statistics for a given region</li>
 </ul>
-<section id="function-bufferpointsradius-bounds" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="function-bufferpointsradius-bounds"><span class="header-section-number">9.2.1</span> Function: bufferPoints(radius, bounds)</h3>
+<section id="function-bufferpointsradius-bounds" class="level4" data-number="6.3.1.1">
+<h4 data-number="6.3.1.1" class="anchored" data-anchor-id="function-bufferpointsradius-bounds"><span class="header-section-number">6.3.1.1</span> Function: bufferPoints(radius, bounds)</h4>
 <p>Our first function, bufferPoints, returns a function for adding a buffer to points and optionally transforming to rectangular bounds (see Table F5.2.1).</p>
 <p>Table F5.2.1 Parameters for bufferPoints</p>
 <p>Parameter</p>
@@ -1401,8 +1360,8 @@ radius);<br>
 };<br>
 }</p>
 </section>
-<section id="function-zonalstatsfc-params" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="function-zonalstatsfc-params"><span class="header-section-number">9.2.2</span> Function: zonalStats(fc, params)</h3>
+<section id="function-zonalstatsfc-params" class="level4" data-number="6.3.1.2">
+<h4 data-number="6.3.1.2" class="anchored" data-anchor-id="function-zonalstatsfc-params"><span class="header-section-number">6.3.1.2</span> Function: zonalStats(fc, params)</h4>
 <p>The second function, zonalStats, reduces images in an ImageCollection by regions defined in a FeatureCollection. Note that reductions can return null statistics that you might want to filter out of the resulting feature collection. Null statistics occur when there are no valid pixels intersecting the region being reduced. This situation can be caused by points that are outside of an image or in regions that are masked for quality or clouds.</p>
 <p>This function is written to include many optional parameters (see Table F5.2.2). Look at the function carefully and note how it is written to include defaults that make it easy to apply the basic function while allowing customization.</p>
 <p>Table F5.2.2 Parameters for zonalStats</p>
@@ -1470,8 +1429,8 @@ reducer: _params.reducer, scale: _params.scale, crs: _params.crs<br>
 }</p>
 </section>
 </section>
-<section id="point-collection-creation" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="point-collection-creation"><span class="header-section-number">9.3</span> Point Collection Creation</h2>
+<section id="point-collection-creation" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="point-collection-creation"><span class="header-section-number">6.3.2</span> Point Collection Creation</h3>
 <p>Below, we create a set of points that form the basis of the zonal statistics calculations. Note that a unique plot_id property is added to each point. A unique plot or point ID is important to include in your vector dataset for future filtering and joining.</p>
 <p>var pts = ee.FeatureCollection([ ee.Feature(ee.Geometry.Point([-118.6010, 37.0777]), {<br>
 plot_id: 1 }), ee.Feature(ee.Geometry.Point([-118.5896, 37.0778]), {<br>
@@ -1494,8 +1453,8 @@ Note
 </div>
 </div>
 </section>
-<section id="neighborhood-statistic-examples" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="neighborhood-statistic-examples"><span class="header-section-number">9.4</span> Neighborhood Statistic Examples</h2>
+<section id="neighborhood-statistic-examples" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="neighborhood-statistic-examples"><span class="header-section-number">6.3.3</span> Neighborhood Statistic Examples</h3>
 <p>The following examples demonstrate extracting raster neighborhood statistics for the following:</p>
 <ul>
 <li>A single raster with elevation and slope bands</li>
@@ -1503,14 +1462,14 @@ Note
 <li>A multiband Landsat time series</li>
 </ul>
 <p>In each example, the points created in the previous section will be buffered and then used as regions to extract zonal statistics for each image in the image collection.</p>
-<section id="topographic-variables" class="level3" data-number="9.4.1">
-<h3 data-number="9.4.1" class="anchored" data-anchor-id="topographic-variables"><span class="header-section-number">9.4.1</span> Topographic Variables</h3>
+<section id="topographic-variables" class="level4" data-number="6.3.3.1">
+<h4 data-number="6.3.3.1" class="anchored" data-anchor-id="topographic-variables"><span class="header-section-number">6.3.3.1</span> Topographic Variables</h4>
 <p>This example demonstrates how to calculate zonal statistics for a single multiband image. This Digital Elevation Model (DEM) contains a single topographic band representing elevation.</p>
-<p>###Buffer the Points</p>
+<p>####Buffer the Points</p>
 <p>Nex, we will apply a 45 m radius buffer to the points defined previously by mapping the bufferPoints function over the feature collection. The radius is set to 45 m to correspond to the 90 m pixel resolution of the DEM. In this case, circles are used instead of squares (set the second argument as false, i.e., do not use bounds).</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Buffer the points.  </span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ptsTopo <span class="op">=</span> pts<span class="op">.</span><span class="fu">map</span>(<span class="fu">bufferPoints</span>(<span class="dv">45</span><span class="op">,</span> <span class="kw">false</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>###Calculate Zonal Statistics</p>
+<p>####Calculate Zonal Statistics</p>
 <p>There are two important things to note about the zonalStats function that this example addresses:</p>
 <ul>
 <li>It accepts only an ee.ImageCollection, not an ee.Image; single images must be wrapped in an ImageCollection.</li>
@@ -1597,13 +1556,13 @@ Note
 <p>2559.4</p>
 <p>29.4</p>
 </section>
-<section id="modis-time-series" class="level3" data-number="9.4.2">
-<h3 data-number="9.4.2" class="anchored" data-anchor-id="modis-time-series"><span class="header-section-number">9.4.2</span> MODIS Time Series</h3>
+<section id="modis-time-series" class="level4" data-number="6.3.3.2">
+<h4 data-number="6.3.3.2" class="anchored" data-anchor-id="modis-time-series"><span class="header-section-number">6.3.3.2</span> MODIS Time Series</h4>
 <p>A time series of MODIS eight-day surface reflectance composites demonstrates how to calculate zonal statistics for a multiband ImageCollection that requires no preprocessing, such as cloud masking or computation. Note that there is no built-in function for performing region reductions on ImageCollection objects. The zonalStats function that we are using for reduction is mapping the reduceRegions function over an ImageCollection.</p>
-<p>###Buffer the Points</p>
+<p>####Buffer the Points</p>
 <p>In this example, suppose the point collection represents center points for field plots that are 100 m x 100 m, and apply a 50 m radius buffer to the points to match the size of the plot. Since we want zonal statistics for square plots, set the second argument of the bufferPoints function to true, so that the bounds of the buffered points are returned.</p>
 <p>var ptsModis = pts.map(bufferPoints(50, true));</p>
-<p>###Calculate Zonal Statistic</p>
+<p>####Calculate Zonal Statistic</p>
 <p>Import the MODIS 500 m global eight-day surface reflectance composite collection and filter the collection to include data for July, August, and September from 2015 through 2019.</p>
 <p>var modisCol = ee.ImageCollection(‘MODIS/006/MOD09A1’)<br>
 .filterDate(‘2015-01-01’, ‘2020-01-01’)<br>
@@ -1624,11 +1583,11 @@ Note
 <span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ptsModisStats <span class="op">=</span> <span class="fu">zonalStats</span>(modisCol<span class="op">,</span> ptsModis<span class="op">,</span> params)<span class="op">;</span><span class="fu">print</span>(<span class="st">'Limited MODIS zonal stats table'</span><span class="op">,</span> ptsModisStats<span class="op">.</span><span class="fu">limit</span>(<span class="dv">50</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The result is a feature collection with a feature for all combinations of plots and images. Interpreted as a table, the result has 200 rows (5 plots times 40 images) and as many columns as there are feature properties. Feature properties include those from the plot asset and the image, and any associated non-system image properties. Note that the printed results are limited to the first 50 features for brevity.</p>
 </section>
-<section id="landsat-time-series" class="level3" data-number="9.4.3">
-<h3 data-number="9.4.3" class="anchored" data-anchor-id="landsat-time-series"><span class="header-section-number">9.4.3</span> Landsat Time Series</h3>
+<section id="landsat-time-series" class="level4" data-number="6.3.3.3">
+<h4 data-number="6.3.3.3" class="anchored" data-anchor-id="landsat-time-series"><span class="header-section-number">6.3.3.3</span> Landsat Time Series</h4>
 <p>This example combines Landsat surface reflectance imagery across three instruments: Thematic Mapper (TM) from Landsat 5, Enhanced Thematic Mapper Plus (ETM+) from Landsat 7, and Operational Land Imager (OLI) from Landsat 8.</p>
 <p>The following section prepares these collections so that band names are consistent and cloud masks are applied. Reflectance among corresponding bands are roughly congruent for the three sensors when using the surface reflectance product; therefore the processing steps that follow do not address inter-sensor harmonization. Review the current literature on inter-sensor harmonization practices if you’d like to apply a correction.</p>
-<p>###Prepare the Landsat Image Collection</p>
+<p>####Prepare the Landsat Image Collection</p>
 <p>First, define the function to mask cloud and shadow pixels (See Chap. F4.3 for more detail on cloud masking).</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Mask clouds from images and apply scaling factors.  </span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">maskScale</span>(img) {   <span class="kw">var</span> qaMask <span class="op">=</span> img<span class="op">.</span><span class="fu">select</span>(<span class="st">'QA_PIXEL'</span>)<span class="op">.</span><span class="fu">bitwiseAnd</span>(<span class="pp">parseInt</span>(<span class="st">'11111'</span><span class="op">,</span>       <span class="dv">2</span>))<span class="op">.</span><span class="fu">eq</span>(<span class="dv">0</span>)<span class="op">;</span>   <span class="kw">var</span> saturationMask <span class="op">=</span> img<span class="op">.</span><span class="fu">select</span>(<span class="st">'QA_RADSAT'</span>)<span class="op">.</span><span class="fu">eq</span>(<span class="dv">0</span>)<span class="op">;</span>   <span class="co">// Apply the scaling factors to the appropriate bands.   var getFactorImg = function(factorNames) {       var factorList = img.toDictionary().select(factorNames)  </span></span>
@@ -1682,7 +1641,7 @@ Note
 <span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a>   <span class="op">.</span><span class="fu">map</span>(prepEtm)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Merge the prepared sensor collections.</p>
 <p>var landsatCol = oliCol.merge(etmCol).merge(tmCol);</p>
-<p>###Calculate Zonal Statistics</p>
+<p>####Calculate Zonal Statistics</p>
 <p>Reduce each image in the collection by each plot according to the following parameters. Note that this example defines the imgProps and imgPropsRename parameters to copy over and rename just two selected image properties: Landsat image ID and the satellite that collected the data. It also uses the max reducer, which, as an unweighted reducer, will return the maximum value from pixels that have their centroid within the buffer (see Sect. 4.1 below for more details).</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Define parameters for the zonalStats function.  </span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> params <span class="op">=</span> {  </span>
@@ -1701,7 +1660,7 @@ Note
 <span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ptsLandsatStats <span class="op">=</span> <span class="fu">zonalStats</span>(landsatCol<span class="op">,</span> ptsLandsat<span class="op">,</span> params)   <span class="co">// Filter out observations where image pixels were all masked.   .filter(ee.Filter.notNull(params.bandsRename));  </span></span>
 <span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">'Limited Landsat zonal stats table'</span><span class="op">,</span> ptsLandsatStats<span class="op">.</span><span class="fu">limit</span>(<span class="dv">50</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The result is a feature collection with a feature for all combinations of plots and images.</p>
-<p>###Dealing with Large Collections</p>
+<p>####Dealing with Large Collections</p>
 <p>If your browser times out, try exporting the results (as described in Chap. F6.2). It’s likely that point feature collections that cover a large area or contain many points (point-image observations) will need to be exported as a batch task by either exporting the final feature collection as an asset or as a CSV/shapefile/GeoJSON to Google Drive or GCS.</p>
 <p>Here is how you would export the above Landsat image-point feature collection to an asset and to Google Drive. Run the following code, activate the Code Editor Tasks tab, and then click the Run button. If you don’t specify your own existing folder in Drive, the folder “EEFA_outputs” will be created.</p>
 <p>Export.table.toAsset({<br>
@@ -1729,15 +1688,15 @@ Note
 </div>
 </section>
 </section>
-<section id="additional-notes" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="additional-notes"><span class="header-section-number">9.5</span> Additional Notes</h2>
-<section id="weighted-versus-unweighted-region-reduction" class="level3" data-number="9.5.1">
-<h3 data-number="9.5.1" class="anchored" data-anchor-id="weighted-versus-unweighted-region-reduction"><span class="header-section-number">9.5.1</span> Weighted Versus Unweighted Region Reduction</h3>
+<section id="additional-notes" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="additional-notes"><span class="header-section-number">6.3.4</span> Additional Notes</h3>
+<section id="weighted-versus-unweighted-region-reduction" class="level4" data-number="6.3.4.1">
+<h4 data-number="6.3.4.1" class="anchored" data-anchor-id="weighted-versus-unweighted-region-reduction"><span class="header-section-number">6.3.4.1</span> Weighted Versus Unweighted Region Reduction</h4>
 <p>A region used for calculation of zonal statistics often bisects multiple pixels. Should partial pixels be included in zonal statistics? Earth Engine lets you decide by allowing you to define a reducer as either weighted or unweighted (or you can provide per-pixel weight specification as an image band). A weighted reducer will include partial pixels in the zonal statistic calculation by weighting each pixel’s contribution according to the fraction of the area intersecting the region. An unweighted reducer, on the other hand, gives equal weight to all pixels whose cell center intersects the region; all other pixels are excluded from calculation of the statistic.</p>
 <p>For aggregate reducers like ee.Reducer.mean and ee.Reducer.median, the default mode is weighted, while identifier reducers such as ee.Reducer.min and ee.Reducer.max are unweighted. You can adjust the behavior of weighted reducers by calling unweighted on them, as in ee.Reducer.mean.unweighted. You may also specify the weights by modifying the reducer with splitWeights; however, that is beyond the scope of this book.</p>
 </section>
-<section id="copy-properties-to-computed-images" class="level3" data-number="9.5.2">
-<h3 data-number="9.5.2" class="anchored" data-anchor-id="copy-properties-to-computed-images"><span class="header-section-number">9.5.2</span> Copy Properties to Computed Images</h3>
+<section id="copy-properties-to-computed-images" class="level4" data-number="6.3.4.2">
+<h4 data-number="6.3.4.2" class="anchored" data-anchor-id="copy-properties-to-computed-images"><span class="header-section-number">6.3.4.2</span> Copy Properties to Computed Images</h4>
 <p>Derived, computed images do not retain the properties of their source image, so be sure to copy properties to computed images if you want them included in the region reduction table. For instance, consider the simple computation of unscaling Landsat SR data:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Define a Landsat image.  </span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> img <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">'LANDSAT/LC08/C02/T1_L2'</span>)<span class="op">.</span><span class="fu">first</span>()<span class="op">;</span>  </span>
@@ -1761,8 +1720,8 @@ Note
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">propertyNames</span>())<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now selected properties are included. Use this technique when returning computed, derived images in a mapped function, and in single-image operations.</p>
 </section>
-<section id="understanding-which-pixels-are-included-in-polygon-statistics" class="level3" data-number="9.5.3">
-<h3 data-number="9.5.3" class="anchored" data-anchor-id="understanding-which-pixels-are-included-in-polygon-statistics"><span class="header-section-number">9.5.3</span> Understanding Which Pixels are Included in Polygon Statistics</h3>
+<section id="understanding-which-pixels-are-included-in-polygon-statistics" class="level4" data-number="6.3.4.3">
+<h4 data-number="6.3.4.3" class="anchored" data-anchor-id="understanding-which-pixels-are-included-in-polygon-statistics"><span class="header-section-number">6.3.4.3</span> Understanding Which Pixels are Included in Polygon Statistics</h4>
 <p>If you want to visualize what pixels are included in a polygon for a region reducer, you can adapt the following code to use your own region (by replacing geometry), dataset, desired scale, and CRS parameters. The important part to note is that the image data you are adding to the map is reprojected using the same scale and CRS as that used in your region reduction (see Fig. F5.2.3).</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Define polygon geometry.  </span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> geometry <span class="op">=</span> ee<span class="op">.</span><span class="at">Geometry</span><span class="op">.</span><span class="fu">Polygon</span>(  </span>
@@ -1848,59 +1807,55 @@ Note
 </ul>
 </section>
 </section>
-<section id="synthesis-2" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="synthesis-2">Synthesis</h2>
-<p>Question 1. Look at the MODIS example (Sect. 3.2), which uses the median reducer. Try modifying the reducer to be unweighted, either by specifying unweighted or using an identifier reducer like max. What happens, and why?</p>
-<p>Question 2. Calculate zonal statistics for your own buffered points or polygons using a raster and reducer of interest. Be sure to consider the spatial scale of the raster and whether a weighted or unweighted reducer would be more appropriate for your interests.</p>
-<p>If the point or polygon file is stored in a local shapefile or CSV file, first upload the data to your Earth Engine assets. All columns in your vector file, such as the plot name, will be retained through this process. Once you have an Earth Engine table asset ready, import the asset into your script by hovering over the name of the asset and clicking the arrow at the right side, or by calling it in your script with the following code.</p>
-<p>var pts = ee.FeatureCollection(‘users/yourUsername/yourAsset’);</p>
-<p>If you prefer to define points or polygons dynamically rather than loading an asset, you can add them to your script using the geometry tools. See Chap. F2.1 and F5.0 for more detail on adding and creating vector data.</p>
-<p>Question 3. Try the code from Sect. 4.3 using the MODIS data and the first point from the pts variable. Among other modifications, you will need to create a buffer for the point, take a single MODIS image from the collection, and change visualization parameters.</p>
-<ul>
-<li>Think about the CRS in the code: The code reprojects to EPSG:5070, but MODIS is collected in the sinusoidal projection SR-ORG:6974. Try that CRS and describe how the image changes.</li>
-<li>Is the count reducer weighted or unweighted? Give an example of a circumstance to use a weighted reducer and an example for an unweighted reducer. Specify the buffer size you would use and the spatial resolution of your dataset.</li>
-</ul>
-<p>Question 4. In the examples above, only a single ee.Reducer is passed to the zonalStats function, which means that only a single statistic is calculated (for example, zonal mean or median or maximum). What if you want multiple statistics—can you alter the code in Sect. 3.1 to (1) make the point buffer 500 instead of 45; (2) add the reducer parameter to the params dictionary; and (3) as its argument, supply a combined ee.Reducer that will calculate minimum, maximum, standard deviation, and mean statistics?</p>
-<p>To achieve this you’ll need to chain several ee.Reducer.combine functions together. Note that if you accept all the individual ee.Reducer and ee.Reducer.combine function defaults, you’ll run into two problems related to reducer weighting differences, and whether or not the image inputs are shared among the combined set of reducers. How can you manipulate the individual ee.Reducer and ee.Reducer.combine functions to achieve the goal of calculating multiple zonal statistics in one call to the zonalStats function?</p>
-</section>
-<section id="conclusion-2" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="conclusion-2">Conclusion</h2>
+<section id="conclusion-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="conclusion-2">Conclusion</h3>
 <p>In this chapter, you used functions containing optional parameters to extract raster values for collocated points. You also learned how to buffer points, and apply weighted and unweighted reducers to get different types of zonal statistics. These functions were applied to three examples that differed by raster dataset, reducer, spatial resolution, and scale. Lastly, you covered related topics like weighting of reducers and buffer visualization. Now you’re ready to apply these ideas to your own work!</p>
 </section>
-<section id="references" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<section id="references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 <p>Cansler CA, McKenzie D (2012) How robust are burn severity indices when applied in a new region? Evaluation of alternate field-based and remote-sensing methods. Remote Sens 4:456–483. https://doi.org/10.3390/rs4020456</p>
 <p>Miller JD, Thode AE (2007) Quantifying burn severity in a heterogeneous landscape with a relative version of the delta Normalized Burn Ratio (dNBR). Remote Sens Environ 109:66–80. https://doi.org/10.1016/j.rse.2006.12.006</p>
 </section>
 </section>
-<section id="advanced-vector-operations" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Advanced Vector Operations</h1>
-<p>:::{.callout-tip} # Chapter Information</p>
-<section id="author-3" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="author-3">Author</h2>
+<section id="advanced-vector-operations" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="advanced-vector-operations"><span class="header-section-number">6.4</span> Advanced Vector Operations</h2>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Chapter Information
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<section id="author-3" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="author-3">Author</h4>
 <p>Ujaval Gandhi</p>
 </section>
-<section id="overview-2" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="overview-2">Overview</h2>
+<section id="overview-3" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="overview-3">Overview</h4>
 <p>This chapter covers advanced techniques for visualizing and analyzing vector data in Earth Engine. There are many ways to visualize feature collections, and you will learn how to pick the appropriate method to create visualizations, such as a choropleth map. We will also cover geoprocessing techniques involving multiple vector layers, such as selecting features in one layer by their proximity to features in another layer and performing spatial joins.</p>
 </section>
-<section id="learning-outcomes-2" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes-2">Learning Outcomes</h2>
+<section id="learning-outcomes-3" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="learning-outcomes-3">Learning Outcomes</h4>
 <ul>
 <li>Visualizing any vector dataset and creating a thematic map.</li>
 <li>Understanding joins in Earth Engine.</li>
 <li>Carrying out geoprocessing tasks with vector layers in Earth Engine.</li>
 </ul>
 </section>
-<section id="assumes-you-know-how-to-2" class="level2 unlisted unnumbered">
-<h2 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to-2">Assumes you know how to:</h2>
+<section id="assumes-you-know-how-to-3" class="level4 unlisted unnumbered">
+<h4 class="unlisted unnumbered anchored" data-anchor-id="assumes-you-know-how-to-3">Assumes you know how to:</h4>
 <ul>
 <li>Filter a FeatureCollection to obtain a subset (Chap. F5.0, Chap. F5.1).</li>
 <li>Write a function and map it over a FeatureCollection (Chap. F5.1, Chap. F5.2).</li>
 </ul>
 </section>
-<section id="visualizing-feature-collections" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="visualizing-feature-collections"><span class="header-section-number">10.1</span> Visualizing Feature Collections</h2>
+</div>
+</div>
+<section id="visualizing-feature-collections" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="visualizing-feature-collections"><span class="header-section-number">6.4.1</span> Visualizing Feature Collections</h3>
 <p>There is a distinct difference between how rasters and vectors are visualized. While images are typically visualized based on pixel values, vector layers use feature properties (i.e., attributes) to create a visualization. Vector layers are rendered on the Map by assigning a value to the red, green, and blue channels for each pixel on the screen based on the geometry and attributes of the features. The functions used for vector data visualization in Earth Engine are listed below in increasing order of complexity.</p>
 <ul>
 <li>Map.addLayer: As with raster layers, you can add a FeatureCollection to the Map by specifying visualization parameters. This method supports only one visualization parameter: color. All features are rendered with the specified color.</li>
@@ -1909,17 +1864,19 @@ Note
 <li>style: This is the most versatile function. It can apply a different style to each feature, including color, pointSize, pointShape, width, fillColor, and lineType.</li>
 </ul>
 <p>In the exercises below, we will learn how to use each of these functions and see how they can generate different types of maps.</p>
-<section id="creating-a-choropleth-map" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="creating-a-choropleth-map"><span class="header-section-number">10.1.1</span> Creating a Choropleth Map</h3>
+<section id="creating-a-choropleth-map" class="level4" data-number="6.4.1.1">
+<h4 data-number="6.4.1.1" class="anchored" data-anchor-id="creating-a-choropleth-map"><span class="header-section-number">6.4.1.1</span> Creating a Choropleth Map</h4>
 <p>We will use the TIGER: US Census Blocks layer, which stores census block boundaries and their characteristics within the United States, along with the San Francisco neighborhoods layer from Chap. F5.0 to create a population density map for the city of San Francisco.</p>
 <p>We start by loading the census blocks and San Francisco neighborhoods layers. We use ee.Filter.bounds to filter the census blocks layer to the San Francisco boundary.</p>
-<p>var blocks = ee.FeatureCollection(‘TIGER/2010/Blocks’);<br>
-var roads = ee.FeatureCollection(‘TIGER/2016/Roads’);<br>
-var sfNeighborhoods = ee.FeatureCollection( ‘projects/gee-book/assets/F5-0/SFneighborhoods’);</p>
-<p>var geometry = sfNeighborhoods.geometry();<br>
-Map.centerObject(geometry);</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Filter blocks to the San Francisco boundary.  </span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sfBlocks <span class="op">=</span> blocks<span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">bounds</span>(geometry))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> blocks <span class="op">=</span> ee<span class="op">.</span><span class="fu">FeatureCollection</span>(<span class="st">'TIGER/2010/Blocks'</span>)<span class="op">;</span>  </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> roads <span class="op">=</span> ee<span class="op">.</span><span class="fu">FeatureCollection</span>(<span class="st">'TIGER/2016/Roads'</span>)<span class="op">;</span>  </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sfNeighborhoods <span class="op">=</span> ee<span class="op">.</span><span class="fu">FeatureCollection</span>(   <span class="st">'projects/gee-book/assets/F5-0/SFneighborhoods'</span>)<span class="op">;</span>  </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> geometry <span class="op">=</span> sfNeighborhoods<span class="op">.</span><span class="fu">geometry</span>()<span class="op">;</span>  </span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">centerObject</span>(geometry)<span class="op">;</span>  </span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Filter blocks to the San Francisco boundary.  </span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sfBlocks <span class="op">=</span> blocks<span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">bounds</span>(geometry))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The simplest way to visualize this layer is to use Map.addLayer (Fig. F5.3.1). We can specify a color value in the visParams parameter of the function. Each census block polygon will be rendered with stroke and fill of the specified color. The fill color is the same as the stroke color but has a 66% opacity.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Visualize with a single color.  </span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(sfBlocks<span class="op">,</span> {  </span>
@@ -1932,15 +1889,20 @@ Map.centerObject(geometry);</p>
 </div>
 <p>The census blocks table has a property named ‘pop10’ containing the population totals as of the 2010 census. We can use this to create a choropleth map showing population density. We first need to compute the population density for each feature and add it as a property. To add a new property to each feature, we can map a function over the FeatureCollection and calculate the new property called ‘pop_density’. Earth Engine provides the area function, which can calculate the area of a feature in square meters. We convert it to square miles and calculate the population density per square mile.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Add a pop_density column.  </span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sfBlocks <span class="op">=</span> sfBlocks<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(f) {   <span class="co">// Get the polygon area in square miles.   var area_sqmi = f.area().divide(2.59e6);   var population = f.get('pop10');   // Calculate population density.   var density = ee.Number(population).divide(area_sqmi);   return f.set({       'area_sqmi': area_sqmi,       'pop_density': density  </span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>   })<span class="op">;</span>  </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sfBlocks <span class="op">=</span> sfBlocks<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(f) {   <span class="co">// Get the polygon area in square miles.   </span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> area_sqmi <span class="op">=</span> f<span class="op">.</span><span class="fu">area</span>()<span class="op">.</span><span class="fu">divide</span>(<span class="fl">2.59e6</span>)<span class="op">;</span>   </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> population <span class="op">=</span> f<span class="op">.</span><span class="fu">get</span>(<span class="st">'pop10'</span>)<span class="op">;</span>   <span class="co">// Calculate population density.   </span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> density <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(population)<span class="op">.</span><span class="fu">divide</span>(area_sqmi)<span class="op">;</span>   </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> f<span class="op">.</span><span class="fu">set</span>({       </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'area_sqmi'</span><span class="op">:</span> area_sqmi<span class="op">,</span>       </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pop_density'</span><span class="op">:</span> density  </span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>   })<span class="op">;</span>  </span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now we can use the paint function to create an image from this FeatureCollection using the pop_density property. The paint function needs an empty image that needs to be cast to the appropriate data type. Let’s use the aggregate_stats function to calculate basic statistics for the given column of a FeatureCollection.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate the statistics of the newly computed column.  </span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> stats <span class="op">=</span> sfBlocks<span class="op">.</span><span class="fu">aggregate_stats</span>(<span class="st">'pop_density'</span>)<span class="op">;</span>  </span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(stats)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will see that the population density values have a large range. We also have values that are greater than 100,000, so we need to make sure we select a data type that can store values of this size. We create an empty image and cast it to int32, which is able to hold large integer values.</p>
-<p>D</p>
 <p>The result is an image with pixel values representing the population density of the polygons. We can now use the standard image visualization method to add this layer to the Map (Fig. F5.3.2). Then, we need to determine minimum and maximum values for the visualization parameters.A reliable technique to produce a good visualization is to find minimum and maximum values that are within one standard deviation. From the statistics that we calculated earlier, we can estimate good minimum and maximum values to be 0 and 50000, respectively.</p>
 <p>var palette = [‘fee5d9’, ‘fcae91’, ‘fb6a4a’, ‘de2d26’, ‘a50f15’];<br>
 var visParams = {<br>
@@ -1956,8 +1918,8 @@ Map.addLayer(sfBlocksPaint.clip(geometry), visParams, ‘Population Density’);
 </figure>
 </div>
 </section>
-<section id="creating-a-categorical-map" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="creating-a-categorical-map"><span class="header-section-number">10.1.2</span> Creating a Categorical Map</h3>
+<section id="creating-a-categorical-map" class="level4" data-number="6.4.1.2">
+<h4 data-number="6.4.1.2" class="anchored" data-anchor-id="creating-a-categorical-map"><span class="header-section-number">6.4.1.2</span> Creating a Categorical Map</h4>
 <p>Continuing the exploration of styling methods, we will now learn about draw and style. These are the preferred methods of styling for points and line layers. Let’s see how we can visualize the TIGER: US Census Roads layer to create a categorical map.</p>
 <p>We start by filtering the roads layer to the San Francisco boundary and using Map.addLayer to visualize it.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Filter roads to San Francisco boundary.  </span></span>
@@ -2066,8 +2028,8 @@ Note
 <p>Save your script for your own future use, as outlined in Chap. F1.0. Then, refresh the Code Editor to begin with a new script for the next section.</p>
 </section>
 </section>
-<section id="joins-with-feature-collections" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="joins-with-feature-collections"><span class="header-section-number">10.2</span> Joins with Feature Collections</h2>
+<section id="joins-with-feature-collections" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="joins-with-feature-collections"><span class="header-section-number">6.4.2</span> Joins with Feature Collections</h3>
 <p>Earth Engine was designed as a platform for processing raster data, and that is where it shines. Over the years, it has acquired advanced vector data processing capabilities, and users are now able to carry out complex geoprocessing tasks within Earth Engine. You can leverage the distributed processing power of Earth Engine to process large vector layers in parallel.</p>
 <p>This section shows how you can do spatial queries and spatial joins using multiple large feature collections. This requires the use of joins. As described for Image Collections in Chap. F4.9, a join allows you to match every item in a collection with items in another collection based on certain conditions. While you can achieve similar results using map and filter, joins perform better and give you more flexibility. We need to define the following items to perform a join on two collections.</p>
 <ol type="1">
@@ -2075,8 +2037,8 @@ Note
 <li>Join type: While the filter determines which features will be joined, the join type determines how they will be joined. There are many join types, including simple join, inner join, and save-all join.</li>
 </ol>
 <p>Joins are one of the harder skills to master, but doing so will help you perform many complex analysis tasks within Earth Engine. We will go through practical examples that will help you understand these concepts and the workflow better.</p>
-<section id="selecting-by-location" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="selecting-by-location"><span class="header-section-number">10.2.1</span> Selecting by Location</h3>
+<section id="selecting-by-location" class="level4" data-number="6.4.2.1">
+<h4 data-number="6.4.2.1" class="anchored" data-anchor-id="selecting-by-location"><span class="header-section-number">6.4.2.1</span> Selecting by Location</h4>
 <p>In this section, we will learn how to select features from one layer that are within a specified distance from features in another layer. We will continue to work with the San Francisco census blocks and roads datasets from the previous section. We will implement a join to select all blocks in San Francisco that are within 1 km of an interstate highway.</p>
 <p>We start by loading the census blocks and roads collections and filtering the roads layer to the San Francisco boundary.</p>
 <p>var blocks = ee.FeatureCollection(‘TIGER/2010/Blocks’);<br>
@@ -2132,8 +2094,8 @@ Map.addLayer(closeBlocksDrawn, {}, ‘Blocks within 1km’);</p>
 </figure>
 </div>
 </section>
-<section id="spatial-joins" class="level3" data-number="10.2.2">
-<h3 data-number="10.2.2" class="anchored" data-anchor-id="spatial-joins"><span class="header-section-number">10.2.2</span> Spatial Joins</h3>
+<section id="spatial-joins" class="level4" data-number="6.4.2.2">
+<h4 data-number="6.4.2.2" class="anchored" data-anchor-id="spatial-joins"><span class="header-section-number">6.4.2.2</span> Spatial Joins</h4>
 <p>A spatial join allows you to query two collections based on the spatial relationship. We will now implement a spatial join to count points in polygons. We will work with a dataset of tree locations in San Francisco and polygons of neighborhoods to produce a CSV file with the total number of trees in each neighborhood.</p>
 <p>The San Francisco Open Data Portal maintains a street tree map dataset that has a list of street trees with their latitude and longitude. We will also use the San Francisco neighborhood dataset from the same portal. We downloaded, processed, and uploaded these layers as Earth Engine assets for use in this exercise. We start by loading both layers and using the paint and style functions, covered in Sect. 1, to visualize them (Fig. F5.3.7).</p>
 <p>var sfNeighborhoods = ee.FeatureCollection( ‘projects/gee-book/assets/F5-0/SFneighborhoods’);<br>
@@ -2227,12 +2189,8 @@ Note
 </div>
 </section>
 </section>
-<section id="synthesis-3" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="synthesis-3">Synthesis</h2>
-<p>Assignment 1. What join would you use if you wanted to know which neighborhood each tree belongs to? Modify the code above to do a join and post-process the result to add a neighborhood property to each tree point. Export the results as a shapefile.</p>
-</section>
-<section id="conclusion-3" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="conclusion-3">Conclusion</h2>
+<section id="conclusion-3" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="conclusion-3">Conclusion</h3>
 <p>This chapter covered visualization and analysis using vector data in Earth Engine. You should now understand different functions for FeatureCollection visualization and be able to create thematic maps with vector layers. You also learned techniques for doing spatial queries and spatial joins within Earth Engine. Earth Engine is capable of handling large feature collections and can be effectively used for many spatial analysis tasks.</p>
 
 

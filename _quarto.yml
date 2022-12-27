@@ -22,6 +22,7 @@ book:
         - lights.qmd
         - refineries.qmd
         - ships.qmd
+        - blast.qmd
   repo-url: https://github.com/oballinger/GEE_OSINT/
   google-analytics: G-RK9ZLZQ6GL
   repo-actions: [edit]
@@ -40,6 +41,9 @@ format:
       dark: darkly
       light: cosmo
     code-copy: true
+    code-overflow: wrap
+    highlight-style: monokai.theme
+    linkcolor: "#34a832"
 
   pdf:
     documentclass: scrreprt
