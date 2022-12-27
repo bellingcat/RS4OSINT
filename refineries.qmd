@@ -1,4 +1,4 @@
-# Refinery Detection {.unnumbered}
+# Refinery Identification {.unnumbered}
 
 *Topics: multispectral satellite imagery, machine learning, informal economies, war.*
 
@@ -30,7 +30,11 @@ Previous efforts to quantify informal oil production have involved manually sift
 
 Below is an Earth Engine application that automates the detection of makeshift refineries in Northeastern Syria, using mutlispectral satellite imagery and machine learning. Blue dots represent the locations of predicted makeshift oil refineries and general oil pollution, while red areas indicate areas predicted to be contaminated by oil.
 
-<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='500px'></iframe>
+:::{.column-page}
+
+<iframe src='https://ollielballinger.users.earthengine.app/view/rojavaoil' width='100%' height='700px'></iframe>
+
+:::
 
 You can draw an Area of Interest (AOI) and get the total number of contaminated points as well as the total number of contaminated square meters within the AOI. drawing multiple AOIs will show a running total of these statistics. It's not perfect-- it misses some refineries and falsely identifies some others-- but it is generally quite accurate; you can visually verify the results of the prediction by zooming in using the "+" button. You can toggle different layers using the "layers" tab as well. This tool could be used to get an estimate of oil production in a user-defined area, and eventually to direct cleanup efforts. The fullscreen version of the application can be found [here](https://ollielballinger.users.earthengine.app/view/rojavaoil), and the source code [here](https://code.earthengine.google.com/7a80f10412e1eb2a4d2c5d95989e70bd). This tutorial will first cover the basics of multispectral remote sensing, before moving into a step-by-step guide in the construction of this model.
 
