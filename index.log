@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.26)  21 DEC 2022 16:51
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.26)  5 JAN 2023 19:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -31,6 +31,12 @@ Package: tocbasic 2022/10/12 v3.38 KOMA-Script package (handling toc-files)
 Package tocbasic Info: omitting babel extension for `toc'
 (tocbasic)             because of feature `nobabel' available
 (tocbasic)             for `toc' on input line 137.
+Class scrreprt Info: You've used standard option `oneside'.
+(scrreprt)           This is correct!
+(scrreprt)           Internally I'm using `twoside=false'.
+(scrreprt)           If you'd like to set the option with \KOMAoptions,
+(scrreprt)           you'd have to use `twoside=false' there
+(scrreprt)           instead of `oneside', too.
 Class scrreprt Info: File `scrsize11pt.clo' used instead of
 (scrreprt)           file `scrsize11.clo' to setup font sizes on input line 2614.
 (/Users/ollieballinger/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
@@ -45,6 +51,12 @@ Package typearea Info: You've used standard option `letterpaper'.
 (typearea)             If you'd like to set the option with \KOMAoptions,
 (typearea)             you'd have to use `paper=letter' there
 (typearea)             instead of `letterpaper', too.
+Package typearea Info: You've used standard option `oneside'.
+(typearea)             This is correct!
+(typearea)             Internally I'm using `twoside=false'.
+(typearea)             If you'd like to set the option with \KOMAoptions,
+(typearea)             you'd have to use `twoside=false' there
+(typearea)             instead of `oneside', too.
 \ta@hblk=\skip49
 \ta@vblk=\skip50
 \ta@temp=\skip51
@@ -246,7 +258,7 @@ l.77      \ExplLoaderFileDate{expl3.sty}}
 Here is how much of TeX's memory you used:
  4604 strings out of 477723
  95476 string characters out of 5841548
- 564075 words of memory out of 5000000
+ 564227 words of memory out of 5000000
  25692 multiletter control sequences out of 15000+600000
  469267 words of font info for 29 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

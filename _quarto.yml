@@ -23,6 +23,7 @@ book:
         - refineries.qmd
         - ships.qmd
         - blast.qmd
+        - object_detection.qmd
   repo-url: https://github.com/oballinger/GEE_OSINT/
   google-analytics: G-RK9ZLZQ6GL
   repo-actions: [edit]
