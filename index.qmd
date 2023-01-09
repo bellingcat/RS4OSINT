@@ -14,7 +14,8 @@ Though no-code platforms such as Sentinelhub have been invaluable in allowing th
     2. [Refinery Detection](refineries.qmd)
     3. [Deforestation](trees.qmd)
     4. [Ship Detection](ships.qmd)
-
+    5. [Object Detection](object_detection.qmd)
+    
 Recently, a team of over 100 scientists came together to write a book called ["Cloud-Based Remote Sensing with Google Earth Engine: Fundamentals and Applications"](https://www.eefabook.org/). It's a great resource for learning about remote sensing and Earth Engine. The material in this chapter is a subset of the book, edited to fit the scope of this guide. If you're interested in learning more, check out the full book.
 
 
