@@ -1,12 +1,5 @@
 # Ship Detection {.unnumbered}
 
----
-title-block-banner: "#34a832"
-title-block-banner-color: 'white'
----
-
-# Introduction 
-
 There's a huge amount of data available on the internet about ship movements, most of which draw on the Automatic Identification System (AIS) which is a system that uses radio to broadcast the identity, position, course, speed, and other data about ships. [MarineTraffic](https://www.marinetraffic.com/en/ais-api-services), for example, provides an API that allows you to query the location of ships in real time as well as historical vessel tracks and lots of other useful data. Unfortunately most sources of AIS data are paywalled, and AIS can be turned off or manipulated to hide the identity or position of the ship. In fact, most of the stuff we're interested in investigating probably happens when AIS is turned off. 
 
 Though ships can hide by turning off their AIS transponders, they can't hide from satellites. In this tutorial, we're going to build an application that uses Synthetic Aperture Radar (SAR) from the European Space Agency's Sentinel-1 satellite to automatically identify ships, regardless of whether they've got their transponders turned on or off. Here's the finished application:
@@ -356,17 +349,21 @@ And there we have it. A fully functional, all weather, daytime/nighttime ship de
 
 ### North Korea 
 
-Information on North Korea's economy is pretty hard to come by. Ship traffic in and out of the country's largest port, Nampo, is probably a pretty good indicator of the country's economic activity. But we can't just head on down to Marine Tracker or other services that use AIS data to track ship movements. According to the [U.S. Treasury](https://home.treasury.gov/system/files/126/dprk_vessel_advisory_02232018.pdf), "North Korean-flagged merchant vessels have been known to intentionally disable their AIS transponders to mask their movements. This tactic, whether employed by North Korean-flagged vessels or other vessels involved in trade with North Korea, could conceal the origin or destination of cargo destined for, or originating in, North Korea." They should know-- they're the ones imposing the sanctions that make it illegal to trade with North Korea. 
+In 2020, North Korea implemented one of the most severe COVID-19 lockdowns in the world including a near-total ban on ["all cross-border exchanges, including trade, traffic, and tourism".](https://thediplomat.com/2023/01/north-korea-likely-to-lift-pandemic-border-restrictions-in-2023/). Measures have been so severe that country appears to have experienced a significant [famine](https://foreignpolicy.com/2022/05/16/kim-north-korea-covid-outbreak-pandemic/). Though there were signs that things have gradually returned to normal, information on North Korea's economy is pretty hard to come by. Ship traffic in and out of the country's largest port, Nampo, is probably a pretty good indicator of the country's economic activity. 
 
-A New York Times [investigation](https://www.nytimes.com/2019/07/16/world/asia/north-korea-luxury-goods-sanctions.html) tracked the maritime voyage of luxury Mercedes cars from Germany to North Korea via the Netherlands, China, Japan, South Korea, and Russia. AIS transponders were turned off at several points throughout this journey, and the investigation had to rely on satellite imagery to fill in the gaps. Though they used high resolution optical imagery to follow individual ships, 
+But we can't just head on down to Marine Tracker or other services that use AIS data to track ship movements. According to the [U.S. Treasury](https://home.treasury.gov/system/files/126/dprk_vessel_advisory_02232018.pdf), "North Korean-flagged merchant vessels have been known to intentionally disable their AIS transponders to mask their movements. This tactic, whether employed by North Korean-flagged vessels or other vessels involved in trade with North Korea, could conceal the origin or destination of cargo destined for, or originating in, North Korea." They should know-- they're the ones imposing the sanctions that make it illegal to trade with North Korea. 
+
+A New York Times [investigation](https://www.nytimes.com/2019/07/16/world/asia/north-korea-luxury-goods-sanctions.html) tracked the maritime voyage of luxury Mercedes cars from Germany to North Korea via the Netherlands, China, Japan, South Korea, and Russia. AIS transponders were turned off at several points throughout this journey, and the investigation had to rely on satellite imagery to fill in the gaps. 
+
+Though they used high resolution optical imagery to follow individual ships, we want to identify lots of ships in a large area over a long period. That would get very expensive, and automatic ship detection in optical imagery is relatively difficult. Here's how our SAR tool fares when we draw a box in the bay of Nampo:
 
 ![](/images/ships_north_korea.jpg)
 
+Looking at imagery from 2021, we can see ship traffic increasing from nearly zero to around 40 ships per day. 
 
-## Ukraine
+### Ukraine
 
-The port of Odessa is Ukraine's largest port, and 
-Following its invasion of Ukraine in February 2022, Russia instituted a naval blockade against Ukrainian ports. The impact of this blockade is clearly visible using the tool we've just built:
+Odessa is Ukraine's largest port. Following its invasion of Ukraine in February 2022, Russia instituted a naval blockade against Ukrainian ports. The impact of this blockade is clearly visible using the tool we've just built:
 
 ![](/images/ships_ukraine.jpg)
 

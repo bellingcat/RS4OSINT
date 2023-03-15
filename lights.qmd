@@ -1,22 +1,10 @@
 # War at Night {.unnumbered}
 
-
 ## Data
+
 Satellite images of Syria taken at night capture a subtle trace left by human civilization: lights. Apartment buildings, street lights, highways, powerplants-- all are illuminated at night and can be seen from space. Researchers often use these nighttime lights signatures to track development; as cities grow, villages recieve power, and infrastructure is built, areas emit more light. But this works both ways. As cities are demolished, villages burned, and highways cutoff, they stop emitting lights. 
 
-The timelapse below uses imagery from the Defense Meteorological Satellite Program (DMSP), a joint program run by the U.S. Department of Defense and the National Oceanographic and Atmospheric Agency. One image is taken per year between 2005 and 2013:
-
-
-## Ukraine
-
-### Pre-Processing
-
-### Analysis
-
-
-## Iraq 
-
-A link to the GEE code for this section can be found [here](https://code.earthengine.google.com/2cf77d8cb9afd76b73100637fbffdf5d). 
+In this tutorial, we'll use satellite images of Iraq taken at night to track the destruction caused by the fight against the Islamic State. We'll use the VIIRS nighttime lights dataset, which is a collection of satellite images taken by the Visible Infrared Imaging Radiometer Suite (VIIRS) on the Suomi NPP satellite. VIIRS is a sensor that can detect light in the visible and infrared spectrum, and is capable of taking images at night. A link to the GEE code for this section can be found [here](https://code.earthengine.google.com/2cf77d8cb9afd76b73100637fbffdf5d). 
 
 ### Pre-Processing
 
@@ -218,7 +206,7 @@ print(chart)
 
 We can clearly see Mosul (the red line) darkening in 2014 as the city is taken by ISIS. During this period the Qayyarah oilfileds are, as we might expect, quite dark. All of a sudden in 2016 Qayyarah becomes brighter at night than the city of Mosul ever was, as the oilfields are set on fire. Then, almost exactly when the blaze in Qayyarah is extinguished and the area darkens (i.e. when the blue line falls back to near zero), Mosul brightens once again (i.e. the red line rises) as the city is liberated.
 
-
+<!-- 
 ### The Battle for Aleppo 
 
 The images below were taken between 2012 and 2014. Vast swaths of the city darken as neighbourhoods are razed by fighting.
@@ -233,9 +221,9 @@ The most salient trend is Aleppo plummeting over the course of 2012, and becomin
 
 Another interesting pattern here is the difference in seasonal trends in nightlights. Under normal circumstances in this part of the world, cities become brighter at night during the summer months. Restaurants, bars, and markets stay open later and conduct business outdoors. Gaziantep, which still attracts scores of tourists every year, displays pronounced seasonality. Damascus, the most stable of the three Syrian cities, also maintains a seasonal trend throughout the war. In contrast, both Raqqa and Aleppo maintain extremely low and roughly constant levels of nightlights year-round during the periods following intense fighting. 
 
-Reliable economic data for Syria haven't been available for nearly a decade, and assessing the country's recovery is consequently difficult. But subtle indications of economic growth are visible above: all three Syrian cities have been on a steady upward trend since 2017, and beginning to display seasonal variation once again. 
+Reliable economic data for Syria haven't been available for nearly a decade, and assessing the country's recovery is consequently difficult. But subtle indications of economic growth are visible above: all three Syrian cities have been on a steady upward trend since 2017, and beginning to display seasonal variation once again.  -->
 
-### Fighting for Oil 
+<!-- ### Fighting for Oil 
 
 Throughout the war, sudden massive spikes in nightlights signatures can be observed throughout the country. In the center of the map just west of Palmyra, some particularly large spikes occur in 2017:
 
@@ -250,4 +238,4 @@ The timing of well fires aligns closely with a detailed timeline of the campaign
 The Syrian Army took the Hayyan gas field on [February 4th](https://www.almasdarnews.com/article/syrian-army-liberates-hayyan-gas-fields-west-palmyra/), and retreating ISIS fighters set fire to wells 1, and 3. However, ISIS managed to briefly retake the Hayyan field on [February 7th](https://www.almasdarnews.com/article/isis-retakes-hayyan-gas-fields-new-bid-expand-west-palmyra/), setting fire to wells 2 and 4. These moments in the Palmyra Offensive are captured in NIR signatures
 
 Interestingly, despite the massive explosion caused by the bombing of the Hayyan Gas Plant, no prolonged thermal anomalies were detected over the area of the plant itself. The well fires, on the other hand, lasted for months. Below is an image of well fire at the Hayyan field taken from this [video](https://www.youtube.com/watch?v=WFe9abYyqK0); based on the nearby infrastructure and date (04/02/2017) of posting, it is likely Well-3. 
-
+ -->

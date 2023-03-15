@@ -165,7 +165,9 @@ Map.addLayer(usfTiger, {}, 'usf_Tiger');
 
 In addition to filtering a FeatureCollection by the location of another feature, you can also filter it by its properties. First, let’s print the usfTiger variable to the Console and inspect the object.
 
+```js
 print(usfTiger);
+```
 
 You can click on the feature collection name in the Console to uncover more information about the dataset. Click on the columns to learn about what attribute information is contained in this dataset. You will notice this feature collection contains information on both housing ('housing10') and population ('pop10').
 
@@ -181,11 +183,14 @@ var housing10_l250 = usfTiger
 ```
 Now filter the already-filtered blocks to have more than 50 housing units.
 
+```js
 var housing10_g50_l250 = housing10_l250.filter(ee.Filter.gt(   'housing10', 50));
-
+```
 Now, let’s visualize what this looks like.
 
+```js
 Map.addLayer(housing10_g50_l250, {   'color': 'Magenta'}, 'housing');
+```
 
 We have combined spatial and attribute information to narrow the set to only those blocks that meet our criteria of having between 50 and 250 housing units.
 
@@ -193,17 +198,21 @@ We have combined spatial and attribute information to narrow the set to only tho
 
 We can print out attribute information about these features. The block of code below prints out the area of the resultant geometry in square meters.
 
+```js
 var housing_area = housing10_g50_l250.geometry().area();  
 print('housing_area:', housing_area);
+```
 
 The next block of code reduces attribute information and prints out the mean of the housing10 column.
 
+```js
 var housing10_mean = usfTiger.reduceColumns({  
    reducer: ee.Reducer.mean(),  
    selectors: ['housing10']  
 });  
-  
+
 print('housing10_mean', housing10_mean);
+```
 
 Both of the above sections of code provide meaningful information about each feature, but they do not tell us which block is the most green. The next section will address that question.
 
@@ -235,28 +244,30 @@ var image = ee.Image(
 ```
 The next section of code assigns the near-infrared band (B5) to variable nir and assigns the red band (B4) to red. Then the bands are combined together to compute NDVI as (nir − red)/(nir + red).
 
+```js
 var nir = image.select('B5');  
 var red = image.select('B4');  
 var ndvi = nir.subtract(red).divide(nir.add(red)).rename('NDVI');
-
+```
 #### Clip the NDVI Image to the Blocks Near USF
 
 Next, you will clip the NDVI layer to only show NDVI over USF’s neighborhood.
 
 The first section of code provides visualization settings.
-
+```js
 var ndviParams = {  
    min: -1,  
    max: 1,  
    palette: ['blue', 'white', 'green']  
 };
-
+```
 The second block of code clips the image to our filtered housing layer.
 
+```js
 var ndviUSFblocks = ndvi.clip(housing10_g50_l250);  
 Map.addLayer(ndviUSFblocks, ndviParams, 'NDVI image');  
 Map.centerObject(usf_point, 14);
-
+```
 The NDVI map for all of San Francisco is interesting, and shows variability across the region. Now, let’s compute mean NDVI values for each block of the city.
 
 #### Compute NDVI Statistics by Block
@@ -300,11 +311,15 @@ Code Checkpoint F50d. The book’s repository contains a script that shows what 
 
 You are already familiar with filtering datasets by their attributes. Now you will sort a table and select the first element of the table.
 
+```js
 ndviPerBlock = ndviPerBlock.select(['blockid10', 'mean']);  
 print('ndviPerBlock', ndviPerBlock);  
+
 var ndviPerBlockSorted = ndviPerBlock.sort('mean', false);  
-var ndviPerBlockSortedFirst = ee.Feature(ndviPerBlock.sort('mean',       false) //Sort by NDVI mean in descending order.   .first()); //Select the block with the highest NDVI.  
+var ndviPerBlockSortedFirst = ee.Feature(ndviPerBlock.sort('mean',false) //Sort by NDVI mean in descending order.   
+                                       .first()); //Select the block with the highest NDVI.  
 print('ndviPerBlockSortedFirst', ndviPerBlockSortedFirst);
+```
 
 If you expand the feature of ndviPerBlockSortedFirst in the Console, you will be able to identify the blockid10 value of the greenest block and the mean NDVI value for that area.
 
@@ -314,6 +329,7 @@ Another way to look at the data is by exporting the data to a table. Open the ta
 // Now filter by block and show on map!  
 var GreenHousing = usfTiger.filter(ee.Filter.eq('blockid10',  
 '###')); //< Put your id here prepend a 0!  
+
 Map.addLayer(GreenHousing, {   'color': 'yellow'}, 'Green Housing!');
 
 ```
@@ -416,6 +432,7 @@ Map.addLayer(zones, {
 ```
 We will convert this zonal elevation image in Colombia to polygon shapes, which is a vector format (termed a FeatureCollection in Earth Engine), using the ee.Image.reduceToVectors method. This will create polygons delineating connected pixels with the same value. In doing so, we will use the same projection and spatial resolution as the image. Please note that loading the vectorized image in the native resolution (231.92 m) takes time to execute. For faster visualization, we set a coarse scale of 1,000 m.
 
+```js
 var projection = elevation.projection();  
 var scale = elevation.projection().nominalScale();  
   
@@ -437,6 +454,7 @@ var elevationDrawn = elevationVector.draw({
    strokeWidth: 1  
 });  
 Map.addLayer(elevationDrawn, {}, 'Elevation zone polygon');
+```
 
 ![](F5/image50.png)
 
@@ -449,6 +467,7 @@ Map.addLayer(elevationDrawn, {}, 'Elevation zone polygon');
 
 You may have realized that polygons consist of complex lines, including some small polygons with just one pixel. That happens when there are no surrounding pixels of the same elevation zone. You may not need a vector map with such details—if, for instance, you want to produce a regional or global map. We can use a morphological reducer focalMode to simplify the shape by defining a neighborhood size around a pixel. In this example, we will set the kernel radius as four pixels. This operation makes the resulting polygons look much smoother, but less precise (Fig. F5.1.2).
 
+```js
 var zonesSmooth = zones.focalMode(4, 'square');  
   
 zonesSmooth = zonesSmooth.reproject(projection.atScale(scale));  
@@ -476,6 +495,8 @@ var smoothDrawn = elevationVectorSmooth.draw({
    strokeWidth: 1  
 });  
 Map.addLayer(smoothDrawn, {}, 'Elevation zone polygon (smooth)');
+
+```
 
 We can see now that the polygons have more distinct shapes with many fewer small polygons in the new map (Fig. F5.1.2). It is important to note that when you use methods like focalMode (or other, similar methods such as connectedComponents and connectedPixelCount), you need to reproject according to the original image in order to display properly with zoom using the interactive Code Editor.
 
@@ -532,8 +553,10 @@ Export.table.toDrive({
 });
 
 ```
+
 We can also extract sample points per elevation zone. Below is an example of extracting 10 randomly selected points per elevation zone (Fig. F5.1.4). You can also set different values for each zone using classValues and classPoints parameters to modify the sampling intensity in each class. This may be useful, for instance, to generate point samples for a validation effort.
 
+```js
 var elevationSamplesStratified = zones.stratifiedSample({  
    numPoints: 10,  
    classBand: 'zone',  
@@ -545,13 +568,15 @@ var elevationSamplesStratified = zones.stratifiedSample({
   
 Map.addLayer(elevationSamplesStratified, {}, 'Stratified samples');
 
+```
+
 ![Fig. F5.1.4 Stratified sampling over different elevation zones](F5/image23.png)
 
 
 :::{.callout-note}
 Code Checkpoint F51a. The book’s repository contains a script that shows what your code should look like at this point.
 :::
-###3. A More Complex Example
+### 3. A More Complex Example
 
 In this section we’ll use two global datasets, one to represent raster formats and the other vectors:
 
@@ -649,6 +674,7 @@ Fig. F5.1.6 shows a comparison of the raster versus vector representations of de
 
 Having converted from raster to vector, a new set of operations becomes available for post-processing the deforestation data. We might, for instance, be interested in the number of individual change events each year (Fig. F5.1.7):
 
+```js
 var chart = ui.Chart.feature  
    .histogram({  
        features: deforestationVector,  
@@ -661,6 +687,7 @@ var chart = ui.Chart.feature
        legend: {  
            position: 'none'       }  
    });print(chart);
+```
 
 ![Fig. F5.1.7 Plot of the number of deforestation events in La Paya for the years 2001–2020](F5/image15.png)
 
@@ -756,9 +783,10 @@ wdpaSubset = deforestation.gte(1)
    });  
   
 print(wdpaSubset); // Note the new 'deforestation_area' property.
-
+```
 The output of this script is an estimate of deforested area in hectares for each reserve. However, as reserve sizes vary substantially by area, we can normalize by the total area of each reserve to quantify rates of change.
 
+```js
 // Normalize by area.  
 wdpaSubset = wdpaSubset.map(   function(feat) {       return feat.set('deforestation_rate',           ee.Number(feat.get('deforestation_area'))  
            .divide(feat.area().divide(10000)) // m2 to ha           .divide(20) // number of years           .multiply(100)); // to percentage points   });// Print to identify rates of change per protected area.  
@@ -769,6 +797,7 @@ print(wdpaSubset.reduceColumns({
 }));
 
 ```
+
 :::{.callout-note}
 Code Checkpoint F51c. The book’s repository contains a script that shows what your code should look like at this point.
 :::
@@ -892,6 +921,7 @@ Sometimes it makes sense to work with objects in raster imagery. This is an unus
 
 An example of this is estimating deforestation rates by distance to the edge of the protected area, as it is common that rates of change will be higher at the boundary of a protected area. We will create a distance raster with three zones from the La Paya boundary (>1 km, >2 km, >3 km, and >4 km) and to estimate the deforestation by distance from the boundary (Fig. F5.1.9).
 
+```js
 var distanceZones = ee.Image(0)  
    .where(distance.gt(0), 1)  
    .where(distance.gt(1000), 2)  
@@ -917,6 +947,8 @@ Map.addLayer(deforestation5km, {
    max: 1,  
    opacity: 0.5}, 'Deforestation within a 5km buffer');
 
+```
+
 ![](F5/image22.png)
 
 ![](F5/image6.png)
@@ -928,10 +960,11 @@ Map.addLayer(deforestation5km, {
 
 Lastly, we can estimate the deforestation area within 1 km of the protected area but only outside of the boundary.
 
+```js
+
 var deforestation1kmOutside = deforestation1km  
    .updateMask(protectedAreaRaster.unmask().not());  
   
-```js
 // Get the value of each pixel in square meters  
 // and divide by 10000 to convert to hectares.  
 var deforestation1kmOutsideArea = deforestation1kmOutside.eq(1)  
@@ -1020,33 +1053,17 @@ Two functions are provided; copy and paste them into your script:
 
 #### Function: bufferPoints(radius, bounds)
 
-Our first function, bufferPoints, returns a function for adding a buffer to points and optionally transforming to rectangular bounds (see Table F5.2.1).
-
-Table F5.2.1 Parameters for bufferPoints
-
-Parameter
-
-Type
-
-Description
-
-radius
-
-Number
-
-buffer radius (m).
-
-[bounds=false]
-
-Boolean
-
-An optional flag indicating whether to transform buffered point (i.e., a circle) to square bounds.
-
-function bufferPoints(radius, bounds) {   return function(pt) {  
-       pt = ee.Feature(pt);       return bounds ? pt.buffer(radius).bounds() : pt.buffer(  
-           radius);  
-   };  
+Our first function, bufferPoints, returns a function for adding a buffer to points and optionally transforming to rectangular bounds 
+   
+```js
+function bufferPoints(radius, bounds) {
+    return function(pt) {
+        pt = ee.Feature(pt);
+        return bounds ? pt.buffer(radius).bounds() : pt.buffer(
+            radius);
+    };
 }
+```
 
 #### Function: zonalStats(fc, params)
 
@@ -1054,121 +1071,109 @@ The second function, zonalStats, reduces images in an ImageCollection by regions
 
 This function is written to include many optional parameters (see Table F5.2.2). Look at the function carefully and note how it is written to include defaults that make it easy to apply the basic function while allowing customization.
 
-Table F5.2.2 Parameters for zonalStats
-
-Parameter
-
-Type
-
-Description
-
-ic
-
-ee.ImageCollection
-
-Image collection from which to extract values.
-
-fc
-
-ee.FeatureCollection
-
-Feature collection that provides regions/zones by which to reduce image pixels.
-
-[params]
-
-Object
-
-An optional Object that provides function arguments.
-
-[params.reducer=ee.Reducer.mean()]
-
-ee.Reducer
-
-The reducer to apply. Optional.
-
-[params.scale=null]
-
-Number
-
-A nominal scale in meters of the projection to work in. If null, the native nominal image scale is used. Optional.
-
-[params.crs=null]
-
-String
-
-The projection to work in. If null, the native image Coordinate Reference System (CRS) is used. Optional.
-
-[params.bands=null]
-
-Array
-
-A list of image band names for which to reduce values. If null, all bands will be reduced. Band names define column names in the resulting reduction table. Optional.
-
-[params.bandsRename=null]
-
-Array
-
-A list of desired image band names. The length and order must correspond to the params.bands list. If null, band names will be unchanged. Band names define column names in the resulting reduction table. Optional.
-
-[params.imgProps=null]
-
-Array
-
-A list of image properties to include in the table of region reduction results. If null, all image properties are included. Optional.
-
-[params.imgPropsRename=null]
-
-Array
-
-A list of image property names to replace those provided by params.imgProps. The length and order must match the params.imgProps entries. Optional.
-
-[params.datetimeName='datetime]
-
-String
-
-The desired name of the datetime field. The datetime refers to the 'system:time_start' value of the ee.Image being reduced. Optional.
-
-[params.datetimeFormat='YYYY-MM-dd HH:mm:ss]
-
-String
-
 The desired datetime format. Use ISO 8601 data string standards. The datetime string is derived from the 'system:time_start' value of the ee.Image being reduced. Optional.
 
-function zonalStats(ic, fc, params) {   // Initialize internal params dictionary.   var _params = {  
-       reducer: ee.Reducer.mean(),  
-       scale: null,  
-       crs: null,  
-       bands: null,  
-       bandsRename: null,  
-       imgProps: null,  
-       imgPropsRename: null,  
-       datetimeName: 'datetime',  
-       datetimeFormat: 'YYYY-MM-dd HH:mm:ss'   };   // Replace initialized params with provided params.   if (params) {       for (var param in params) {  
-           _params[param] = params[param] || _params[param];  
-       }  
-   }   // Set default parameters based on an image representative.   var imgRep = ic.first();   var nonSystemImgProps = ee.Feature(null)  
-       .copyProperties(imgRep).propertyNames();   if (!_params.bands) _params.bands = imgRep.bandNames();   if (!_params.bandsRename) _params.bandsRename = _params.bands;   if (!_params.imgProps) _params.imgProps = nonSystemImgProps;   if (!_params.imgPropsRename) _params.imgPropsRename = _params  
-       .imgProps;   // Map the reduceRegions function over the image collection.   var results = ic.map(function(img) {       // Select bands (optionally rename), set a datetime & timestamp property.       img = ee.Image(img.select(_params.bands, _params  
-               .bandsRename))           // Add datetime and timestamp features.           .set(_params.datetimeName, img.date().format(  
-               _params.datetimeFormat))           .set('timestamp', img.get('system:time_start'));       // Define final image property dictionary to set in output features.       var propsFrom = ee.List(_params.imgProps)           .cat(ee.List([_params.datetimeName,           'timestamp']));       var propsTo = ee.List(_params.imgPropsRename)           .cat(ee.List([_params.datetimeName,           'timestamp']));       var imgProps = img.toDictionary(propsFrom).rename(  
-           propsFrom, propsTo);       // Subset points that intersect the given image.       var fcSub = fc.filterBounds(img.geometry());       // Reduce the image by regions.       return img.reduceRegions({  
-               collection: fcSub,  
-               reducer: _params.reducer,               scale: _params.scale,               crs: _params.crs  
-           })           // Add metadata to each feature.           .map(function(f) {               return f.set(imgProps);  
-           });       // Converts the feature collection of feature collections to a single       //feature collection.   }).flatten();   return results;  
+```js
+function zonalStats(ic, fc, params) {
+    // Initialize internal params dictionary.
+    var _params = {
+        reducer: ee.Reducer.mean(),
+        scale: null,
+        crs: null,
+        bands: null,
+        bandsRename: null,
+        imgProps: null,
+        imgPropsRename: null,
+        datetimeName: 'datetime',
+        datetimeFormat: 'YYYY-MM-dd HH:mm:ss'
+    };
+
+    // Replace initialized params with provided params.
+    if (params) {
+        for (var param in params) {
+            _params[param] = params[param] || _params[param];
+        }
+    }
+
+    // Set default parameters based on an image representative.
+    var imgRep = ic.first();
+    var nonSystemImgProps = ee.Feature(null)
+        .copyProperties(imgRep).propertyNames();
+    if (!_params.bands) _params.bands = imgRep.bandNames();
+    if (!_params.bandsRename) _params.bandsRename = _params.bands;
+    if (!_params.imgProps) _params.imgProps = nonSystemImgProps;
+    if (!_params.imgPropsRename) _params.imgPropsRename = _params
+        .imgProps;
+
+    // Map the reduceRegions function over the image collection.
+    var results = ic.map(function(img) {
+        // Select bands (optionally rename), set a datetime & timestamp property.
+        img = ee.Image(img.select(_params.bands, _params
+                .bandsRename))
+            // Add datetime and timestamp features.
+            .set(_params.datetimeName, img.date().format(
+                _params.datetimeFormat))
+            .set('timestamp', img.get('system:time_start'));
+
+        // Define final image property dictionary to set in output features.
+        var propsFrom = ee.List(_params.imgProps)
+            .cat(ee.List([_params.datetimeName,
+            'timestamp']));
+        var propsTo = ee.List(_params.imgPropsRename)
+            .cat(ee.List([_params.datetimeName,
+            'timestamp']));
+        var imgProps = img.toDictionary(propsFrom).rename(
+            propsFrom, propsTo);
+
+        // Subset points that intersect the given image.
+        var fcSub = fc.filterBounds(img.geometry());
+
+        // Reduce the image by regions.
+        return img.reduceRegions({
+                collection: fcSub,
+                reducer: _params.reducer,
+                scale: _params.scale,
+                crs: _params.crs
+            })
+            // Add metadata to each feature.
+            .map(function(f) {
+                return f.set(imgProps);
+            });
+
+        // Converts the feature collection of feature collections to a single
+        //feature collection.
+    }).flatten();
+
+    return results;
 }
+```
+
 
 ### Point Collection Creation
 
 Below, we create a set of points that form the basis of the zonal statistics calculations. Note that a unique plot_id property is added to each point. A unique plot or point ID is important to include in your vector dataset for future filtering and joining.
 
-var pts = ee.FeatureCollection([   ee.Feature(ee.Geometry.Point([-118.6010, 37.0777]), {  
-       plot_id: 1   }),   ee.Feature(ee.Geometry.Point([-118.5896, 37.0778]), {  
-       plot_id: 2   }),   ee.Feature(ee.Geometry.Point([-118.5842, 37.0805]), {  
-       plot_id: 3   }),   ee.Feature(ee.Geometry.Point([-118.5994, 37.0936]), {  
-       plot_id: 4   }),   ee.Feature(ee.Geometry.Point([-118.5861, 37.0567]), {  
-       plot_id: 5   })  
-]);print('Points of interest', pts);
+```js
+var pts = ee.FeatureCollection([
+    ee.Feature(ee.Geometry.Point([-118.6010, 37.0777]), {
+        plot_id: 1
+    }),
+    ee.Feature(ee.Geometry.Point([-118.5896, 37.0778]), {
+        plot_id: 2
+    }),
+    ee.Feature(ee.Geometry.Point([-118.5842, 37.0805]), {
+        plot_id: 3
+    }),
+    ee.Feature(ee.Geometry.Point([-118.5994, 37.0936]), {
+        plot_id: 4
+    }),
+    ee.Feature(ee.Geometry.Point([-118.5861, 37.0567]), {
+        plot_id: 5
+    })
+]);
+
+print('Points of interest', pts);
+```
 
 :::{.callout-note}
 Code Checkpoint F52a. The book’s repository contains a script that shows what your code should look like at this point.
@@ -1256,83 +1261,33 @@ The result is a copy of the buffered point feature collection with new propertie
 
 Table F5.2.3 Example output from zonalStats organized as a table. Rows correspond to collection features and columns are feature properties. Note that elevation and slope values in this table are rounded to the nearest tenth for brevity.
 
-plot_id
-
-timestamp
-
-datetime
-
-elevation
-
-slope
-
-1
-
-946684800000
-
-2000-01-01 00:00:00
-
-2648.1
-
-29.7
-
-2
-
-946684800000
-
-2000-01-01 00:00:00
-
-2888.2
-
-33.9
-
-3
-
-946684800000
-
-2000-01-01 00:00:00
-
-3267.8
-
-35.8
-
-4
-
-946684800000
-
-2000-01-01 00:00:00
-
-2790.7
-
-25.1
-
-5
-
-946684800000
-
-2000-01-01 00:00:00
-
-2559.4
-
-29.4
+| plot_id | timestamp    | datetime            | elevation | slope |
+|---------|--------------|---------------------|-----------|-------|
+| 1       | 946684800000 | 2000-01-01 00:00:00 | 2648.1    | 29.7  |
+| 2       | 946684800000 | 2000-01-01 00:00:00 | 2888.2    | 33.9  |
+| 3       | 946684800000 | 2000-01-01 00:00:00 | 3267.8    | 35.8  |
+| 4       | 946684800000 | 2000-01-01 00:00:00 | 2790.7    | 25.1  |
+| 5       | 946684800000 | 2000-01-01 00:00:00 | 2559.4    | 29.4  |
 
 #### MODIS Time Series
 
 A time series of MODIS eight-day surface reflectance composites demonstrates how to calculate zonal statistics for a multiband ImageCollection that requires no preprocessing, such as cloud masking or computation. Note that there is no built-in function for performing region reductions on ImageCollection objects. The zonalStats function that we are using for reduction is mapping the reduceRegions function over an ImageCollection.
 
-####Buffer the Points
+#### Buffer the Points
 
 In this example, suppose the point collection represents center points for field plots that are 100 m x 100 m, and apply a 50 m radius buffer to the points to match the size of the plot. Since we want zonal statistics for square plots, set the second argument of the bufferPoints function to true, so that the bounds of the buffered points are returned.
 
 var ptsModis = pts.map(bufferPoints(50, true));
 
-####Calculate Zonal Statistic
+#### Calculate Zonal Statistic
 
 Import the MODIS 500 m global eight-day surface reflectance composite collection and filter the collection to include data for July, August, and September from 2015 through 2019.
 
+```js
 var modisCol = ee.ImageCollection('MODIS/006/MOD09A1')  
    .filterDate('2015-01-01', '2020-01-01')  
    .filter(ee.Filter.calendarRange(183, 245, 'DAY_OF_YEAR'));
+```
 
 Reduce each image in the collection by each plot according to the following parameters. Note that this time the reducer is defined as the neighborhood median (ee.Reducer.median) instead of the default mean, and that scale, CRS, and properties for the datetime are explicitly defined.
 
@@ -1360,22 +1315,38 @@ This example combines Landsat surface reflectance imagery across three instrumen
 
 The following section prepares these collections so that band names are consistent and cloud masks are applied. Reflectance among corresponding bands are roughly congruent for the three sensors when using the surface reflectance product; therefore the processing steps that follow do not address inter-sensor harmonization. Review the current literature on inter-sensor harmonization practices if you'd like to apply a correction.
 
-####Prepare the Landsat Image Collection
+#### Prepare the Landsat Image Collection
 
 First, define the function to mask cloud and shadow pixels (See Chap. F4.3 for more detail on cloud masking).
 
 ```js
-// Mask clouds from images and apply scaling factors.  
-function maskScale(img) {   var qaMask = img.select('QA_PIXEL').bitwiseAnd(parseInt('11111',       2)).eq(0);   var saturationMask = img.select('QA_RADSAT').eq(0);   // Apply the scaling factors to the appropriate bands.   var getFactorImg = function(factorNames) {       var factorList = img.toDictionary().select(factorNames)  
-           .values();       return ee.Image.constant(factorList);  
-   };   var scaleImg = getFactorImg(['REFLECTANCE_MULT_BAND_.']);   var offsetImg = getFactorImg(['REFLECTANCE_ADD_BAND_.']);   var scaled = img.select('SR_B.').multiply(scaleImg).add(  
-   offsetImg);   // Replace the original bands with the scaled ones and apply the masks.   return img.addBands(scaled, null, true)  
-       .updateMask(qaMask)  
-       .updateMask(saturationMask);  
+// Mask clouds from images and apply scaling factors.
+function maskScale(img) {
+    var qaMask = img.select('QA_PIXEL').bitwiseAnd(parseInt('11111',
+        2)).eq(0);
+    var saturationMask = img.select('QA_RADSAT').eq(0);
+
+    // Apply the scaling factors to the appropriate bands.
+    var getFactorImg = function(factorNames) {
+        var factorList = img.toDictionary().select(factorNames)
+            .values();
+        return ee.Image.constant(factorList);
+    };
+    var scaleImg = getFactorImg(['REFLECTANCE_MULT_BAND_.']);
+    var offsetImg = getFactorImg(['REFLECTANCE_ADD_BAND_.']);
+    var scaled = img.select('SR_B.').multiply(scaleImg).add(
+    offsetImg);
+
+    // Replace the original bands with the scaled ones and apply the masks.
+    return img.addBands(scaled, null, true)
+        .updateMask(qaMask)
+        .updateMask(saturationMask);
 }
+```
 
 Next, define functions to select and rename the bands of interest for the Operational Land Imager (OLI) aboard Landsat 8, and for the TM/ETM+ imagers aboard earlier Landsats. This is important because the band numbers are different for OLI and TM/ETM+, and it will make future index calculations easier.
 
+```js
 // Selects and renames bands of interest for Landsat OLI.  
 function renameOli(img) {   return img.select(  
        ['SR_B2', 'SR_B3', 'SR_B4', 'SR_B5', 'SR_B6', 'SR_B7'],  
@@ -1387,9 +1358,10 @@ function renameEtm(img) {   return img.select(
        ['SR_B1', 'SR_B2', 'SR_B3', 'SR_B4', 'SR_B5', 'SR_B7'],  
        ['Blue', 'Green', 'Red', 'NIR', 'SWIR1', 'SWIR2']);  
 }
-
+```
 Combine the cloud mask and band renaming functions into preparation functions for OLI and TM/ETM+. Add any other sensor-specific preprocessing steps that you’d like to the functions below.
 
+```js
 // Prepares (cloud masks and renames) OLI images.  
 function prepOli(img) {  
    img = maskScale(img);  
@@ -1399,9 +1371,10 @@ function prepEtm(img) {
    img = maskScale(img);  
    img = renameEtm(img);   return img;  
 }
-
+```
 Get the Landsat surface reflectance collections for OLI, ETM+, and TM sensors. Filter them by the bounds of the point feature collection and apply the relevant image preparation function.
 
+```js
 var ptsLandsat = pts.map(bufferPoints(15, true));  
   
 var oliCol = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')  
@@ -1415,13 +1388,14 @@ var etmCol = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2')
 var tmCol = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2')  
    .filterBounds(ptsLandsat)  
    .map(prepEtm);
-
 ```
 Merge the prepared sensor collections.
 
+```js
 var landsatCol = oliCol.merge(etmCol).merge(tmCol);
+```
 
-####Calculate Zonal Statistics
+#### Calculate Zonal Statistics
 
 Reduce each image in the collection by each plot according to the following parameters. Note that this example defines the imgProps and imgPropsRename parameters to copy over and rename just two selected image properties: Landsat image ID and the satellite that collected the data. It also uses the max reducer, which, as an unweighted reducer, will return the maximum value from pixels that have their centroid within the buffer (see Sect. 4.1 below for more details).
 
@@ -1446,12 +1420,13 @@ print('Limited Landsat zonal stats table', ptsLandsatStats.limit(50));
 ```
 The result is a feature collection with a feature for all combinations of plots and images.
 
-####Dealing with Large Collections
+#### Dealing with Large Collections
 
 If your browser times out, try exporting the results (as described in Chap. F6.2). It’s likely that point feature collections that cover a large area or contain many points (point-image observations) will need to be exported as a batch task by either exporting the final feature collection as an asset or as a CSV/shapefile/GeoJSON to Google Drive or GCS.
 
 Here is how you would export the above Landsat image-point feature collection to an asset and to Google Drive. Run the following code, activate the Code Editor Tasks tab, and then click the Run button. If you don’t specify your own existing folder in Drive, the folder “EEFA_outputs” will be created.
 
+```js
 Export.table.toAsset({  
    collection: ptsLandsatStats,  
    description: 'EEFA_export_Landsat_to_points',  
@@ -1463,6 +1438,7 @@ Export.table.toDrive({
    folder: 'EEFA_outputs', // this will create a new folder if it doesn't exist   description: 'EEFA_export_values_to_points',  
    fileFormat: 'CSV'  
 });
+```
 
 :::{.callout-note}
 Code Checkpoint F52b. The book’s repository contains a script that shows what your code should look like at this point.
@@ -1575,6 +1551,7 @@ Map.addLayer(pixelsFc, {
    color: 'purple'}, 'Pixels in reduction');
 
 ```
+
 ![Fig. F5.2.3 Identifying pixels used in zonal statistics. By mapping the image and vector together, you can see which pixels are included in the unweighted statistic. For this example, three pixels would be included in the statistic because the polygon covers the center point of three pixels.](F5/image44.png)
 
 
@@ -1697,6 +1674,7 @@ You will see that the population density values have a large range. We also have
 
 The result is an image with pixel values representing the population density of the polygons. We can now use the standard image visualization method to add this layer to the Map (Fig. F5.3.2). Then, we need to determine minimum and maximum values for the visualization parameters.A reliable technique to produce a good visualization is to find minimum and maximum values that are within one standard deviation. From the statistics that we calculated earlier, we can estimate good minimum and maximum values to be 0 and 50000, respectively.
 
+```js
 var palette = ['fee5d9', 'fcae91', 'fb6a4a', 'de2d26', 'a50f15'];  
 var visParams = {  
    min: 0,  
@@ -1704,6 +1682,7 @@ var visParams = {
    palette: palette  
 };  
 Map.addLayer(sfBlocksPaint.clip(geometry), visParams,   'Population Density');
+```
 
 ![Fig. F5.3.2 San Francisco population density](F5/image41.png)
 
@@ -1740,126 +1719,33 @@ Map.addLayer(sfRoadsDraw, {}, 'Roads (Draw)');
 
 The road layer has a column called “MTFCC” (standing for the MAF/TIGER Feature Class Code). This contains the road priority codes, representing the various types of roads, such as primary and secondary. We can use this information to render each road segment according to its priority. The draw function doesn’t allow us to specify different styles for each feature. Instead, we need to make use of the style function.
 
-The column contains string values indicating different road types as indicated in Table F5.3.1. This full list is available at the MAF/TIGER Feature Class Code Definitions page on the US Census Bureau website.
-
-Table F5.3.1 Census Bureau road priority codes
-
-MTFCC
-
-Feature Class
-
-S1100
-
-Primary Road
-
-S1200
-
-Secondary Road
-
-S1400
-
-Local Neighborhood Road, Rural Road, City Street
-
-S1500
-
-Vehicular Trail
-
-S1630
-
-Ramp
-
-S1640
-
-Service Drive
-
-S1710
-
-Walkway/Pedestrian Trail
-
-S1720
-
-Stairway
-
-S1730
-
-Alley
-
-S1740
-
-Private Road for service vehicles
-
-S1750
-
-Internal U.S. Census Bureau use
-
-S1780
-
-Parking Lot Road
-
-S1820
-
-Bike Path or Trail
-
-S1830
-
-Bridle Path
-
-S2000
-
-Road Median
-
-Let’s say we want to create a map with rules based on the MTFCC values shown in Table F5.3.2.
-
-Table F5.3.2 Styling Parameters for Road Priority Codes
-
-MTFCC
-
-Color
-
-Line Width
-
-S1100
-
-Blue
-
-3
-
-S1200
-
-Green
-
-2
-
-S1400
-
-Orange
-
-1
-
-All Other Classes
-
-Gray
-
-1
+The column contains string values indicating different road types as indicated in at the MAF/TIGER Feature Class Code Definitions page on the US Census Bureau website. Let’s say we want to create a map with rules based on the MTFCC values.
 
 Let’s define a dictionary containing the styling information.
 
+```js
 var styles = ee.Dictionary({   'S1100': {       'color': 'blue',       'width': 3   },   'S1200': {       'color': 'green',       'width': 2   },   'S1400': {       'color': 'orange',       'width': 1   }  
 });var defaultStyle = {  
    color: 'gray',   'width': 1  
 };
+```
 
 The style function needs a property in the FeatureCollection that contains a dictionary with the style parameters. This allows you to specify a different style for each feature. To create a new property, we map a function over the FeatureCollection and assign an appropriate style dictionary to a new property named 'style'. Note the use of the get function, which allows us to fetch the value for a key in the dictionary. It also takes a default value in case the specified key does not exist. We make use of this to assign different styles to the three road classes specified in Table 5.3.2 and a default style to all others.
 
+```js
 var sfRoads = sfRoads.map(function(f) {   var classcode = f.get('mtfcc');   var style = styles.get(classcode, defaultStyle);   return f.set('style', style);  
 });
 
+```
+
 Our collection is now ready to be styled. We call the style function to specify the property that contains the dictionary of style parameters. The output of the style function is an RGB image rendered from the FeatureCollection (Fig. F5.3.4).
 
+```js
 var sfRoadsStyle = sfRoads.style({  
    styleProperty: 'style'  
 });  
 Map.addLayer(sfRoadsStyle.clip(geometry), {}, 'Roads (Style)');
+```
 
 ![Fig. F5.3.4 San Francisco roads rendered according to road priority](F5/image46.png)
 
@@ -1886,6 +1772,7 @@ In this section, we will learn how to select features from one layer that are wi
 
 We start by loading the census blocks and roads collections and filtering the roads layer to the San Francisco boundary.
 
+```js
 var blocks = ee.FeatureCollection('TIGER/2010/Blocks');  
 var roads = ee.FeatureCollection('TIGER/2016/Roads');  
 var sfNeighborhoods = ee.FeatureCollection(   'projects/gee-book/assets/F5-0/SFneighborhoods');  
@@ -1893,7 +1780,6 @@ var sfNeighborhoods = ee.FeatureCollection(   'projects/gee-book/assets/F5-0/SFn
 var geometry = sfNeighborhoods.geometry();  
 Map.centerObject(geometry);  
   
-```js
 // Filter blocks and roads to San Francisco boundary.  
 var sfBlocks = blocks.filter(ee.Filter.bounds(geometry));  
 var sfRoads = roads.filter(ee.Filter.bounds(geometry));
@@ -1901,10 +1787,13 @@ var sfRoads = roads.filter(ee.Filter.bounds(geometry));
 ```
 As we want to select all blocks within 1 km of an interstate highway, we first filter the sfRoads collection to select all segments with the rttyp property value of I.
 
+```js
 var interstateRoads = sfRoads.filter(ee.Filter.eq('rttyp', 'I'));
+```
 
 We use the draw function to visualize the sfBlocks and interstateRoads layers (Fig. F5.3.5).
 
+```js
 var sfBlocksDrawn = sfBlocks.draw({  
        color: 'gray',  
        strokeWidth: 1   })  
@@ -1915,34 +1804,41 @@ var interstateRoadsDrawn = interstateRoads.draw({
        strokeWidth: 3   })  
    .clip(geometry);  
 Map.addLayer(interstateRoadsDrawn, {}, 'Interstate Roads');
+```
 
 ![Fig. F5.3.5 San Francisco blocks and interstate highways](F5/image2.png)
 
 
 Let’s define a join that will select all the features from the sfBlocks layer that are within 1 km of any feature from the interstateRoads layer. We start by defining a filter using the ee.Filter.withinDistance filter. We want to compare the geometries of features in both layers, so we use a special property called '.geo' to compare the collections. By default, the filter will work with exact distances between the geometries. If your analysis does not require a very precise tolerance of spatial uncertainty, specifying a small non-zero maxError distance value will help speed up the spatial operations. A larger tolerance also helps when testing or debugging code so you can get the result quickly instead of waiting longer for a more precise output.
 
+```js
 var joinFilter = ee.Filter.withinDistance({  
    distance: 1000,  
    leftField: '.geo',  
    rightField: '.geo',  
    maxError: 10  
 });
+```
 
 We will use a simple join as we just want features from the first (primary) collection that match the features from the other (secondary) collection.
 
+```js
 var closeBlocks = ee.Join.simple().apply({  
    primary: sfBlocks,  
    secondary: interstateRoads,  
    condition: joinFilter  
 });
+```
 
 We can visualize the results in a different color and verify that the join worked as expected (Fig. F5.3.6).
 
+```js
 var closeBlocksDrawn = closeBlocks.draw({  
        color: 'orange',  
        strokeWidth: 1   })  
    .clip(geometry);  
 Map.addLayer(closeBlocksDrawn, {}, 'Blocks within 1km');
+```
 
 ![Fig. F5.3.6 Selected blocks within 1 km of an interstate highway](F5/image40.png)
 
@@ -1982,23 +1878,30 @@ Map.addLayer(sfTreesStyled, {}, 'SF Trees');
 
 To find the tree points in each neighborhood polygon, we will use an ee.Filter.intersects filter.
 
+```js
 var intersectFilter = ee.Filter.intersects({  
    leftField: '.geo',  
    rightField: '.geo',  
    maxError: 10  
 });
+```
 
 We need a join that can give us a list of all tree features that intersect each neighborhood polygon, so we need to use a saving join. A saving join will find all the features from the secondary collection that match the filter and store them in a property in the primary collection. Once you apply this join, you will get a version of the primary collection with an additional property that has the matching features from the secondary collection. Here we use the ee.Join.saveAll join, since we want to store all matching features. We specify the matchesKey property that will be added to each feature with the results.
 
+```js
 var saveAllJoin = ee.Join.saveAll({  
    matchesKey: 'trees',  
 });
+```
 
 Let’s apply the join and print the first feature of the resulting collection to verify (Fig. F5.3.8).
 
+```js
 var joined = saveAllJoin  
    .apply(sfNeighborhoods, sfTrees, intersectFilter);  
 print(joined.first());
+```
+
 
 ![Fig. F5.3.8 Result of the save-all join](F5/image1.png)
 

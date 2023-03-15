@@ -465,29 +465,12 @@ Map.addLayer(landsat, visParams, 'Landsat 8 image');
 ![Fig. F2.1.2 Landsat image](F2/image44.png)
 
 
-Using the Geometry Tools, we will create points on the Landsat image that represent land cover classes of interest to use as our training data. We’ll need to do two things: (1) identify where each land cover occurs on the ground, and (2) label the points with the proper class number. For this exercise, we will use the classes and codes shown in Table 2.1.1.
+Using the Geometry Tools, we will create points on the Landsat image that represent land cover classes of interest to use as our training data. We’ll need to do two things: (1) identify where each land cover occurs on the ground, and (2) label the points with the proper class number. For this exercise, we will use the classes and codes shown below:
 
-Table 2.1.1 Land cover classes
-
-Class
-
-Class code
-
-Forest
-
-0
-
-Developed
-
-1
-
-Water
-
-2
-
-Herbaceous
-
-3
+* Forest: 0
+* Developed: 1
+* Water: 2
+* Herbaceous: 3
 
 In the Geometry Tools, click on the marker option (Fig. F2.1.3). This will create a point geometry which will show up as an import named “geometry”. Click on the gear icon to configure this import.
 
@@ -783,29 +766,14 @@ In a thorough accuracy assessment, we think carefully about the sampling design,
 
 If you have not already done so, be sure to add the book’s code repository to the Code Editor by entering [](https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&sa=D&source=editors&ust=1671458829937499&usg=AOvVaw3qqOwSX_A-Pllh6X3X31q4)[https://code.earthengine.google.com/?accept_repo=projects/gee-edu/book](https://www.google.com/url?q=https://code.earthengine.google.com/?accept_repo%3Dprojects/gee-edu/book&sa=D&source=editors&ust=1671458829937976&usg=AOvVaw0WioXIhzue8-WoaX4UtabH) into your browser. The book’s scripts will then be available in the script manager panel. If you have trouble finding the repo, you can visit [this link](https://www.google.com/url?q=https://docs.google.com/presentation/d/1Kt6wGNoesYm__Cu3k3bnlbbyPN6m9SF4hQHK-pIDHfc/edit%23slide%3Did.g18a7b4b055d_0_624&sa=D&source=editors&ust=1671458829938470&usg=AOvVaw2CH8V3-_qV99EcgMxUAaSO) for help.
 
-To illustrate some of the basic ideas about classification accuracy, we will revisit the data and location of part of Chap. F2.1, where we tested different classifiers and classified a Landsat image of the area around Milan, Italy. We will name this dataset 'data'. This variable is a FeatureCollection with features containing the “class” values (Table F2.2.1) and spectral information of four land cover / land use classes: forest, developed, water, and herbaceous (see Fig. F2.1.8 and Fig. F2.1.9 for a refresher). We will also define a variable, predictionBands, which is a list of bands that will be used for prediction (classification)—the spectral information in the data variable.
+To illustrate some of the basic ideas about classification accuracy, we will revisit the data and location of part of Chap. F2.1, where we tested different classifiers and classified a Landsat image of the area around Milan, Italy. We will name this dataset 'data'. This variable is a FeatureCollection with features containing the “class” values and spectral information of four land cover / land use classes: forest, developed, water, and herbaceous (see Fig. F2.1.8 and Fig. F2.1.9 for a refresher). We will also define a variable, predictionBands, which is a list of bands that will be used for prediction (classification)—the spectral information in the data variable.
 
-Table F2.2.1 Land cover classes
+Class Values: 
 
-Class
-
-Class value
-
-Forest
-
-0
-
-Developed
-
-1
-
-Water
-
-2
-
-Herbaceous
-
-3
+* Forest: 0
+* Developed: 1
+* Water: 2
+* Herbaceous: 3
 
 The first step is to partition the set of known values into training and testing sets in order to have something for the classifier to predict over that it has not been shown before (the testing set), mimicking unseen data that the model might see in the future. We add a column of random numbers to our FeatureCollection using the randomColumn method. Then, we filter the features into about 80% for training and 20% for testing using ee.Filter. Copy and paste the code below to partition the data and filter features based on the random number.
 
@@ -842,25 +810,12 @@ Now, let’s discuss what a confusion matrix is. A confusion matrix describes th
 
 Table F2.2.1 Confusion matrix for a binary classification where the classes are “positive” and “negative”
 
-Actual values
+|                  |          |    Actual values    |                     |
+|------------------|----------|:-------------------:|:-------------------:|
+|                  |          |       Positive      |       Negative      |
+| Predicted values | Positive |  TP (true positive) | FP (false positive) |
+|                  | Negative | FN (false negative) |  TN (true negative) |
 
-Positive
-
-Negative
-
-Predicted values
-
-Positive
-
-TP (true positive)
-
-FP (false positive)
-
-Negative
-
-FN (false negative)
-
-TN (true negative)
 
 In Table F2.2.1, the columns represent the actual values (the truth), while the rows represent the predictions (the classification). “True positive” (TP) and “true negative” (TN) mean that the classification of a pixel matches the truth (e.g., a water pixel correctly classified as water). “False positive” (FP) and “false negative” (FN) mean that the classification of a pixel does not match the truth (e.g., a non-water pixel incorrectly classified as water).
 
@@ -873,25 +828,12 @@ We can extract some statistical information from a confusion matrix.. Let’s lo
 
 Table F2.2.2 Confusion matrix for a binary classification where the classes are “positive” (forest) and “negative” (non-forest)
 
-Actual values
+|                  |          | Actual values |          |
+|------------------|----------|:-------------:|:--------:|
+|                  |          |    Positive   | Negative |
+| Predicted values | Positive |      307      |    18    |
+|                  | Negative |       14      |    661   |
 
-Positive
-
-Negative
-
-Predicted values
-
-Positive
-
-307
-
-18
-
-Negative
-
-14
-
-661
 
 In this case, the classifier correctly identified 307 forest pixels, wrongly classified 18 non-forest pixels as forest, correctly identified 661 non-forest pixels, and wrongly classified 14 forest pixels as non-forest. Therefore, the classifier was correct 968 times and wrong 32 times. Let’s calculate the main accuracy metrics for this example.
 

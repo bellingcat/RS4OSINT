@@ -1,13 +1,4 @@
-# Deep Learning {.unnumbered}
-
----
-title-block-banner: "#34a832"
-title-block-banner-color: 'white'
-slide-format: revealjs
-
----
-
-# Introduction 
+# Object Detection {.unnumbered}
 
 The Ship Detection tutorial explored a use case in which we might want to monitor the activity of ships in a particular location. That was a fairly straightforward task: the sea is very flat, and ships (especially large cargo and military vessels) protrude significantly. Using radar imagery, we could just set a threshold because if anything on the water is reflecting radio waves, it's probably a ship. 
 
@@ -145,7 +136,131 @@ This number is very useful when training a model in several different ways using
 
 ## Inference 
 
-The scene below is from an Air and Space Museum in Tucson, Arizona. It shows a large collection of aircraft that have been retired from service-- I picked this image because it has a lot of different types of aircraft, and it's a good test of our model's ability to detect different types of planes. 
+Now that we've got a trained model, we can use it to conduct object detection on new images. we'll build a data processing pipeline in three steps by:
+
+1. Loading our trained model
+2. Creating an interactive map to define the area we want to analyze. 
+3. Defining a function to run object detection within this area. 
+
+### 1. Loading a trained model 
+
+During the training process, YOLO is iteratively tweaking the model to try to maximize mAP 0.5. It automatically saves the best version of the model in the following location: `YOLOv5_RS/runs/train/exp/weights/best.pt`. You can save this file for later use, which I have done in case you just want to use this model without having to train it yourself. I've also included several other pre-trained models which you can find in the `YOLOv5_RS/weights/` directory, including:
+
+ * `lowres_ships.pt`: the model we just trained on Sentinel-2 imagery.
+
+ * `aircraft.pt`: trained on the high resolution [Airbus Aircraft Detection Dataset](https://www.kaggle.com/datasets/airbusgeo/airbus-aircrafts-sample-dataset).
+
+ * `general.pt`: trained on the [DOTA dataset](https://captain-whu.github.io/DOTA/dataset.html) by [Kevin Guo](https://github.com/KevinMuyaoGuo/yolov5s_for_satellite_imagery#readme). This model works great on high resolution satellite imagery, and can detect the following classes: plane, ship, storage tank, baseball diamond, tennis court, basketball court, ground track field, harbor, bridge, large vehicle, small vehicle, helicopter, roundabout, soccer field, swimming pool, container crane, airport and helipad.
+
+So far, we've trained a model to detect ships in Sentinel-2 imagery. But to show the versatility of this general approach, the rest of this tutorial will load up the `general.pt` model, and use it to detect a wide range of aircraft in high resolution imagery. 
+
+### 2. Loading the input imagery 
+
+To get started with object detection on satellite imagery using these pre-trained models, we need to define an Area of Interest (AOI) and load satellite imagery. We'll do this by accessing Google Earth Engine from the Python notebook we're working in, and creating an interactive map that will let us draw an AOI for analysis. 
+
+First, we first need to import a few packages: 
+
+```python
+!pip install geemap  -q
+import pandas as pd
+import ee
+import geemap
+import requests
+from PIL import Image
+from PIL import ImageDraw
+from io import BytesIO
+import torch
+import PIL
+```
+
+Once we've done this, we'll also need to log in to Google Earth Engine using its Python API in order to access the satellite imagery. Running these two lines of code will generate a prompt with instructions; you have to click the link, confirm that you give the notebook permission to access your Earth Engine account, and paste the authentication code in the provided dialogue box.
+
+```python
+ee.Authenticate()
+ee.Initialize()
+```
+
+Great-- now we can load high resolution imagery from the National Agriculture Imagery Program (NAIP) and create an interactive map. For this example, I'm centering the map on the [Davis-Monthan Airplane Boneyard](https://en.wikipedia.org/wiki/309th_Aerospace_Maintenance_and_Regeneration_Group). This is where the airforce retires and restores aircraft, so it will have lots of airplanes of different kinds for us to identify. 
+
+First, we want to define a function called `detect` that will accept four arguments:
+
+  * `input`: the satellite imagery we want to analyze. 
+  * `visParams`: a dictionary of visualization parameters for the imagery. 
+  * `weight`: the name of the pre-trained model we want to use. 
+  * `labels`: a boolean indicating whether we want to display the labels on the processed image.
+
+
+```python
+def detect(input, visParams, weight, labels=True):
+
+  # Get the AOI from the map
+  aoi = ee.FeatureCollection(Map.draw_features)
+  mapScale=Map.getScale()
+
+  # Visualize the raster in Earth Engine and get a download URL
+  image_url=input.visualize(bands=visParams['bands'], max=visParams['max']).getThumbURL({"region":aoi.geometry(), 'scale':mapScale})
+
+  # Load the image into a PIL image
+  response = requests.get(image_url)
+  img = Image.open(BytesIO(response.content))
+
+  # Load the model
+  model =torch.hub.load('.','custom', path='weights/{}.pt'.format(weight),source='local',_verbose=False)
+  
+  # Run inference
+  results = model(img)
+
+  # Count the number of detections
+  counts=pd.DataFrame(results.pandas().xyxy[0].groupby('name').size()).reset_index().rename(columns={0:'count','name':'detected'}).set_index('count')
+
+  # Display the results
+  results.show(labels=labels)
+
+  # Print the number of detections and the date of the image
+  print(ee.Date(input.get('system:time_start')).format("dd-MM-yyyy").getInfo())
+  print(counts)
+  
+  return counts
+```
+
+Now, we can load the NAIP imagery and create an interactive map.
+
+```python
+# load the past 10 years of NAIP imagery
+naip = ee.ImageCollection('USDA/NAIP/DOQQ').filter(ee.Filter.date('2012-01-01', '2022-01-01'))
+
+# set some thresholds
+trueColorVis = {
+  'bands':['R', 'G', 'B'],
+  'min': 0,
+  'max': 300,
+};
+
+# initialize our map
+Map = geemap.Map()
+Map.setCenter(-110.84,32.16,17)
+Map.addLayer(naip.first(), trueColorVis, "naip")
+Map
+```
+
+This will generate a small map with some drawing tools on the left side. We can use these tools to draw a polygon around the area we want to analyze. Use the drawing tools to draw a rectangle around an area of interest.
+
+Finally, we can run the detection on the imagery. We'll do this by iterating through the collection of images, and running the `detect` function on each one. We'll also store the results in a dataframe so we can analyze them later.
+
+``` python 
+# Get the polygon we just drew on the map 
+aoi=ee.FeatureCollection(Map.draw_features)
+
+# Get a list of all the images in the collection
+naip_list=naip.filterBounds(aoi).toList(naip.size())
+
+# Iterate through the list of images and run detection on each one
+for num in range(0,(img_list.size()).getInfo()):
+  detect(ee.Image(naip_list.get(num)), trueColorVis,'general',labels=False)
+  df=df.append(detection) # store the results in a dataframe
+```
+
+Below is the result of the detection on the latest image in the collection: 
 
 :::{.column-screen}
 
@@ -153,6 +268,18 @@ The scene below is from an Air and Space Museum in Tucson, Arizona. It shows a l
 
 :::
 
-Inference took just 822.2 milliseconds, and it seems to be doing pretty well. The model identifies over 100 different kinds of aircraft (orange boxes) of many shapes and sizes, civilian and military, without missing a single one. It also identifies around 20 different types of helicopter (blue boxes) in the top right and even spots the cars on the highway and in the parking lots (red boxes). It's not perfect-- it thinks there's a ship in the bottom left corner near the shed (yellow box); in reality this appears to be half of a plane's fuselage, an understandable mistake given how long it took *me* to figure out what it was. 
+This image shows a remarkable degree of accuracy being achieved by our model. Inference took just 822.2 milliseconds, and it seems to be doing pretty well. The model identifies over 100 different kinds of aircraft (orange boxes) of many shapes and sizes, civilian and military, without missing a single one. It also identifies around 20 different types of helicopter (blue boxes) in the top right and even spots the cars on the highway and in the parking lots (red boxes). It's not perfect-- it thinks there's a ship in the bottom left corner near the shed (yellow box); in reality this appears to be half of a plane's fuselage, an understandable mistake given how long it took *me* to figure out what it was. 
 
-This image shows a remarkable degree of accuracy being achieved by our model. 
+
+<!-- 
+Even through we trained our model on Sentinel-2 imagery (10 meters per pixel), it can still be used on imagery from different satellites as long as they have a broadly similar resolution. A ship in PlanetScope imagery (3 meters per pixel) will look roughly similar to a ship in Sentinel-2 imagery. Using PlanetScope has another big over Sentinel-2 beyond its higher spatial resolution: it has a much higher revisit rate (daily instead of 5 days). Though *downloading* PlanetScope imagery isn't free, you *can* generate a timelapse image of any area on Earth using Planet's [Planet Stories](https://www.planet.com/stories/create) tool. Simply create a free account and follow the instructions to generate a timelapse of an area of interest. You can then download the timelapse video and use it as input to our model.
+
+Once you've done this, you can run the following line of code to automatically identify ships in the timelapse video: 
+
+
+{{< video images/mikolayiv.mp4 >}}
+
+
+![](./images/mikolayiv.mp4)
+
+ -->

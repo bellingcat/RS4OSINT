@@ -1,4 +1,4 @@
-## Interpreting Image Series
+## Image Series
 
 One of the paradigm-changing features of Earth Engine is the ability to access decades of imagery without the previous limitation of needing to download all the data to a local disk for processing. Because remote-sensing data files can be enormous, this used to limit many projects to viewing two or three images from different periods. With Earth Engine, users can access tens or hundreds of thousands of images to understand the status of places across decades.
 
@@ -51,7 +51,9 @@ For users of other programming languages—R, MATLAB, C, Karel, and many others�
 
 Suppose you need to go shopping for milk, and you have two criteria for determining where you will buy your milk: location and price. The store needs to be close to your home, and as a first step in deciding whether to buy milk today, you want to identify the lowest price among those stores. You don’t know the cost of milk at any store ahead of time, so you need to efficiently contact each one and determine the minimum price to know whether it fits in your budget. If we were discussing this with a friend, we might say, “I need to find out how much milk costs at all the stores around here.” To solve that problem in a programming language, these words imply precise operations on sets of information. We can write the following “pseudocode,” which uses words that indicate logical thinking but that cannot be pasted directly into a program:
 
+```
 AllStoresOnEarth.filterNearbyStores.filterStoresWithMilk.getMilkPricesFromEachStore.determineTheMinimumValue
+```
 
 Imagine doing these actions not on a computer but in a more old-fashioned way: calling on the telephone for milk prices, writing the milk prices on paper, and inspecting the list to find the lowest value. In this approach, we begin with AllStoresOnEarth, since there is at least some possibility that we could decide to visit any store on Earth, a set that could include millions of stores, with prices for millions or billions of items. A wise first action would be to limit ourselves to nearby stores. Asking to filterNearbyStores would reduce the number of potential stores to hundreds, depending on how far we are willing to travel for milk. Then, working with that smaller set, we further filterStoresWithMilk, limiting ourselves to stores that sell our target item. At that point in the filtering, imagine that just 10 possibilities remain. Then, by telephone, we getMilkPricesFromEachStore, making a short paper list of prices. We then scan the list to determineTheMinimumValue to decide which store to visit.
 
@@ -59,8 +61,9 @@ In that example, each color plays a different role in the workflow. The AllStore
 
 The list of steps above might seem almost too obvious, but the choice and order of operations can have a big impact on the feasibility of the problem. Imagine if we had decided to do the same operations in a slightly different order:
 
+```
 AllStoresOnEarth.filterStoresWithMilk.getMilkPricesFromEachStore.filterNearbyStores.determineMinimumValue
-
+```
 In this approach, we first identify all the stores on Earth that have milk, then contact them one by one to get their current milk price. If the contact is done by phone, this could be a painfully slow process involving millions of phone calls. It would take considerable “processing” time to make each call, and careful work to record each price onto a giant list. Processing the operations in this order would demand that only after entirely finishing the process of contacting every milk proprietor on Earth, we then identify the ones on our list that are not nearby enough to visit, then scan the prices on the list of nearby stores to find the cheapest one. This should ultimately give the same answer as the more efficient first example, but only after requiring so much effort that we might want to give up.
 
 In addition to the greater order of magnitude of the list size, you can see that there are also possible slow points in the process. Could you make a million phone calls yourself? Maybe, but it might be pretty appealing to hire, say, 1000 people to help. While being able to make a large number of calls in parallel would speed up the calling stage, it’s important to note that you would need to wait for all 1000 callers to return their sublists of prices. Why wait? Nearby stores could be on any caller’s sublist, so any caller might be the one to find the lowest nearby price. The identification of the lowest nearby price would need to wait for the slowest caller, even if it turned out that all of that last caller’s prices came from stores on the other side of the world.
@@ -81,8 +84,9 @@ Below are three examples of limiting a Landsat 5 ImageCollection by characterist
 
 FilterDate This takes an ImageCollection as input and returns an ImageCollection whose members satisfy the specified date criteria. We’ll adapt the earlier filtering logic seen in Chap. F1.2:
 
-var imgCol = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');  
+
 ```js
+var imgCol = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2');  
 // How many Tier 1 Landsat 5 images have ever been collected?  
 print("All images ever: ", imgCol.size()); // A very large number  
   
@@ -104,25 +108,27 @@ Map.centerObject(ShanghaiImage, 9);
 var imgColfilteredByDateHere = imgColfilteredByDate.filterBounds(Map   .getCenter());  
 print("All images here, 2000-2010: ", imgColfilteredByDateHere  
 .size()); // A smaller number
-
+```
 If you’d like, you could take a few minutes to explore the behavior of the script in different parts of the world. To do that, you would need to comment out the Map.centerObject command to keep the map from moving to that location each time you run the script.
-
   
-Filter by Other Image Metadata        As first explained in Chap. F1.3, the date and location of an image are characteristics stored with each image. Another important factor in image processing is the cloud cover, an image-level value computed for each image in many collections, including the Landsat and Sentinel-2 collections. The overall cloudiness score might be stored under different metadata tag names in different data sets. For example, for Sentinel-2, this overall cloudiness score is stored in the CLOUDY_PIXEL_PERCENTAGE metadata field. For Landsat 5, the ImageCollection we are using in this example, the image-level cloudiness score is stored using the tag CLOUD_COVER. If you are unfamiliar with how to find this information, these skills are first presented in Part F1.
+*Filter by Other Image Metadata*
+As first explained in Chap. F1.3, the date and location of an image are characteristics stored with each image. Another important factor in image processing is the cloud cover, an image-level value computed for each image in many collections, including the Landsat and Sentinel-2 collections. The overall cloudiness score might be stored under different metadata tag names in different data sets. For example, for Sentinel-2, this overall cloudiness score is stored in the CLOUDY_PIXEL_PERCENTAGE metadata field. For Landsat 5, the ImageCollection we are using in this example, the image-level cloudiness score is stored using the tag CLOUD_COVER. If you are unfamiliar with how to find this information, these skills are first presented in Part F1.
 
 Here, we will access the ImageCollection that we just built using filterBounds and filterDate, and then further filter the images by the image-level cloud cover score, using the filterMetadata function.
 
 Next, let’s remove any images with 50% or more cloudiness. As will be described in subsequent chapters working with per-pixel cloudiness information, you might want to retain those images in a real-life study, if you feel some values within cloudy images might be useful. For now, to illustrate the filtering concept, let’s keep only images whose image-level cloudiness values indicate that the cloud coverage is lower than 50%. Here, we will take the set already filtered by bounds and date, and further filter it using the cloud percentage into a new ImageCollection. Add this line to the script to filter by cloudiness and print the size to the Console.
 
+```js
 var L5FilteredLowCloudImages = imgColfilteredByDateHere  
    .filterMetadata('CLOUD_COVER', 'less_than', 50);  
 print("Less than 50% clouds in this area, 2000-2010",  
    L5FilteredLowCloudImages.size()); // A smaller number
-
+```
 Filtering in an Efficient Order As you saw earlier in the hypothetical milk example, we typically filter, then map, and then reduce, in that order. In the same way that we would not want to call every store on Earth, preferring instead to narrow down the list of potential stores first, we filter images first in our workflow in Earth Engine. In addition, you may have noticed that the ordering of the filters within the filtering stage also mattered in the milk example. This is also true in Earth Engine. For problems with a non-global spatial component in which filterBounds is to be used, it is most efficient to do that spatial filtering first.
 
 In the code below, you will see that you can “chain” the filter commands, which are then executed from left to right. Below, we chain the filters in the same order as you specified above. Note that it gives an ImageCollection of the same size as when you applied the filters one at a time.
 
+```js
 var chainedFilteredSet = imgCol.filterDate(startDate, endDate)  
    .filterBounds(Map.getCenter())  
    .filterMetadata('CLOUD_COVER', 'less_than', 50);  
@@ -132,12 +138,13 @@ print('Chained: Less than 50% clouds in this area, 2000-2010',
 ```
 In the code below, we chain the filters in a more efficient order, implementing filterBounds first. This, too, gives an ImageCollection of the same size as when you applied the filters in the less efficient order, whether the filters were chained or not.
 
+```js
 var efficientFilteredSet = imgCol.filterBounds(Map.getCenter())  
    .filterDate(startDate, endDate)  
    .filterMetadata('CLOUD_COVER', 'less_than', 50);  
 print('Efficient filtering: Less than 50% clouds in this area, 2000-2010',  
    efficientFilteredSet.size());
-
+```
 Each of the two chained sets of operations will give the same result as before for the number of images. While the second order is more efficient, both approaches are likely to return the answer to the Code Editor at roughly the same time for this very small example. The order of operations is most important in larger problems in which you might be challenged to manage memory carefully. As in the milk example in which you narrowed geographically first, it is good practice in Earth Engine to order the filters with the filterBounds first, followed by metadata filters in order of decreasing specificity.
 
 :::{.callout-note}
@@ -154,22 +161,46 @@ Before beginning to code the EVI functionality, it’s worth noting that the wor
 To map a given set of operations efficiently over an entire ImageCollection, the processing needs to be set up in a particular way. Users familiar with other programming languages might expect to see “loop” code to do this, but the processing is not done exactly that way in Earth Engine. Instead, we will create a function, and then map it over the ImageCollection. To begin, envision creating a function that takes exactly one parameter, an ee.Image. The function is then designed to perform a specified set of operations on the input ee.Image and then, importantly, returns an ee.Image as the last step of the function. When we map that function over an ImageCollection, as we’ll illustrate below, the effect is that we begin with an ImageCollection, do operations to each image, and receive a processed ImageCollection as the output.
 
 What kinds of functions could we create? For example, you could imagine a function taking an image and returning an image whose pixels have the value 1 where the value of a given band was lower than a certain threshold, and 0 otherwise. The effect of mapping this function would be an entire ImageCollection of images with zeroes and ones representing the results of that test on each image. Or you could imagine a function computing a complex self-defined index and sending back an image of that index calculated in each pixel. Here, we’ll create a function to compute the EVI for any input Landsat 5 image and return the one-band image for which the index is computed for each pixel. Copy and paste the function definition below into the Code Editor, adding it to the end of the script from the previous section.
+```js
+var makeLandsat5EVI = function(oneL5Image) {
+    // compute the EVI for any Landsat 5 image. Note it's specific to 
+    // Landsat 5 images due to the band numbers. Don't run this exact 
+    // function for images from sensors other than Landsat 5.
 
-var makeLandsat5EVI = function(oneL5Image) {   // compute the EVI for any Landsat 5 image. Note it's specific to   // Landsat 5 images due to the band numbers. Don't run this exact   // function for images from sensors other than Landsat 5.   // Extract the bands and divide by 1e4 to account for scaling done.   var nirScaled = oneL5Image.select('SRvide(10000);   var redScaled = oneL5Image.select('SR_B3').divide(10000);   var blueScaled = oneL5Image.select('SR_B1').divide(10000);   // Calculate the numerator, note that order goes from left to right.   var numeratorEVI = (nirScaled.subtract(redScaled)).multiply(       2.5);   // Calculate the denominator   var denomClause1 = redScaled.multiply(6);   var denomClause2 = blueScaled.multiply(7.5);   var denominatorEVI = nirScaled.add(denomClause1).subtract(  
-       denomClause2).add(1);   // Calculate EVI and name it.   var landsat5EVI = numeratorEVI.divide(denominatorEVI).rename(       'EVI');   return (landsat5EVI);  
+    // Extract the bands and divide by 1e4 to account for scaling done.
+    var nirScaled = oneL5Image.select('SR_B4').divide(10000);
+    var redScaled = oneL5Image.select('SR_B3').divide(10000);
+    var blueScaled = oneL5Image.select('SR_B1').divide(10000);
+
+    // Calculate the numerator, note that order goes from left to right.
+    var numeratorEVI = (nirScaled.subtract(redScaled)).multiply(
+        2.5);
+
+    // Calculate the denominator
+    var denomClause1 = redScaled.multiply(6);
+    var denomClause2 = blueScaled.multiply(7.5);
+    var denominatorEVI = nirScaled.add(denomClause1).subtract(
+        denomClause2).add(1);
+
+    // Calculate EVI and name it.
+    var landsat5EVI = numeratorEVI.divide(denominatorEVI).rename(
+        'EVI');
+    return (landsat5EVI);
 };
+```
 
 It is worth emphasizing that, in general, band names are specific to each ImageCollection. As a result, if that function were run on an image without the band 'SR_B4', for example, the function call would fail. Here, we have emphasized in the function’s name that it is specifically for creating EVI for Landsat 5.  
 
 The function makeLandsat5EVI is built to receive a single image, select the proper bands for calculating EVI, make the calculation, and return a one-banded image. If we had the name of each image comprising our ImageCollection, we could enter the names into the Code Editor and call the function one at a time for each, assembling the images into variables, and then combining them into an ImageCollection. This would be very tedious and highly prone to mistakes: lists of items might get mistyped, an image might be missed, etc. Instead, as mentioned above, we will use .map. With the code below, let’s print the information about the cloud-filtered collection and display it, execute the .map command, and explore the resulting ImageCollection.
 
+```js
 var L5EVIimages = efficientFilteredSet.map(makeLandsat5EVI);  
 print('Verifying that the .map gives back the same number of images: ',  
    L5EVIimages.size());  
 print(L5EVIimages);  
   
 Map.addLayer(L5EVIimages, {}, 'L5EVIimages', 1, 1);
-
+```
 After entering and executing this code, you will see a grayscale image. If you look closely at the edges of the image, you might spot other images drawn behind it in a way that looks somewhat like a stack of papers on a table. This is the drawing of the ImageCollection made from the makeLandsat5EVI function. You can select the Inspector panel and click on one of the grayscale pixels to view the values of the entire ImageCollection. After clicking on a pixel, look for the Series tag by opening and closing the list of items. When you open that tag, you will see a chart of the EVI values at that pixel, created by mapping the makeLandsat5EVI function over the filtered ImageCollection.
 
 :::{.callout-note}
@@ -183,6 +214,7 @@ Here, you can think of each location, after the calculation of EVI has been exec
 
 The code below computes the mean value, at every pixel, of the ImageCollection L5EVIimages created above. Add it at the bottom of your code.
 
+```js
 var L5EVImean = L5EVIimages.reduce(ee.Reducer.mean());  
 print(L5EVImean);  
 Map.addLayer(L5EVImean, {  
@@ -190,9 +222,9 @@ Map.addLayer(L5EVImean, {
    max: 2,  
    palette: ['red', 'white', 'green']  
 }, 'Mean EVI');
-
+```
 Using the same principle, the code below computes and draws the median value of the ImageCollection in every pixel.
-
+```js
 var L5EVImedian = L5EVIimages.reduce(ee.Reducer.median());  
 print(L5EVImedian);  
 Map.addLayer(L5EVImedian, {  
@@ -200,7 +232,7 @@ Map.addLayer(L5EVImedian, {
    max: 2,  
    palette: ['red', 'white', 'green']  
 }, 'Median EVI');
-
+```
 ![](F4/image43.png)
 
 ![Fig. 4.0.2 The effects of two reducers on mapped EVI values in a filtered ImageCollection: mean image (above), and median image (below)](F4/image67.png)
@@ -222,10 +254,8 @@ In this chapter, you learned about the paradigm of filter, map, reduce. You lear
 ## Exploring Image Collections
 
 
-
-
- 
 :::{.callout-tip}
+
 ## Chapter Information
 
 #### Author {.unlisted .unnumbered}
@@ -256,7 +286,7 @@ This chapter teaches how to explore image collections, including their spatiotem
 *   Perform basic image analysis: select bands, compute indices, create masks (Part F2).
 *   Summarize an ImageCollection with reducers (Chap. F4.0).
 
-***
+:::
 
 In the previous chapter (Chap. F4.0), the filter, map, reduce paradigm was introduced. The main goal of this chapter is to demonstrate some of the ways that those concepts can be used within Earth Engine to better understand the variability of values stored in image collections. Sect. 1 demonstrates how time-dependent values stored in the images of an ImageCollection can be inspected using the Code Editor user interface after filtering them to a limited spatiotemporal range (i.e., geometry and time ranges). Sect. 2 shows how the extent of images, as well as basic statistics, such as the number of observations, can be visualized to better understand the spatiotemporal extent of image collections. Then, Sects. 3 and 4 demonstrate how simple reducers such as mean and median, and more advanced reducers such as percentiles, can be used to better understand how the values of a filtered ImageCollection are distributed.
 
@@ -394,9 +424,9 @@ We can see that the resulting composite image (Fig. 4.1.3) has almost no cloudy 
 
 We can explore the range of values in an entire ImageCollection by viewing a series of increasingly bright percentile images, as shown in Fig. F4.1.4. Paste and run the following code.
 
+```js
 var percentiles = [0, 10, 20, 30, 40, 50, 60, 70, 80];  
   
-```js
 // let's compute percentile images and add them as separate layers  
 percentiles.map(function(p) {   var image = filteredIC.reduce(ee.Reducer.percentile([p]));   Map.addLayer(image, {  
        min: 0.05,  
@@ -481,12 +511,14 @@ In this exercise, we will work with the CHIRPS dataset using the pentad. A penta
 
 We will start by accessing the CHIRPS Pentad collection and filtering it to create a time series for a single year.
 
+```js
 var chirps = ee.ImageCollection('UCSB-CHG/CHIRPS/PENTAD');  
 var startDate = '2019-01-01';  
 var endDate = '2020-01-01';  
 var yearFiltered = chirps.filter(ee.Filter.date(startDate, endDate));  
   
 print(yearFiltered, 'Date-filtered CHIRPS images');
+```
 
 The CHIRPS collection contains one image for every pentad. The filtered collection above is filtered to contain one year, which equates to 72 global images. If you expand the printed collection in the Console, you will be able to see the metadata for individual images; note that their date stamps indicate that they are spaced evenly every five days (Fig. F4.2.1).
 
@@ -504,28 +536,33 @@ To aggregate the time series, we need to learn how to create and manipulate date
 
 The Earth Engine API has a function called ee.Date.fromYMD that is designed to create a date object from year, month, and day values. The following code snippet shows how to define a variable containing the year value and create a date object from it. Paste the following code in a new script:
 
+```js
 var chirps = ee.ImageCollection('UCSB-CHG/CHIRPS/PENTAD');  
 var year = 2019;  
 var startDate = ee.Date.fromYMD(year, 1, 1);
+```
 
 Now, let’s determine how to create an end date in order to be able to specify a desired time interval. The preferred way to create a date relative to another date is using the advance function. It takes two parameters—a delta value and the unit of time—and returns a new date. The code below shows how to create a date one year in the future from a given date. Paste it into your script.
 
+```js
 var endDate = startDate.advance(1, 'year');
-
+```
 Next, paste the code below to perform filtering of the CHIRPS data using these calculated dates. After running it, check that you had accurately set the dates by looking for the dates of the images inside the printed result..
 
+```js
 var yearFiltered = chirps  
    .filter(ee.Filter.date(startDate, endDate));  
 print(yearFiltered, 'Date-filtered CHIRPS images');
-
+```
 Another date function that is very commonly used across Earth Engine is millis. This function takes a date object and returns the number of milliseconds since the arbitrary reference date of the start of the year 1970: 1970-01-01T00:00:00Z. This is known as the “Unix Timestamp”; it is a standard way to convert dates to numbers and allows for easy comparison between dates with high precision. Earth Engine objects store the timestamps for images and features in special properties called system:time_start and system:time_end. Both of these properties need to be supplied with a number instead of dates, and the millis function can help you do that. You can print the result of calling this function and check for yourself.
 
+```js
 print(startDate, 'Start date');  
 print(endDate, 'End date');  
   
 print('Start date as timestamp', startDate.millis());  
 print('End date as timestamp', endDate.millis());
-
+```
 We will use the millis function in the next section when we need to set the system:time_start and system:time_end properties of the aggregated images.
 
 :::{.callout-note}
@@ -586,6 +623,7 @@ var point = ee.Geometry.Point(77.5946, 12.9716);
 ```
 Earth Engine comes with a built-in ui.Chart.image.series function that can plot time series. In addition to the imageCollection and region parameters, we need to supply a scale value. The CHIRPS data catalog page indicates that the resolution of the data is ​​5566 meters, so we can use that as the scale. The resulting chart is printed in the Console.
 
+```js
 var chart = ui.Chart.image.series({  
    imageCollection: monthlyCollection,  
    region: point,  
@@ -593,9 +631,11 @@ var chart = ui.Chart.image.series({
    scale: 5566,  
 });  
 print(chart);
+```
 
 We can make the chart more informative by adding axis labels and a title. The setOptions function allows us to customize the chart using parameters from Google Charts. To customize the chart, paste the code below at the bottom of your script. The effect will be to see two charts in the editor: one with the old view of the data, and one with the customized chart.
 
+```js
 var chart = ui.Chart.image.series({  
    imageCollection: monthlyCollection,  
    region: point,  
@@ -612,8 +652,10 @@ var chart = ui.Chart.image.series({
        gridlines: {  
            count: 12       }  
    }  
-});print(chart);
+});
 
+print(chart);
+```
 The customized chart (Fig. F4.2.3) shows the typical rainfall pattern in the city of Bengaluru, India. Bengaluru has a temperate climate, with pre-monsoon rains in April and May cooling down the city and a moderate monsoon season lasting from June to September.
 
 ![Fig. F4.2.3 Monthly rainfall chart](F4/image32.png)
@@ -1112,11 +1154,13 @@ Before beginning a change detection workflow, image preprocessing is essential. 
 
 The code in the block below accesses the USGS Landsat 8 Level 2, Collection 2, Tier 1 dataset and assigns it to the variable landsat8. To improve readability when working with the Landsat 8 ImageCollection, the code selects bands 2–7 and renames them to band names instead of band numbers.
 
+```js
 var landsat8 = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')  
    .select(  
        ['SR_B2', 'SR_B3', 'SR_B4', 'SR_B5', 'SR_B6', 'SR_B7'],  
        ['blue', 'green', 'red', 'nir', 'swir1', 'swir2']  
    );
+```
 
 Next, you will split the Landsat 8 ImageCollection into two collections, one for each time period, and apply some filtering and sorting to get an image for each of two time periods. In this example, we know there are few clouds for the months of the analysis; if you’re working in a different area, you may need to apply some cloud masking or mosaicing techniques (see Chap. F4.3).
 
@@ -1124,6 +1168,7 @@ The code below does several things. First, it creates a new geometry variable to
 
 Now repeat the previous step, but assign it to a post-event image variable and change the filter date to a period after the pre-event image’s date range (e.g., June 2020).  
 
+```js
 var point = ee.Geometry.Point([-123.64, 42.96]);  
 Map.centerObject(point, 11);  
   
@@ -1136,6 +1181,7 @@ var preImage = landsat8
    .filterDate('2020-06-01', '2020-06-30')  
    .sort('CLOUD_COVER', true)  
    .first();
+```
 
 ### Creating False-Color Composites
 
@@ -1143,10 +1189,12 @@ Before running any sort of change detection analysis, it is useful to first visu
 
 Following the format in the code block below, first create a variable visParam to hold the display parameters, selecting the SWIR-2, NIR, and red bands, with values drawn that are between 7750 and 22200. Next, add the pre-event and post-event images to the map and click Run. Click and drag the opacity slider on the post-event image layer back and forth to view the changes between your two images.
 
+```js
 var visParam = {   'bands': ['swir2', 'nir', 'red'],   'min': 7750,   'max': 22200  
 };  
 Map.addLayer(preImage, visParam, 'pre');  
 Map.addLayer(postImage, visParam, 'post');
+```
 
 ![Fig. F4.4.3 False-color composite using SWIR2, NIR, and red. Vegetation shows up vividly in the green channel due to vegetation being highly reflective in the NIR band. Shades of green can be indicative of vegetation density; water typically shows up as black to dark blue; and burned or barren areas show up as brown.](F4/image31.png)
 
@@ -1525,31 +1573,63 @@ First, we will give some very basic notation (Fig. F4.6.1). A scalar pixel at ti
 The first step in analysis of time-series data is to import data of interest and plot it at an interesting location. We will work with the USGS Landsat 8 Level 2, Collection 2, Tier 1 ImageCollection and a cloud-masking function (Chap. F4.3), scale the image values, and add variables of interest to the collection as bands. Copy and paste the code below to filter the Landsat 8 collection to a point of interest over California (variable roi) and specific dates, and to apply the defined function. The variables of interest added by the function are: (1) NDVI (Chap. F2.0), (2) a time variable that is the difference between the image’s current year and the year 1970 (a start point), and (3) a constant variable with value 1.
 
 ```js
-///////////////////// Sections 1 & 2 /////////////////////////////  
-  
-// Define function to mask clouds, scale, and add variables  
-// (NDVI, time and a constant) to Landsat 8 imagery.  
-function maskScaleAndAddVariable(image) {   // Bit 0 - Fill   // Bit 1 - Dilated Cloud   // Bit 2 - Cirrus   // Bit 3 - Cloud   // Bit 4 - Cloud Shadow   var qaMask = image.select('QA_PIXEL').bitwiseAnd(parseInt('11111',       2)).eq(0);   var saturationMask = image.select('QA_RADSAT').eq(0);   // Apply the scaling factors to the appropriate bands.   var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-       0.2);   var thermalBands = image.select('ST_B.*').multiply(0.00341802)  
-       .add(149.0);   // Replace the original bands with the scaled ones and apply the masks.   var img = image.addBands(opticalBands, null, true)  
-       .addBands(thermalBands, null, true)  
-       .updateMask(qaMask)  
-       .updateMask(saturationMask);   var imgScaled = image.addBands(img, null, true);   // Now we start to add variables of interest.   // Compute time in fractional years since the epoch.   var date = ee.Date(image.get('system:time_start'));   var years = date.difference(ee.Date('1970-01-01'), 'year');   // Return the image with the added bands.   return imgScaled       // Add an NDVI band.       .addBands(imgScaled.normalizedDifference(['SR_B5', 'SR_B4'])  
-           .rename('NDVI'))       // Add a time band.       .addBands(ee.Image(years).rename('t'))  
-       .float()       // Add a constant band.       .addBands(ee.Image.constant(1));  
-}  
-  
-// Import point of interest over California, USA.  
-var roi = ee.Geometry.Point([-121.059, 37.9242]);  
-  
-// Import the USGS Landsat 8 Level 2, Collection 2, Tier 1 image collection),  
-// filter, mask clouds, scale, and add variables.  
-var landsat8sr = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')  
-   .filterBounds(roi)  
-   .filterDate('2013-01-01', '2018-01-01')  
-   .map(maskScaleAndAddVariable);  
-  
-// Set map center over the ROI.  
+///////////////////// Sections 1 & 2 /////////////////////////////
+
+// Define function to mask clouds, scale, and add variables 
+// (NDVI, time and a constant) to Landsat 8 imagery.
+function maskScaleAndAddVariable(image) {
+    // Bit 0 - Fill
+    // Bit 1 - Dilated Cloud
+    // Bit 2 - Cirrus
+    // Bit 3 - Cloud
+    // Bit 4 - Cloud Shadow
+    var qaMask = image.select('QA_PIXEL').bitwiseAnd(parseInt('11111',
+        2)).eq(0);
+    var saturationMask = image.select('QA_RADSAT').eq(0);
+
+    // Apply the scaling factors to the appropriate bands.
+    var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-
+        0.2);
+    var thermalBands = image.select('ST_B.*').multiply(0.00341802)
+        .add(149.0);
+
+    // Replace the original bands with the scaled ones and apply the masks.
+    var img = image.addBands(opticalBands, null, true)
+        .addBands(thermalBands, null, true)
+        .updateMask(qaMask)
+        .updateMask(saturationMask);
+    var imgScaled = image.addBands(img, null, true);
+
+    // Now we start to add variables of interest.
+    // Compute time in fractional years since the epoch.
+    var date = ee.Date(image.get('system:time_start'));
+    var years = date.difference(ee.Date('1970-01-01'), 'year');
+    // Return the image with the added bands.
+    return imgScaled
+        // Add an NDVI band.
+        .addBands(imgScaled.normalizedDifference(['SR_B5', 'SR_B4'])
+            .rename('NDVI'))
+        // Add a time band.
+        .addBands(ee.Image(years).rename('t'))
+        .float()
+        // Add a constant band.
+        .addBands(ee.Image.constant(1));
+}
+
+// Import point of interest over California, USA.
+var roi = ee.Geometry.Point([-121.059, 37.9242]);
+
+// Import the USGS Landsat 8 Level 2, Collection 2, Tier 1 image collection),
+// filter, mask clouds, scale, and add variables.
+var landsat8sr = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
+    .filterBounds(roi)
+    .filterDate('2013-01-01', '2018-01-01')
+    .map(maskScaleAndAddVariable);
+
+// Set map center over the ROI.
 Map.centerObject(roi, 6);
+
+
 
 ```
 Next, to visualize the NDVI at the point of interest over time, copy and paste the code below to print a chart of the time series (Chap. F1.3) at the location of interest (Fig. F4.6.2).
@@ -1601,7 +1681,7 @@ Time series datasets may contain not only trends but also seasonality, both of w
 
 Consider the following linear model, where et is a random error:
 
-pt = β0 + β1t + et                                                        (Eq. F4.6.1)
+$p_t = β_0 + β_1t + e_t$                                                        (Eq. F4.6.1)
 
 This is the model behind the trend line added to the chart created in the previous section (Fig. F4.6.3). Identifying trends at different scales is a big topic, with many approaches being used (e.g., differencing, modeling).
 
@@ -1626,7 +1706,8 @@ var trend = landsat8sr.select(independents.add(dependent))
 Map.addLayer(trend, {}, 'trend array image');  
   
 // Flatten the coefficients into a 2-band image.  
-var coefficients = trend.select('coefficients')   // Get rid of extra dimensions and convert back to a regular image   .arrayProject([0])  
+var coefficients = trend.select('coefficients')   // Get rid of extra dimensions and convert back to a regular image   
+   .arrayProject([0])  
    .arrayFlatten([independents]);  
 Map.addLayer(coefficients, {}, 'coefficients image');
 
@@ -1669,9 +1750,9 @@ Code Checkpoint F46b. The book’s repository contains a script that shows what 
 
 A linear trend is one of several possible types of trends in time series. Time series can also present harmonic trends, in which a value goes up and down in a predictable wave pattern. These are of particular interest and usefulness in the natural world, where harmonic changes in greenness of deciduous vegetation can occur across the spring, summer, and autumn. Now we will return to the initial time series (landsat8sr) of Fig. F4.6.2 and fit a harmonic pattern through the data. Consider the following harmonic model, where A is amplitude, ω is frequency, φ is phase, and et is a random error.
 
-pt = β0 + β1t + Acos(2πωt - φ) + et 
+$p_t = β_0 + β_1t + Acos(2πωt - φ) + e_t$ 
 
-    = β0 + β1t + β2cos(2πωt) + β3sin(2πωt) + et                (Eq. F4.6.2)
+    $= β_0 + β_1t + β2cos(2πωt) + β3sin(2πωt) + e_t$               (Eq. F4.6.2)
 
 Note that β2 = Acos(φ) and β3 = Asin(φ), implying A = (β22 + β32)½ and φ = atan(β3/β2) (as described in Shumway and Stoffer 2019). To fit this model to an annual time series, set ω = 1 (one cycle per year) and use ordinary least squares regression.
 
@@ -1734,21 +1815,27 @@ We’ll compute and map the phase and amplitude of the estimated harmonic model 
 Copy and paste the code below to compute phase and amplitude from the coefficients and add this image to the map (Fig. F4.6.8).
 
 ```js
-// Compute phase and amplitude.  
-var phase = harmonicTrendCoefficients.select('sin')  
-   .atan2(harmonicTrendCoefficients.select('cos'))   // Scale to [0, 1] from radians.   .unitScale(-Math.PI, Math.PI);  
-  
-var amplitude = harmonicTrendCoefficients.select('sin')  
-   .hypot(harmonicTrendCoefficients.select('cos'))   // Add a scale factor for visualization.   .multiply(5);  
-  
-// Compute the mean NDVI.  
-var meanNdvi = landsat8sr.select('NDVI').mean();  
-  
-// Use the HSV to RGB transformation to display phase and amplitude.  
-var rgb = ee.Image.cat([  
-   phase, // hue   amplitude, // saturation (difference from white)   meanNdvi // value (difference from black)  
-]).hsvToRgb();  
-  
+// Compute phase and amplitude.
+var phase = harmonicTrendCoefficients.select('sin')
+    .atan2(harmonicTrendCoefficients.select('cos'))
+    // Scale to [0, 1] from radians.
+    .unitScale(-Math.PI, Math.PI);
+
+var amplitude = harmonicTrendCoefficients.select('sin')
+    .hypot(harmonicTrendCoefficients.select('cos'))
+    // Add a scale factor for visualization.
+    .multiply(5);
+
+// Compute the mean NDVI.
+var meanNdvi = landsat8sr.select('NDVI').mean();
+
+// Use the HSV to RGB transformation to display phase and amplitude.
+var rgb = ee.Image.cat([
+    phase, // hue
+    amplitude, // saturation (difference from white)
+    meanNdvi // value (difference from black)
+]).hsvToRgb();
+
 Map.addLayer(rgb, {}, 'phase (hue), amplitude (sat), ndvi (val)');
 
 ```
@@ -1899,12 +1986,12 @@ var utils = require(   'users/parevalo_bu/gee-ccdc-tools:ccdcUtilities/api');
 
 For the current exercise, we will obtain an ImageCollection of Landsat 4, 5, 7, and 8 data (Collection 2 Tier 1) that has been filtered for clouds, cloud shadows, haze, and radiometrically saturated pixels. If we were to do this manually, we would retrieve each ImageCollection for each satellite, apply the corresponding filters and then merge them all into a single ImageCollection. Instead, to simplify that process, we will use the function getLandsat, included in the “Inputs” module of our utilities, and then filter the resulting ImageCollection to a small study region for the period between 2000 and 2020. The getLandsat function will retrieve all surface reflectance bands (renamed and scaled to actual surface reflectance units) as well as other vegetation indices. To simplify the exercise, we will select only the surface reflectance bands we are going to use, adding the following code to your script:
 
+```js
 var studyRegion = ee.Geometry.Rectangle([  
    [-63.9533, -10.1315],  
    [-64.9118, -10.6813]  
 ]);  
   
-```js
 // Define start, end dates and Landsat bands to use.  
 var startDate = '2000-01-01';  
 var endDate = '2020-01-01';  
@@ -1945,19 +2032,30 @@ print(ccdResults);
 ```
 Notice that the output ccdResults contains a large number of bands, with some of them corresponding to two-dimensional arrays. We will explore these bands more in the following section. The process of running the algorithm interactively for more than a handful of pixels can become very taxing to the system very quickly, resulting in memory errors. To avoid having such issues, we typically export the results to an Earth Engine asset first, and then inspect the asset. This approach ensures that CCDC completes its run successfully, and also allows us to access the results easily later. In the following sections of this chapter, we will use a precomputed asset, instead of asking you to export the asset yourself. For your reference, the code required to export CCDC results is shown below, with the flag set to false to help you remember to not export the results now, but instead to use the precomputed asset in the following sections.
 
-var exportResults = false  
-if (exportResults) {   // Create a metadata dictionary with the parameters and arguments used.   var metadata = ccdParams;  
-   metadata['breakpointBands'] =  
-       metadata['breakpointBands'].toString();  
-   metadata['tmaskBands'] = metadata['tmaskBands'].toString();  
-   metadata['startDate'] = startDate;  
-   metadata['endDate'] = endDate;  
-   metadata['bands'] = bands.toString();   // Export results, assigning the metadata as image properties.   //   Export.image.toAsset({  
-       image: ccdResults.set(metadata),  
-       region: studyRegion,  
-       pyramidingPolicy: {           ".default": 'sample'       },  
-       scale: 30   });  
+```js
+var exportResults = false
+if (exportResults) {
+    // Create a metadata dictionary with the parameters and arguments used.
+    var metadata = ccdParams;
+    metadata['breakpointBands'] =
+        metadata['breakpointBands'].toString();
+    metadata['tmaskBands'] = metadata['tmaskBands'].toString();
+    metadata['startDate'] = startDate;
+    metadata['endDate'] = endDate;
+    metadata['bands'] = bands.toString();
+
+    // Export results, assigning the metadata as image properties.
+    // 
+    Export.image.toAsset({
+        image: ccdResults.set(metadata),
+        region: studyRegion,
+        pyramidingPolicy: {
+            ".default": 'sample'
+        },
+        scale: 30
+    });
 }
+```
 
 Note the metadata variable above. This is not strictly required for exporting the per-pixel CCDC results, but it allows us to keep a record of important properties of the run by attaching this information as metadata to the image. Additionally, some of the tools we have created to interact with CCDC outputs use this user-created metadata to facilitate using the asset. Note also that setting the value of pyramidingPolicy to 'sample' ensures that all the bands in the output have the proper policy.
 
@@ -1970,12 +2068,14 @@ Code Checkpoint F47b. The book’s repository contains a script that shows what 
 
 We will now start exploring the pre-exported CCDC results mentioned in the previous section. We will make use of the third-party module palettes, described in detail in Chap. F6.0, that simplifies the use of palettes for visualization. Paste the following code in a new script:
 
+```js
 var palettes = require('users/gena/packages:palettes');  
   
 var resultsPath =   'projects/gee-book/assets/F4-7/Rondonia_example_small';  
 var ccdResults = ee.Image(resultsPath);  
 Map.centerObject(ccdResults, 10);  
 print(ccdResults);
+```
 
 The first line calls a library that will facilitate visualizing the images. The second line contains the path to the precomputed results of the CCDC run shown in the previous section. The printed asset will contain the following bands:
 
@@ -2094,6 +2194,7 @@ Question 3. Looking at the “max magnitude of change” layer, find places show
 
 In addition to the change information generated by the CCDC algorithm, we can use the coefficients of the time segments for multiple purposes, like land cover classification. Each time segment can be described as a harmonic function with an intercept, slope, and three pairs of sine and cosine terms that allow the time segments to represent seasonality occurring at different temporal scales. These coefficients, as well as the root-mean-square error (RMSE) obtained by comparing each predicted and actual Landsat value, are produced when the CCDC algorithm is run. The following example will show you how to retrieve the intercept coefficient for a segment intersecting a specific date. In a new script, paste the code below:
 
+```js
 var palettes = require('users/gena/packages:palettes');  
   
 var resultsPath =   'projects/gee-book/assets/F4-7/Rondonia_example_small';  
@@ -2101,7 +2202,6 @@ var ccdResults = ee.Image(resultsPath);
 Map.centerObject(ccdResults, 10);  
 print(ccdResults);  
   
-```js
 // Display segment start and end times.  
 var start = ccdResults.select('tStart');  
 var end = ccdResults.select('tEnd');  
@@ -2344,54 +2444,16 @@ In this section, we will view the classification inputs to BULC, which were made
 
 Table F4.8.1 Images classified for updating Roosevelt River LULC with BULC
 
-Sensor
-
-Date
-
-Spatial resolution
-
-Sentinel-2
-
-2016: February 8
-
-2017: July 7
-
-2018: May 28
-
-2019: June 17, June 17
-
-2020: May 27, May 27
-
-2021: May 27, July 11, August 15
-
-10m
-
-Landsat 7
-
-2017: August 16
-
-30m
-
-Landsat 8
-
-2021: July 18
-
-30m
-
-ASTER
-
-2017: July 15
-
-2018: August 19
-
-2019: June 19
-
-2020: August 8
-
-15m–30m
+| Sensor     | Date                                                                                                                    | Spatial resolution |
+|------------|-------------------------------------------------------------------------------------------------------------------------|--------------------|
+| Sentinel-2 | 2016: February 8 2017: July 7 2018: May 28 2019: June 17, June 17 2020: May 27, May 27 2021: May 27, July 11, August 15 | 10m                |
+| Landsat 7  | 2017: August 16                                                                                                         | 30m                |
+| Landsat 8  | 2021: July 18                                                                                                           | 30m                |
+| ASTER      | 2017: July 15 2018: August 19 2019: June 19 2020: August 8                                                              | 15m–30m            |
 
 As you have seen in earlier chapters, creating classifications can be very involved and time consuming. To allow you to concentrate on BULC’s efforts to clean noise from an existing ImageCollection, we have created the classifications already and stored them as an ImageCollection asset. You can view the Event time series using the ui.Thumbnail function, which creates an animation of the elements of the collection​​​​. Paste the code below into a new script to see those classifications drawn in sequence in the Console.
 
+```js
 var events = ee.ImageCollection(   'projects/gee-book/assets/F4-8/cleanEvents');  
 print(events, 'List of Events');  
 print('Number of events:', events.size());  
@@ -2403,6 +2465,7 @@ print(ui.Thumbnail(events, {
    framesPerSecond: 1,  
    dimensions: 1000  
 }));
+```
 
 In the thumbnail sequence, the color palette shows Forest (class 1) as green, Water (class 2) as blue, and Active Agriculture (class 3) as yellow. Areas with no data in a particular Event are shown in black.
 
@@ -2675,90 +2738,126 @@ In this chapter, we introduce lagged effects into our previous discussions on in
 Before we dive into autocovariance and autocorrelation, let’s set up an area of interest and dataset that we can use to illustrate these concepts. We will work with a detrended time series (as seen in Chap. F4.6) based on the USGS Landsat 8 Level 2, Collection 2, Tier 1 image collection. Copy and paste the code below to filter the Landsat 8 collection to a point of interest over California and specific dates, and apply the pre-processing function—to mask clouds (as seen in Chap. F4.3) and to scale and add variables of interest (as seen in Chap. F4.6).
 
 ```js
-// Define function to mask clouds, scale, and add variables  
-// (NDVI, time and a constant) to Landsat 8 imagery.  
-function maskScaleAndAddVariable(image) {   // Bit 0 - Fill   // Bit 1 - Dilated Cloud   // Bit 2 - Cirrus   // Bit 3 - Cloud   // Bit 4 - Cloud Shadow   var qaMask = image.select('QA_PIXEL').bitwiseAnd(parseInt('11111',       2)).eq(0);   var saturationMask = image.select('QA_RADSAT').eq(0);   // Apply the scaling factors to the appropriate bands.   var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-       0.2);   var thermalBands = image.select('ST_B.*').multiply(0.00341802)  
-       .add(149.0);   // Replace the original bands with the scaled ones and apply the masks.   var img = image.addBands(opticalBands, null, true)  
-       .addBands(thermalBands, null, true)  
-       .updateMask(qaMask)  
-       .updateMask(saturationMask);   var imgScaled = image.addBands(img, null, true);   // Now we start to add variables of interest.   // Compute time in fractional years since the epoch.   var date = ee.Date(image.get('system:time_start'));   var years = date.difference(ee.Date('1970-01-01'), 'year');   var timeRadians = ee.Image(years.multiply(2 * Math.PI));  
-   // Return the image with the added bands.  
-   return imgScaled  
-       // Add an NDVI band.  
-       .addBands(imgScaled.normalizedDifference(['SR_B5', 'SR_B4'])  
-           .rename('NDVI'))       // Add a time band.       .addBands(timeRadians.rename('t'))  
-       .float()       // Add a constant band.       .addBands(ee.Image.constant(1));  
-}  
-  
-// Import region of interest. Area over California.  
-var roi = ee.Geometry.Polygon([  
-   [-119.44617458417066,35.92639730653253],  
-   [-119.07675930096754,35.92639730653253],  
-   [-119.07675930096754,36.201704711823844],  
-   [-119.44617458417066,36.201704711823844],  
-   [-119.44617458417066,35.92639730653253]  
-]);  
-  
-  
-// Import the USGS Landsat 8 Level 2, Collection 2, Tier 1 collection,  
-// filter, mask clouds, scale, and add variables.  
-var landsat8sr = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')  
-   .filterBounds(roi)  
-   .filterDate('2013-01-01', '2018-01-01')  
-   .map(maskScaleAndAddVariable);  
-  
-// Set map center.  
-Map.centerObject(roi, 10);
+// Define function to mask clouds, scale, and add variables 
+// (NDVI, time and a constant) to Landsat 8 imagery.
+function maskScaleAndAddVariable(image) {
+    // Bit 0 - Fill
+    // Bit 1 - Dilated Cloud
+    // Bit 2 - Cirrus
+    // Bit 3 - Cloud
+    // Bit 4 - Cloud Shadow
+    var qaMask = image.select('QA_PIXEL').bitwiseAnd(parseInt('11111',
+        2)).eq(0);
+    var saturationMask = image.select('QA_RADSAT').eq(0);
 
+    // Apply the scaling factors to the appropriate bands.
+    var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-
+        0.2);
+    var thermalBands = image.select('ST_B.*').multiply(0.00341802)
+        .add(149.0);
+
+    // Replace the original bands with the scaled ones and apply the masks.
+    var img = image.addBands(opticalBands, null, true)
+        .addBands(thermalBands, null, true)
+        .updateMask(qaMask)
+        .updateMask(saturationMask);
+    var imgScaled = image.addBands(img, null, true);
+
+    // Now we start to add variables of interest.
+    // Compute time in fractional years since the epoch.
+    var date = ee.Date(image.get('system:time_start'));
+    var years = date.difference(ee.Date('1970-01-01'), 'year');
+    var timeRadians = ee.Image(years.multiply(2 * Math.PI));
+    // Return the image with the added bands.
+    return imgScaled
+        // Add an NDVI band.
+        .addBands(imgScaled.normalizedDifference(['SR_B5', 'SR_B4'])
+            .rename('NDVI'))
+        // Add a time band.
+        .addBands(timeRadians.rename('t'))
+        .float()
+        // Add a constant band.
+        .addBands(ee.Image.constant(1));
+}
+
+// Import region of interest. Area over California.
+var roi = ee.Geometry.Polygon([
+    [-119.44617458417066,35.92639730653253],
+    [-119.07675930096754,35.92639730653253],
+    [-119.07675930096754,36.201704711823844],
+    [-119.44617458417066,36.201704711823844],
+    [-119.44617458417066,35.92639730653253]
+]);
+
+
+// Import the USGS Landsat 8 Level 2, Collection 2, Tier 1 collection,
+// filter, mask clouds, scale, and add variables.
+var landsat8sr = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
+    .filterBounds(roi)
+    .filterDate('2013-01-01', '2018-01-01')
+    .map(maskScaleAndAddVariable);
+
+// Set map center.
+Map.centerObject(roi, 10);
 ```
 Next, copy and paste the code below to estimate the linear trend using the linearRegression reducer, and remove that linear trend from the time series.
 
 ```js
-// List of the independent variable names.  
-var independents = ee.List(['constant', 't']);  
-  
-// Name of the dependent variable.  
-var dependent = ee.String('NDVI');  
-  
-// Compute a linear trend.  This will have two bands: 'residuals' and  
-// a 2x1 band called coefficients (columns are for dependent variables).  
-var trend = landsat8sr.select(independents.add(dependent))  
-   .reduce(ee.Reducer.linearRegression(independents.length(), 1));  
-  
-// Flatten the coefficients into a 2-band image  
-var coefficients = trend.select('coefficients')   // Get rid of extra dimensions and convert back to a regular image   .arrayProject([0])  
-   .arrayFlatten([independents]);  
-  
-// Compute a detrended series.  
-var detrended = landsat8sr.map(function(image) {   return image.select(dependent)  
-       .subtract(image.select(independents).multiply(  
-               coefficients)  
-           .reduce('sum'))  
-       .rename(dependent)  
-       .copyProperties(image, ['system:time_start']);  
-});
+// List of the independent variable names.
+var independents = ee.List(['constant', 't']);
 
+// Name of the dependent variable.
+var dependent = ee.String('NDVI');
+
+// Compute a linear trend.  This will have two bands: 'residuals' and 
+// a 2x1 band called coefficients (columns are for dependent variables).
+var trend = landsat8sr.select(independents.add(dependent))
+    .reduce(ee.Reducer.linearRegression(independents.length(), 1));
+
+// Flatten the coefficients into a 2-band image
+var coefficients = trend.select('coefficients')
+    // Get rid of extra dimensions and convert back to a regular image
+    .arrayProject([0])
+    .arrayFlatten([independents]);
+
+// Compute a detrended series.
+var detrended = landsat8sr.map(function(image) {
+    return image.select(dependent)
+        .subtract(image.select(independents).multiply(
+                coefficients)
+            .reduce('sum'))
+        .rename(dependent)
+        .copyProperties(image, ['system:time_start']);
+});
 ```
 Now let’s turn to autocovariance and autocorrelation. The autocovariance of a time series refers to the dependence of values in the time series at time t with values at time h = t − lag. The autocorrelation is the correlation between elements of a dataset at one time and elements of the same dataset at a different time. The autocorrelation is the autocovariance normalized by the standard deviations of the covariates. Specifically, we assume our time series is stationary, and define the autocovariance and autocorrelation following Shumway and Stoffer (2019). Comparing values at time t to previous values is useful not only for computing autocovariance, but also for a variety of other time series analyses as you'll see shortly.
 
 To combine image data with previous values in Earth Engine, the first step is to join the previous values to the current values. To do that, we will use a ee.Join function to create what we'll call a lagged collection. Copy and paste the code below to define a function that creates a lagged collection.
 
 ```js
-// Function that creates a lagged collection.  
-var lag = function(leftCollection, rightCollection, lagDays) {   var filter = ee.Filter.and(       ee.Filter.maxDifference({  
-           difference: 1000 * 60 * 60 * 24 * lagDays,  
-           leftField: 'system:time_start',  
-           rightField: 'system:time_start'       }),       ee.Filter.greaterThan({  
-           leftField: 'system:time_start',  
-           rightField: 'system:time_start'       }));   return ee.Join.saveAll({  
-       matchesKey: 'images',  
-       measureKey: 'delta_t',  
-       ordering: 'system:time_start',  
-       ascending: false, // Sort reverse chronologically   }).apply({  
-       primary: leftCollection,  
-       secondary: rightCollection,  
-       condition: filter  
-   });  
+// Function that creates a lagged collection.
+var lag = function(leftCollection, rightCollection, lagDays) {
+    var filter = ee.Filter.and(
+        ee.Filter.maxDifference({
+            difference: 1000 * 60 * 60 * 24 * lagDays,
+            leftField: 'system:time_start',
+            rightField: 'system:time_start'
+        }),
+        ee.Filter.greaterThan({
+            leftField: 'system:time_start',
+            rightField: 'system:time_start'
+        }));
+
+    return ee.Join.saveAll({
+        matchesKey: 'images',
+        measureKey: 'delta_t',
+        ordering: 'system:time_start',
+        ascending: false, // Sort reverse chronologically
+    }).apply({
+        primary: leftCollection,
+        secondary: rightCollection,
+        condition: filter
+    });
 };
 
 ```
@@ -2774,42 +2873,49 @@ Why 17 days? Recall that the temporal cadence of Landsat is 16 days. Specifying 
 Now, we will compute the autocovariance using a reducer that expects a set of one-dimensional arrays as input. So pixel values corresponding to time t need to be stacked with pixel values at time t − lag as multiple bands in the same image. Copy and paste the code below to define a function to do so, and apply it to merge the bands from the lagged collection.
 
 ```js
-// Function to stack bands.  
-var merge = function(image) {   // Function to be passed to iterate.   var merger = function(current, previous) {       return ee.Image(previous).addBands(current);  
-   };   return ee.ImageCollection.fromImages(image.get('images'))  
-       .iterate(merger, image);  
-};  
-  
-// Apply merge function to the lagged collection.  
-var merged17 = ee.ImageCollection(lagged17.map(merge));
+// Function to stack bands.
+var merge = function(image) {
+    // Function to be passed to iterate.
+    var merger = function(current, previous) {
+        return ee.Image(previous).addBands(current);
+    };
+    return ee.ImageCollection.fromImages(image.get('images'))
+        .iterate(merger, image);
+};
 
+// Apply merge function to the lagged collection.
+var merged17 = ee.ImageCollection(lagged17.map(merge));
 ```
 Now the bands from time t and h are all in the same image. Note that the band name of a pixel at time h, ph, was the same as time t, pt (band name is “NDVI” in this case). During the merging process, it gets a '_1' appended to it (e.g. NDVI_1).
 
 You can print the image collection to check the band names of one of the images. Copy and paste the code below to map a function to convert the merged bands to arrays with bands pt and ph, and then reduce it with the covariance reducer. We use a parallelScale factor of 8 in the reduce function to avoid the computation to run out of memory (this is not always needed). Note that the output of the covariance reducer is an array image, in which each pixel stores a 2x2 variance-covariance array. The off-diagonal elements are covariance, which you can map directly using the arrayGet function.
 
 ```js
-// Function to compute covariance.  
-var covariance = function(mergedCollection, band, lagBand) {   return mergedCollection.select([band, lagBand]).map(function(  
-       image) {       return image.toArray();  
-   }).reduce(ee.Reducer.covariance(), 8);  
-};  
-  
-// Concatenate the suffix to the NDVI band.  
-var lagBand = dependent.cat('_1');  
-  
-// Compute covariance.  
-var covariance17 = ee.Image(covariance(merged17, dependent, lagBand))  
-   .clip(roi);  
-  
-// The output of the covariance reducer is an array image,  
-// in which each pixel stores a 2x2 variance-covariance array.  
-// The off diagonal elements are covariance, which you can map  
-// directly using:  
-Map.addLayer(covariance17.arrayGet([0, 1]),  
-   {  
-       min: 0,  
-       max: 0.02   },   'covariance (lag = 17 days)');
+// Function to compute covariance.
+var covariance = function(mergedCollection, band, lagBand) {
+    return mergedCollection.select([band, lagBand]).map(function(
+        image) {
+        return image.toArray();
+    }).reduce(ee.Reducer.covariance(), 8);
+};
+
+// Concatenate the suffix to the NDVI band.
+var lagBand = dependent.cat('_1');
+
+// Compute covariance.
+var covariance17 = ee.Image(covariance(merged17, dependent, lagBand))
+    .clip(roi);
+
+// The output of the covariance reducer is an array image, 
+// in which each pixel stores a 2x2 variance-covariance array. 
+// The off diagonal elements are covariance, which you can map 
+// directly using:
+Map.addLayer(covariance17.arrayGet([0, 1]),
+    {
+        min: 0,
+        max: 0.02
+    },
+    'covariance (lag = 17 days)');
 
 ```
 Inspect the pixel values of the resulting covariance image (Fig. F4.9.1). The covariance is positive when the greater values of one variable (at time t) mainly correspond to the greater values of the other variable (at time h), and the same holds for the lesser values, therefore, the values tend to show similar behavior. In the opposite case, when the greater values of a variable correspond to the lesser values of the other variable, the covariance is negative.
@@ -2820,17 +2926,23 @@ Inspect the pixel values of the resulting covariance image (Fig. F4.9.1). The co
 The diagonal elements of the variance-covariance array are variances. Copy and paste the code below to define and map a function to compute correlation (Fig. F4.9.2) from the variance-covariance array.
 
 ```js
-// Define the correlation function.  
-var correlation = function(vcArrayImage) {   var covariance = ee.Image(vcArrayImage).arrayGet([0, 1]);   var sd0 = ee.Image(vcArrayImage).arrayGet([0, 0]).sqrt();   var sd1 = ee.Image(vcArrayImage).arrayGet([1, 1]).sqrt();   return covariance.divide(sd0).divide(sd1).rename(       'correlation');  
-};  
-  
-// Apply the correlation function.  
-var correlation17 = correlation(covariance17).clip(roi);  
-Map.addLayer(correlation17,  
-   {  
-       min: -1,  
-       max: 1   },   'correlation (lag = 17 days)');
+// Define the correlation function.
+var correlation = function(vcArrayImage) {
+    var covariance = ee.Image(vcArrayImage).arrayGet([0, 1]);
+    var sd0 = ee.Image(vcArrayImage).arrayGet([0, 0]).sqrt();
+    var sd1 = ee.Image(vcArrayImage).arrayGet([1, 1]).sqrt();
+    return covariance.divide(sd0).divide(sd1).rename(
+        'correlation');
+};
 
+// Apply the correlation function.
+var correlation17 = correlation(covariance17).clip(roi);
+Map.addLayer(correlation17,
+    {
+        min: -1,
+        max: 1
+    },
+    'correlation (lag = 17 days)');
 ```
 ![Fig. F4.9.2 Autocorrelation image](F4/image33.png)
 
@@ -2877,26 +2989,27 @@ What do you observe from this result? Looking at the cross-correlation image (Fi
 Perhaps precipitation in the month before the observed NDVI is relevant? Copy and paste the code below to test the 30-day lag idea.
 
 ```js
-// Join the precipitation images from the previous month.  
-var lag30PrecipNDVI = lag(landsat8sr, chirps, 30);  
-  
-var sum30PrecipNDVI = ee.ImageCollection(lag30PrecipNDVI.map(function(  
-   image) {   var laggedImages = ee.ImageCollection.fromImages(image  
-       .get('images'));   return ee.Image(image).addBands(laggedImages.sum()  
-       .rename('sum'));  
-}));  
-  
-// Compute covariance.  
-var cov30PrecipNDVI = covariance(sum30PrecipNDVI, 'NDVI', 'sum').clip(  
-   roi);  
-Map.addLayer(cov1PrecipNDVI.arrayGet([0, 1]), {},   'NDVI - sum cov (lag = 30)');  
-  
-// Correlation.  
-var corr30PrecipNDVI = correlation(cov30PrecipNDVI).clip(roi);  
-Map.addLayer(corr30PrecipNDVI, {  
-   min: -0.5,  
-   max: 0.5}, 'NDVI - sum corr (lag = 30)');
+// Precipitation (covariate)
+var chirps = ee.ImageCollection('UCSB-CHG/CHIRPS/PENTAD');
 
+// Join the t-l (l=1 pentad) precipitation images to the Landsat.
+var lag1PrecipNDVI = lag(landsat8sr, chirps, 5);
+
+// Add the precipitation images as bands.
+var merged1PrecipNDVI = ee.ImageCollection(lag1PrecipNDVI.map(merge));
+
+// Compute and display cross-covariance.
+var cov1PrecipNDVI = covariance(merged1PrecipNDVI, 'NDVI',
+    'precipitation').clip(roi);
+Map.addLayer(cov1PrecipNDVI.arrayGet([0, 1]), {},
+    'NDVI - PRECIP cov (lag = 5)');
+
+// Compute and display cross-correlation.
+var corr1PrecipNDVI = correlation(cov1PrecipNDVI).clip(roi);
+Map.addLayer(corr1PrecipNDVI, {
+    min: -0.5,
+    max: 0.5
+}, 'NDVI - PRECIP corr (lag = 5)');
 ```
 Observe that the only change is to the merge method. Instead of merging the bands of the NDVI image and the covariate (precipitation), the entire list of precipitation is summed and added as a band (eliminating the need for iterate).
 
@@ -2914,21 +3027,27 @@ Code Checkpoint F49b. The book’s repository contains a script that shows what 
 
 The discussion of autocovariance preceded this section in order to introduce the concept of lag. Now that you have a way to get previous values of a variable, it's worth considering auto-regressive models. Suppose that pixel values at time t depend in some way on previous pixel values—auto-regressive models are time series models that use observations from previous time steps as input to a regression equation to predict the value at the next time step. If you have observed significant, non-zero autocorrelations in a time series, this is a good assumption. Specifically, you may postulate a linear model such as the following, where pt is a pixel at time t, and et is a random error (Chap. F4.6):
 
-pt = β0 + β1pt-1 + β2pt-2 + et                                        (F4.9.1)
+$p_t = β_0 + β_1 p_{t-1} + β_2 p_{t-2} + e_t$                                        (F4.9.1)
 
 To fit this model, you need a lagged collection as created previously, except with a longer lag (e.g., lag = 34 days). The next steps are to merge the bands, then reduce with the linear regression reducer.
 
 Copy and paste the line below to the existing script to create a lagged collection, where the images list stores the two previous images:
-
+```js
 var lagged34 = ee.ImageCollection(lag(landsat8sr, landsat8sr, 34));
+```
 
 Copy and paste the code below to merge the bands of the lagged collection such that each image has bands at time t and bands at times t - 1,..., t − lag. Note that it's necessary to filter out any images that don't have two previous temporal neighbors.
 
-var merged34 = lagged34.map(merge).map(function(image) {   return image.set('n', ee.List(image.get('images'))  
-       .length());  
+```js
+var merged34 = lagged34.map(merge).map(function(image) {
+    return image.set('n', ee.List(image.get('images'))
+        .length());
 }).filter(ee.Filter.gt('n', 1));
+```
 
 Now, copy and paste the code below to fit the regression model using the linearRegression reducer.
+
+```js
 
 var arIndependents = ee.List(['constant', 'NDVI_1', 'NDVI_2']);  
   
@@ -2936,7 +3055,6 @@ var ar2 = merged34
    .select(arIndependents.add(dependent))  
    .reduce(ee.Reducer.linearRegression(arIndependents.length(), 1));  
   
-```js
 // Turn the array image into a multi-band image of coefficients.  
 var arCoefficients = ar2.select('coefficients')  
    .arrayProject([0])  
@@ -2948,7 +3066,7 @@ We can compute the fitted values using the expression function in Earth Engine. 
 ```js
 // Compute fitted values.  
 var fittedAR = merged34.map(function(image) {   return image.addBands(  
-       image.expression(           'beta0 + beta1 * p1 + beta2 * p2', {  
+       image.expression('beta0 + beta1 * p1 + beta2 * p2', {  
                p1: image.select('NDVI_1'),  
                p2: image.select('NDVI_2'),  
                beta0: arCoefficients.select('constant'),  

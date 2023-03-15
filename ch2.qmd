@@ -1,13 +1,12 @@
----
-title: "Data Acquisition"
----
+# Data Acquisition {.unnumbered}
+
 One of the main advantages of GEE is that it hosts several Petabytes of satellite imagery and other spatial data sets, [all in one place](https://developers.google.com/earth-engine/datasets). Among these are a many that could prove useful to those investigating illegal mining and logging, estimating conflict-induced damage, monitoring pollution from extractive industries, conducting maritime surveillance without relying on ship transponders, verifying the locations of artillery strikes, tracking missile defense systems, and many other topics. 
 
 This section highlights ten categories of geospatial data available natively in the GEE catalogue ranging from optical satellite imagery, to atmospheric data, to building footprints. Each sub-section provides an overview of the given data type, suggests potential applications, and lists the corresponding datasets in the GEE catalogue. The datasets listed under each heading are **not** an exhaustive list-- there are over 500 in the whole catalogue, and the ones listed in this section are simply the ones with the most immediate relevance to open source investigations. If a particular geospatial dataset you want to work with isn't hosted in the GEE catalog, you can upload your own data. We'll cover that in the next section. 
 
 
 ## Optical Imagery
-![Sentinel-2 timelapse showing the ancient city of Hasankeyf being flooded following the construction of a dam by the Turkish government.](./images/hasankeyf.gif)
+![Automatic detection of vehicles using artificial intelligence in high resolution optical imagery. See the [object detection](object_detection.qmd) tutorial.](./images/obj_det3.jpg)
 
 Optical satellite imagery is the bread and butter of many open source investiagtions. It would be tough to list off all of the possible use cases, so here's a handy flowchart:
 
@@ -108,7 +107,9 @@ The timelapse above reveals a number of interesting things: The capture of Mosul
 
 
 ## Climate and Atmospheric Data
-![Sulphur Dioxide plume resulting from ISIS attack on the Al-Mishraq Sulphur Plant in Iraq](./images/mishraq_small.gif)
+
+
+![Sulphur Dioxide plume resulting from ISIS attack on the Al-Mishraq Sulphur Plant in Iraq](./images/mishraq_small.gif){width=100%}
 
 Climate and atmospheric data can be used to track the effects of conflict on the environment. The European Space Agency's Sentinel-5p satellites measure the concentration of a number of atmospheric gases, including nitrogen dioxide, methane, and ozone. Measurements are available on a daily basis at a fairly high resolution (1km), allowing for the detection of localized sources of pollution such as oil refineries or power plants. For example, see this [Bellingcat article](https://www.bellingcat.com/resources/2021/04/15/what-oil-satellite-technology-and-iraq-can-tell-us-about-pollution/) in which Wim Zwijnenburg and I trace pollution to specific facilities operated by multinational oil companies in Iraq.
 

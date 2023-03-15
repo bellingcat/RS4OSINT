@@ -2,22 +2,24 @@ project:
   type: book
   output-dir: docs
 
+
 book:
-  title: "Google Earth Engine for OSINT"
+  title: "Remote Sensing \n for OSINT"
   author: "[Dr. Ollie Ballinger](https://oballinger.github.io)"
-  date: "10/6/2022"
+  date: "03/15/2023"
   chapters:
-    - index.qmd
-    - part: "Learning"
+    - part: "A. Introduction"
       chapters:
+        - index.qmd
         - ch1.qmd
         - ch2.qmd
+    - part: "B. Google Earth Engine"
+      chapters:
         - F1.qmd
         - F2.qmd
         - F4.qmd
         - F5.qmd
-        - F6.qmd
-    - part: "Case Studies"
+    - part: "C. Case Studies"
       chapters:
         - lights.qmd
         - refineries.qmd
@@ -32,6 +34,8 @@ book:
   favicon: favicon.ico
   sidebar:
     logo: logo_white.png
+    collapse-level: 1
+
 
 
 bibliography: references.bib
@@ -44,9 +48,13 @@ format:
     code-copy: true
     code-overflow: wrap
     highlight-style: monokai.theme
-    linkcolor: "#34a832"
+    linkcolor: "#34a832"        
 
   pdf:
     documentclass: scrreprt
+    header-includes:
+      - \makeatletter
+      - \@addtoreset{chapter}{part}
+      - \makeatother         
   epub:
     cover-image: cover.png

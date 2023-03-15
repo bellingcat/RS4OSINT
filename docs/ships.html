@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Google Earth Engine for OSINT - Ship Detection</title>
+<title>Remote Sensing for OSINT - Ship Detection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -135,12 +135,6 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 </script>
-<style>
-    .quarto-title-block .quarto-title-banner {
-      color: white;
-background: #34a832;
-    }
-    </style>
 
 
 </head>
@@ -160,23 +154,7 @@ background: #34a832;
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Ship Detection</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
@@ -184,19 +162,21 @@ background: #34a832;
       <img src="./logo_white.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Google Earth Engine for OSINT</a> 
+      <a href="./">Remote Sensing for OSINT</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/oballinger/GEE_OSINT/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="./Google-Earth-Engine-for-OSINT.pdf">
+          <a class="dropdown-item sidebar-tools-main-item" href="./Remote-Sensing-
+-for-OSINT.pdf">
             <i class="bi bi-bi-file-pdf pe-1"></i>
           Download PDF
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="./Google-Earth-Engine-for-OSINT.epub">
+          <a class="dropdown-item sidebar-tools-main-item" href="./Remote-Sensing-
+-for-OSINT.epub">
             <i class="bi bi-bi-journal pe-1"></i>
           Download ePub
           </a>
@@ -228,64 +208,69 @@ background: #34a832;
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Learning</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">A. Introduction</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Remote Sensing</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Acquisition</span></a>
+  <a href="./ch1.html" class="sidebar-item-text sidebar-link">Remote Sensing</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./F1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./F2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interpreting Images</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./F4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Interpreting Image Series</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./F5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Vectors and Tables</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./F6.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Topics</span></a>
+  <a href="./ch2.html" class="sidebar-item-text sidebar-link">Data Acquisition</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Case Studies</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">B. Google Earth Engine</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Interpreting Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Image Series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./F5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vectors and Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">C. Case Studies</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lights.html" class="sidebar-item-text sidebar-link">War at Night</a>
@@ -306,6 +291,11 @@ background: #34a832;
   <a href="./blast.html" class="sidebar-item-text sidebar-link">Blast Damage Assessment</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./object_detection.html" class="sidebar-item-text sidebar-link">Object Detection</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -317,10 +307,7 @@ background: #34a832;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How it Works</a></li>
-  </ul></li>
+  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link active" data-scroll-target="#how-it-works">How it Works</a></li>
   <li><a href="#building-the-application" id="toc-building-the-application" class="nav-link" data-scroll-target="#building-the-application">Building the Application</a>
   <ul class="collapse">
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
@@ -336,20 +323,32 @@ background: #34a832;
   <li><a href="#taking-it-for-a-spin" id="toc-taking-it-for-a-spin" class="nav-link" data-scroll-target="#taking-it-for-a-spin">Taking it for a spin</a>
   <ul class="collapse">
   <li><a href="#north-korea" id="toc-north-korea" class="nav-link" data-scroll-target="#north-korea">North Korea</a></li>
-  </ul></li>
   <li><a href="#ukraine" id="toc-ukraine" class="nav-link" data-scroll-target="#ukraine">Ukraine</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/oballinger/GEE_OSINT/edit/main/ships.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Ship Detection</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="introduction" class="level1 page-columns page-full">
-<h1>Introduction</h1>
+    
+  
+    
+  </div>
+  
+
+</header>
+
 <p>There’s a huge amount of data available on the internet about ship movements, most of which draw on the Automatic Identification System (AIS) which is a system that uses radio to broadcast the identity, position, course, speed, and other data about ships. <a href="https://www.marinetraffic.com/en/ais-api-services">MarineTraffic</a>, for example, provides an API that allows you to query the location of ships in real time as well as historical vessel tracks and lots of other useful data. Unfortunately most sources of AIS data are paywalled, and AIS can be turned off or manipulated to hide the identity or position of the ship. In fact, most of the stuff we’re interested in investigating probably happens when AIS is turned off.</p>
 <p>Though ships can hide by turning off their AIS transponders, they can’t hide from satellites. In this tutorial, we’re going to build an application that uses Synthetic Aperture Radar (SAR) from the European Space Agency’s Sentinel-1 satellite to automatically identify ships, regardless of whether they’ve got their transponders turned on or off. Here’s the finished application:</p>
 <div class="column-page">
@@ -369,7 +368,6 @@ background: #34a832;
 <p>You might remember that on March 23rd, 2021, the Ever Given– a 400m long container ship– got stuck in the Suez Canal. The ship was blocking the canal for six days, and it’s estimated that it cost the global economy $400 million per day. If you click on the tip of the spike on March 30th, you can see backup of around 150 ships waiting for the canal to be cleared. You can also zoom in on a particular date range by scrolling and dragging on the graph. If you zoom in on the spike, you can then select imagery from early April to compare the number of ships in the waiting area after the blockage was cleared. In normal times we can see a regular pattern in the number of ships in the waiting area ranging between 15 and 40 ships.</p>
 <p>If you’re closely zoomed in to the map and load imagery from different days by clicking on the graph, you can compare the bright spots on the Sentinel image and the green dots. The ship detection process is pretty accurate, and we typically see one green dot per ship. However, you may notice that we occasionally miss a ship. This is because the ship detection process is based on a threshold, and if the ship is too small it may not generate a high enough return signal to be detected. You can increase the sensitivity of the ship detection process by moving the slider below the graph. This will increase the number of ships detected, but it may also increase the number of false positives.</p>
 <p>The next section focuses on building this application. After that, we’ll have a look at a few different use cases for this sort of maritime surveillance.</p>
-</section>
 </section>
 <section id="building-the-application" class="level1">
 <h1>Building the Application</h1>
@@ -655,18 +653,21 @@ background: #34a832;
 <h2 class="anchored" data-anchor-id="taking-it-for-a-spin">Taking it for a spin</h2>
 <section id="north-korea" class="level3">
 <h3 class="anchored" data-anchor-id="north-korea">North Korea</h3>
-<p>Information on North Korea’s economy is pretty hard to come by. Ship traffic in and out of the country’s largest port, Nampo, is probably a pretty good indicator of the country’s economic activity. But we can’t just head on down to Marine Tracker or other services that use AIS data to track ship movements. According to the <a href="https://home.treasury.gov/system/files/126/dprk_vessel_advisory_02232018.pdf">U.S. Treasury</a>, “North Korean-flagged merchant vessels have been known to intentionally disable their AIS transponders to mask their movements. This tactic, whether employed by North Korean-flagged vessels or other vessels involved in trade with North Korea, could conceal the origin or destination of cargo destined for, or originating in, North Korea.” They should know– they’re the ones imposing the sanctions that make it illegal to trade with North Korea.</p>
-<p>A New York Times <a href="https://www.nytimes.com/2019/07/16/world/asia/north-korea-luxury-goods-sanctions.html">investigation</a> tracked the maritime voyage of luxury Mercedes cars from Germany to North Korea via the Netherlands, China, Japan, South Korea, and Russia. AIS transponders were turned off at several points throughout this journey, and the investigation had to rely on satellite imagery to fill in the gaps. Though they used high resolution optical imagery to follow individual ships,</p>
+<p>In 2020, North Korea implemented one of the most severe COVID-19 lockdowns in the world including a near-total ban on <a href="https://thediplomat.com/2023/01/north-korea-likely-to-lift-pandemic-border-restrictions-in-2023/">“all cross-border exchanges, including trade, traffic, and tourism”.</a>. Measures have been so severe that country appears to have experienced a significant <a href="https://foreignpolicy.com/2022/05/16/kim-north-korea-covid-outbreak-pandemic/">famine</a>. Though there were signs that things have gradually returned to normal, information on North Korea’s economy is pretty hard to come by. Ship traffic in and out of the country’s largest port, Nampo, is probably a pretty good indicator of the country’s economic activity.</p>
+<p>But we can’t just head on down to Marine Tracker or other services that use AIS data to track ship movements. According to the <a href="https://home.treasury.gov/system/files/126/dprk_vessel_advisory_02232018.pdf">U.S. Treasury</a>, “North Korean-flagged merchant vessels have been known to intentionally disable their AIS transponders to mask their movements. This tactic, whether employed by North Korean-flagged vessels or other vessels involved in trade with North Korea, could conceal the origin or destination of cargo destined for, or originating in, North Korea.” They should know– they’re the ones imposing the sanctions that make it illegal to trade with North Korea.</p>
+<p>A New York Times <a href="https://www.nytimes.com/2019/07/16/world/asia/north-korea-luxury-goods-sanctions.html">investigation</a> tracked the maritime voyage of luxury Mercedes cars from Germany to North Korea via the Netherlands, China, Japan, South Korea, and Russia. AIS transponders were turned off at several points throughout this journey, and the investigation had to rely on satellite imagery to fill in the gaps.</p>
+<p>Though they used high resolution optical imagery to follow individual ships, we want to identify lots of ships in a large area over a long period. That would get very expensive, and automatic ship detection in optical imagery is relatively difficult. Here’s how our SAR tool fares when we draw a box in the bay of Nampo:</p>
 <p><img src="./images/ships_north_korea.jpg" class="img-fluid"></p>
+<p>Looking at imagery from 2021, we can see ship traffic increasing from nearly zero to around 40 ships per day.</p>
 </section>
-</section>
-<section id="ukraine" class="level2">
-<h2 class="anchored" data-anchor-id="ukraine">Ukraine</h2>
-<p>The port of Odessa is Ukraine’s largest port, and Following its invasion of Ukraine in February 2022, Russia instituted a naval blockade against Ukrainian ports. The impact of this blockade is clearly visible using the tool we’ve just built:</p>
+<section id="ukraine" class="level3">
+<h3 class="anchored" data-anchor-id="ukraine">Ukraine</h3>
+<p>Odessa is Ukraine’s largest port. Following its invasion of Ukraine in February 2022, Russia instituted a naval blockade against Ukrainian ports. The impact of this blockade is clearly visible using the tool we’ve just built:</p>
 <p><img src="./images/ships_ukraine.jpg" class="img-fluid"></p>
 <p>The daily number of ships detected in the port of Odessa dropped from 40-50 to 0-5 following the invasion, and remained near zero until the blockade was lifted in September 2022.</p>
 
 
+</section>
 </section>
 </section>
 

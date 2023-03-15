@@ -3,6 +3,7 @@
 ## Programming Basics
 
 ::: {.callout-tip} 
+
 ## Chapter Information
 
 ### Author{.unlisted .unnumbered}
@@ -1206,10 +1207,12 @@ In addition to band imagery and per-pixel quality flags, Earth Engine allows you
 
 Let’s examine the metadata for the Sentinel-2 MSI.
 
+```js
 /////  
 // Metadata  
 /////  
 print('MSI Image Metadata', msiImage);
+```
 
 Examine the object you’ve created in the Console (Fig. F1.3.20). Expand the image name, then the properties object.
 
@@ -1219,11 +1222,12 @@ Fig. F1.3.20 Checking the “CLOUDY_PIXEL_PERCENTAGE” property in the metadata
 
 The first entry is the CLOUDY_PIXEL_PERCENTAGE information. Distinct from the cloudiness flag attached to every pixel, this is an image-level summary assessment of the overall cloudiness in the image. In addition to viewing the value, you might find it useful to print it to the screen, for example, or to record a list of cloudiness values in a set of images. Metadata properties can be extracted from an image’s properties using the get function, and printed to the Console.
 
+```js
 // Image-level Cloud info  
 var msiCloudiness = msiImage.get('CLOUDY_PIXEL_PERCENTAGE');  
   
 print('MSI CLOUDY_PIXEL_PERCENTAGE:', msiCloudiness);
-
+```
 ::: {.callout-note}
 Code Checkpoint F13e. The book’s repository contains a script that shows what your code should look like at this point.
 :::
