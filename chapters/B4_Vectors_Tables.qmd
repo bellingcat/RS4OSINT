@@ -64,7 +64,7 @@ To demonstrate how geometry tools in Earth Engine work, let’s start by creatin
 
 Click on the geometry tools in the top left of the Map pane and create a point feature. Place a new point where USF is located (see Fig. F5.0.1).
 
-![Fig. F5.0.1 Location of the USF campus in San Francisco, California. Your first point should be in this vicinity. The red arrow points to the geometry tools.](../images/F5/image54.png)
+![Fig. F5.0.1 Location of the USF campus in San Francisco, California. Your first point should be in this vicinity. The red arrow points to the geometry tools.](images/F5/image54.png)
 
 
 Use Google Maps to search for “Harney Science Center” or “Lo Schiavo Center for Science.” Hover your mouse over the Geometry Imports to find the +new layer menu item and add a new layer to delineate the boundary of a building on campus.
@@ -73,7 +73,7 @@ Next, create another new layer to represent the entire campus as a polygon.
 
 After you create these layers, rename the geometry imports at the top of your script. Name the layers usf_point, usf_building, and usf_campus. These names are used within the script shown in Fig. F5.0.2.
 
-![Fig. F5.0.2 Rename the default variable names for each layer in the Imports section of the code at the top of your script](../images/F5/image10.png)
+![Fig. F5.0.2 Rename the default variable names for each layer in the Imports section of the code at the top of your script](images/F5/image10.png)
 
 
 :::{.callout-note}
@@ -103,7 +103,7 @@ There are many image collections loaded in Earth Engine, and they can cover a ve
 
 Use your internet searching skills to locate the “Analysis Neighborhoods” dataset covering San Francisco. This data might be located in a number of places, including DataSF, the City of San Francisco’s public-facing data repository.
 
-![Fig. F5.0.3 DataSF website neighborhood shapefile to download](../images/F5/image27.png)
+![Fig. F5.0.3 DataSF website neighborhood shapefile to download](images/F5/image27.png)
 
 
 After you find the Analysis Neighborhoods layer, click Export and select Shapefile (Fig. F5.0.3). Keep track of where you save the zipped file, as we will load this into Earth Engine. Shapefiles contain vector-based data—points, lines, polygons—and include a number of files, such as the location information, attribute information, and others.
@@ -114,14 +114,14 @@ Extract the folder to your computer. When you open the folder, you will see that
 
 Navigate to the Assets tab (near Scripts). Select New > Table Upload > Shape files (Fig. F5.0.4).
 
-![Fig. F5.0.4 Import an asset as a zipped folder](../images/F5/image52.png)
+![Fig. F5.0.4 Import an asset as a zipped folder](images/F5/image52.png)
 
 
 #### Select Files and Name Asset
 
 Click the Select button and then use the file navigator to select the component files of the shapefile structure (i.e., .shp, .dbf, .shx, and .prj) (Fig. F5.0.5). Assign an Asset Name so you can recognize this asset.
 
-![Fig. F5.0.5 Select the four files extracted from the zipped folder. Make sure each file has the same name and that there are no spaces in the file names of the component files of the shapefile structure.](../images/F5/image43.png)
+![Fig. F5.0.5 Select the four files extracted from the zipped folder. Make sure each file has the same name and that there are no spaces in the file names of the component files of the shapefile structure.](images/F5/image43.png)
 
 
 Uploading the asset may take a few minutes. The status of the upload is presented under the Tasks tab. After your asset has been successfully loaded, click on the asset in the Assets folder and find the collection ID. Copy this text and use it to import the file into your Earth Engine analysis.
@@ -300,7 +300,7 @@ Export.table.toDrive({
 ```
 When you run this code, you will notice that you have the Tasks tab highlighted on the top right of the Earth Engine Code Editor (Fig. F5.0.6). You will be prompted to name the directory when exporting the data.
 
-![Fig. F5.0.6 Under the Tasks tab, select Run to initiate download](../images/F5/image4.png)
+![Fig. F5.0.6 Under the Tasks tab, select Run to initiate download](images/F5/image4.png)
 
 
 After you run the task, the file will be saved to your Google Drive. You have now brought a feature into Earth Engine and also exported data from Earth Engine.
@@ -457,13 +457,13 @@ var elevationDrawn = elevationVector.draw({
 Map.addLayer(elevationDrawn, {}, 'Elevation zone polygon');
 ```
 
-![](../images/F5/image50.png)
+![](images/F5/image50.png)
 
-![](../images/F5/image33.png)
+![](images/F5/image33.png)
 
-![](../images/F5/image36.png)
+![](images/F5/image36.png)
 
-![Fig. F5.1.1 Raster-based elevation (top left) and zones (top right), vectorized elevation zones overlaid on the raster (bottom-left) and vectorized elevation zones only (bottom-right)](../images/F5/image7.png)
+![Fig. F5.1.1 Raster-based elevation (top left) and zones (top right), vectorized elevation zones overlaid on the raster (bottom-left) and vectorized elevation zones only (bottom-right)](images/F5/image7.png)
 
 
 You may have realized that polygons consist of complex lines, including some small polygons with just one pixel. That happens when there are no surrounding pixels of the same elevation zone. You may not need a vector map with such details—if, for instance, you want to produce a regional or global map. We can use a morphological reducer focalMode to simplify the shape by defining a neighborhood size around a pixel. In this example, we will set the kernel radius as four pixels. This operation makes the resulting polygons look much smoother, but less precise (Fig. F5.1.2).
@@ -501,18 +501,18 @@ Map.addLayer(smoothDrawn, {}, 'Elevation zone polygon (smooth)');
 
 We can see now that the polygons have more distinct shapes with many fewer small polygons in the new map (Fig. F5.1.2). It is important to note that when you use methods like focalMode (or other, similar methods such as connectedComponents and connectedPixelCount), you need to reproject according to the original image in order to display properly with zoom using the interactive Code Editor.
 
-![](../images/F5/image20.png)
+![](images/F5/image20.png)
 
-![Fig. F5.1.2 Before (left) and after (right) applying focalMode](../images/F5/image37.png)
+![Fig. F5.1.2 Before (left) and after (right) applying focalMode](images/F5/image37.png)
 
 
 #### Raster to Points
 
 Lastly, we will convert a small part of this elevation image into a point vector dataset. For this exercise, we will use the same example and build on the code from the previous subsection. This might be useful when you want to use geospatial data in a tabular format in combination with other conventional datasets such as economic indicators (Fig. F5.1.3).
 
-![](../images/F5/image24.png)
+![](images/F5/image24.png)
 
-![Fig. F5.1.3 Elevation point values with latitude and longitude](../images/F5/image11.png)
+![Fig. F5.1.3 Elevation point values with latitude and longitude](images/F5/image11.png)
 
 
 The easiest way to do this is to use sample while activating the geometries parameter. This will extract the points at the centroid of the elevation pixel.
@@ -571,7 +571,7 @@ Map.addLayer(elevationSamplesStratified, {}, 'Stratified samples');
 
 ```
 
-![Fig. F5.1.4 Stratified sampling over different elevation zones](../images/F5/image23.png)
+![Fig. F5.1.4 Stratified sampling over different elevation zones](images/F5/image23.png)
 
 
 :::{.callout-note}
@@ -637,7 +637,7 @@ Map.setOptions('SATELLITE');
 ```
 This will display the boundary of the La Paya protected area and deforestation in the region (Fig. F5.1.5).
 
-![Fig. F5.1.5 View of the La Paya protected area in the Colombian Amazon (in white), and deforestation over the period 2001–2020 (in yellows and reds, with darker colors indicating more recent changes)](../images/F5/image55.png)
+![Fig. F5.1.5 View of the La Paya protected area in the Colombian Amazon (in white), and deforestation over the period 2001–2020 (in yellows and reds, with darker colors indicating more recent changes)](images/F5/image55.png)
 
 
 We can use Earth Engine to convert the deforestation raster to a set of polygons. The deforestation data are appropriate for this transformation as each deforestation event is labeled categorically by year, and change events are spatially contiguous. This is performed in Earth Engine using the ee.Image.reduceToVectors method, as described earlier in this section.  
@@ -668,9 +668,9 @@ Map.addLayer(deforestationVectorOutline, {
 ```
 Fig. F5.1.6 shows a comparison of the raster versus vector representations of deforestation within the protected area.
 
-![](../images/F5/image42.png)
+![](images/F5/image42.png)
 
-![Fig. F5.1.6 Raster (left) versus vector (right) representations of deforestation data of the La Paya protected area](../images/F5/image13.png)
+![Fig. F5.1.6 Raster (left) versus vector (right) representations of deforestation data of the La Paya protected area](images/F5/image13.png)
 
 
 Having converted from raster to vector, a new set of operations becomes available for post-processing the deforestation data. We might, for instance, be interested in the number of individual change events each year (Fig. F5.1.7):
@@ -690,7 +690,7 @@ var chart = ui.Chart.feature
    });print(chart);
 ```
 
-![Fig. F5.1.7 Plot of the number of deforestation events in La Paya for the years 2001–2020](../images/F5/image15.png)
+![Fig. F5.1.7 Plot of the number of deforestation events in La Paya for the years 2001–2020](images/F5/image15.png)
 
 
 There might also be interest in generating point locations for individual change events (e.g., to aid a field campaign):
@@ -911,11 +911,11 @@ Map.addLayer(distance.updateMask(protectedAreaRaster.unmask()
    max: 20000}, 'Distance outside protected area');
 
 ```
-![](../images/F5/image56.png)
+![](images/F5/image56.png)
 
-![](../images/F5/image9.png)
+![](images/F5/image9.png)
 
-![Fig. F5.1.8 Distance from the La Paya boundary (left), distance within the La Paya (middle), and distance outside the La Paya (right)](../images/F5/image25.png)
+![Fig. F5.1.8 Distance from the La Paya boundary (left), distance within the La Paya (middle), and distance outside the La Paya (right)](images/F5/image25.png)
 
 
 Sometimes it makes sense to work with objects in raster imagery. This is an unusual case of vector-like operations conducted with raster data. There is a good reason for this where the vector equivalent would be computationally burdensome.
@@ -950,13 +950,13 @@ Map.addLayer(deforestation5km, {
 
 ```
 
-![](../images/F5/image22.png)
+![](images/F5/image22.png)
 
-![](../images/F5/image6.png)
+![](images/F5/image6.png)
 
-![](../images/F5/image21.png)
+![](images/F5/image21.png)
 
-![Fig. F5.1.9 Distance zones (top left) and deforestation by zone (<1 km, <3 km, and <5 km)](../images/F5/image26.png)
+![Fig. F5.1.9 Distance zones (top left) and deforestation by zone (<1 km, <3 km, and <5 km)](images/F5/image26.png)
 
 
 Lastly, we can estimate the deforestation area within 1 km of the protected area but only outside of the boundary.
@@ -1254,10 +1254,10 @@ Map.addLayer(ptsTopo, {
 ```
 The result is a copy of the buffered point feature collection with new properties added for the region reduction of each selected image band according to the given reducer. A part of the FeatureCollection is shown in Fig. F5.2.1. The data in that FeatureCollection corresponds to a table containing the information of Table F5.2.3. See Fig. F5.2.2 for a graphical representation of the points and the topographic data being summarized.
 
-![Fig. F5.2.1 A part of the FeatureCollection produced by calculating the zonal statistics](../images/F5/image29.png)
+![Fig. F5.2.1 A part of the FeatureCollection produced by calculating the zonal statistics](images/F5/image29.png)
 
 
-![Fig. F5.2.2 Sample points and topographic slope. Elevation and slope values for regions intersecting each buffered point are reduced and attached as properties of the points.](../images/F5/image5.png)
+![Fig. F5.2.2 Sample points and topographic slope. Elevation and slope values for regions intersecting each buffered point are reduced and attached as properties of the points.](images/F5/image5.png)
 
 
 Table F5.2.3 Example output from zonalStats organized as a table. Rows correspond to collection features and columns are feature properties. Note that elevation and slope values in this table are rounded to the nearest tenth for brevity.
@@ -1553,7 +1553,7 @@ Map.addLayer(pixelsFc, {
 
 ```
 
-![Fig. F5.2.3 Identifying pixels used in zonal statistics. By mapping the image and vector together, you can see which pixels are included in the unweighted statistic. For this example, three pixels would be included in the statistic because the polygon covers the center point of three pixels.](../images/F5/image44.png)
+![Fig. F5.2.3 Identifying pixels used in zonal statistics. By mapping the image and vector together, you can see which pixels are included in the unweighted statistic. For this example, three pixels would be included in the statistic because the polygon covers the center point of three pixels.](images/F5/image44.png)
 
 
 :::{.callout-note}
@@ -1645,7 +1645,7 @@ Map.addLayer(sfBlocks, {
    color: '#de2d26'}, 'Census Blocks (single color)');
 
 ```
-![Fig. F5.3.1 San Francisco census blocks](../images/F5/image34.png)
+![Fig. F5.3.1 San Francisco census blocks](images/F5/image34.png)
 
 
 The census blocks table has a property named 'pop10' containing the population totals as of the 2010 census. We can use this to create a choropleth map showing population density. We first need to compute the population density for each feature and add it as a property. To add a new property to each feature, we can map a function over the FeatureCollection and calculate the new property called 'pop_density'. Earth Engine provides the area function, which can calculate the area of a feature in square meters. We convert it to square miles and calculate the population density per square mile.
@@ -1685,7 +1685,7 @@ var visParams = {
 Map.addLayer(sfBlocksPaint.clip(geometry), visParams,   'Population Density');
 ```
 
-![Fig. F5.3.2 San Francisco population density](../images/F5/image41.png)
+![Fig. F5.3.2 San Francisco population density](images/F5/image41.png)
 
 
 #### Creating a Categorical Map
@@ -1713,9 +1713,9 @@ var sfRoadsDraw = sfRoads.draw({
 Map.addLayer(sfRoadsDraw, {}, 'Roads (Draw)');
 
 ```
-![](../images/F5/image28.png)
+![](images/F5/image28.png)
 
-![Fig. F5.3.3 San Francisco roads rendered with a line width of 2 pixels (left) and and a line width of 1 pixel (right)](../images/F5/image31.png)
+![Fig. F5.3.3 San Francisco roads rendered with a line width of 2 pixels (left) and and a line width of 1 pixel (right)](images/F5/image31.png)
 
 
 The road layer has a column called “MTFCC” (standing for the MAF/TIGER Feature Class Code). This contains the road priority codes, representing the various types of roads, such as primary and secondary. We can use this information to render each road segment according to its priority. The draw function doesn’t allow us to specify different styles for each feature. Instead, we need to make use of the style function.
@@ -1748,7 +1748,7 @@ var sfRoadsStyle = sfRoads.style({
 Map.addLayer(sfRoadsStyle.clip(geometry), {}, 'Roads (Style)');
 ```
 
-![Fig. F5.3.4 San Francisco roads rendered according to road priority](../images/F5/image46.png)
+![Fig. F5.3.4 San Francisco roads rendered according to road priority](images/F5/image46.png)
 
 
 :::{.callout-note}
@@ -1807,7 +1807,7 @@ var interstateRoadsDrawn = interstateRoads.draw({
 Map.addLayer(interstateRoadsDrawn, {}, 'Interstate Roads');
 ```
 
-![Fig. F5.3.5 San Francisco blocks and interstate highways](../images/F5/image2.png)
+![Fig. F5.3.5 San Francisco blocks and interstate highways](images/F5/image2.png)
 
 
 Let’s define a join that will select all the features from the sfBlocks layer that are within 1 km of any feature from the interstateRoads layer. We start by defining a filter using the ee.Filter.withinDistance filter. We want to compare the geometries of features in both layers, so we use a special property called '.geo' to compare the collections. By default, the filter will work with exact distances between the geometries. If your analysis does not require a very precise tolerance of spatial uncertainty, specifying a small non-zero maxError distance value will help speed up the spatial operations. A larger tolerance also helps when testing or debugging code so you can get the result quickly instead of waiting longer for a more precise output.
@@ -1841,7 +1841,7 @@ var closeBlocksDrawn = closeBlocks.draw({
 Map.addLayer(closeBlocksDrawn, {}, 'Blocks within 1km');
 ```
 
-![Fig. F5.3.6 Selected blocks within 1 km of an interstate highway](../images/F5/image40.png)
+![Fig. F5.3.6 Selected blocks within 1 km of an interstate highway](images/F5/image40.png)
 
 
 #### Spatial Joins
@@ -1874,7 +1874,7 @@ var sfTreesStyled = sfTrees.style({
 Map.addLayer(sfTreesStyled, {}, 'SF Trees');
 
 ```
-![Fig. F5.3.7 San Francisco neighborhoods and trees](../images/F5/image35.png)
+![Fig. F5.3.7 San Francisco neighborhoods and trees](images/F5/image35.png)
 
 
 To find the tree points in each neighborhood polygon, we will use an ee.Filter.intersects filter.
@@ -1904,7 +1904,7 @@ print(joined.first());
 ```
 
 
-![Fig. F5.3.8 Result of the save-all join](../images/F5/image1.png)
+![Fig. F5.3.8 Result of the save-all join](images/F5/image1.png)
 
 
 You will see that each feature of the sfNeighborhoods collection now has an additional property called trees. This contains all the features from the sfTrees collection that were matched using the intersectFilter. We can now map a function over the results and post-process the collection. As our analysis requires the computation of the total number of trees in each neighborhood, we extract the matching features and use the size function to get the count (Fig. F5.3.9).
@@ -1917,7 +1917,7 @@ var sfNeighborhoods = joined.map(function(f) {   var treesWithin = ee.List(f.get
 print(sfNeighborhoods.first());
 
 ```
-![Fig. F5.3.9 Final FeatureCollection with the new property](../images/F5/image18.png)
+![Fig. F5.3.9 Final FeatureCollection with the new property](images/F5/image18.png)
 
 
 The results now have a property called total_trees containing the count of intersecting trees in each neighborhood polygon.
@@ -1938,7 +1938,7 @@ Export.table.toDrive({
 ```
 The final result is a CSV file with the neighborhood names and total numbers of trees counted using the join (Fig. F5.3.10).
 
-![Fig. F5.3.10 Exported CSV file with tree counts for San Francisco neighborhoods](../images/F5/image3.png)
+![Fig. F5.3.10 Exported CSV file with tree counts for San Francisco neighborhoods](images/F5/image3.png)
 
 
 :::{.callout-note}

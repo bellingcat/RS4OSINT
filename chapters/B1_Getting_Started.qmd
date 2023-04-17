@@ -63,7 +63,7 @@ If you have not already done so, be sure to add the book’s code repository to 
 The Code Editor is an integrated development environment for the Earth Engine JavaScript API. It offers an easy way to type, debug, run, and manage code. Once you have followed Google’s documentation on registering for an Earth Engine account, you should follow the documentation to open the Code Editor. When you first visit the Code Editor, you will see a screen such as the one shown in Fig. F1.0.1.
 
 
-![Fig. F1.0.1 The Earth Engine Code Editor](../images/F1/image41.png)
+![Fig. F1.0.1 The Earth Engine Code Editor](images/F1/image41.png)
 
 
 
@@ -75,7 +75,7 @@ print('Hello World');
 The line of code above uses the JavaScript print function to print the text “Hello World” to the screen. Once you enter the code, click the “Run” button. The output will be displayed on the upper right-hand panel under the Console tab (Fig. F1.0.2.).
 
 
-![Fig. F1.0.2 Typing and running code](../images/F1/image57.png)
+![Fig. F1.0.2 Typing and running code](images/F1/image57.png)
 
 
 
@@ -83,31 +83,31 @@ The line of code above uses the JavaScript print function to print the text “H
 You now know where to type your code, how to run it, and where to look for the output. You just wrote your first Earth Engine script and may want to save it. Click the “Save” button (Fig. F1.0.3).
 
 
-![Fig. F1.0.3 Saving a script](../images/F1/image5.png)
+![Fig. F1.0.3 Saving a script](images/F1/image5.png)
 
 
 If this is your first time using the Code Editor, you will be prompted to create a home folder. This is a folder in the cloud where all your code will be saved. You can pick a name of your choice, but remember that it cannot be changed and will forever be associated with your account. A good choice for the name would be your Google Account username (Fig. F1.0.4).
 
 
-![Fig. F1.0.4 Creating a home folder](../images/F1/image64.png)
+![Fig. F1.0.4 Creating a home folder](images/F1/image64.png)
 
 
 Once your home folder is created, you will be prompted to enter a new repository. A repository can help you organize and share code. Your account can have multiple repositories and each repository can have multiple scripts inside it. To get started, you can create a repository named “default” (Fig. F1.0.5).
 
 
-![Fig. F1.0.5 Creating a new repository](../images/F1/image33.png)
+![Fig. F1.0.5 Creating a new repository](images/F1/image33.png)
 
 
 Finally, you will be able to save your script inside the newly created repository. Enter the name “hello_world” and click OK (Fig. F1.0.6).
 
 
-![Fig. F1.0.6 Saving a file](../images/F1/image37.png)
+![Fig. F1.0.6 Saving a file](images/F1/image37.png)
 
 
 Once the script is saved, it will appear in the script manager panel (Fig. F1.0.7). The scripts are saved in the cloud and will always be available to you when you open the Code Editor.
 
 
-![Fig. F1.0.7 The script manager](../images/F1/image24.png)
+![Fig. F1.0.7 The script manager](images/F1/image24.png)
 
 
 
@@ -150,7 +150,7 @@ print(cities);
 If you look at the output in the Console, you will see “List” with an expander arrow (▹) next to it. Clicking on the arrow will expand the list and show you its content. You will notice that along with the four items in the list, there is a number next to each value. This is the index of each item. It allows you to refer to each item in the list using a numeric value that indicates its position in the list.
 
 
-![Fig. F1.0.8 A JavaScript list](../images/F1/image10.png)
+![Fig. F1.0.8 A JavaScript list](images/F1/image10.png)
 
 
 
@@ -174,7 +174,7 @@ print(cityData);
 We can use multiple lines to define the object. Only when we put in the semicolon (;) is the command considered complete. The object will be printed in the Console. You can see that instead of a numeric index, each item has a label. This is known as the key and can be used to retrieve the value of an item.
 
 
-![Fig. F1.0.9 A JavaScript object](../images/F1/image40.png)
+![Fig. F1.0.9 A JavaScript object](images/F1/image40.png)
 
 
 #### Functions {.unnumbered}
@@ -191,7 +191,7 @@ print(greet('Readers'));
 
 
 ```
-![Fig. F1.0.10 JavaScript function output](../images/F1/image54.png)
+![Fig. F1.0.10 JavaScript function output](images/F1/image54.png)
 
 
 #### Comments {.unnumbbered}
@@ -219,7 +219,7 @@ Code Checkpoint F10a. The book’s repository contains a script that shows what 
 The Earth Engine API is vast and provides objects and methods to do everything from simple math to advanced algorithms for image processing. In the Code Editor, you can switch to the Docs tab to see the API functions grouped by object types. The API functions have the prefix ee (for Earth Engine).
 
 
-![Fig. F1.0.12 Earth Engine API docs](../images/F1/image59.png)
+![Fig. F1.0.12 Earth Engine API docs](images/F1/image59.png)
 
 
 Let’s learn to use the API. Suppose you want to add two numbers, represented by the variables a and b, as below. Make a new script and enter the following:
@@ -233,7 +233,7 @@ In Sect. 1, you learned how to store numbers in variables, but not how to do any
 Looking at the Docs tab, you will find a group of methods that can be called on an ee.Number. Expand it to see the various functions available to work with numbers. You will see the ee.Number function that creates an Earth Engine number object from a value. In the list of functions, there is an add function for adding two numbers. That’s what you use to add a and b.
 
 
-![Fig. F1.0.13 ee.Number module](../images/F1/image13.png)
+![Fig. F1.0.13 ee.Number module](images/F1/image13.png)
 
 
 To add a and b, we first create an ee.Number object from variable a with ee.Number(a). And then we can use the add(b) call to add the value of b to it. The following code shows the syntax and prints the result which, of course, is the value 3. 
@@ -249,7 +249,7 @@ By now you may have realized that when learning to program in Earth Engine, you 
 Here’s another example to drive this point home. Let’s say you are working on a task that requires you to create a list of years from 1980 to 2020 with a five-year interval. If you are faced with this task, the first step is to switch to the Docs tab and open the ee.List module. Browse through the functions and see if there are any functions that can help. You will notice a function ee.List.sequence. Clicking on it will bring up the documentation of the function.
 
 
-![Fig. F1.0.14 The ee.List.sequence function](../images/F1/image65.png)
+![Fig. F1.0.14 The ee.List.sequence function](images/F1/image65.png)
 
 
 The function ee.List.sequence is able to generate a sequence of numbers from a given start value to the end value. It also has an optional parameter step to indicate the increment between each number. We can create a ee.List of numbers representing years from 1980 to 2020, counting by 5, by calling this predefined function with the following values: start = 1980, end = 2020, and step = 5.
@@ -260,7 +260,7 @@ print(yearList);
 The output printed in the Console will show that the variable yearList indeed contains the list of years with the correct interval.
 
 
-![Fig. F1.0.15 Output of ee.List.sequence function](../images/F1/image29.png)
+![Fig. F1.0.15 Output of ee.List.sequence function](images/F1/image29.png)
 
 
 You just accomplished a moderately complex programming task with the help of Earth Engine API.
@@ -344,7 +344,7 @@ print(first_image);
 In the Console panel, you may need to click the expander arrows to show the information. You should be able to read that this image consists of 19 different bands. For each band, the metadata lists four properties, but for now let’s simply note that the first property is a name or label for the band enclosed in quotation marks. For example, the name of the first band is “SR_B1” (Fig. F1.1.1).
 
 
-![Fig. F1.1.1 Image metadata printed to Console panel](../images/F1/image66.png)
+![Fig. F1.1.1 Image metadata printed to Console panel](images/F1/image66.png)
 
 
 A satellite sensor like Landsat 5 measures the magnitude of radiation in different portions of the electromagnetic spectrum. The first six bands in our image ("SR_B1" through "SR_B7") contain measurements for six different portions of the spectrum. The first three bands measure visible portions of the spectrum, or quantities of blue, green, and red light. The other three bands measure infrared portions of the spectrum that are not visible to the human eye.
@@ -389,7 +389,7 @@ Can you recognize any features in the image? By comparing it to the standard Goo
 Let’s explore this image with the Inspector tool. When you click on the Inspector tab on the right side of the Code Editor (Fig. F1.1.2, area A), your cursor should now look like crosshairs. When you click on a location in the image, the Inspector panel will report data for that location under three categories as follows:  
 
 
-![Fig. F1.1.2 Image data reported through the Inspector panel](../images/F1/image69.png)
+![Fig. F1.1.2 Image data reported through the Inspector panel](images/F1/image69.png)
 
 
 
@@ -430,7 +430,7 @@ Map.addLayer(
 In the code above, notice that we included two additional parameters to the Map.addLayer call. One parameter controls whether or not the layer is shown on the screen when the layer is drawn. It may be either 1 (shown) or 0 (not shown). The other parameter defines the opacity of the layer, or your ability to “see through” the map layer. The opacity value can range between 0 (transparent) and 1 (opaque).
 
 
-![Fig. F1.1.3 Three bands from the Landsat image, drawn as three different grayscale layers](../images/F1/image36.png)
+![Fig. F1.1.3 Three bands from the Landsat image, drawn as three different grayscale layers](images/F1/image36.png)
 
 
 Do you see how these new parameters influence the map layer displays (Fig. F1.1.3)? For Layer 2, we set the shown parameter as 0. For Layer 3, we set the opacity parameter as 0. As a result, neither layer is visible to us when we first run the code. We can make each layer visible with controls in the Layers manager checklist on the map (at top right). Expand this list and you should see the names that we gave each layer when we added them to the map. Each name sits between a checkbox and an opacity slider. To make Layer 2 visible, click the checkbox (Fig. F1.1.3, area A). To make Layer 3 visible, move the opacity slider to the right (Fig. F1.1.3, area B).
@@ -463,7 +463,7 @@ Map.addLayer(
 The result (Fig. F1.1.4) looks like the world we see, and is referred to as a natural-color composite, because it naturally pairs the spectral ranges of the image bands to display colors. Also called a true-color composite, this image shows the red spectral band with shades of red, the green band with shades of green, and the blue band with shades of blue. We specified the pairing simply through the order of the bands in the list: B3, B2, B1. Because bands 3, 2, and 1 of Landsat 5 correspond to the real-world colors of red, green, and blue, the image resembles the world that we would see outside the window of a plane or with a low-flying drone.  
 
 
-![Fig. F1.1.4 True-color composite](../images/F1/image39.png)
+![Fig. F1.1.4 True-color composite](images/F1/image39.png)
 
 
 ### False-Color Composites
@@ -481,7 +481,7 @@ Map.addLayer(
 In this false-color composite (Fig. F1.1.5), the display colors no longer pair naturally with the bands. This particular example, which is more precisely referred to as a color-infrared composite, is a scene that we could not observe with our eyes, but that you can learn to read and interpret. Its meaning can be deciphered logically by thinking through what is passed to the red, green, and blue color channels.
 
 
-![Fig. F1.1.5 Color-infrared image (a false-color composite)](../images/F1/image21.png)
+![Fig. F1.1.5 Color-infrared image (a false-color composite)](images/F1/image21.png)
 
 
 
@@ -489,7 +489,7 @@ In this false-color composite (Fig. F1.1.5), the display colors no longer pair n
 Notice how the land on the northern peninsula appears bright red (Fig. F1.1.5, area A). This is because for that area, the pixel value of the first band (which is drawing the near-infrared brightness) is much higher relative to the pixel value of the other two bands. You can check this by using the Inspector tool. Try zooming into a part of the image with a red patch (Fig. F1.1.5, area B) and clicking on a pixel that appears red. Then expand the “False Color” layer in the Inspector panel (Fig. F1.1.6, area A), click the blue icon next to the layer name (Fig. F1.1.6, area B), and read the pixel value for the three bands of the composite (Fig. F1.1.6, area C). The pixel value for B4 should be much greater than for B3 or B2. 
 
 
-![Fig. F1.1.6 Values of B4, B3, B2 bands for a pixel that appears bright red](../images/F1/image22.png)
+![Fig. F1.1.6 Values of B4, B3, B2 bands for a pixel that appears bright red](images/F1/image22.png)
 
 
 In the bottom left corner of the image (Fig. F1.1.5, area C), rivers and lakes appear very dark, which means that the pixel value in all three bands is low. However, sediment plumes fanning from the river into the sea appear with blue and cyan tints (Fig. F1.1.5, area D). If they look like primary blue, then the pixel value for the second band (B3) is likely higher than the first (B4) and third (B2) bands. If they appear more like cyan, an additive color, it means that the pixel values of the second and third bands are both greater than the first.
@@ -503,16 +503,16 @@ Map.addLayer(
        min: 8000,  
        max: 17000},   'Short wave false color');
 ```
-![Fig. F1.1.7 Shortwave infrared false-color composite](../images/F1/image4.png)
+![Fig. F1.1.7 Shortwave infrared false-color composite](images/F1/image4.png)
 
 
 To compare the two false-color composites, zoom into the area shown in the two pictures of Fig. F1.1.8. You should notice that bright red locations in the left composite appear bright green in the right composite. Why do you think that is? Does the image on the right show new distinctions not seen in the image on the left? If so, what do you think they are? 
 
 
-![](../images/F1/image25.png)
+![](images/F1/image25.png)
 
 
-![Fig. F1.1.8 Near-infrared versus shortwave infrared false-color composites](../images/F1/image8.png)
+![Fig. F1.1.8 Near-infrared versus shortwave infrared false-color composites](images/F1/image8.png)
 
 
 ::: {.callout-note}
@@ -547,7 +547,7 @@ The global nighttime lights image represents the average brightness of nighttime
 With the zoom controls on the map, you can zoom out to see the bright spot of Shanghai, the large blob of Seoul to the north and east, the darkness of North Korea except for the small dot of Pyongyang, and the dense strips of lights of Japan and the west coast of Taiwan (Fig. F1.1.10).  
 
 
-![Fig. F1.1.10 Stable nighttime lights in 1993](../images/F1/image34.png)
+![Fig. F1.1.10 Stable nighttime lights in 1993](images/F1/image34.png)
 
 
 
@@ -585,7 +585,7 @@ Next, the code uses the addBands method to create a new, three-band image that w
 Finally, the code prints metadata to the Console and adds the layer to the map as an RGB composite using Map.addLayer. If you look at the printed metadata, you should see under the label “change image” that our image is composed of three bands, with each band named after a year. You should also notice the order of the bands in the image: 2013, 2003, 1993. This order determines the color channels used to represent each slice of time in the composite: 2013 as red, 2003 as green, and 1993 as blue (Fig. F1.1.11).
 
 
-![Fig. F1.1.11 RGB composite of stable nighttime lights (2013, 2003, 1993)](../images/F1/image51.png)
+![Fig. F1.1.11 RGB composite of stable nighttime lights (2013, 2003, 1993)](images/F1/image51.png)
 
 
 We can now read the colors displayed on the layer to interpret different kinds of changes in nighttime lights across the planet over two decades. Pixels that appear white have high brightness in all three years. You can use the Inspector panel to confirm this. Click on the Inspector panel to change the cursor to a crosshair and then click on a pixel that appears white. Look under the Pixel category of the Inspector panel for the “Change composite” layer. The pixel value for each band should be high (at or near 63).  
@@ -600,13 +600,13 @@ When you zoom out from Shanghai, you will likely notice that each map layer redr
 In addition to urban change, the layer also shows changes in resource extraction activities that produce bright lights. Often, these activities produce lights that are stable over the span of a year (and therefore included in the “stable lights” band), but are not sustained over the span of a decade or more. For example, in the Korea Strait (between South Korea and Japan), you can see geographic shifts of fishing fleets that use bright halogen lights to attract squid and other sea creatures towards the water surface and into their nets. Bluish pixels were likely fished more heavily in 1993 and became used less frequently by 2003, while greenish pixels were likely fished more heavily in 2003 and less frequently by 2013 (Fig. F1.1.11).
 
 
-![Fig. F1.1.12 Large red blobs in North Dakota and Texas from fossil fuel extraction in specific years](../images/F1/image52.png)
+![Fig. F1.1.12 Large red blobs in North Dakota and Texas from fossil fuel extraction in specific years](images/F1/image52.png)
 
 
 Similarly, fossil fuel extraction produces nighttime lights through gas flaring. If you pan out to North America (Fig. F1.1.12), red blobs in Alberta and North Dakota and a red swath in southeastern Texas all represent places where oil and gas extraction were absent in 1993 and 2003 but booming by 2013. Pan over to the Persian Gulf and you will see changes that look like holiday lights with dots of white, red, green, and blue appearing near each other; these distinguish stable and shifting locations of oil production. Blue lights in Syria near the border with Iraq signify the abandonment of oil fields after 1993 (Fig. F1.1.13). Pan further north and you will see another “holiday lights” display from oil and gas extraction around Surgut, Russia. In many of these places, you can check for oil and gas infrastructure by zooming in to a colored spot, making the lights layer not visible, and selecting the Satellite base layer (upper right).
 
 
-![Fig. F1.1.13 Nighttime light changes in the Middle East](../images/F1/image48.png)
+![Fig. F1.1.13 Nighttime light changes in the Middle East](images/F1/image48.png)
 
 
 As you explore this image, remember to check your interpretations with the Inspector panel by clicking on a pixel and reading the pixel value for each band. Refer back to the additive color figure to remember how the color system works. If you practice this, you should be able to read any RGB composite by knowing how colors relate to the relative pixel value of each band. This will empower you to employ false-color composites as a flexible and powerful method to explore and interpret geographic patterns and changes on Earth’s surface. 
@@ -710,7 +710,7 @@ Map.addLayer(landsat8,
 First, let’s examine the map output (Fig. F1.2.1).
 
 
-![Fig. F1.2.1 USGS Landsat 8 Collection 2 Tier 1 Raw Scenes collection](../images/F1/image18.png)
+![Fig. F1.2.1 USGS Landsat 8 Collection 2 Tier 1 Raw Scenes collection](images/F1/image18.png)
 
 
 Notice the high amount of cloud cover, and the “layered” look. Zoom out if needed. This is because Earth Engine is drawing each of the images that make up the ImageCollection one on top of the other. The striped look is the result of how the satellite collects imagery. The overlaps between images and the individual nature of the images mean that these are not quite ready for analysis; we will address this issue in future chapters.
@@ -719,13 +719,13 @@ Notice the high amount of cloud cover, and the “layered” look. Zoom out if n
 Now examine the printed size on the Console. It will indicate that there are more than a million images in the dataset (Fig. F1.2.2). If you return to this lab in the future, the number will be even larger, since this active collection is continually growing as the satellite gathers more imagery. For the same reason, Fig. F1.2.1 might look slightly different on your map because of this.
 
 
-![Fig. F1.2.2  Size of the entire Landsat 8 collection. Note that this number is constantly growing.](../images/F1/image9.png)
+![Fig. F1.2.2  Size of the entire Landsat 8 collection. Note that this number is constantly growing.](images/F1/image9.png)
 
 
 Note that printing the ImageCollection returned an error message (Fig. F1.2.3), because calling print on an ImageCollection will write the name of every image in the collection to the Console. This is the result of an intentional safeguard within Earth Engine. We don’t want to see a million image names printed to the Console!
 
 
-![Fig. F1.2.3. Error encountered when trying to print the names and information to the screen for too many elements](../images/F1/image71.png)
+![Fig. F1.2.3. Error encountered when trying to print the names and information to the screen for too many elements](images/F1/image71.png)
 
 
 ::: {.callout-note}
@@ -766,7 +766,7 @@ print('The size of the Winter Landsat 8 image collection is:',
 Examine the mapped landsatWinter (Fig. F1.2.4). As described in the previous chapter, the 5000 and the 15000 values in the visualization parameters of the Map.addLayer function of the code above refer to the minimum and maximum of the range of display values.
 
 
-![Fig. F1.2.4 Landsat 8 Winter Collection](../images/F1/image38.png)
+![Fig. F1.2.4 Landsat 8 Winter Collection](images/F1/image38.png)
 
 
 Now look at the size of the winter Landsat 8 collection. The number is significantly lower than the number of images in the entire collection. This is the result of filtering the dates to three months in the winter of 2020–2021.
@@ -798,7 +798,7 @@ print('The size of the Minneapolis Winter Landsat 8 image collection is: ',
 If we uncheck the Winter Landsat 8 layer under Layers, we can see that only images that intersect our point have been selected (Fig. F1.2.5). Zoom in or out as needed. Note the printed size of the Minneapolis winter collection—we only have seven images.
 
 
-![Fig. F1.2.5 Minneapolis Winter Collection filtered by bounds.](../images/F1/image62.png)
+![Fig. F1.2.5 Minneapolis Winter Collection filtered by bounds.](images/F1/image62.png)
 
 
 The first still represents the map without zoom applied. The collection is shown inside the red circle. The second still represents the map after zoom was applied to the region. The red arrow indicates the point (in black) used to filter by bounds.
@@ -828,7 +828,7 @@ Map.addLayer(
 The first command takes our stack of location-filtered images and selects the first image. When the layer is added to the Map area, you can see that only one image is returned—remember to uncheck the other layers to be able to visualize the full image (Fig. F1.2.6). We used the Map.centerObject to center the map on the landsatFirst image with a zoom level of 7 (zoom levels go from 0 to 24).
 
 
-![Fig. F1.2.6 First Landsat image from the filtered set](../images/F1/image43.png)
+![Fig. F1.2.6 First Landsat image from the filtered set](images/F1/image43.png)
 
 
 ::: {.callout-note}
@@ -870,7 +870,7 @@ var landsat8SRimage = landsat8SR.filterDate('2014-03-18', '2014-03-19')
   
 print('Landsat 8 Surface Reflectance image', landsat8SRimage);
 ```
-![Fig. F1.2.7 Landsat 8 Surface Reflectance image bands and date](../images/F1/image30.png)
+![Fig. F1.2.7 Landsat 8 Surface Reflectance image bands and date](images/F1/image30.png)
 
 
 Copy and paste the code below to add this image to the map with adjusted R,G, and B bands in the “bands” parameter for true-color display (see previous chapter).
@@ -887,7 +887,7 @@ Map.addLayer(landsat8SRimage,
        max: 13000},   
     'Landsat 8 SR');
 ```
-![Fig. F1.2.8 Landsat 8 Surface Reflectance scene from March 18, 2014](../images/F1/image15.png)
+![Fig. F1.2.8 Landsat 8 Surface Reflectance scene from March 18, 2014](images/F1/image15.png)
 
 
 Compare this image (Fig. F1.2.8) with the raw Landsat 8 images from the previous section (Fig. F1.2.6). Zoom in and out and pan the screen as needed. What do you notice? Save your script but don’t start a new one—we will keep adding code to this script.
@@ -920,7 +920,7 @@ Map.addLayer(modisMonthlyRecent, {}, 'MODIS Monthly Burn');
 Uncheck the other layers, and then pan and zoom around the map. Areas that have burned in the past month will show up as red (Fig. F1.2.11). Can you see where fires burned areas of California, USA? In Southern and Central Africa? Northern Australia?
 
 
-![Fig. F1.2.11. MODIS Monthly Burn image over California](../images/F1/image19.png)
+![Fig. F1.2.11. MODIS Monthly Burn image over California](images/F1/image19.png)
 
 
 ::: {.callout-note}
@@ -970,7 +970,7 @@ Map.addLayer(methane2018, methaneVis, 'Methane');
 Notice the different levels of methane over the African continent (Fig. F1.2.12).
 
 
-![Fig. F1.2.12. Methane levels over the African continent on November 28, 2018](../images/F1/image56.png)
+![Fig. F1.2.12. Methane levels over the African continent on November 28, 2018](images/F1/image56.png)
 
 
 ### Global Forest Change
@@ -999,7 +999,7 @@ Map.addLayer(globalForest, treeCoverViz, 'Hansen 2000 Tree Cover');
 Notice how areas with high tree cover (e.g., the Amazon) are greener and areas with low tree cover are darker (Fig. F1.2.15). In case you see an error on the Console such as “Cannot read properties of null,” don’t worry. Sometimes Earth Engine will show these transient errors, but they won’t affect the script in any way.
 
 
-![Fig. F1.2.15 Global Forest Change 2000 tree cover layer](../images/F1/image68.png)
+![Fig. F1.2.15 Global Forest Change 2000 tree cover layer](images/F1/image68.png)
 
 
 Copy and paste the code below to visualize the tree cover loss over the past 20 years.
@@ -1018,7 +1018,7 @@ Map.addLayer(globalForest, treeLossYearViz, '2000-2020 Year of Loss');
 Leave the previous 2000 tree cover layer checked and analyze the loss layer on top of it—yellow, orange, and red areas (Fig. F1.2.16). Pan and zoom around the map. Where has there been recent forest loss (which is shown in red)?
 
 
-![Fig. F1.2.16 Global Forest Change 2000–2020 tree cover loss (yellow-red) and 2000 tree cover (black-green)](../images/F1/image16.png)
+![Fig. F1.2.16 Global Forest Change 2000–2020 tree cover loss (yellow-red) and 2000 tree cover (black-green)](images/F1/image16.png)
 
 
 ::: {.callout-note}
@@ -1048,7 +1048,7 @@ Map.addLayer(nasaDEM, {
 Uncheck the population layer and zoom in to examine the patterns of topography (Fig. F1.2.18). Can you see where a mountain range is located? Where is a river located? Try changing the minimum and maximum in order to make these features more visible. Save your script.
 
 
-![](../images/F1/image61.png)
+![](images/F1/image61.png)
 
 
 Fig. F1.2.18. NASADEM elevation
@@ -1128,13 +1128,13 @@ Images and image collections form the basis of many remote sensing analyses in E
 Earth Engine’s search bar can be used to find imagery and to locate important information about datasets in Earth Engine. Let’s use the search bar, located above the Earth Engine code, to find out information about the Landsat 7 Collection 2 Raw Scenes. First, type “landsat 7 collection 2” into the search bar (Fig. F1.3.1). Without hitting Enter, matches to that search term will appear.
 
 
-![Fig. F1.3.1 Searching for Landsat 7 in the search bar](../images/F1/image67.png)
+![Fig. F1.3.1 Searching for Landsat 7 in the search bar](images/F1/image67.png)
 
 
 Now, click on USGS Landsat 7 Collection 2 Tier 1 Raw Scenes. A new inset window will appear (Fig. F1.3.2).
 
 
-![Fig. F1.3.2 Inset window with information about the Landsat 7 dataset](../images/F1/image2.png)
+![Fig. F1.3.2 Inset window with information about the Landsat 7 dataset](images/F1/image2.png)
 
 
 The inset window has information about the dataset, including a description, bands that are available, image properties, and terms of use for the data across the top. Click on each of these tabs and read the information provided. While you may not understand all of the information right now, it will set you up for success in future chapters.
@@ -1146,19 +1146,19 @@ On the left-hand side of this window, you will see a range of dates when the dat
 For now, click on the small “pop out” button in the upper right corner of the window. This will open a new window with the same information (Fig. F1.3.3); you can keep this new window open and use it as a reference as you proceed.
 
 
-![Fig. F1.3.3 The Data Catalog page for Landsat 7 with information about the dataset](../images/F1/image31.png)
+![Fig. F1.3.3 The Data Catalog page for Landsat 7 with information about the dataset](images/F1/image31.png)
 
 
 Switch back to your code window. Your “landsat 7 collection 2” search term should still be in the search bar. This time, click the “Enter” key or click on the search magnifying glass icon. This will open a Search results inset window (Fig. F1.3.4).
 
 
-![Fig. F1.3.4 Search results matching “landsat 7 collection 2”](../images/F1/image11.png)
+![Fig. F1.3.4 Search results matching “landsat 7 collection 2”](images/F1/image11.png)
 
 
 This more complete search results inset window contains short descriptions about each of the datasets matching your search, to help you choose which dataset you want to use. Click on the Open in Catalog button to view these search results in the Earth Engine Data Catalog (Fig. F1.3.5). Note that you may need to click Enter in the data catalog search bar with your phrase to bring up the results in this new window.
 
 
-![Fig. F1.3.5 Earth Engine Data Catalog results for the “landsat 7 collection 2” search term](../images/F1/image44.png)
+![Fig. F1.3.5 Earth Engine Data Catalog results for the “landsat 7 collection 2” search term](images/F1/image44.png)
 
 
 Now that we know how to view this information, let’s dive into some important remote sensing terminology.
@@ -1192,7 +1192,7 @@ Map.addLayer(tmImage, {
    bands: ['B4', 'B3', 'B2'],   min: 0,  
    max: 100}, 'TM');
 ```
-![Fig. F1.3.10 Visualizing the TM imagery from the Landsat 5 satellite](../images/F1/image20.png)
+![Fig. F1.3.10 Visualizing the TM imagery from the Landsat 5 satellite](images/F1/image20.png)
 
 
 #### Sentinel-2 MultiSpectral Instrument
@@ -1222,7 +1222,7 @@ Map.addLayer(msiImage, {
 Compare the Sentinel imagery with the Landsat imagery, using the opacity slider. Notice how much more detail you can see on the airport terminal and surrounding landscape. The 10 m spatial resolution means that each pixel covers approximately 100 m2 of the Earth’s surface, a much smaller area than the TM imagery (900 m2).
 
 
-![Fig. F1.3.11 Visualizing the MSI imagery](../images/F1/image1.png)
+![Fig. F1.3.11 Visualizing the MSI imagery](images/F1/image1.png)
 
 
 #### National Agriculture Imagery Program (NAIP)
@@ -1249,7 +1249,7 @@ Map.addLayer(naipImage, {
 The NAIP imagery is even more spatially detailed than the Sentinel-2 MSI imagery. However, we can see that our one NAIP image doesn’t totally cover the San Francisco airport. If you like, zoom out to see the boundaries of the NAIP image as we did for the Sentinel-2 MSI imagery.
 
 
-![Fig. F1.3.13 NAIP color-IR composite over the San Francisco airport](../images/F1/image32.png)
+![Fig. F1.3.13 NAIP color-IR composite over the San Francisco airport](images/F1/image32.png)
 
 
 
@@ -1293,7 +1293,7 @@ var tmChart = ui.Chart.image.series({
 Expand the features property of the printed ImageCollection in the Console output to see a List of all the images in the collection. Observe that the date of each image is part of the filename (e.g., LANDSAT/LT05/C02/T1/LT05_044034_19870628).
 
 
-![Fig. F1.3.14 Landsat image name and feature properties](../images/F1/image3.png)
+![Fig. F1.3.14 Landsat image name and feature properties](images/F1/image3.png)
 
 
 However, viewing this list doesn’t make it easy to see the temporal resolution of the dataset. We can use Earth Engine’s plotting functionality to visualize the temporal resolution of different datasets. For each of the different temporal resolutions, we will create a per-pixel chart of the NIR band that we mapped previously. To do this, we will use the ui.Chart.image.series function.
@@ -1330,7 +1330,7 @@ print('TM Chart', tmChart);
 When you print the chart, it will have a point each time an image was collected by the TM instrument (Fig. F1.3.15). In the Console, you can move the mouse over the different points and see more information. Also note that you can expand the chart using the button in the upper right-hand corner. We will see many more examples of charts, particularly in the chapters in Part F4.
 
 
-![Fig. F1.3.15 A chart showing the temporal cadence, or temporal resolution of the Landsat 5 TM instrument at the San Francisco airport](../images/F1/image47.png)
+![Fig. F1.3.15 A chart showing the temporal cadence, or temporal resolution of the Landsat 5 TM instrument at the San Francisco airport](images/F1/image47.png)
 
 
 #### Sentinel-2
@@ -1350,7 +1350,7 @@ msiChart.setOptions(chartStyle);
 // Print the chart.  
 print('MSI Chart', msiChart);
 ```
-![Fig. F1.3.16 A chart showing the t temporal resolution of the Sentinel-2 MSI instrument at the San Francisco airport](../images/F1/image60.png)
+![Fig. F1.3.16 A chart showing the t temporal resolution of the Sentinel-2 MSI instrument at the San Francisco airport](images/F1/image60.png)
 
 
 Compare this Sentinel-2 graph (Fig. F1.3.16) with the Landsat graph you just produced (Fig. F1.3.15). Both cover a period of six months, yet there are many more points through time for the Sentinel-2 satellite, reflecting the greater temporal resolution.
@@ -1422,7 +1422,7 @@ print(modisReflectanceChart);
 The resulting chart is shown in Fig. F1.3.17. Use the expand button in the upper right to see a larger version of the chart than the one printed to the Console.
 
 
-![Fig. F1.3.17 Plot of TOA reflectance for MODIS](../images/F1/image50.png)
+![Fig. F1.3.17 Plot of TOA reflectance for MODIS](images/F1/image50.png)
 
 
 #### EO-1
@@ -1471,13 +1471,13 @@ print(eo1Chart);
 The resulting chart is seen in Fig. F1.3.18. There are so many bands that their names only appear as “...”!
 
 
-![Fig. F1.3.18 Plot of TOA reflectance for EO-1 as displayed in the Console. Note the button to expand the plot in the upper right hand corner.](../images/F1/image23.png)
+![Fig. F1.3.18 Plot of TOA reflectance for EO-1 as displayed in the Console. Note the button to expand the plot in the upper right hand corner.](images/F1/image23.png)
 
 
 If we click on the expand icon in the top right corner of the chart, it’s a little easier to see the band identifiers, as shown in Fig. F1.3.19. 
 
 
-![Fig. F1.3.19 Expanded plot of TOA reflectance for EO-1](../images/F1/image70.png)
+![Fig. F1.3.19 Expanded plot of TOA reflectance for EO-1](images/F1/image70.png)
 
 
 Compare this hyperspectral instrument chart with the multispectral chart we plotted above for MODIS.
@@ -1544,7 +1544,7 @@ print('MSI Image Metadata', msiImage);
 Examine the object you’ve created in the Console (Fig. F1.3.20). Expand the image name, then the properties object.
 
 
-![](../images/F1/image35.png)
+![](images/F1/image35.png)
 
 
 Fig. F1.3.20 Checking the “CLOUDY_PIXEL_PERCENTAGE” property in the metadata for Sentinel-2

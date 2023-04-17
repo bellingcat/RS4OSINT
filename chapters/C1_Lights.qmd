@@ -89,7 +89,7 @@ Map.setOptions('HYBRID')
 Map.centerObject(AOI)
 Map.addLayer(VIIRS.first(),VIIRSvis,'Nighttime Lights')
 ```
-![](../images/iraq_check.png)
+![](images/iraq_check.png)
 
 
 If we decrease the opacity of the VIIRS layer, we can see the cities of Mosul, Erbil and Kirkuk shining brightly at night. We can also see a string of bright lights between Kirkuk and Erbil -- these are methane flares from oil wells. 
@@ -180,7 +180,7 @@ The function returns a timelapse of nighttime lights over Northern Iraq:
 ``` js 
 gif(VIIRS, VIIRSvis, AOI);
 ```
-![I've done a bit of post-processing to this gif, adding more annotations and blending between frames to make it a bit smoother. I typically use [ffmpeg](https://ffmpeg.org/) and [ezgif](https://ezgif.com/) for the finishing touches. ](../images/Figure_1.gif)
+![I've done a bit of post-processing to this gif, adding more annotations and blending between frames to make it a bit smoother. I typically use [ffmpeg](https://ffmpeg.org/) and [ezgif](https://ezgif.com/) for the finishing touches. ](images/Figure_1.gif)
 
 
 This timelapse gives a play-by-play of one of the most important campaigns in the war against the Islamic State. In the first few frames, Mosul is under the control of the Kurdistan Regional Government (KRG). In the summer of 2014, ISIS captures the city, and power is cut off. Mosul and many villages along the Tigris river are plunged into darkness. In 2015, the front line in the campaign to retake the city emerges around Mosul, advancing in 2016 and 2017. Mosul is eventually retaken by the KRG in 2017, after which it brightens once again as electricity is restored. 
@@ -240,7 +240,7 @@ var chart =
         
 print(chart)
 ```
-![](../images/qayyarah_chart.png)
+![](images/qayyarah_chart.png)
 
 
 We can clearly see Mosul (the red line) darkening in 2014 as the city is taken by ISIS. During this period the Qayyarah oil fields are, as we might expect, quite dark. All of a sudden in 2016 Qayyarah becomes brighter at night than the city of Mosul ever was, as the oilfields are set on fire. Then, almost exactly when the blaze in Qayyarah is extinguished and the area darkens (i.e. when the blue line falls back to near zero), Mosul brightens once again (i.e. the red line rises) as the city is liberated.

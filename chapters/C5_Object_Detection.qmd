@@ -388,7 +388,7 @@ Once you've done this, you can run the following line of code to automatically i
 
 
 
-![](../images/mikolayiv.mp4)
+![](images/mikolayiv.mp4)
 
 
  -->

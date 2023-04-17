@@ -77,7 +77,7 @@ This counterexample would also have other complications—such as the need to tr
 
 The first part of the filter, map, reduce paradigm is “filtering” to get a smaller ImageCollection from a larger one. As in the milk example, filters take a large set of items, limit it by some criterion, and return a smaller set for consideration. Here, filters take an ImageCollection, limit it by some criterion of date, location, or image characteristics, and return a smaller ImageCollection (Fig. F4.0.1).
 
-![Fig. 4.0.1 Filter, map, reduce as applied to image collections in Earth Engine](../images/F4/image66.png)
+![Fig. 4.0.1 Filter, map, reduce as applied to image collections in Earth Engine](images/F4/image66.png)
 
 
 As described first in Chap. F1.2, the Earth Engine API provides a set of filters for the ImageCollection type. The filters can limit an ImageCollection based on spatial, temporal, or attribute characteristics. Filters were used in Parts F1, F2, and F3 without much context or explanation, to isolate an image from an ImageCollection for inspection or manipulation. The information below should give perspective on that work while introducing some new tools for filtering image collections.
@@ -235,9 +235,9 @@ Map.addLayer(L5EVImedian, {
    palette: ['red', 'white', 'green']  
 }, 'Median EVI');
 ```
-![](../images/F4/image43.png)
+![](images/F4/image43.png)
 
-![Fig. 4.0.2 The effects of two reducers on mapped EVI values in a filtered ImageCollection: mean image (above), and median image (below)](../images/F4/image67.png)
+![Fig. 4.0.2 The effects of two reducers on mapped EVI values in a filtered ImageCollection: mean image (above), and median image (below)](images/F4/image67.png)
 
 
 There are many more reducers that work with an ImageCollection to produce a wide range of summary statistics. Reducers are not limited to returning only one item from the reduction. The minMax reducer, for example, returns a two-band image for each band it is given, one for the minimum and one for the maximum.
@@ -317,7 +317,7 @@ Map.addLayer(filteredIC, {}, 'TOA image collection');
 ```
 The three selected bands (which correspond to SWIR1, NIR, and Red) display a false-color image that accentuates differences between different land covers (e.g., concrete, vegetation) in Lisbon. With the Inspector tab highlighted (Fig. F4.1.1), clicking on a point will bring up the values of bands 6, 5, and 4 from each of the images. If you open the Series option, you’ll see the values through time. For the specified point and for all other points in Lisbon (since they are all enclosed in the same Landsat scene), there are 16 images gathered in 2020. By following one of the graphed lines (in blue, yellow, or red) with your finger, you should be able to count that many distinct values. Moving the mouse along the lines will show the specific values and the image dates.
 
-![Fig. F4.1.1 Inspect values in an ImageCollection at a selected point by making use of the Inspector tool in the Code Editor](../images/F4/image22.png)
+![Fig. F4.1.1 Inspect values in an ImageCollection at a selected point by making use of the Inspector tool in the Code Editor](images/F4/image22.png)
 
 
 We can also show this kind of chart automatically by making use of the ui.Chart function of the Earth Engine API. The following code snippet should result in the same chart as we could observe in the Inspector tab, assuming the same pixel is clicked.
@@ -368,7 +368,7 @@ Map.centerObject(lisbonPoint, 5);
 ```
 Run the command and zoom out. If the count of images over the entire Earth is viewed, the resulting map should look like Fig. F4.1.2. The created map data may take a few minutes to fully load in.
 
-![Fig. F4.1.2 The number of Landsat 8 images acquired during 2020](../images/F4/image27.png)
+![Fig. F4.1.2 The number of Landsat 8 images acquired during 2020](images/F4/image27.png)
 
 
 Note the checkered pattern, somewhat reminiscent of a Mondrian painting. To understand why the image looks this way, it is useful to consider the overlapping image footprints. As Landsat passes over, each image is wide enough to produce substantial “sidelap” with the images from the adjacent paths, which are collected at different dates according to the satellite’s orbit schedule. In the north-south direction, there is also some overlap to ensure that there are no gaps in the data. Because these are served as distinct images and stored distinctly in Earth Engine, you will find that there can be two images from the same day with the same value for points in these overlap areas. Depending on the purposes of a study, you might find a way to ignore the duplicate pixel values during the analysis process.
@@ -419,7 +419,7 @@ Map.addLayer(p30, {
    max: 0.35}, '30%');
 
 ```
-![Fig. F4.1.3 Landsat 8 TOA reflectance 30th percentile image computed for ImageCollection with images acquired during 2020 ](../images/F4/image74.png)
+![Fig. F4.1.3 Landsat 8 TOA reflectance 30th percentile image computed for ImageCollection with images acquired during 2020 ](images/F4/image74.png)
 
 
 We can see that the resulting composite image (Fig. 4.1.3) has almost no cloudy pixels present for this area. This happens because cloudy pixels usually have higher reflectance values. At the lowest end of the values, other unwanted effects like cloud or hill shadows typically have very low reflectance values. This is why this 30th percentile composite image looks so much cleaner than the mean composite image (meanFilteredIC) calculated earlier. Note that the reducers operate per pixel: adjacent pixels are drawn from different images. This means that one pixel’s value could be taken from an image from one date, and the adjacent pixel’s value drawn from an entirely different period. Although, like the mean and median images, percentile images such as that seen in Fig. F4.1.3 never existed on a single day, composite images allow us to view Earth’s surface without the noise that can make analysis difficult.
@@ -438,7 +438,7 @@ percentiles.map(function(p) {   var image = filteredIC.reduce(ee.Reducer.percent
 ```
 Note that the code adds every percentile image as a separate map layer, so you need to go to the Layers control and show/hide different layers to explore differences. Here, we can see that low-percentile composite images depict darker, low-reflectance land features, such as water and cloud or hill shadows, while higher-percentile composite images (>70% in our example) depict clouds and any other atmospheric or land effects corresponding to bright reflectance values.
 
-![Fig. F4.1.4 Landsat 8 TOA reflectance percentile composite images](../images/F4/image55.png)
+![Fig. F4.1.4 Landsat 8 TOA reflectance percentile composite images](images/F4/image55.png)
 
 
 Earth Engine provides a very rich API, allowing users to explore image collections to better understand the extent and variability of data in space, time, and across bands, as well as tools to analyze values stored in image collections in a frequency domain. Exploring these values in different forms should be the first step of any study before developing data analysis algorithms.
@@ -524,7 +524,7 @@ print(yearFiltered, 'Date-filtered CHIRPS images');
 
 The CHIRPS collection contains one image for every pentad. The filtered collection above is filtered to contain one year, which equates to 72 global images. If you expand the printed collection in the Console, you will be able to see the metadata for individual images; note that their date stamps indicate that they are spaced evenly every five days (Fig. F4.2.1).
 
-![Fig. F4.2.1 CHIRPS time series for one year](../images/F4/image25.png)
+![Fig. F4.2.1 CHIRPS time series for one year](images/F4/image25.png)
 
 
 Each image’s pixel values store the total precipitation during the pentad. Without aggregation to a period that matches other datasets, these layers are not very useful. For hydrological analysis, we typically need the total precipitation for each month or for a season. Let’s aggregate this collection so that we have 12 images—one image per month, with pixel values that represent the total precipitation for that month.
@@ -608,7 +608,7 @@ print(monthlyCollection);
 ```
 We have now successfully computed an aggregated collection from the source ImageCollection by filtering, mapping, and reducing, as described in Chaps. F4.0 and F4.1. Expand the printed collection in the Console and you can verify that we now have 12 images in the newly created ImageCollection (Fig. F4.2.2).
 
-![Fig. F4.2.2 Aggregated time series](../images/F4/image90.png)
+![Fig. F4.2.2 Aggregated time series](images/F4/image90.png)
 
 
 :::{.callout-note}
@@ -660,7 +660,7 @@ print(chart);
 ```
 The customized chart (Fig. F4.2.3) shows the typical rainfall pattern in the city of Bengaluru, India. Bengaluru has a temperate climate, with pre-monsoon rains in April and May cooling down the city and a moderate monsoon season lasting from June to September.
 
-![Fig. F4.2.3 Monthly rainfall chart](../images/F4/image32.png)
+![Fig. F4.2.3 Monthly rainfall chart](images/F4/image32.png)
 
 
 :::{.callout-note}
@@ -795,7 +795,7 @@ var visParams = {
 Map.addLayer(composite, visParams, 'L8 Composite');
 
 ```
-![Fig. F4.3.1 Landsat 8 surface reflectance 2019 median composite of Colombia](../images/F4/image12.png)
+![Fig. F4.3.1 Landsat 8 surface reflectance 2019 median composite of Colombia](images/F4/image12.png)
 
 
 The resulting composite (Fig. F4.3.1) has lots of clouds, especially in the western, mountainous regions of Colombia. In tropical regions, it is very challenging to generate a high-quality, cloud-free composite without first filtering images for cloud cover, even if our collection is constrained to only include images acquired during the dry season. Therefore, let’s filter our collection by the CLOUD_COVER parameter to avoid cloudy images. We will start with images that have less than 50% cloud cover.
@@ -817,14 +817,14 @@ print('Size landsat8 collection', landsat8.size());
 print('Size landsat8FiltClouds collection', landsat8FiltClouds.size());
 
 ```
-![Fig. F4.3.2 Landsat 8 surface reflectance 2019 median composite of Colombia filtered by cloud cover less than 50%](../images/F4/image50.png)
+![Fig. F4.3.2 Landsat 8 surface reflectance 2019 median composite of Colombia filtered by cloud cover less than 50%](images/F4/image50.png)
 
 
 This new composite (Fig. F4.3.2) looks slightly better than the previous one, but still very cloudy. Remember to turn off the first layer or adjust the transparency to visualize only this new composite. The code prints the size of these collections, using the size function) to see how many images were left out after we applied the cloud cover threshold. (There are 1201 images in the landsat8 collection, compared to 493 in the landsat8FiltClouds collection—a lot of scenes with cloud cover greater than or equal to 50%.)
 
 Try adjusting the CLOUD_COVER threshold in the landsat8FiltClouds variable to different percentages and checking the results. For example, with 20% set as the threshold (Fig. F4.3.3), you can see that many parts of the country have image gaps. (Remember to turn off the first layer or adjust its transparency; you can also set the shown parameter in the Map.addLayer function to false so the layer does not automatically load). So there is a trade-off between a stricter cloud cover threshold and data availability. Additionally, even with a cloud filter, some tiles still present a large area cover of clouds.
 
-![Fig. F4.3.3 Landsat 8 surface reflectance 2019 median composite of Colombia filtered by cloud cover less than 20%](../images/F4/image42.png)
+![Fig. F4.3.3 Landsat 8 surface reflectance 2019 median composite of Colombia filtered by cloud cover less than 20%](images/F4/image42.png)
 
 
 This is due to persistent cloud cover in some regions of Colombia. However, a cloud mask can be applied to improve the results. The Landsat 8 Collection 2 contains a quality assessment (QA) band called QA_PIXEL that provides useful information on certain conditions within the data, and allows users to apply per-pixel filters. Each pixel in the QA band contains unsigned integers that represent bit-packed combinations of surface, atmospheric, and sensor conditions.
@@ -848,14 +848,14 @@ var landsat8compositeMasked = landsat8FiltMasked.median().clip(country);
 Map.addLayer(landsat8compositeMasked, visParams, 'L8 composite masked');
 
 ```
-![Fig. F4.3.4 Landsat 8 surface reflectance 2019 median composite of Colombia filtered by cloud cover less than 50% and with cloud mask applied](../images/F4/image39.png)
+![Fig. F4.3.4 Landsat 8 surface reflectance 2019 median composite of Colombia filtered by cloud cover less than 50% and with cloud mask applied](images/F4/image39.png)
 
 
 Because we are dealing with bits, in the maskSrClouds function we utilized the bitwiseAnd and parseInt functions. These are functions that serve the purpose of unpacking the bit information. A bitwise AND is a binary operation that takes two equal-length binary representations and performs the logical AND operation on each pair of corresponding bits. Thus, if both bits in the compared positions have the value 1, the bit in the resulting binary representation is 1 (1 × 1 = 1); otherwise, the result is 0 (1 × 0 = 0 and 0 × 0 = 0). The parseInt function parses a string argument (in our case, five-character string '11111') and returns an integer of the specified numbering system, base 2.
 
 The resulting composite (Fig. F4.3.4) shows masked clouds, and is more spatially exhaustive in coverage compared to previous composites (don’t forget to uncheck the previous layers). This is because, when compositing all the images into one, we are not taking cloudy pixels into account anymore; therefore, the resulting pixel is not cloud covered but an actual representation of the landscape. However, data gaps are still an issue due to cloud cover. If you do not specifically need an annual composite, a first approach is to create a two-year composite to try to mitigate the missing data issue, or to have a series of rules that allows for selecting pixels for that particular year (as in Sect. 3 below). Change the startDate variable to 2018-01-01 to include all images from 2018 and 2019 in the collection. How does the cloud-masked composite (Fig. F4.3.5) compare to the 2019 one?
 
-![Fig. F4.3.5 One-year, startDate variable set to 2019-01-01, (left) and two-year, startDate variable set to 2018-01-01, (right) median composites with 50% cloud cover threshold and cloud mask applied](../images/F4/image85.png)
+![Fig. F4.3.5 One-year, startDate variable set to 2019-01-01, (left) and two-year, startDate variable set to 2018-01-01, (right) median composites with 50% cloud cover threshold and cloud mask applied](images/F4/image85.png)
 
 
 The resulting image has substantially fewer data gaps (you can zoom in to better see them). Again, if the time period is not a constraint for the creation of your composite, you can incorporate more images from a third year, and so on.
@@ -900,14 +900,14 @@ Map.addLayer(landsat7compositeMasked,
        max: 0.2   },   'L7 composite masked');
 
 ```
-![Fig. F4.3.6 One-year Landsat 7 median composite with 50% cloud cover threshold and cloud mask applied](../images/F4/image73.png)
+![Fig. F4.3.6 One-year Landsat 7 median composite with 50% cloud cover threshold and cloud mask applied](images/F4/image73.png)
 
 
 Note that we used bands: ['SR_B3', 'SR_B2', 'SR_B1'] to visualize the composite because Landsat 7 has different band designations. The sensors aboard each of the Landsat satellites were designed to acquire data in different ranges of frequencies along the electromagnetic spectrum. Whereas for Landsat 8, the red, green, and blue bands are B4, B3, and B2, respectively, for Landsat 7, these same bands are B3, B2, and B1, respectively.
 
 You should see an image with systematic gaps like the one shown in Fig. F4.3.6 (remember to turn off the other layers, and zoom in to better see the data gaps). Landsat 7 was launched in 1999, but since 2003, the sensor has acquired and delivered data with data gaps caused by a scan line corrector (SLC) failure. Without an operating SLC, the sensor’s line of sight traces a zig-zag pattern along the satellite ground track, and, as a result, the imaged area is duplicated and some areas are missed. When the Level 1 data are processed, the duplicated areas are removed, leaving data gaps (Fig. F4.3.7). For more information about Landsat 7 and SLC error, please refer to the USGS Landsat 7 page. However, even with the SLC error, we can still use the Landsat 7 data in our composite. Now, let’s combine the Landsat 7 and 8 collections.
 
-![Fig. F4.3.7 Landsat 7’s SLC-off condition. Source: USGS](../images/F4/image54.png)
+![Fig. F4.3.7 Landsat 7’s SLC-off condition. Source: USGS](images/F4/image54.png)
 
 
 Since Landsat 7 and 8 have different band designations, first we create a function to rename the bands from Landsat 7 to match the names used for Landsat 8 and map that function over our Landsat 7 collection.
@@ -926,7 +926,7 @@ var landsat7FiltMaskedRenamed = landsat7FiltMasked.map(rename);
 ```
 If you print the first images of both the landsat7FiltMasked and landsat7FiltMaskedRenamed collections (Fig. F4.3.8), you will see that the bands got renamed, and not all bands got copied over (SR_ATMOS_OPACITY, SR_CLOUD_QA, SR_B6, etc.). To copy these additional bands, simply add them to the rename function. You will need to rename SR_B6 so it does not have the same name as the new band 5.
 
-![Fig. F4.3.8 First images of landsat7FiltMasked and landsat7FiltMaskedRenamed, respectively](../images/F4/image15.png)
+![Fig. F4.3.8 First images of landsat7FiltMasked and landsat7FiltMaskedRenamed, respectively](images/F4/image15.png)
 
 
 Now we merge the two collections using the merge function for ImageCollection and mapping over a function to cast the Landsat 7 input values to a 32-bit float using the toFloat function for consistency. To merge collections, the number and names of the bands must be the same in each collection. We use the select function (Chap. F1.1) to select the Landsat 8 bands to be the same as Landsat 7’s. When creating the new Landsat 7 and 8 composite, if we did not select these 6 bands, we would get an error message for trying to composite a collection that has 6 bands (Landsat 7) with a collection that has 19 bands (Landsat 8).
@@ -951,7 +951,7 @@ Map.addLayer(landsat78composite, visParams, 'L7 and L8 composite');
 ```
 Comparing the composite generated considering both Landsat 7 and 8 to the Landsat 8-only composite, it is evident that there is a reduction in the amount of data gaps in the final result (Fig. F4.3.9). The resulting Landsat 7 and 8 image composite still has data gaps due to the presence of clouds and Landsat 7’s SLC-off data. You can try setting the center of the map to the point with latitude 3.6023 and longitude −75.0741 to see the inset example of Fig. F4.3.9.
 
-![Fig. F4.3.9 Landsat 8-only composite (left) and Landsat 7 and 8 composite (right) for 2019. Inset centered at latitude 3.6023, longitude −75.0741.](../images/F4/image30.png)
+![Fig. F4.3.9 Landsat 8-only composite (left) and Landsat 7 and 8 composite (right) for 2019. Inset centered at latitude 3.6023, longitude −75.0741.](images/F4/image30.png)
 
 
 :::{.callout-note}
@@ -964,7 +964,7 @@ This section presents an Earth Engine application that enables the generation of
 :::{.callout-note}
 Code Checkpoint F43c. The book’s repository contains information about accessing the GEE-BAP interface and its related functions.
 :::
-![Fig. F4.3.10 GEE-BAP user interface controls](../images/F4/image70.png)![Fig. F4.3.10 GEE-BAP user interface controls](../images/F4/image81.png)![Fig. F4.3.10 GEE-BAP user interface controls](../images/F4/image83.png)
+![Fig. F4.3.10 GEE-BAP user interface controls](images/F4/image70.png)![Fig. F4.3.10 GEE-BAP user interface controls](images/F4/image81.png)![Fig. F4.3.10 GEE-BAP user interface controls](images/F4/image83.png)
 
 
 Once you have loaded the GEE-BAP interface (Fig. F4.3.10) using the instructions in the Code Checkpoint, you will notice that it is divided into three sections: (1) Input/Output options, (2) Pixel scoring options, and (3) Advanced parameters. Users indicate the study area, the time period for generating annual BAP composites (i.e., start and end years), and the path to store the results in the Input/Output options. Users have three options to define the study area. The Draw study area option uses the Draw a shape and Draw a rectangle tools to define the area of interest. The Upload image template option utilizes an image template uploaded by the user in TIFF format. This option is well suited to generating BAP composites that match the projection, pixel size, and extent to existing raster datasets. The Work globally option generates BAP composites for the entire globe; note that when this option is selected, complete data download is not available due to the Earth’s size. With Start year and End year, users can indicate the beginning and end of the annual time series of BAP image composites to be generated. Multiple image composites are then generated—one composite for each year—resulting in a time series of annual composites. For each year, composites are uniquely generated utilizing images acquired on the days within the specified Date range. Produced BAP composites can be saved in the indicated (Path) Google Drive folder using the Tasks tab. Results are generated in a tiled, TIFF format, accompanied by a CSV file that indicates the parameters used to construct the composite.
@@ -981,7 +981,7 @@ Finally, there is a Landsat 7 ETM+ SLC-off penalty scoring function that de-emph
 
 By default, the GEE-BAP application produces image composites using all the visible bands. The Spectral index option enables the user to produce selected spectral indices from the resulting BAP image composites. Available spectral indices include: Normalized Difference Vegetation Index (NDVI, Fig. F4.3.11), Enhanced Vegetation Index (EVI), and Normalized Burn Ratio (NBR), as well as several indices derived from the Tasseled Cap transformation: Wetness (TCW), Greenness (TCG), Brightness (TCB), and Angle (TCA). Composited indices are able to be downloaded as well as viewed on the map.
 
-![Fig. F4.3.11 Example of a global BAP image composite showing NDVI values generated using the GEE-BAP user interface](../images/F4/image60.png)
+![Fig. F4.3.11 Example of a global BAP image composite showing NDVI values generated using the GEE-BAP user interface](images/F4/image60.png)
 
 
 GEE-BAP functions can be accessed programmatically, including pixel scoring parameters, as well as BAP image compositing (BAP), de-spiking (despikeCollection), data-gap infilling (infill), and displaying (ShowCollection) functions. The following code sets the scoring parameter values, then generates and displays the compositing results (Fig. F4.3.12) for a BAP composite that is de-spiked, with data gaps infilled using temporal interpolation. Copy and paste the code below into a new script.
@@ -1023,7 +1023,7 @@ library.ShowCollection(BAPCS, startYear, endYear, colombia, false,   null);
 library.AddSLider(startYear, endYear);
 
 ```
-![Fig. F4.3.12 Outcome of the compositing code](../images/F4/image11.png)
+![Fig. F4.3.12 Outcome of the compositing code](images/F4/image11.png)
 
 
 :::{.callout-note}
@@ -1123,19 +1123,19 @@ Change detection is the process of assessing how landscape conditions are changi
 
 a)
 
-![](../images/F4/image80.png)
+![](images/F4/image80.png)
 
 b)
 
-![](../images/F4/image21.png)
+![](images/F4/image21.png)
 
 c)
 
-![](../images/F4/image75.png)
+![](images/F4/image75.png)
 
 d)
 
-![Fig. F4.4.1 Before and after images of (a) the eruption of Mount St. Helens in Washington State, USA, in 1980 (before, July 10, 1979; after, September 5, 1980); (b) the Camp Fire in California, USA, in 2018 (before, October 7, 2018; after, March 16, 2019); (c) illegal gold mining in the Madre de Dios region of Peru (before, March 31, 2001; after, August 22, 2020); and (d) shoreline changes in Incheon, South Korea (before, May 29, 1981; after, March 11, 2020)](../images/F4/image87.png)
+![Fig. F4.4.1 Before and after images of (a) the eruption of Mount St. Helens in Washington State, USA, in 1980 (before, July 10, 1979; after, September 5, 1980); (b) the Camp Fire in California, USA, in 2018 (before, October 7, 2018; after, March 16, 2019); (c) illegal gold mining in the Madre de Dios region of Peru (before, March 31, 2001; after, August 22, 2020); and (d) shoreline changes in Incheon, South Korea (before, May 29, 1981; after, March 11, 2020)](images/F4/image87.png)
 
 
 Many change detection techniques use the same basic premise: that most changes on the landscape result in spectral values that differ between pre-event and post-event images. The challenge can be to separate the real changes of interest—those due to activities on the landscape—from noise in the spectral signal, which can be caused by seasonal variation and phenology, image misregistration, clouds and shadows, radiometric inconsistencies, variability in illumination (e.g., sun angle, sensor position), and atmospheric effects.
@@ -1147,7 +1147,7 @@ For land cover changes that occur abruptly over large areas on the landscape and
 
 For the practicum, you will select pre-event and post-event image scenes and investigate the conditions in these images in a false-color composite display. Next, you will calculate the NBR index for each scene and create a difference image using the two NBR maps. Finally, you will apply a threshold to the difference image to establish categories of changed versus stable areas (Fig. F4.4.2).
 
-![Fig. F4.4.2 Change detection workflow for this practicum](../images/F4/image68.png)
+![Fig. F4.4.2 Change detection workflow for this practicum](images/F4/image68.png)
 
 
 ### Preparing Imagery
@@ -1198,7 +1198,7 @@ Map.addLayer(preImage, visParam, 'pre');
 Map.addLayer(postImage, visParam, 'post');
 ```
 
-![Fig. F4.4.3 False-color composite using SWIR2, NIR, and red. Vegetation shows up vividly in the green channel due to vegetation being highly reflective in the NIR band. Shades of green can be indicative of vegetation density; water typically shows up as black to dark blue; and burned or barren areas show up as brown.](../images/F4/image31.png)
+![Fig. F4.4.3 False-color composite using SWIR2, NIR, and red. Vegetation shows up vividly in the green channel due to vegetation being highly reflective in the NIR band. Shades of green can be indicative of vegetation density; water typically shows up as black to dark blue; and burned or barren areas show up as brown.](images/F4/image31.png)
 
 
 ### Calculating NBR
@@ -1246,7 +1246,7 @@ The color ramp has dark blues for the lowest values, greens and oranges in the m
 
 a)                                            b)                                           c)
 
-![Fig. F4.4.4 (a) Two-date NBR difference; (b) pre-event image (June 2013) false-color composite; (c) post-event image (June 2020) false-color composite. In the change map (a), areas on the lower range of values (blue) depict areas where vegetation has been negatively affected, and areas on the higher range of values (pink) depict areas where there has been vegetation gain; the green/orange areas have experienced little change. In the pre-event and post-event images (b and c), the green areas indicate vegetation, while the brown regions are barren ground.](../images/F4/image4.png)
+![Fig. F4.4.4 (a) Two-date NBR difference; (b) pre-event image (June 2013) false-color composite; (c) post-event image (June 2020) false-color composite. In the change map (a), areas on the lower range of values (blue) depict areas where vegetation has been negatively affected, and areas on the higher range of values (pink) depict areas where there has been vegetation gain; the green/orange areas have experienced little change. In the pre-event and post-event images (b and c), the green areas indicate vegetation, while the brown regions are barren ground.](images/F4/image4.png)
 
 
 ### Classifying Change
@@ -1279,11 +1279,11 @@ Map.addLayer(diffClassified.selfMask(),
 ```
 a)
 
-![](../images/F4/image77.png)![](../images/F4/image77.png)
+![](images/F4/image77.png)![](images/F4/image77.png)
 
 b)
 
-![Fig. F4.4.5 (a) Change detection in timber forests of southern Oregon, including maps of the (left to right) pre-event false-color composite, post-event false-color composite, difference image, and classified change using NBR; (b) the same map types for an example of change caused by fire in southern Oregon. The false-color maps highlight vegetation in green and barren ground in brown. The difference images show NBR gain in pink to NBR loss in blue. The classified change images show NBR gain in blue and NBR loss in red.](../images/F4/image17.png)![Fig. F4.4.5 (a) Change detection in timber forests of southern Oregon, including maps of the (left to right) pre-event false-color composite, post-event false-color composite, difference image, and classified change using NBR; (b) the same map types for an example of change caused by fire in southern Oregon. The false-color maps highlight vegetation in green and barren ground in brown. The difference images show NBR gain in pink to NBR loss in blue. The classified change images show NBR gain in blue and NBR loss in red.](../images/F4/image17.png)
+![Fig. F4.4.5 (a) Change detection in timber forests of southern Oregon, including maps of the (left to right) pre-event false-color composite, post-event false-color composite, difference image, and classified change using NBR; (b) the same map types for an example of change caused by fire in southern Oregon. The false-color maps highlight vegetation in green and barren ground in brown. The difference images show NBR gain in pink to NBR loss in blue. The classified change images show NBR gain in blue and NBR loss in red.](images/F4/image17.png)![Fig. F4.4.5 (a) Change detection in timber forests of southern Oregon, including maps of the (left to right) pre-event false-color composite, post-event false-color composite, difference image, and classified change using NBR; (b) the same map types for an example of change caused by fire in southern Oregon. The false-color maps highlight vegetation in green and barren ground in brown. The difference images show NBR gain in pink to NBR loss in blue. The classified change images show NBR gain in blue and NBR loss in red.](images/F4/image17.png)
 
 
 Chapters F4.5 through F4.9 present more-advanced change detection algorithms that go beyond differencing and thresholding between two images, instead allowing you to analyze changes indicated across several images as a time series.
@@ -1381,14 +1381,14 @@ Second, can you identify fitting parameters that allow the algorithm to capture 
 
 The best way to begin assessing these questions is to look at the time series of individual pixels. In Earth Engine, open and run the script that generates the GUI we have developed to easily deploy the LandTrendr algorithms. Run the script, and you should see an interface that looks like the one shown in Fig. 4.5.1.
 
-![Fig. 4.5.1 The LandTrendr GUI interface, with the control panel on the left, the  Map panel in the center, and the reporting panel on the right](../images/F4/image29.png)
+![Fig. 4.5.1 The LandTrendr GUI interface, with the control panel on the left, the  Map panel in the center, and the reporting panel on the right](images/F4/image29.png)
 
 
 The LandTrendr GUI consists of three panels: a control panel on the left, a reporting panel on the right, and a Map panel in the center. The control panel is where all of the functionality of the interface resides. There are several modules,and each is accessed by clicking on the double arrow to the right of the title. The  Map panel defaults to a location in Oregon but can be manually moved anywhere in the world. The reporting panel shows messages about how to use functions, as well as providing graphical outputs.
 
 Next, expand the “Pixel Time Series Options” function. For now, simply use your mouse to click somewhere on the map. Wait a few seconds even though it looks like nothing is happening – be patient!! The GUI has sent information to Earth Engine to run the LandTrendr algorithms at the location you have clicked, and is waiting for the results. Eventually you should see a chart appear in the reporting panel on the right. Fig. 4.5.2 shows what one pixel looks like in an area where the forest burned and began regrowth. Your chart will probably look different.
 
-![Fig. 4.5.2 A typical trajectory for a single pixel. The x-axis shows the year, the y-axis the spectral index value, and the title the index chosen. The gray line represents the original spectral values observed by Landsat, and the red line the result of the LandTrendr temporal segmentation algorithms.](../images/F4/image88.png)
+![Fig. 4.5.2 A typical trajectory for a single pixel. The x-axis shows the year, the y-axis the spectral index value, and the title the index chosen. The gray line represents the original spectral values observed by Landsat, and the red line the result of the LandTrendr temporal segmentation algorithms.](images/F4/image88.png)
 
 
 The key to success with the LandTrendr algorithm is interpreting these time series. First, let’s examine the components of the chart. The x-axis shows the year of observation. With LandTrendr, only one observation per year is used to describe the history of a pixel; later, we will cover how you control that value. The y-axis shows the spectral value of the index that is chosen. In the default mode, the Normalized Burn Ratio (as described in Chap. F4.4). Note that you also have the ability to pick more indices using the checkboxes on the control panel on the left. Note that we scale floating point (decimal) indices by 1000. Thus, an NBR value of 1.0 would be displayed as 1000.
@@ -1401,7 +1401,7 @@ Next, translate that change into the changes of interest for the change processe
 
 In the case of Fig. 4.5.2, we interpret the abrupt drop as a disturbance, and the subsequent rise of the index as regrowth or recovery (though not necessarily to the same type of vegetation).
 
-![Fig. 4.5.3 For the trajectory in Fig. 4.5.2, we can identify a segment capturing disturbance based on its abrupt drop in the NBR index, and the subsequent vegetative recovery](../images/F4/image71.png)
+![Fig. 4.5.3 For the trajectory in Fig. 4.5.2, we can identify a segment capturing disturbance based on its abrupt drop in the NBR index, and the subsequent vegetative recovery](images/F4/image71.png)
 
 
 Tip: LandTrendr is able to accept any index, and advanced users are welcome to use indices of their own design. An important consideration is knowing which direction indicates “recovery” and “disturbance” for the topic you are interested in. The algorithms favor detection of disturbance and can be controlled to constrain how quickly recovery is assumed to occur (see parameters below).  
@@ -1412,7 +1412,7 @@ One option is to change the index. Any single index is simply one view of the la
 
 Another option is to change the date range. LandTrendr uses one value per year, but the value that is chosen can be controlled by the user. It’s possible that the change of interest is better identified in some seasons than others. We use a medoid image compositing approach, which picks the best single observation each year from a date range of images in an ImageCollection. In the GUI, you can change the date range of imagery used for compositing in the Image Collection portion of the LandTrendr Options menu (Fig. F4.5.4).  
 
-![Fig. 4.5.4 The LandTrendr options menu. Users control the year and date range in the Image Collection section, the index used for temporal segmentation in the middle section, and the parameters controlling the temporal segmentation in the bottom section](../images/F4/image7.png)
+![Fig. 4.5.4 The LandTrendr options menu. Users control the year and date range in the Image Collection section, the index used for temporal segmentation in the middle section, and the parameters controlling the temporal segmentation in the bottom section](images/F4/image7.png)
 
 
 Change the Start Date and End Date to find a time of year when the distinction between cover conditions before and during the change process of interest is greatest.
@@ -1449,7 +1449,7 @@ There are three post-processing steps to convert a segmented trajectory to a map
 
 Theory: We’ll start with a single pixel to learn how to Interpret a disturbance pixel time series in terms of the dominant disturbance segment. For the disturbance time series we have used in figures above, we can identify the key parameters of the segment associated with the disturbance. For the example above, we have extracted the actual NBR values of the fitted time series and noted them in a table (Fig. 4.5.5). This is not part of the GUI – it is simply used here to work through the concepts.
 
-![Fig. 4.5.5 Tracking actual values of fitted trajectories to learn how we focus on quantification of disturbance. Because we know that the NBR index drops when vegetation is lost and soil exposure is increased, we know that a precipitous drop suggests an abrupt loss of vegetation. Although some early segments show very subtle change, only the segment between vertex 4 and 5 shows large-magnitude vegetation loss.](../images/F4/image84.png)
+![Fig. 4.5.5 Tracking actual values of fitted trajectories to learn how we focus on quantification of disturbance. Because we know that the NBR index drops when vegetation is lost and soil exposure is increased, we know that a precipitous drop suggests an abrupt loss of vegetation. Although some early segments show very subtle change, only the segment between vertex 4 and 5 shows large-magnitude vegetation loss.](images/F4/image84.png)
 
 
 From the table shown in Fig. 4.5.5, we can infer several key things about this pixel:
@@ -1466,7 +1466,7 @@ If we wanted to map the magnitude of the disturbance, we would follow the same f
 
 The LandTrendr GUI provides a set of tools to easily apply the same logic rules to all pixels of interest and create maps. Click on the Change Filter Options menu. The interface shown in Fig. 4.5.6 appears.
 
-![Fig. 4.5.6 The menu used to post-process disturbance trajectories into maps. Select vegetation change type and sort to hone in on the segment type of interest, then check boxes to apply selective filters to eliminate uninteresting changes.  ](../images/F4/image49.png)
+![Fig. 4.5.6 The menu used to post-process disturbance trajectories into maps. Select vegetation change type and sort to hone in on the segment type of interest, then check boxes to apply selective filters to eliminate uninteresting changes.  ](images/F4/image49.png)
 
 
 The first two sections are used to identify the segments of interest.  
@@ -1479,12 +1479,12 @@ Each filter (magnitude, duration, etc.) is used to further winnow the possible s
 
 If you’re following along and making changes, or if you’re just using the default location and parameters, click the Add Filtered Disturbance Imagery to add this to the map. You should see something like Fig. 4.5.7.
 
-![Fig. 4.5.7 The basic output from a disturbance mapping exercise  ](../images/F4/image16.png)
+![Fig. 4.5.7 The basic output from a disturbance mapping exercise  ](images/F4/image16.png)
 
 
 There are multiple layers of disturbance added to the map. Use the map layers checkboxes to change which is shown. Magnitude of disturbance, for example, is a map of the delta change between beginning and endpoints of the segments (Fig. 4.5.8).
 
-![Fig. 4.5.8 Magnitude of change for the same area](../images/F4/image14.png)
+![Fig. 4.5.8 Magnitude of change for the same area](images/F4/image14.png)
 
 
 ### Conclusion {.unnumbered}
@@ -1567,7 +1567,7 @@ Higher-dimension band values: array images. That more complex conception of the 
 
 First, we will give some very basic notation (Fig. F4.6.1). A scalar pixel at time t is given by pt, and a pixel vector by pt. A variable with a “hat” represents an estimated value: in this context, p̂t is the estimated pixel value at time t. A time series is a collection of pixel values, usually sorted chronologically: {pt; t = t0...tN}, where t might be in any units, t0 is the smallest, and tN is the largest such t in the series.
 
-![Fig. F4.6.1 Time series representation of pixel p ](../images/F4/image38.png)
+![Fig. F4.6.1 Time series representation of pixel p ](images/F4/image38.png)
 
 
 ### Data Preparation and Preprocessing
@@ -1648,7 +1648,7 @@ var landsat8Chart = ui.Chart.image.series(landsat8sr.select('NDVI'), roi)
 print(landsat8Chart);
 
 ```
-![Fig. F4.6.2 Time series representation of pixel p ](../images/F4/image3.png)
+![Fig. F4.6.2 Time series representation of pixel p ](images/F4/image3.png)
 
 
 We can add a linear trend line to our chart using the trendlines parameters in the setOptions function for image series charts. Copy and paste the code below to print the same chart but with a linear trend line plotted (Fig. F4.6.3). In the next section, you will learn how to estimate linear trends over time.
@@ -1669,7 +1669,7 @@ var landsat8ChartTL = ui.Chart.image.series(landsat8sr.select('NDVI'), roi)
 print(landsat8ChartTL);
 
 ```
-![Fig. F4.6.3 Time series representation of pixel p with the trend line in red](../images/F4/image82.png)
+![Fig. F4.6.3 Time series representation of pixel p with the trend line in red](images/F4/image82.png)
 
 
 Now that we have plotted and visualized the data, lots of interesting analyses can be done to the time series by harnessing Earth Engine tools for fitting curves through this data. We will see a couple of examples in the following sections.
@@ -1716,7 +1716,7 @@ Map.addLayer(coefficients, {}, 'coefficients image');
 ```
 If you click over a point using the Inspector tab, you will see the pixel values for the array image (coefficients “t” and “constant”, and residuals) and two-band image (coefficients “t” and “constant”) (Fig. F4.6.4).
 
-![Fig. F4.6.4 Pixel values of array image and coefficients image](../images/F4/image53.png)
+![Fig. F4.6.4 Pixel values of array image and coefficients image](images/F4/image53.png)
 
 
 Now, copy and paste the code below to use the model to detrend the original NDVI time series and plot the time series chart with the trendlines parameter (Fig. F4.6.5).
@@ -1742,7 +1742,7 @@ var detrendedChart = ui.Chart.image.series(detrended, roi, null, 30)
    });print(detrendedChart);
 
 ```
-![Fig. F4.6.5 Detrended NDVI time series](../images/F4/image20.png)
+![Fig. F4.6.5 Detrended NDVI time series](images/F4/image20.png)
 
 
 :::{.callout-note}
@@ -1804,14 +1804,14 @@ print(ui.Chart.image.series(
    }));
 
 ```
-![Fig. F4.6.6 Harmonic model of NDVI time series](../images/F4/image86.png)
+![Fig. F4.6.6 Harmonic model of NDVI time series](images/F4/image86.png)
 
 
 Returning to the mind-bending nature of curve-fitting, it is worth remembering that the harmonic waves seen in Fig. F4.6.6 are the fit of the data to a single point across the image. Next, we will map the outcomes of millions of these fits, pixel by pixel, across the entire study area.
 
 We’ll compute and map the phase and amplitude of the estimated harmonic model for each pixel. Phase and amplitude (Fig. F4.6.7) can give us additional information to facilitate remote sensing applications such as agricultural mapping and land use and land cover monitoring. Agricultural crops with different phenological cycles can be distinguished with phase and amplitude information, something that perhaps would not be possible with spectral information alone.
 
-![Fig. F4.6.7 Example of phase and amplitude in harmonic model](../images/F4/image8.png)
+![Fig. F4.6.7 Example of phase and amplitude in harmonic model](images/F4/image8.png)
 
 
 Copy and paste the code below to compute phase and amplitude from the coefficients and add this image to the map (Fig. F4.6.8).
@@ -1841,7 +1841,7 @@ var rgb = ee.Image.cat([
 Map.addLayer(rgb, {}, 'phase (hue), amplitude (sat), ndvi (val)');
 
 ```
-![Fig. F4.6.8 Phase, amplitude, and NDVI concatenated image](../images/F4/image63.png)
+![Fig. F4.6.8 Phase, amplitude, and NDVI concatenated image](images/F4/image63.png)
 
 
 The code uses the HSV to RGB transformation hsvToRgb for visualization purposes (Chap. F3.1). We use this transformation to separate color components from intensity for a better visualization. Without this transformation, we would visualize a very colorful image that would not look as intuitive as the image with the transformation. With this transformation, phase, amplitude, and mean NDVI are displayed in terms of hue (color), saturation (difference from white), and value (difference from black), respectively. Therefore, darker pixels are areas with low NDVI. For example, water bodies will appear as black, since NDVI values are zero or negative. The different colors are distinct phase values, and the saturation of the color refers to the amplitude: whiter colors mean amplitude closer to zero (e.g., forested areas), and the more vivid the colors, the higher the amplitude (e.g., croplands). Note that if you use the Inspector tool to analyze the values of a pixel, you will not get values of phase, amplitude, and NDVI, but the transformed values into values of blue, green, and red colors.
@@ -1875,9 +1875,9 @@ Map.addLayer(anotherView,
        max: 0.03   },   'Another combination of fit characteristics');
 
 ```
-![](../images/F4/image61.png)
+![](images/F4/image61.png)
 
-![Fig. F4.6.9 Two views of the harmonic fits for NDVI for the Modesto, California area](../images/F4/image45.png)
+![Fig. F4.6.9 Two views of the harmonic fits for NDVI for the Modesto, California area](images/F4/image45.png)
 
 
 The upper image in Fig. F4.6.9 is a closer view of Fig. F4.6.8, showing an image that transforms the sine and cosine coefficient values, and incorporates information from the mean NDVI. The lower image draws the sine and cosine in the red and blue bands, and extracts the slope of the linear trend that you calculated earlier in the chapter, placing that in the green band. The two views of the fit are similarly structured in their spatial pattern—both show fields to the west and the city to the east. But the pixel-by-pixel variability emphasizes a key point of this chapter: that a fit to the NDVI data is done independently in each pixel in the image. Using different elements of the fit, these two views, like other combinations of the data you might imagine, can reveal the rich variability of the landscape around Modesto.
@@ -1894,11 +1894,11 @@ Code Checkpoint F46e. The book’s repository contains a script to use to begin 
 :::
 Beginning with the repository script, changing the value of the harmonics variable will change the complexity of the harmonic curve fit by superimposing more or fewer harmonic waves on each other. While fitting higher-order functions improves the goodness-of-fit of the model to a given set of data, many of the coefficients may be close to zero at higher numbers or harmonic terms. Fig. F4.6.10 shows the fit through the example point using one, two, and three harmonic curves.
 
-![](../images/F4/image24.png)
+![](images/F4/image24.png)
 
-![](../images/F4/image35.png)
+![](images/F4/image35.png)
 
-![Fig. F4.6.10 Fit with harmonic curves of increasing complexity, fitted for data at a given point ](../images/F4/image64.png)
+![Fig. F4.6.10 Fit with harmonic curves of increasing complexity, fitted for data at a given point ](images/F4/image64.png)
 
 
 ### Conclusion {.unnumbered}
@@ -1975,7 +1975,7 @@ Once you have loaded the CCDC interface (Fig. F4.7.1), you will be able to navig
 
 Pay special attention to the characteristics of each segment. For example, look at the average surface reflectance value for each segment. The presence of a pronounced slope may be indicative of phenomena like vegetation regrowth or degradation. The number of harmonics used in each segment may represent seasonality in vegetation (either natural or due to agricultural practices) or landscape dynamics (e.g., seasonal flooding).
 
-![Fig. 4.7.1 Landsat time series for the SWIR1 band (blue dots) and CCDC time segments (colored lines) showing a forest loss event circa 2006 for a place in Rondônia, Brazil](../images/F4/image6.png)
+![Fig. 4.7.1 Landsat time series for the SWIR1 band (blue dots) and CCDC time segments (colored lines) showing a forest loss event circa 2006 for a place in Rondônia, Brazil](images/F4/image6.png)
 
 
 Question 1. While still using the SWIR1 band, click on a pixel that is forested. What do the time series and time segments look like?
@@ -2175,14 +2175,14 @@ Map.addLayer(selectedMag, magVisParams, 'Max mag');
 Map.addLayer(selectedTbreak, timeVisParams, 'Time of max mag');
 
 ```
-![](../images/F4/image69.png)
+![](images/F4/image69.png)
 
-![Fig. F4.7.2 First (top) and last (bottom) detected breaks for the study area. Darker colors represent more recent dates, while brighter colors represent older dates. The first change layer shows the clear patterns of original agricultural expansion closer to the year 2000. The last change layer shows the more recently detected and noisy breaks in the same areas. The thin areas in the center of the image have only one time of change, corresponding to a single deforestation event. Pixels with no detected breaks are masked and therefore show the basemap underneath, set to show satellite imagery.](../images/F4/image1.png)
+![Fig. F4.7.2 First (top) and last (bottom) detected breaks for the study area. Darker colors represent more recent dates, while brighter colors represent older dates. The first change layer shows the clear patterns of original agricultural expansion closer to the year 2000. The last change layer shows the more recently detected and noisy breaks in the same areas. The thin areas in the center of the image have only one time of change, corresponding to a single deforestation event. Pixels with no detected breaks are masked and therefore show the basemap underneath, set to show satellite imagery.](images/F4/image1.png)
 
 
 We first take the absolute value because the magnitudes can be positive or negative, depending on the direction of the change and the band used. For example, a positive value in the SWIR1 may show a forest loss event, where surface reflectance goes from low to higher values. Brighter values in Fig. 4.7.3 represent events of that type. Conversely, a flooding event would have a negative value, due to the corresponding drop in reflectance. Once we find the maximum absolute value, we find its position on the array and then use that index to extract the original magnitude value, as well as the time when that break occurred.
 
-![Fig. F4.7.3 Maximum magnitude of change for the SWIR1 band for the selected study period](../images/F4/image44.png)
+![Fig. F4.7.3 Maximum magnitude of change for the SWIR1 band for the selected study period](images/F4/image44.png)
 
 
 :::{.callout-note}
@@ -2257,7 +2257,7 @@ Map.addLayer(intercept.arrayFlatten([
 ]), intVisParams, 'INTP_SWIR1');
 
 ```
-![Fig. F4.7.4 Values for the intercept coefficient of the segments that start before and end after the midpoint of 2005](../images/F4/image78.png)
+![Fig. F4.7.4 Values for the intercept coefficient of the segments that start before and end after the midpoint of 2005](images/F4/image78.png)
 
 
 Since we run the CCDC algorithm on Landsat surface reflectance images, intercept values should represent the average reflectance of a segment. However, if you click on the image, you will see that the values are outside of the 0–1 range. This is because the intercept is calculated by the CCDC algorithm for the origin (e.g., time 0), and not for the year we requested. In order to retrieve the adjusted intercept, as well as other coefficients, we will use a different approach.
@@ -2353,14 +2353,14 @@ Map.addLayer(coefs, rgbVisParams, 'RGB 2005-09-25');
 ```
 The slope and RMSE images are shown in Fig. 4.7.5. For the slopes, high positive values are bright, while large negative values are very dark. Most of the remaining forest is stable and has a slope close to zero, while areas that have experienced transformation and show agricultural activity tend to have positive slopes in the RED band, appearing bright in the image. Similarly, for the RMSE image, stable forests present more predictable time series of surface reflectance that are captured more faithfully by the time segments, and therefore present lower RMSE values, appearing darker in the image. Agricultural areas present noisier time series that are more challenging to model, and result in higher RMSE values, appearing brighter.
 
-![](../images/F4/image18.png)
+![](images/F4/image18.png)
 
-![Fig. F4.7.5 Image showing the slopes (top) and RMSE (bottom) of the segments that intersect the requested date](../images/F4/image28.png)
+![Fig. F4.7.5 Image showing the slopes (top) and RMSE (bottom) of the segments that intersect the requested date](images/F4/image28.png)
 
 
 Finally, the RGB image we created is shown in Fig. 4.7.6. The intercepts are calculated for the middle point of the time segment intercepting the date we requested, representing the average reflectance for the span of the selected segment. In that sense, when shown together as an RGB image, they are similar to a composite image for the selected date, with the advantage of always being cloud-free.
 
-![Fig. F4.7.6 RGB image created using the time segment intercepts for the requested date](../images/F4/image76.png)
+![Fig. F4.7.6 RGB image created using the time segment intercepts for the requested date](images/F4/image76.png)
 
 
 :::{.callout-note}
@@ -2479,7 +2479,7 @@ Code Checkpoint F48a. The book’s repository contains a script that shows what 
 To see if BULC can successfully sift through these Events, we will use BULC’s GUI (Fig. F4.8.1), which makes interacting with the functionality straightforward. :::{.callout-note}
 Code Checkpoint F48b in the book’s repository contains information about accessing that interface.
 :::
-![Fig. F4.8.1 BULC interface](../images/F4/image5.png)
+![Fig. F4.8.1 BULC interface](images/F4/image5.png)
 
 
 After you have run the script, BULC’s interface requires that a few parameters be set; these are specified using the left panel. Here, we describe and populate each of the required parameters, which are shown in red. As you proceed, the default red color will change to green when a parameter receives a value.
@@ -2500,7 +2500,7 @@ BULC makes relatively small demands on memory since its arithmetic uses only mul
 
 When you have finished setting the required parameters, the interface will look like Fig. 4.8.2.
 
-![Fig. 4.8.2 Initial settings for the key driving parameters of BULC ](../images/F4/image62.png)
+![Fig. 4.8.2 Initial settings for the key driving parameters of BULC ](images/F4/image62.png)
 
 
 Beneath the required parameters is a set of optional parameters that affect which intermediate results are stored during a run for later inspection. We are also given a choice of returning intermediate results for closer inspection. At this stage, you can leave all optional parameters out of the BULC call by leaving them blanked or unchecked.
@@ -2511,9 +2511,9 @@ The BULC interpretation of the landscape looks roughly like the Event inputs, bu
 
 Meanwhile, below the Console, the rest of the interface changes when BULC is run. The Map panel displays BULC’s classification for the final date: that is, after considering the evidence from each of the input classifications. We can use the Satellite background to judge whether BULC is accurately capturing the state of LULC. This can be done by unselecting the drawn layers in the map layer set and selecting Satellite from the choices in the upper-right part of the Map panel. Earth Engine’s background satellite images are often updated, so you should see something like the right side of Fig. F4.8.3, though it may differ slightly. 
 
-![](../images/F4/image57.png)
+![](images/F4/image57.png)
 
-![Fig. 4.8.3 BULC estimation of the state of LULC at the end of 2021 (left). Satellite backdrop for Earth Engine (right), which may differ from what you see due to updates.  ](../images/F4/image65.png)
+![Fig. 4.8.3 BULC estimation of the state of LULC at the end of 2021 (left). Satellite backdrop for Earth Engine (right), which may differ from what you see due to updates.  ](images/F4/image65.png)
 
 
 Question 1. When comparing the BULC classification for 2021 against the current Earth Engine satellite view, what are the similarities and differences? Note that in Earth Engine, the copyrighted year numbers at the bottom of the screen may not coincide with the precise date of the image shown.
@@ -2531,9 +2531,9 @@ Question 2. Select the BULC option, then select the Movie tool to view the resul
 
 BULC results can be viewed interactively, allowing you to view more detailed estimations of the LULC around the study area. We will zoom into a specific area where change did occur after 2016. To do that, turn on the Satellite view and zoom in. Watching the scale bar in the lower right of the Map panel, continue zooming until the scale bar says 5 km. Then, enter "-60.742, -9.844" in the Earth Engine search tool, located above the code. The text will be interpreted as a longitude/latitude value and will offer you a nearby coordinate, indicated with a value for the degrees West and the degrees South. Click that entry and Earth Engine will move to that location, while keeping at the specified zoom level. Let’s compare the BULC result in this sector against the image from Earth Engine’s satellite view that is underneath it (Fig. 4.8.4).
 
-![](../images/F4/image51.png) 
+![](images/F4/image51.png) 
 
-![Fig. 4.8.4 Comparison of the final classification of the northern part of the study area to the satellite view](../images/F4/image10.png)
+![Fig. 4.8.4 Comparison of the final classification of the northern part of the study area to the satellite view](images/F4/image10.png)
 
 
 BULC captured the changes between 2016 and 2021 with a classification series that suggests agricultural development (Fig. 4.8.4, left). Given the appearance of BULC’s 2021 classification, it suggests that the satellite backdrop at the time of this writing (Fig. 4.8.4, right) came from an earlier time period.
@@ -2542,7 +2542,7 @@ Now, in the Results panel, select BULC, then Movie. Set your desired frame speed
 
 With this finer-scale access to the results of BULC, you can select individual pixels to inspect. Move the horizontal divider downward to expose the Inspector tab and Console tab. Use the Inspector to click on several pixels to learn their history as expressed in the inputted Events and in BULC’s interpretation of the noise and signal in the Event series. In a chosen pixel, you might see output that looks like Fig. 4.8.5. It indicates a possible conversion in the Event time series after a few classifications of the pixel as Forest. This decreases the confidence that the pixel is still Forest (Fig. 4.8.5, lower panel), but not enough for the Active Agriculture class (class 3) to become the dominant probability. After the subsequent Event labels the pixel as Forest, the confidence (lower panel) recovers slightly, but not to its former level. The next Event classifies the pixel as Active Agriculture, confidently, by interpreting that second Active Agriculture classification, in a setting where change was already somewhat suspected after the first non-Forest classification. BULC’s label (middle panel) changes to be Active Agriculture at that point in the sequence. Subsequent Event classifications as Active Agriculture creates a growing confidence that its proper label at the end of the sequence was indeed Active Agriculture.
 
-![Fig. 4.8.5 History for 2016-2020 for a pixel that appeared to have been newly cultivated during that period. (above): the input classifications, which s](../images/F4/image23.png)![Fig. 4.8.5 History for 2016-2020 for a pixel that appeared to have been newly cultivated during that period. (above): the input classifications, which s](../images/F4/image72.png)![Fig. 4.8.5 History for 2016-2020 for a pixel that appeared to have been newly cultivated during that period. (above): the input classifications, which s](../images/F4/image58.png)
+![Fig. 4.8.5 History for 2016-2020 for a pixel that appeared to have been newly cultivated during that period. (above): the input classifications, which s](images/F4/image23.png)![Fig. 4.8.5 History for 2016-2020 for a pixel that appeared to have been newly cultivated during that period. (above): the input classifications, which s](images/F4/image72.png)![Fig. 4.8.5 History for 2016-2020 for a pixel that appeared to have been newly cultivated during that period. (above): the input classifications, which s](images/F4/image58.png)
 
 
 Question 3. Run the code again with the same data, but adjust the three levelers, then view the results presented in the Map window and the Results panel. How do each of the three parameters affect the behavior of BULC in its results? Use the thumbnail to assess your subjective satisfaction with the results, and use the Inspector to view the BULC behavior in individual pixels. Can you produce an optimal outcome for this given set of input classifications?
@@ -2573,7 +2573,7 @@ After you have run the script to initialize the interface, BULC-D’s interface 
 
 Run BULC-D for this area. As a reminder, you should first zoom in enough that the scale bar reads “5 km” or finer. Then, search for the location "-60.7624, -9.8542". When you run BULC-D, a result like Fig. F4.8.6 is shown for the layer of probabilities.
 
-![](../images/F4/image48.png) 
+![](images/F4/image48.png) 
 
 Fig. 4.8.6 Result for BULC-D for the Roosevelt River area, depicting estimated probability of change and stability for 2021
 
@@ -2583,7 +2583,7 @@ Each pixel experiences its own NBR history in both the expectation period and th
 
 Figure F4.8.7 shows the NBR history for the red balloon in the southern part of the study area in Fig. F4.8.4. If you click on that pixel or one like it, you can see that, whereas the values were quite stable throughout the growing season for the years used to create the pixel’s expectation, they were persistently lower in the target year. This is flagged as a likely meaningful drop in the NBR by BULC-D, for consideration by the analyst.
 
-![](../images/F4/image79.png)                                                                                       
+![](images/F4/image79.png)                                                                                       
 
 Fig. 4.8.7 NBR history for a pixel with an apparent drop in NBR in the target year (below) as compared to the expectation years (above). Pixel is colored a shade of red in Fig. 4.8.6.
 
@@ -2591,12 +2591,12 @@ Figure F4.8.8 shows the NBR history for the blue balloon in the southern part of
 
 Question 4. Experiment with turning off one of the satellite sensor data sources used to create the expectation collection. For example, do you get the same results if the Sentinel-2 data stream is not used, or is the outcome different. You might make screen captures of the results to compare with Fig. 4.8.4. How strongly does each satellite stream affect the outcome of the estimate?  Do differences in the resulting estimate vary across the study area?
 
-![Fig. 4.8.8 NBR history for a pixel with an apparent increase in NBR in the target year (below) as compared to the expectation years (above). Pixel is colored a shade of blue in Fig. 4.8.6.](../images/F4/image52.png)
+![Fig. 4.8.8 NBR history for a pixel with an apparent increase in NBR in the target year (below) as compared to the expectation years (above). Pixel is colored a shade of blue in Fig. 4.8.6.](images/F4/image52.png)
 
 
 Figure F4.8.8 also shows that, for that pixel, the fit of values for the years used to build the expectation showed a sine wave (shown in blue), but with a fit that was not very strong. When data for the target year was assembled (Fig. F4.8.8, bottom), the values were persistently above expectation throughout the growing season. Note that this pixel was identified as being different in the target year as compared to earlier years, which does not rule out the possibility that the LULC of the area was changed (for example, from Forest to Agriculture) during the years used to build the expectation collection. BULC-D is intended to be run steadily over a long period of time, with the changes marked as they occur, after which point the expectation would be recalculated.
 
-![Fig. 4.8.9 NBR history for a pixel with no apparent increase or decrease in NBR in the target year (below) as compared to the expectation years (above). Pixel is colored a shade of green in Fig. 4.8.6.](../images/F4/image56.png)
+![Fig. 4.8.9 NBR history for a pixel with no apparent increase or decrease in NBR in the target year (below) as compared to the expectation years (above). Pixel is colored a shade of green in Fig. 4.8.6.](images/F4/image56.png)
 
 
 Fig. F4.8.9 shows the NBR history for the green balloon in the southern part of the study area in Fig. F4.8.4. For that pixel, the values in the expectation collection formed a sine wave, and the values in the target collection deviated only slightly from the expectation during the target year.
@@ -2621,12 +2621,12 @@ Next, BULC will need to know which years of Dynamic World you are interested in.
 
 When you have finished, select Apply Parameters at the bottom of the input panel. When it runs, BULC subsets the Dynamic World dataset to clip out according to the dates and location, identifying images from more than 40 distinct dates. The area covers two of the tiles in which Dynamic World classifications are partitioned to be served, so BULC receives more than 90 classifications. When BULC finishes its run, the Map panel will look like Fig. F4.8.10, BULC’s estimate of the final state of the landscape at the end of the classification sequence.
 
-![Fig. F4.8.10 BULC classification using default settings for Roosevelt River area for late 2021](../images/F4/image37.png)![Fig. F4.8.10 BULC classification using default settings for Roosevelt River area for late 2021](../images/F4/image41.png)
+![Fig. F4.8.10 BULC classification using default settings for Roosevelt River area for late 2021](images/F4/image37.png)![Fig. F4.8.10 BULC classification using default settings for Roosevelt River area for late 2021](images/F4/image41.png)
 
 
 Let’s explore the suite of information returned by BULC about this time period in Dynamic World. Enter “Muiraquitã” in the search bar and view the results around that area to be able to see the changing LULC classifications within farm fields. Then, begin to inspect the results by viewing a Movie of the Events, with a data frame rate of 6 frames per second. Because the study area spans multiple Dynamic World tiles, you will find that many Event frames are black, meaning that there was no data in your sector on that particular image. Because of this, and also perhaps because of the very aggressive cloud masking built into Dynamic World, viewing Events (which, as a reminder, are the individual classified images directly from Dynamic World) can be a very challenging way to look for change and stability. BULC’s goal is to sift through those classifications to produce a time series that reflects, according to its estimation, the most likely LULC value at each time step. View the Movie of the BULC results and ask yourself whether each class is equally well replicated across the set of classifications. A still from midway through the Movie sequence of the BULC results can be seen in Fig. F4.8.11.
 
-![Fig. F4.8.11 Still frame (right image) from the animation of BULC’s adjusted estimate of LULC through time near Muiraquitã](../images/F4/image13.png)
+![Fig. F4.8.11 Still frame (right image) from the animation of BULC’s adjusted estimate of LULC through time near Muiraquitã](images/F4/image13.png)
 
 
 As BULC uses the classification inputs to estimate the state of the LULC at each time step, it also tracks its confidence in those estimates. This is shown in several ways in the interface.
@@ -2636,7 +2636,7 @@ As BULC uses the classification inputs to estimate the state of the LULC at each
 *   Another way of viewing BULC’s confidence is through the Inspector tab. You can click on individual pixels to view their values in the Event time series and in the BULC time series, and see BULC’s corresponding confidence value changing through time in response to the relative stability of each pixel’s classification.
 *   Another way to view BULC’s confidence estimation is as a hillshade enhancement of the final BULC classification. If you select the Probability Hillshade in the set of Map layers, it shows the final BULC classification as a textured surface, in which you can see where lower-confidence pixels are classified.
 
-![Fig. F4.8.12 Still frame from the animation of changing confidence through time, near Muiraquitã.](../images/F4/image40.png)
+![Fig. F4.8.12 Still frame from the animation of changing confidence through time, near Muiraquitã.](images/F4/image40.png)
 
 
 #### 5.2. Using BULC To Visualize Uncertainty of Dynamic World in Simplified Categories
@@ -2659,7 +2659,7 @@ Before continuing, think for a moment about how many classes you have now. From 
 
 The confidence image shown in the main Map panel is instructive (Fig. 4.8.13). Using data from 2020, 2021, and 2022, It indicates that much of the uncertainty among the original Dynamic World classifications was in distinguishing labels within agricultural fields. When that uncertainty is removed by combining classes, the BULC result indicates that a substantial part of the remaining uncertainty is at the edges of distinct covers. For example, in the south-central and southern part of the frame, much of the uncertainty among classifications in the original Dynamic World classifications was due to distinction among the highly similar, easily confused classes. Much of what remained (right) after remapping (right) formed outlines of the river and the edges between farmland and forest: a graphic depiction of the “spatial uncertainty” discussed earlier. Yet not all of the uncertainty was spatial; the thicker, darker areas of uncertainty even after remapping (right, at the extreme eastern edge for example) indicates a more fundamental disagreement in the classifications. In those pixels, even when the Agriculture-like classes were compressed, there was still considerable uncertainty (likely between Forest and Active Agriculture) in the true state of these areas. These might be of further interest: were they places newly deforested in 2020-2022? Were they abandoned fields regrowing?  Were they degraded at some point? The mapping of uncertainty may hold promise for a better understanding of uncertainty as it is encountered in real classifications, thanks to Dynamic World.
 
-![Fig. F4.8.13 Final confidence layer from the run with (left) and without (right) remapping to combine similar LULC classes to distinguish Forest, Water, and Active Agriculture near -60.696W, -9.826S](../images/F4/image47.png)![Fig. F4.8.13 Final confidence layer from the run with (left) and without (right) remapping to combine similar LULC classes to distinguish Forest, Water, and Active Agriculture near -60.696W, -9.826S](../images/F4/image89.png)
+![Fig. F4.8.13 Final confidence layer from the run with (left) and without (right) remapping to combine similar LULC classes to distinguish Forest, Water, and Active Agriculture near -60.696W, -9.826S](images/F4/image47.png)![Fig. F4.8.13 Final confidence layer from the run with (left) and without (right) remapping to combine similar LULC classes to distinguish Forest, Water, and Active Agriculture near -60.696W, -9.826S](images/F4/image89.png)
 
 
 Given the tools and approaches presented in this lab, you should now be able to import your own classifications for BULC (Sects. 1–3), detect changes in sets of raw imagery (Sect. 4), or use Dynamic World’s pre-created classifications (Sect. 5). The following exercises explore this potential.
@@ -2922,7 +2922,7 @@ Map.addLayer(covariance17.arrayGet([0, 1]),
 ```
 Inspect the pixel values of the resulting covariance image (Fig. F4.9.1). The covariance is positive when the greater values of one variable (at time t) mainly correspond to the greater values of the other variable (at time h), and the same holds for the lesser values, therefore, the values tend to show similar behavior. In the opposite case, when the greater values of a variable correspond to the lesser values of the other variable, the covariance is negative.
 
-![Fig. F4.9.1 Autocovariance image](../images/F4/image2.png)
+![Fig. F4.9.1 Autocovariance image](images/F4/image2.png)
 
 
 The diagonal elements of the variance-covariance array are variances. Copy and paste the code below to define and map a function to compute correlation (Fig. F4.9.2) from the variance-covariance array.
@@ -2946,7 +2946,7 @@ Map.addLayer(correlation17,
     },
     'correlation (lag = 17 days)');
 ```
-![Fig. F4.9.2 Autocorrelation image](../images/F4/image33.png)
+![Fig. F4.9.2 Autocorrelation image](images/F4/image33.png)
 
 
 Higher positive values indicate higher correlation between the elements of the dataset, and lower negative values indicate the opposite.
@@ -2985,7 +2985,7 @@ Map.addLayer(corr1PrecipNDVI, {
 ```
 What do you observe from this result? Looking at the cross-correlation image (Fig. F4.9.3), do you observe high values where you would expect high NDVI values (vegetated areas)? One possible drawback of this computation is that it's only based on five days of precipitation, whichever five days came right before the NDVI image.
 
-![Fig. F4.9.3 Cross-correlation image of NDVI and precipitation with a five-day lag.](../images/F4/image46.png)
+![Fig. F4.9.3 Cross-correlation image of NDVI and precipitation with a five-day lag.](images/F4/image46.png)
 
 
 Perhaps precipitation in the month before the observed NDVI is relevant? Copy and paste the code below to test the 30-day lag idea.
@@ -3017,7 +3017,7 @@ Observe that the only change is to the merge method. Instead of merging the band
 
 Which changes do you notice between the cross-correlation images—5 days lag vs. 30 days lag (Fig. F4.9.4)?. You can use the Inspector tool to assess if the correlation increased or not at vegetated areas.
 
-![Fig. F4.9.4 Cross-correlation image of NDVI and precipitation with a 30-day lag.](../images/F4/image34.png)
+![Fig. F4.9.4 Cross-correlation image of NDVI and precipitation with a 30-day lag.](images/F4/image34.png)
 
 
 As long as there is sufficient temporal overlap between the time series, these techniques could be extended to longer lags and longer time series.
@@ -3095,7 +3095,7 @@ print(ui.Chart.image.series(
    }));
 
 ```
-![Fig. F4.9.5 Observed NDVI and fitted values at selected point](../images/F4/image19.png)
+![Fig. F4.9.5 Observed NDVI and fitted values at selected point](images/F4/image19.png)
 
 
 At this stage, note that the missing data has become a real problem. Any data point for which at least one of the previous points is masked or missing is also masked.

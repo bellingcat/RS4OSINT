@@ -11,7 +11,7 @@ Before learning how to load, process, and analyze satellite imagery in Google Ea
 [Remote sensing](https://www.sciencedirect.com/topics/medicine-and-dentistry/remote-sensing) is the science of obtaining information about an object or phenomenon without making physical contact with the object. Remote sensing can be done with various types of electromagnetic radiation such as visible, infrared or microwave. The electromagnetic radiation is either emitted or reflected from the object being sensed. The reflected radiation is then collected by a sensor and processed to obtain information about the object.
 
 
-![](../images/diagram.png)
+![](images/diagram.png)
 
 
 
@@ -32,9 +32,9 @@ Spatial resolution governs how "sharp" an image looks. The Google Maps satellite
 Most of the optical imagery that is freely available has relatively low spatial resolution (it looks more grainy than, for example, the Google satellite basemap), 
 
 
-![](../images/Landsat.png)
-![](../images/Sentinel2.png)
-![](../images/Maxar.png)
+![](images/Landsat.png)
+![](images/Sentinel2.png)
+![](images/Maxar.png)
 
 
 ### Spectral Resolution 
