@@ -31,9 +31,9 @@ book:
   repo-actions: [edit]
   downloads: [pdf, epub]
   sharing: [twitter, facebook]
-  favicon: ../favicon.ico
+  favicon: favicon.ico
   sidebar:
-    logo: ../images/logo_white.png
+    logo: images/logo_white.png
     collapse-level: 1
 
 
@@ -57,4 +57,4 @@ format:
       - \@addtoreset{chapter}{part}
       - \makeatother         
   epub:
-    cover-image: ../images/logo_black.png
+    cover-image: images/logo_black.png
