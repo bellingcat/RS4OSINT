@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Dr.&nbsp;Ollie Ballinger">
-<meta name="dcterms.date" content="2023-03-15">
 
-<title>Remote Sensing for OSINT</title>
+<title>Remote Sensing for OSINT - 2&nbsp; Remote Sensing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./A2_Remote_Sensing.html" rel="next">
+<link href="./A3_Data_Acquisition.html" rel="next">
+<link href="./index.html" rel="prev">
 <link href="./../favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -45,6 +44,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -87,7 +88,7 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">A. Introduction</a></li><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">A. Introduction</a></li><li class="breadcrumb-item"><a href="./A2_Remote_Sensing.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Remote Sensing</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -166,17 +167,20 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Overview</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A2_Remote_Sensing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Remote Sensing</span></a>
+  <a href="./A2_Remote_Sensing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Remote Sensing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A3_Data_Acquisition.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Acquisition</span></a>
+  <a href="./A3_Data_Acquisition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Acquisition</span></span></a>
   </div>
 </li>
       </ul>
@@ -192,22 +196,26 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./B1_Getting_Started.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Getting Started</span></a>
+  <a href="./B1_Getting_Started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./B2_Interpreting_Images.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interpreting Images</span></a>
+  <a href="./B2_Interpreting_Images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Interpreting Images</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./B3_Image_Series.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image Series</span></a>
+  <a href="./B3_Image_Series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Image Series</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./B4_Vectors_Tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Vectors and Tables</span></a>
+  <a href="./B4_Vectors_Tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Vectors and Tables</span></span></a>
   </div>
 </li>
       </ul>
@@ -223,27 +231,32 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./C1_Lights.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">War at Night</span></a>
+  <a href="./C1_Lights.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">War at Night</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./C2_Refineries.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Refinery Identification</span></a>
+  <a href="./C2_Refineries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Refinery Identification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./C3_Blast.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Blast Damage Assessment</span></a>
+  <a href="./C3_Blast.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Blast Damage Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./C4_Ships.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ship Detection</span></a>
+  <a href="./C4_Ships.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ship Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./C5_Object_Detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Object Detection</span></a>
+  <a href="./C5_Object_Detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Object Detection</span></span></a>
   </div>
 </li>
       </ul>
@@ -258,39 +271,30 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <li><a href="#active-and-passive-sensors" id="toc-active-and-passive-sensors" class="nav-link active" data-scroll-target="#active-and-passive-sensors"><span class="header-section-number">2.1</span> Active and Passive Sensors</a></li>
+  <li><a href="#resolution" id="toc-resolution" class="nav-link" data-scroll-target="#resolution"><span class="header-section-number">2.2</span> Resolution</a>
   <ul class="collapse">
-  <li><a href="#what-is-google-earth-engine" id="toc-what-is-google-earth-engine" class="nav-link" data-scroll-target="#what-is-google-earth-engine">What is Google Earth Engine?</a></li>
-  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link" data-scroll-target="#table-of-contents">Table of Contents</a></li>
+  <li><a href="#spatial-resolution" id="toc-spatial-resolution" class="nav-link" data-scroll-target="#spatial-resolution"><span class="header-section-number">2.2.1</span> Spatial Resolution</a></li>
+  <li><a href="#spectral-resolution" id="toc-spectral-resolution" class="nav-link" data-scroll-target="#spectral-resolution"><span class="header-section-number">2.2.2</span> Spectral Resolution</a></li>
+  <li><a href="#temporal-resolution" id="toc-temporal-resolution" class="nav-link" data-scroll-target="#temporal-resolution"><span class="header-section-number">2.2.3</span> Temporal Resolution</a></li>
   </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">2.3</span> Summary</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/oballinger/RS4OSINT/edit/main/index.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/oballinger/RS4OSINT/edit/main/A2_Remote_Sensing.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Remote Sensing for OSINT</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Remote Sensing</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://oballinger.github.io">Dr.&nbsp;Ollie Ballinger</a> </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 15, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -298,53 +302,63 @@ gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
 
 </header>
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>The analysis of satellite imagery is a foundational element of open source investigations. Its quality, quantity and availability has increased dramatically in the past decade. Capabilities and insights that were once only available to governments are now accessible to the general public. Satellite imagery is being used to collect evidence of genocide and other war crimes in <a href="https://www.nbcnews.com/science/science-news/ukraine-satellites-war-crimes-rcna26291">Ukraine</a>, <a href="https://www.amnesty.org/en/latest/news/2016/04/nigeria-military-cover-up-of-mass-slaughter-at-zaria-exposed/">Nigeria</a>, <a href="https://www.amnesty.org/en/latest/news/2016/01/burundi-satellite-evidence-supports-witness-accounts-of-mass-graves/">Burundi</a>, <a href="https://www.amnesty.org/en/latest/news/2021/07/cameroon-satellite-images-reveal-devastation-in-anglophone-regions-2/">Cameroon</a>, <a href="https://www.aaas.org/resources/satellite-imagery-assessment-forced-relocations-near-luiswishi-mine">the DRC</a>, <a href="https://gsp.yale.edu/case-studies/sudan/maps-satellite-images/other-darfur-satellite-imagery">South Sudan</a>, <a href="https://gsp.yale.edu/resources/maps-satellite-images/papua">Papua</a>, and <a href="https://www.hrw.org/report/2016/04/04/unchecked-power/police-and-military-raids-low-income-and-immigrant-communities">Venezuela</a>. It has been used to <a href="https://www.theguardian.com/environment/2016/mar/02/new-satellite-mapping-a-game-changer-against-illegal-logging">monitor environmental degradation</a> and hold extractive industries to account from <a href="https://www.bellingcat.com/resources/2021/04/15/what-oil-satellite-technology-and-iraq-can-tell-us-about-pollution/">Iraq</a> to <a href="https://www.planet.com/pulse/the-observatory-of-extractive-industries-oie-shines-a-light-on-the-mining-industry-using-planets-satellite-data/">Guatemala</a>. The ability to analyze satellite imagery is a critical skill for anyone interested in open source investigations.</p>
-<p>Though no-code platforms such as Sentinelhub have been invaluable in allowing the OSINT community to access and process satellite imagery, the analytical capabilities of these platforms are limited. <a href="https://earthengine.google.com/#intro">Google Earth Engine (GEE)</a> is a cloud-based platform that stores petabytes of satellite imagery from a variety of sources and allows users to perform advanced analyses on Google servers for free using a browser-based interface. This textbook is designed for investigators who want to perform more sophisticated analysis using geospatial data, and assumes no prior knowledge of coding or remote sensing (satellite imagery analysis). It is organized into two parts: an introduction to remote sensing and GEE, and a series of case studies that demonstrate how to use GEE for open source investigations.</p>
-<section id="what-is-google-earth-engine" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-google-earth-engine">What is Google Earth Engine?</h2>
-<p>As geospatial datasets—particularly satellite imagery collections—increase in size, researchers are increasingly relying on cloud computing platforms such as Google Earth Engine (GEE) to analyze vast quantities of data.</p>
-<p>GEE is free and allows users to write open-source code that can be run by others in one click, thereby yielding fully reproducible results. These features have put GEE on the cutting edge of scientific research. The following plot visualizes the number of journal articles conducted using different geospatial analysis software platforms:</p>
-<p><img src="images/WoS Articles.png" class="img-fluid"></p>
-<p>Despite only being released in 2015, the number of geospatial journal articles using Google Earth Engine (shown in red above) has outpaced every other major geospatial analysis software, including ArcGIS, Python, and R in just five years. GEE applications have been developed and used to present interactive geospatial data visualizations by NGOs, Universities, the United Nations, and the European Commission. By storing and running computations on Google servers, GEE is far more accessible to those who don’t have significant local computational resources; all you need is an internet connection.</p>
+<p>Before learning how to load, process, and analyze satellite imagery in Google Earth Engine, it will be helpful to know a few basic principles of remote sensing. This section provides a brief overview of some important concepts and terminology that will be used throughout the course, including active and passive sensors; spatial, spectral and temporal resolution; and orbits.</p>
+<section id="active-and-passive-sensors" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="active-and-passive-sensors"><span class="header-section-number">2.1</span> Active and Passive Sensors</h2>
+<p><a href="https://www.sciencedirect.com/topics/medicine-and-dentistry/remote-sensing">Remote sensing</a> is the science of obtaining information about an object or phenomenon without making physical contact with the object. Remote sensing can be done with various types of electromagnetic radiation such as visible, infrared or microwave. The electromagnetic radiation is either emitted or reflected from the object being sensed. The reflected radiation is then collected by a sensor and processed to obtain information about the object.</p>
+<p><img src="../images/diagram.png" class="img-fluid"></p>
+<p>While most satellite imagery is optical, meaning it captures sunlight reflected by the earth’s surface, Synthetic Aperture Radar (SAR) satellites such as Sentinel-1 work by emitting pulses of radio waves and measuring how much of the signal is reflected back. This is similar to the way a bat uses sonar to “see” in the dark: by emitting calls and listening to echoes.</p>
 </section>
-<section id="table-of-contents" class="level2">
-<h2 class="anchored" data-anchor-id="table-of-contents">Table of Contents</h2>
-<ol type="A">
-<li><strong>Introduction</strong>
-<ul>
-<li>Two introductory chapters that provide an overview of remote sensing the different types of satellite imagery available on Google Earth Engine.
-<ul>
-<li><a href="chapters/A2_Remote_Sensing.qmd">Remote Sensing</a></li>
-<li><a href="chapters/A3_Data_Acquisition.qmd">Data Acquisition</a></li>
-</ul></li>
-</ul></li>
-<li><strong>Google Earth Engine</strong>
-<ul>
-<li>Recently, a team of over 100 scientists came together to write a book called <a href="https://www.eefabook.org/">“Cloud-Based Remote Sensing with Google Earth Engine: Fundamentals and Applications”</a>. It’s a great resource for learning about remote sensing and Earth Engine. The material in this section is a subset of the book, edited to fit the scope of this guide. If you’re interested in learning more, check out the full book.
-<ul>
-<li><a href="chapters/B1_Getting_Started.qmd">Getting Started</a></li>
-<li><a href="chapters/B2_Interpreting_Images.qmd">Interpreting Images</a></li>
-<li><a href="chapters/B3_Image_Series.qmd">Image Series</a></li>
-<li><a href="chapters/B4_Vectors_Tables.qmd">Vectors and Tables</a></li>
-</ul></li>
-</ul></li>
-<li><strong>Case Studies</strong>
-<ul>
-<li>A series of case studies that demonstrate how to use Google Earth Engine for open source investigations. Each case study includes a brief introduction to the topic, a step-by-step guide to using Google Earth Engine to analyze satellite imagery, and a discussion of the results.
-<ul>
-<li><a href="chapters/C1_Lights.qmd">War at Night</a></li>
-<li><a href="chapters/C2_Refineries.qmd">Refinery Identification</a></li>
-<li><a href="chapters/C3_Blast.qmd">Blast Damage Assessment</a></li>
-<li><a href="chapters/C4_Ships.qmd">Ship Detection</a></li>
-<li><a href="chapters/C5_Object_Detection.qmd">Object Detection</a></li>
-</ul></li>
-</ul></li>
-</ol>
+<section id="resolution" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="resolution"><span class="header-section-number">2.2</span> Resolution</h2>
+<p>Resolution is one of the most important attributes of satellite imagery. There are three types of resolution: spatial, spectral, and temporal. Let’s look at each of these.</p>
+<section id="spatial-resolution" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="spatial-resolution"><span class="header-section-number">2.2.1</span> Spatial Resolution</h3>
+<p>Spatial resolution governs how “sharp” an image looks. The Google Maps satellite basemap, for example, is really sharp. Most of the optical imagery that is freely available has relatively low spatial resolution (it looks more grainy than, for example, the Google satellite basemap),</p>
+<p><img src="../images/Landsat.png" class="img-fluid"> <img src="../images/Sentinel2.png" class="img-fluid"> <img src="../images/Maxar.png" class="img-fluid"></p>
+</section>
+<section id="spectral-resolution" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="spectral-resolution"><span class="header-section-number">2.2.2</span> Spectral Resolution</h3>
+<p>What open access imagery lacks in spatial resolution it often makes up for with <em>spectral</em> resolution. Really sharp imagery from MAXAR, for example, mostly collects light in the visible light spectrum, which is what our eyes can see. But there are other parts of the electromagnetic spectrum that we can’t see, but which can be very useful for distinguishing between different materials. Many satellites that have a lower spatial resolution than MAXAR, such as Landsat and Sentinel-2, collect data in a wider range of the electromagnetic spectrum.</p>
+<p>Different materials reflect light differently. An apple absorbs shorter wavelengths (e.g.&nbsp;blue and green), and reflects longer wavelengths (red). Our eyes use that information– the color– to distinguish between different objects. Below is a plot of the spectral profiles of different materials:</p>
+<iframe title="Spectral Profiles of Different Materials" aria-label="Interactive line chart" id="datawrapper-chart-b1kcX" src="https://datawrapper.dwcdn.net/b1kcX/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400">
+</iframe>
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
+<p>The visible portion of the spectrum is highlighted on the left, ranging from 400 nanometers (violet) to 700nm (red). Our eyes (and satellite imagery in the visible light spectrum) can only see this portion of the light spectrum; we can’t see UV or infrared wavelengths, for example, though the extent to which different materials reflect or absorb these wavelengths is just as useful for distinguishing between them. The European Space Agency’s Sentinel-2 satellite collects spectral information well beyond the visible light spectrum, enabling this sort of analysis. It chops the electromagnetic spectrum up into “bands”, and measures how strongly wavelengths in each of those bands is reflected:</p>
+<p><img src="images/S2_bands.png" class="img-fluid"></p>
+<p>To illustrate why this is important, consider Astroturf (fake plastic grass). Astroturf and real grass will both look green to us, especially from a satellite image. But living plants strongly reflect radiation from the sun in a part of the light spectrum that we can’t see (near-infrared). There’s a spectral index called the Normalized Difference Vegetation Index (NDVI) which exploits this fact to isolate vegetation in multispectral satellite imagery. So if we look at <a href="https://en.wikipedia.org/wiki/Gillette_Stadium">Gillette Stadium</a> near Boston, we can tell that the three training fields south of the stadium are real grass (they generate high NDVI values, showing up red), while the pitch in the stadium itself is astroturf (generating low NDVI values, showing up blue).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/NDVI.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">VHR image of Gillette Stadium with Sentinel-2 derived NDVI overlay</figcaption><p></p>
+</figure>
+</div>
+<p>In other words, even though these fields are all green and indistinguishable to the human eye, their <em>spectral profiles</em> beyond the visible light spectrum differ, and we can use this information to distinguish between them.</p>
+<p>Astroturf is a trivial example. But suppose we were interested in identifying makeshift oil refineries in Northern Syria that constitute a key source of rents for whichever group controls them. As demonstrated in the <a href="./C2_Refineries.html">‘Refinery Identification’</a> case study, we can train an algorithm to identify the spectral signatures of oil, and use that to automatically detect them in satellite imagery.</p>
+</section>
+<section id="temporal-resolution" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="temporal-resolution"><span class="header-section-number">2.2.3</span> Temporal Resolution</h3>
+<p>Finally, the frequency with which we can access new imagery is an important consideration. This is called the <strong>temporal resolution</strong>.</p>
+<p>The Google Maps basemap is very high resolution, available globally, and is freely available. But it has no <em>temporal</em> dimension: it’s a snapshot from one particular point in time. If the thing we’re interested in involves <em>changes</em> over time, this basemap will be of limited use.</p>
+<p>The <strong>“revisit rate”</strong> is the amount of time it takes for the satellite to pass over the same location twice. For example, the Sentinel-2 constellation’s two satellites can achieve a revisit rate of 5 days, as shown in this cool video from the European Space Agency:</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://dlmultimedia.esa.int/download/public/videos/2016/08/004/1608_004_AR_EN.mp4"></video></div>
+<p>Some satellite constellations are able to achieve much higher revisit rates. Sentinel-2 has a revisit rate of 5 days, but SkySat is capable of imaging the same point on earth around 12 times per day! How is that possible? Well, as the video above demonstrated, the Sentinel-2 constellation is composed of two satellites that share the same orbit, 180 degrees apart. In contrast, the SkySat constellation comprises 21 satellites, each with its own orbital path:</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://assets.planet.com/products/hi-res/Planet_Block_3_HD_1080p.mp4"></video></div>
+<p>This allows SkySat to achieve a revisit rate of 2-3 <em>hours</em>. The catch, however, is that you need to pay for it (and it <a href="https://apollomapping.com/blog/an-update-on-skysat-tasking-pricing-and-video-capabilities">ain’t cheap</a>). Below is a comparison of revisit rates for various other optical satellites:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/revisit_chart.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A chart of revisit times for different satellites from <a href="https://link.springer.com/article/10.1007/s10712-021-09637-5">Sutlieff et. al.(2021)</a></figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="summary" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">2.3</span> Summary</h2>
+<p>You should hopefully have a better understanding of what satellite imagery is, and how it can be used to answer questions about the world. In the <a href="A3_Data_acquisition.qmd">next section</a>, we’ll look at the various types of satellite imagery stored in the Google Earth Engine catalog.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -698,14 +712,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./A2_Remote_Sensing.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Remote Sensing</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./A3_Data_Acquisition.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Acquisition</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
+<script>videojs(video_shortcode_videojs_video2);</script>
 
 
 

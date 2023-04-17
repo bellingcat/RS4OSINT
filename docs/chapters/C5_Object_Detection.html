@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Remote Sensing for OSINT - 11&nbsp; Object Detection</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/C4_Ships.html" rel="prev">
+<link href="../favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-RK9ZLZQ6GL"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Object Detection</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo_white.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Remote Sensing for OSINT</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/oballinger/RS4OSINT/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="../Remote-Sensing-
+-for-OSINT.pdf">
+            <i class="bi bi-bi-file-pdf pe-1"></i>
+          Download PDF
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="../Remote-Sensing-
+-for-OSINT.epub">
+            <i class="bi bi-bi-journal pe-1"></i>
+          Download ePub
+          </a>
+        </li>
+    </ul>
+    <a href="" title="Share" id="sidebar-tool-dropdown-1" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-1">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">A. Introduction</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A2_Remote_Sensing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Remote Sensing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A3_Data_Acquisition.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Acquisition</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">B. Google Earth Engine</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B1_Getting_Started.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B2_Interpreting_Images.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interpreting Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B3_Image_Series.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image Series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B4_Vectors_Tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Vectors and Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">C. Case Studies</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C1_Lights.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">War at Night</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C2_Refineries.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Refinery Identification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C3_Blast.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Blast Damage Assessment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C4_Ships.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ship Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C5_Object_Detection.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#object-detection-in-satellite-imagery" id="toc-object-detection-in-satellite-imagery" class="nav-link active" data-scroll-target="#object-detection-in-satellite-imagery">Object Detection in Satellite Imagery</a>
+  <ul class="collapse">
+  <li><a href="#yolov5" id="toc-yolov5" class="nav-link" data-scroll-target="#yolov5">YOLOv5</a></li>
+  </ul></li>
+  <li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training">Training</a>
+  <ul class="collapse">
+  <li><a href="#accuracy-assessment" id="toc-accuracy-assessment" class="nav-link" data-scroll-target="#accuracy-assessment">Accuracy Assessment</a></li>
+  </ul></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a>
+  <ul class="collapse">
+  <li><a href="#loading-a-trained-model" id="toc-loading-a-trained-model" class="nav-link" data-scroll-target="#loading-a-trained-model">1. Loading a trained model</a></li>
+  <li><a href="#loading-the-input-imagery" id="toc-loading-the-input-imagery" class="nav-link" data-scroll-target="#loading-the-input-imagery">2. Loading the input imagery</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/oballinger/RS4OSINT/edit/main/chapters/C5_Object_Detection.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Object Detection</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The Ship Detection tutorial explored a use case in which we might want to monitor the activity of ships in a particular location. That was a fairly straightforward task: the sea is very flat, and ships (especially large cargo and military vessels) protrude significantly. Using radar imagery, we could just set a threshold because if anything on the water is reflecting radio waves, it’s probably a ship.</p>
+<p>One shortcoming of this approach is that it doesn’t tell us what <em>kind</em> of ship we’ve detected. Sure, you could use the shape and size to distinguish between a fishing vessel and an aircraft carrier. But what about ships of similar sizes? Or what if you wanted to use satellite imagery to identify things other than ships, like airplanes, cars, or bridges? This sort of task– called <strong>“object detection”</strong> is a bit more complicated.</p>
+<p>In this tutorial, we’ll be using a deep learning model called <strong>YOLOv5</strong> to detect objects in satellite imagery. We’ll be training the model on a custom dataset, and then using it to dynamically identify objects in satellite imagery of different resolutions pulled from Google Earth Engine. The tutorial is broken up into three sections:</p>
+<ol type="1">
+<li>Object detection in satellite imagery<br>
+</li>
+<li>Training a deep learning model on a custom dataset</li>
+<li>Dynamic inference using Google Earth Engine</li>
+</ol>
+<p>Unlike previous tutorials which used the GEE JavaScript API, <strong>this one will utilize Python</strong>; this is because these sorts of deep learning models aren’t available in GEE natively yet. By the end, we’ll be able to generate images such as the one below:</p>
+<div class="column-screen">
+<p><img src="images/obj_det2.jpg" class="img-fluid"></p>
+</div>
+<section id="object-detection-in-satellite-imagery" class="level2">
+<h2 class="anchored" data-anchor-id="object-detection-in-satellite-imagery">Object Detection in Satellite Imagery</h2>
+<p>Object detection in satellite imagery has a variety of useful applications.</p>
+<p>There’s the needle-in-a-haystack problem of needing to monitor a large area for a small number of objects. Immediately prior to the invasion of Ukraine, for example, a number of articles emerged showing Russian military vehicles and equipment popping up in small clearings in the forest near the border with Ukraine. Many of these deployments were spotted by painstakingly combing through high resolution satellite imagery, looking for things that look like trucks. One problem with this approach is that you need to know roughly where to look. The second, and more serious problem, is that you need to be on the lookout in the first place. Object detection, applied to satellite imagery, can automatically comb through vast areas and identify objects of interest. If planes and trucks start showing up in unexpected places, you’ll know about it.</p>
+<p>Perhaps you’re not monitoring that large of an area, but you want frequent updates about what’s going on. What sorts of objects (planes, trucks, cars, etc.) are present? How many of each? Where are they located? Instead of having to manually look through new imagery as it becomes available, you could have a model automatically analyze new collections and output a summary.</p>
+<section id="yolov5" class="level3">
+<h3 class="anchored" data-anchor-id="yolov5">YOLOv5</h3>
+<p>Object detection is a fairly complicated task, and there are a number of different approaches to it. In this tutorial, we’ll be using a model called <strong>YOLOv5</strong>. YOLO stands for <strong>You Only Look Once</strong>, and it’s a model that was developed by <a href="https://pjreddie.com/">Joseph Redmon</a> et. al., and the full paper detailing the model can be found <a href="https://arxiv.org/abs/1506.02640">here</a>.</p>
+<p>The YOLOv5 model is a <strong>convolutional neural network</strong> (CNN), which is a type of deep learning model. CNNs are very good at identifying patterns in images, particularly in small regions of images. This is important for object detection, because we want to be able to identify objects even if they’re partially obscured by other objects.</p>
+<p>YOLO works by chopping an image up into a grid, and then predicting the location and size of objects in each grid cell:</p>
+<p><img src="images/yolo.jpg" class="img-fluid"></p>
+<p>It learns the locations of these objects by training on a dataset of images in which each object is indicated by a <strong>bounding box</strong>. Then, when it’s shown a new image, it will attempt to predict bounding boxes around the objects in that image. The standard YOLO model is trained on the <a href="https://cocodataset.org/#home">COCO dataset</a>, which contains over 200,000 images of 80 different objects ranging from people to cars to dogs. YOLO models pre-trained on this dataset work great out of the box to detect objects in videos, photographs, and live streams. But the nature of the objects we’re interested in is a bit different.</p>
+<p>Luckily, we can simply re-train the YOLOv5 model on datasets of labeled satellite imagery. The rest of this tutorial will walk through the process of training YOLOv5 on a custom dataset, and then using it to dynamically identify objects in satellite imagery pulled from Google Earth Engine.</p>
+</section>
+</section>
+<section id="training" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="training">Training</h2>
+<p>The process of re-training the YOLOv5 model on satellite imagery is fairly straightforward and can be accomplished in just three steps; first, we’re going to clone the YOLOv5 repository which contains the model code and the training scripts. Then, we’ll download a dataset of satellite imagery and labels from Roboflow, and finally, we’ll train the model on that dataset.</p>
+<p>Let’s start by cloning the YOLOv5 repository. Note: we’ll be using a fork of the original repository that I’ve modified to include some pre-trained models that we’ll be using later on.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>git clone https:<span class="op">//</span>github.com<span class="op">/</span>oballinger<span class="op">/</span>yolov5_RS  <span class="co"># clone repo</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd yolov5_RS <span class="co"># change directory to repo</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">-</span>qr requirements.txt <span class="co"># install dependencies</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">-</span>q roboflow <span class="co"># install roboflow</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch <span class="co"># install pytorch</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co"># for os related operations</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image, clear_output  <span class="co"># to display images</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once we’ve downloaded the YOLOv5 repository, we’ll need to download a dataset of labeled satellite imagery. For this example, we’re going to stick with ship detection as our use case, but expand upon it. We want to be able to distinguish between different types of ships, and we want to use freely-available satellite imagery.</p>
+<p>To that end, we’ll be using <a href="https://universe.roboflow.com/ibl-huczk/ships-2fvbx">this dataset</a>, which contains 3400 labeled images taken from Sentinel-2 (10m/px) and PlanetScope (3m/px) satellites. Ships in these images are labeled by drawing an outline around them:</p>
+<p><img src="images/sample_training_ships.jpg" class="img-fluid"></p>
+<p>The image above shows three ships and what is known as an STS – a “Ship-To-Ship” transfer – which is when a ship is transferring cargo to another ship. There are a total of seven classes of ship in this dataset:</p>
+<p><img src="images/label_freq.jpg" class="img-fluid"></p>
+<p>This dataset can be downloaded directly from Roboflow using the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> roboflow <span class="im">import</span> Roboflow</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rf <span class="op">=</span> Roboflow(api_key<span class="op">=</span><span class="st">"&lt;YOUR API KEY&gt;"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>project <span class="op">=</span> rf.workspace(<span class="st">'ibl-huczk'</span>).project(<span class="st">"ships-2fvbx"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> project.version(<span class="st">"1"</span>).download(<span class="st">"yolov5"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ll need to get your own API key from Roboflow, which you can do <a href="https://app.roboflow.com/account/api">here</a>, and insert it in the second line of code. Roboflow is a platform for managing and training deep learning models on custom datasets. It’s free to use for up to three projects, and hosts a large number of datasets that you can use to train your models. To use a different dataset, you can simply change the project name and version number in the second and third lines of code.</p>
+<p>Finally, we can train our YOLOv5 model on the dataset we just downloaded in just one line of code:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python train.py <span class="op">--</span>data {dataset.location}<span class="op">/</span>data.yaml <span class="op">--</span>batch <span class="dv">32</span> <span class="op">--</span>cache</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This should take about an hour.</p>
+<section id="accuracy-assessment" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="accuracy-assessment">Accuracy Assessment</h3>
+<p>Using Tensorboard, we can log the performance of our model over the course of the training process:</p>
+<div class="column-page">
+<iframe src="https://tensorboard.dev/experiment/Yiyl7AsoQcyJ3uw699CR8A/#scalars" width="100%" height="700px">
+</iframe>
+</div>
+<p>One metric in particular, <strong>mAP 0.5</strong>, is a good indicator of how well our model is performing. We can see it increasing rapidly at first, and then leveling off after around 30 epochs of training. The rest of this subsection will explain what exactly the mAP 0.5 value represents in this context. If you’re interested in training your own model at some point, the rest of this subsection will be of interest. If you’re just interested in deploying a pre-trained model, you can skip ahead to the next subsection.</p>
+<p>In the past when we’ve worked on machine learning projects (for example in the makeshift refinery identifion tutorial), our training and validation data was a set of points – geographic coordinates – which we labeled as either being a refinery or not. Calculating the accuracy of that model was fairly straightforward, since predictions were either true positives, true negatives, false positives or false negatives.</p>
+<p>This is slightly more complicated for object detection. We’re not going pixel-by-pixel and trying to say “this is a ship” or “this is not a ship.” Instead, we’re looking at a larger image, and trying to draw boxes around the ships. The problem is that there are many ways to draw a box around a ship. The image below shows the labels used in our training data to indicate the location of ships.</p>
+<p><img src="images/val_batch0_labels.jpg" class="img-fluid"> <img src="images/val_batch0_pred.jpg" class="img-fluid"></p>
+<p>The predicted bounding boxes are very close to the actual bounding boxes, but they’re not exactly the same. The first step in evaluating the performance of our model is to determine how close the predicted boxes are to the actual boxes. We can do this by calculating the <strong>intersection over union</strong> (IoU) of the predicted and actual boxes. This is essentially a measure of how much overlap there is between the the predicted and actual boxes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/iou.png" height="400" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Intersection over Union</figcaption><p></p>
+</figure>
+</div>
+<p>The IoU is a value between 0 and 1, where 0 means that the boxes don’t overlap at all, and 1 means that the boxes overlap perfectly. Now we can set a threshold value for the IoU, and say that if the IoU is greater than that threshold, then we’ll count that as a correct prediction. Now that we can classify a prediction as correct or incorrect, we can calculate two important metrics: <span class="math display">\[\text{Precision} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}}\]</span></p>
+<p>This is the proportion of positive identifications that are actually correct. If my model detects 100 ships and 90 of them are actually ships, then my precision is 90%.</p>
+<p><span class="math display">\[\text{Recall} = \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}\]</span></p>
+<p>This is the proportion of actual positives that are identified correctly. If there are 100 ships in the image, and my model detects 90 of them, then my recall is 90%.</p>
+<p>These two metrics are inversely related; I could easily get 100% recall by drawing lots of boxes everywhere to increase my chances of detecting all the ships. Conversely, I could get 100% precision by being extremely conservative and just drawing one or two boxes around the ships I’m most confident about. The key is to maximize <em>both</em>: we want our model to be sensitive enough to detect as many ships as possible (high recall), but also precise enough to only draw boxes around the ships that are actually there (high precision). Researchers find this balance using a <strong>Precision-Recall curve</strong> (PR curve), which plots precision on the y-axis and recall on the x-axis. Below is the Precision-Recall curve for our final model, for each class:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pr_curve.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Precision-Recall curve from the best</figcaption><p></p>
+</figure>
+</div>
+<p>Starting from the top left corner, we set a very high confidence threshold: precision is 1, meaning that every box we draw is a ship, but recall is near 0 meaning that we’re not detecting any ships. As we lower the confidence threshold, we start to detect more ships, but we also start to draw boxes around things that aren’t ships. Towards the middle of the curve, we’re detecting most of the ships, but we’re also drawing boxes around a lot of false positives. Towards the bottom right corner, we’re detecting all the ships, but we’re also generating lots of false positives.</p>
+<p>The goal is to find the point on the curve where precision and recall are both high; the closer the peak of our curve is to the top right corner, the better. A perfect model would touch the top right corner: it would have precision of 1 and recall of 1, detecting all of the ships without making any false positives. The area under this curve is called the <strong>Average Precision</strong> (AP), and is a measure of how close the curve is to the top right corner. The perfect model would have an AP of 1.</p>
+<p>Some classes have a very high AP – the value for the Aircraft Carrier class is 0.995, which is very high (though this could be down to the fact that we have a relatively small number of images with aircraft carriers in them). Ship-To-Ship (STS) transfer operations also have a high AP, at 0.951. However, other classes – notably the “Ship” class – have a low AP. This may be because the “Ship” class is a catch-all for any ship that doesn’t fit into one of the other classes, so it encompasses lots of weird looking ships.</p>
+<p>Finally, the <strong>mean Average Precision</strong> (mAP) is the average of the AP for each class, shown as the thick blue line above. Remember, all of this is premised on using a 0.5 threshold in the overlap (IoU) between our predicted boxes and the labels, which is why the final metric is called <strong>mAP 0.5</strong>. The mAP 0.5 for our model is 0.775, which is pretty good.</p>
+<p>This number is very useful when training a model in several different ways using the same dataset, in order to select the best performing one. It’s not that useful for comparing models trained on different datasets, since the mAP 0.5 is dependent on the number of classes in the dataset and the nature of those classes. For example, in the next section we’ll be using a different model trained on the DOTA dataset which has a mAP 0.5 of around 0.68, largely due to the fact that it has around twice as many classes and many of them are similar to each other.</p>
+</section>
+</section>
+<section id="inference" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="inference">Inference</h2>
+<p>Now that we’ve got a trained model, we can use it to conduct object detection on new images. we’ll build a data processing pipeline in three steps by:</p>
+<ol type="1">
+<li>Loading our trained model</li>
+<li>Creating an interactive map to define the area we want to analyze.</li>
+<li>Defining a function to run object detection within this area.</li>
+</ol>
+<section id="loading-a-trained-model" class="level3">
+<h3 class="anchored" data-anchor-id="loading-a-trained-model">1. Loading a trained model</h3>
+<p>During the training process, YOLO is iteratively tweaking the model to try to maximize mAP 0.5. It automatically saves the best version of the model in the following location: <code>YOLOv5_RS/runs/train/exp/weights/best.pt</code>. You can save this file for later use, which I have done in case you just want to use this model without having to train it yourself. I’ve also included several other pre-trained models which you can find in the <code>YOLOv5_RS/weights/</code> directory, including:</p>
+<ul>
+<li><p><code>lowres_ships.pt</code>: the model we just trained on Sentinel-2 imagery.</p></li>
+<li><p><code>aircraft.pt</code>: trained on the high resolution <a href="https://www.kaggle.com/datasets/airbusgeo/airbus-aircrafts-sample-dataset">Airbus Aircraft Detection Dataset</a>.</p></li>
+<li><p><code>general.pt</code>: trained on the <a href="https://captain-whu.github.io/DOTA/dataset.html">DOTA dataset</a> by <a href="https://github.com/KevinMuyaoGuo/yolov5s_for_satellite_imagery#readme">Kevin Guo</a>. This model works great on high resolution satellite imagery, and can detect the following classes: plane, ship, storage tank, baseball diamond, tennis court, basketball court, ground track field, harbor, bridge, large vehicle, small vehicle, helicopter, roundabout, soccer field, swimming pool, container crane, airport and helipad.</p></li>
+</ul>
+<p>So far, we’ve trained a model to detect ships in Sentinel-2 imagery. But to show the versatility of this general approach, the rest of this tutorial will load up the <code>general.pt</code> model, and use it to detect a wide range of aircraft in high resolution imagery.</p>
+</section>
+<section id="loading-the-input-imagery" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="loading-the-input-imagery">2. Loading the input imagery</h3>
+<p>To get started with object detection on satellite imagery using these pre-trained models, we need to define an Area of Interest (AOI) and load satellite imagery. We’ll do this by accessing Google Earth Engine from the Python notebook we’re working in, and creating an interactive map that will let us draw an AOI for analysis.</p>
+<p>First, we first need to import a few packages:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install geemap  <span class="op">-</span>q</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ee</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geemap</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> ImageDraw</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> PIL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once we’ve done this, we’ll also need to log in to Google Earth Engine using its Python API in order to access the satellite imagery. Running these two lines of code will generate a prompt with instructions; you have to click the link, confirm that you give the notebook permission to access your Earth Engine account, and paste the authentication code in the provided dialogue box.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ee.Authenticate()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ee.Initialize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Great, now we can load high resolution imagery from the National Agriculture Imagery Program (NAIP) and create an interactive map. For this example, I’m centering the map on the <a href="https://en.wikipedia.org/wiki/309th_Aerospace_Maintenance_and_Regeneration_Group">Davis-Monthan Airplane Boneyard</a>. This is where the US Air force retires and restores aircraft, so it will have lots of airplanes of different kinds for us to identify.</p>
+<p>First, we want to define a function called <code>detect</code> that will accept four arguments:</p>
+<ul>
+<li><code>input</code>: the satellite imagery we want to analyze.</li>
+<li><code>visParams</code>: a dictionary of visualization parameters for the imagery.</li>
+<li><code>weight</code>: the name of the pre-trained model we want to use.</li>
+<li><code>labels</code>: a boolean indicating whether we want to display the labels on the processed image.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> detect(<span class="bu">input</span>, visParams, weight, labels<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get the AOI from the map</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  aoi <span class="op">=</span> ee.FeatureCollection(Map.draw_features)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  mapScale<span class="op">=</span>Map.getScale()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Visualize the raster in Earth Engine and get a download URL</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  image_url<span class="op">=</span><span class="bu">input</span>.visualize(bands<span class="op">=</span>visParams[<span class="st">'bands'</span>], <span class="bu">max</span><span class="op">=</span>visParams[<span class="st">'max'</span>]).getThumbURL({<span class="st">"region"</span>:aoi.geometry(), <span class="st">'scale'</span>:mapScale})</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Load the image into a PIL image</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  response <span class="op">=</span> requests.get(image_url)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  img <span class="op">=</span> Image.<span class="bu">open</span>(BytesIO(response.content))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Load the model</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  model <span class="op">=</span>torch.hub.load(<span class="st">'.'</span>,<span class="st">'custom'</span>, path<span class="op">=</span><span class="st">'weights/</span><span class="sc">{}</span><span class="st">.pt'</span>.<span class="bu">format</span>(weight),source<span class="op">=</span><span class="st">'local'</span>,_verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run inference</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  results <span class="op">=</span> model(img)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Count the number of detections</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  counts<span class="op">=</span>pd.DataFrame(results.pandas().xyxy[<span class="dv">0</span>].groupby(<span class="st">'name'</span>).size()).reset_index().rename(columns<span class="op">=</span>{<span class="dv">0</span>:<span class="st">'count'</span>,<span class="st">'name'</span>:<span class="st">'detected'</span>}).set_index(<span class="st">'count'</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Display the results</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  results.show(labels<span class="op">=</span>labels)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print the number of detections and the date of the image</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(ee.Date(<span class="bu">input</span>.get(<span class="st">'system:time_start'</span>)).<span class="bu">format</span>(<span class="st">"dd-MM-yyyy"</span>).getInfo())</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(counts)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, we can load the NAIP imagery and create an interactive map.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the past 10 years of NAIP imagery</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>naip <span class="op">=</span> ee.ImageCollection(<span class="st">'USDA/NAIP/DOQQ'</span>).<span class="bu">filter</span>(ee.Filter.date(<span class="st">'2012-01-01'</span>, <span class="st">'2022-01-01'</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set some thresholds</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>trueColorVis <span class="op">=</span> {</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'bands'</span>:[<span class="st">'R'</span>, <span class="st">'G'</span>, <span class="st">'B'</span>],</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'min'</span>: <span class="dv">0</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'max'</span>: <span class="dv">300</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize our map</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>Map <span class="op">=</span> geemap.Map()</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>Map.setCenter(<span class="op">-</span><span class="fl">110.84</span>,<span class="fl">32.16</span>,<span class="dv">17</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>Map.addLayer(naip.first(), trueColorVis, <span class="st">"naip"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>Map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will generate a small map with some drawing tools on the left side. We can use these tools to draw a polygon around the area we want to analyze. Use the drawing tools to draw a rectangle around an area of interest.</p>
+<p>Finally, we can run the detection on the imagery. We’ll do this by iterating through the collection of images, and running the <code>detect</code> function on each one. We’ll also store the results in a dataframe so we can analyze them later.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the polygon we just drew on the map </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>aoi<span class="op">=</span>ee.FeatureCollection(Map.draw_features)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a list of all the images in the collection</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>naip_list<span class="op">=</span>naip.filterBounds(aoi).toList(naip.size())</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate through the list of images and run detection on each one</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,(img_list.size()).getInfo()):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  detect(ee.Image(naip_list.get(num)), trueColorVis,<span class="st">'general'</span>,labels<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  df<span class="op">=</span>df.append(detection) <span class="co"># store the results in a dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Below is the result of the detection on the latest image in the collection:</p>
+<div class="column-screen">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/boneyard.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Davis-Monthan Airplane Boneyard, Tucson AZ. 32.139498, -110.868549</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>This image shows a remarkable degree of accuracy being achieved by our model. Inference took just 822.2 milliseconds, and it seems to be doing pretty well. The model identifies over 100 different kinds of aircraft (orange boxes) of many shapes and sizes, civilian and military, without missing a single one. It also identifies around 20 different types of helicopter (blue boxes) in the top right and even spots the cars on the highway and in the parking lots (red boxes). It’s not perfect – it thinks there’s a ship in the bottom left corner near the shed (yellow box); in reality this appears to be half of a plane’s fuselage, an understandable mistake given how long it took <em>me</em> to figure out what it was.</p>
+<!-- 
+Even though we trained our model on Sentinel-2 imagery (10 meters per pixel), it can still be used on imagery from different satellites as long as they have a broadly similar resolution. A ship in PlanetScope imagery (3 meters per pixel) will look roughly similar to a ship in Sentinel-2 imagery. Using PlanetScope has another big advantage over Sentinel-2 beyond its higher spatial resolution: it has a much higher revisit rate (daily instead of 5 days). Though *downloading* PlanetScope imagery isn't free, you *can* generate a timelapse image of any area on Earth using Planet's [Planet Stories](https://www.planet.com/stories/create) tool. Simply create a free account and follow the instructions to generate a timelapse of an area of interest. You can then download the timelapse video and use it as input to our model.
+
+
+Once you've done this, you can run the following line of code to automatically identify ships in the timelapse video: 
+
+
+
+
+
+
+
+
+
+
+
+
+![](../images/mikolayiv.mp4)
+
+
+ -->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/C4_Ships.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Ship Detection</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
+
+
+
+</body></html>

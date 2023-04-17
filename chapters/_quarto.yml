@@ -1,0 +1,60 @@
+project:
+  type: book
+  output-dir: ../docs
+
+
+book:
+  title: "Remote Sensing \n for OSINT"
+  author: "[Dr. Ollie Ballinger](https://oballinger.github.io)"
+  date: "03/15/2023"
+  chapters:
+    - part: "A. Introduction"
+      chapters:
+        - index.qmd
+        - A2_Remote_Sensing.qmd
+        - A3_Data_Acquisition.qmd
+    - part: "B. Google Earth Engine"
+      chapters:
+        - B1_Getting_Started.qmd
+        - B2_Interpreting_Images.qmd
+        - B3_Image_Series.qmd
+        - B4_Vectors_Tables.qmd
+    - part: "C. Case Studies"
+      chapters:
+        - C1_Lights.qmd
+        - C2_Refineries.qmd
+        - C3_Blast.qmd
+        - C4_Ships.qmd
+        - C5_Object_Detection.qmd
+  repo-url: https://github.com/oballinger/RS4OSINT/
+  google-analytics: G-RK9ZLZQ6GL
+  repo-actions: [edit]
+  downloads: [pdf, epub]
+  sharing: [twitter, facebook]
+  favicon: ../favicon.ico
+  sidebar:
+    logo: ../images/logo_white.png
+    collapse-level: 1
+
+
+
+
+format:
+  html:
+    theme:
+      dark: darkly
+      light: cosmo
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: ../monokai.theme
+    linkcolor: "#34a832"   
+    number-sections: false     
+
+  pdf:
+    documentclass: scrreprt
+    header-includes:
+      - \makeatletter
+      - \@addtoreset{chapter}{part}
+      - \makeatother         
+  epub:
+    cover-image: ../images/logo_black.png

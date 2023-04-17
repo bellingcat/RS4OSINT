@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Remote Sensing for OSINT - 9&nbsp; Blast Damage Assessment</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/C4_Ships.html" rel="next">
+<link href="../chapters/C2_Refineries.html" rel="prev">
+<link href="../favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-RK9ZLZQ6GL"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Blast Damage Assessment</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo_white.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Remote Sensing for OSINT</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/oballinger/RS4OSINT/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="../Remote-Sensing-
+-for-OSINT.pdf">
+            <i class="bi bi-bi-file-pdf pe-1"></i>
+          Download PDF
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="../Remote-Sensing-
+-for-OSINT.epub">
+            <i class="bi bi-bi-journal pe-1"></i>
+          Download ePub
+          </a>
+        </li>
+    </ul>
+    <a href="" title="Share" id="sidebar-tool-dropdown-1" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-1">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">A. Introduction</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A2_Remote_Sensing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Remote Sensing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A3_Data_Acquisition.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Acquisition</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">B. Google Earth Engine</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B1_Getting_Started.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B2_Interpreting_Images.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interpreting Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B3_Image_Series.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image Series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B4_Vectors_Tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Vectors and Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">C. Case Studies</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C1_Lights.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">War at Night</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C2_Refineries.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Refinery Identification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C3_Blast.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Blast Damage Assessment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C4_Ships.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ship Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C5_Object_Detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#change-detection" id="toc-change-detection" class="nav-link active" data-scroll-target="#change-detection">Change Detection</a></li>
+  <li><a href="#implementing-a-t-test-in-earth-engine" id="toc-implementing-a-t-test-in-earth-engine" class="nav-link" data-scroll-target="#implementing-a-t-test-in-earth-engine">Implementing a t-test in Earth Engine</a></li>
+  <li><a href="#filtering-the-sentinel-1-imagery" id="toc-filtering-the-sentinel-1-imagery" class="nav-link" data-scroll-target="#filtering-the-sentinel-1-imagery">Filtering the Sentinel-1 Imagery</a></li>
+  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation">Validation</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#extension-satellite-imagery-and-its-limits" id="toc-extension-satellite-imagery-and-its-limits" class="nav-link" data-scroll-target="#extension-satellite-imagery-and-its-limits">Extension: Satellite Imagery and its Limits</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-3d-model-of-beirut" id="toc-creating-a-3d-model-of-beirut" class="nav-link" data-scroll-target="#creating-a-3d-model-of-beirut">Creating a 3D model of Beirut</a></li>
+  <li><a href="#using-a-viewshed-analysis-to-assess-blast-exposure" id="toc-using-a-viewshed-analysis-to-assess-blast-exposure" class="nav-link" data-scroll-target="#using-a-viewshed-analysis-to-assess-blast-exposure">Using a Viewshed Analysis to Assess Blast Exposure</a></li>
+  <li><a href="#accounting-for-diffraction" id="toc-accounting-for-diffraction" class="nav-link" data-scroll-target="#accounting-for-diffraction">Accounting for Diffraction</a></li>
+  <li><a href="#modeling-the-pressure-wave" id="toc-modeling-the-pressure-wave" class="nav-link" data-scroll-target="#modeling-the-pressure-wave">Modeling the Pressure Wave</a></li>
+  <li><a href="#assessing-damage-to-the-skyline-tower" id="toc-assessing-damage-to-the-skyline-tower" class="nav-link" data-scroll-target="#assessing-damage-to-the-skyline-tower">Assessing Damage to the Skyline Tower</a></li>
+  <li><a href="#further-research" id="toc-further-research" class="nav-link" data-scroll-target="#further-research">Further Research</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/oballinger/RS4OSINT/edit/main/chapters/C3_Blast.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Blast Damage Assessment</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>On August 4th, 2020, a warehouse full of fertilizer in the port of Beirut exploded. The blast killed over 200 people, injured thousands, and caused widespread damage to the city:</p>
+<div style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+<p><iframe width="100%" height="100%" src="https://www.youtube.com/embed/LNDhIGR-83w?start=29" frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0"> </iframe></p>
+</div>
+<p>Assessing blast damage is a common task for open source investigators, and satellite imagery analysis is one of the best tools we have at our disposal to analyze this sort of phenomenon. <a href="https://earthobservatory.nasa.gov/images/147098/scientists-map-beirut-blast-damage">NASA</a> used Sentinel-1 imagery in the aftermath of the explosion to generate an estimated damage map. They explain that Sentinel-1 Synthetic Aperture Radar (SAR) imagery is good for this sort of task:</p>
+<p>“SAR instruments send pulses of microwaves toward Earth’s surface and listen for the reflections of those waves. The radar waves can penetrate cloud cover, vegetation, and the dark of night to detect changes that might not show up in visible light imagery. When Earth’s crust moves due to an earthquake, when dry land is suddenly covered by flood water, or when buildings have been damaged or toppled, the amplitude and phase of radar wave reflections changes in those areas and indicates to the satellite that something on the ground has changed.”</p>
+<p>The NASA team produced this estimate the day after the explosion, which is very impressive. However, due to the quick turnaround, they were pretty light on the description of their methodology (they didn’t provide any code, or even explicitly say how exactly they generated the estimate), making their analysis hard to replicate. They also failed to validate their results, which is a critical step in any analysis.</p>
+<p>In this case study we’ll be developing our own change detection algorithm from scratch, applying to Sentinel-1 imagery of Beirut before and after the blast, and validating our results using building footprints and U.N. damage estimates as the ground truth. Below is the final result of the analysis, which shows building footprints colored according to the predicted level of damage they sustained from the blast:</p>
+<div class="column-page">
+<iframe src="https://ollielballinger.users.earthengine.app/view/beirutsar" width="100%" height="700px">
+</iframe>
+</div>
+<section id="change-detection" class="level2">
+<h2 class="anchored" data-anchor-id="change-detection">Change Detection</h2>
+<p>There are many ways to detect change between two images. The simplest way would be to take an image taken before an event, and subtract it from an image taken after. This is a good way to get a general sense of where change has occurred, but if you only use two images (one before an event and another after), it would be difficult to differentiate between areas that have changed as a result of the event in question, and areas that have changed for other reasons. Things in Beirut (and cities in general) are constantly changing: construction, cars/planes/ships moving, vegetation growing, etc. So we wouldn’t know if the change we’re seeing is a result of the explosion or whether that area is generally prone to change. We can overcome this by comparing a bunch of pre-event images to a bunch of post-event images. This way we can see if the change we’re seeing is consistent across all of the images. If it is, then we can be fairly confident that the change is a result of the event in question. The mean is simply the sum of all the values (<span class="math inline">\(x_i\)</span>) in a set divided by the number of values (<span class="math inline">\(n\)</span>):</p>
+<p><span class="math display">\[\large \overline{x} = \frac{1}{n} \sum_{i=1}^n x_i\]</span></p>
+<p>But if we just take the average pixel value before and subtract the average pixel value after, we’re not accounting for the <em>variability</em> of that pixel’s values. For example, if we have a pixel that has had an average value of 1 for the month before the event, and a value of 2 in the month after the event, the difference is 1. If that pixel’s value is extremely consistent (it never varies by more than 0.1), such a change would be very significant. But if that pixel’s value is very variable (it varies by 2 or even 3 on a regular basis), then the change is not significant. So we need to account for the variability of the pixel’s values using the standard deviation. It is calculated as the square root of the variance, which is the average of the squared differences from the mean:</p>
+<p><span class="math display">\[\large s = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2}\]</span></p>
+<p>With just the mean and the standard deviations of two sets of numbers, we can use a statistical test to determine whether the change in means is significant. The simplest way to do this is to use a pixelwise t-test, which is basically just a signal-to-noise ratio: it calculates the difference between two sample means (signal), and divides it by the standard deviations of both samples (noise). In this case, the two samples are the pre- and post-event images. The t-test is applied to each pixel in the image, allowing us to determine whether the change is statistically significant. Given two groups, <span class="math inline">\(x_1\)</span> before the event, and <span class="math inline">\(x_2\)</span> after the event, the <span class="math inline">\(t\)</span> statistic is calculated as:</p>
+<p><span class="math display">\[ \Large t = {\frac{\overline{x_1}-\overline{x_2}} {\sqrt{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}}} \]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\overline{x}\)</span>: Sample Mean</li>
+<li><span class="math inline">\(s^2\)</span>: Sample Standard Deviation</li>
+<li><span class="math inline">\(n\)</span>: Number of observations</li>
+</ul>
+<p>This procedure gives us a number called a t-value, which is a measure of how many standard deviations the difference between the two means is. We’re not going to get into the details here, but a rule of thumb is that if the t-value is greater than 2, then the difference between the two means is significant. If the t-value is less than 2, then the difference is not significant. We’re going to calculate the t-value for each pixel in the image to determine whether that pixel has changed significantly following the event in question. You don’t need to know the details of the t-test to understand the results (but hopefully you’ve got an intuition for what it’s doing). If you’re interested in learning more about statistical tests of this sort, I teach a course on Data Science at the University College London, and have made all of the lectures and courseware open-source. The T-test lecture is here.</p>
+</section>
+<section id="implementing-a-t-test-in-earth-engine" class="level2">
+<h2 class="anchored" data-anchor-id="implementing-a-t-test-in-earth-engine">Implementing a t-test in Earth Engine</h2>
+<p>Now lets go about implementing this in Earth Engine. We’ll start by centering the map on the port of Beirut, and setting the map to satellite view, and defining an area of interest (AOI) as a 3km buffer around the port:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">setCenter</span>(<span class="fl">35.51898</span><span class="op">,</span> <span class="fl">33.90153</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">setOptions</span>(<span class="st">"satellite"</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> aoi <span class="op">=</span> ee<span class="op">.</span><span class="at">Geometry</span><span class="op">.</span><span class="fu">Point</span>(<span class="fl">35.51898</span><span class="op">,</span> <span class="fl">33.90153</span>)<span class="op">.</span><span class="fu">buffer</span>(<span class="dv">3000</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, let’s define a function in earth engine that will perform the T-Test. The block of code below defines a function to implement a t-test for every pixel in a set of images. The function will be called ‘ttest’, and takes four arguments:</p>
+<ul>
+<li>s1: the image collection</li>
+<li>shock: the date of the event</li>
+<li>pre_interval: the number of months before the event</li>
+<li>post_interval: the number of months after the event</li>
+</ul>
+<p>The function will return a t-value image, which we can use to determine whether a pixel has changed significantly following the event in question.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ttest</span>(s1<span class="op">,</span> shock<span class="op">,</span> pre_interval<span class="op">,</span> post_interval) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Convert the shock date to a date object</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> shock <span class="op">=</span> ee<span class="op">.</span><span class="fu">Date</span>(shock)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Filter the image collection to the pre-event period</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> pre <span class="op">=</span> s1<span class="op">.</span><span class="fu">filterDate</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    shock<span class="op">.</span><span class="fu">advance</span>(ee<span class="op">.</span><span class="fu">Number</span>(pre_interval)<span class="op">.</span><span class="fu">multiply</span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">,</span> <span class="st">"month"</span>)<span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    shock</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Filter the image collection to the post-event period</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> post <span class="op">=</span> s1<span class="op">.</span><span class="fu">filterDate</span>(shock<span class="op">,</span> shock<span class="op">.</span><span class="fu">advance</span>(post_interval<span class="op">,</span> <span class="st">"month"</span>))<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Calculate the mean, standard deviation, and number of images for the pre-event period</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> pre_mean <span class="op">=</span> pre<span class="op">.</span><span class="fu">mean</span>()<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> pre_sd <span class="op">=</span> pre<span class="op">.</span><span class="fu">reduce</span>(ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">stdDev</span>())<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> pre_n <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(pre<span class="op">.</span><span class="fu">filterBounds</span>(aoi)<span class="op">.</span><span class="fu">size</span>())<span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Calculate the mean, standard deviation, and number of images for the pre-event period</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> post_mean <span class="op">=</span> post<span class="op">.</span><span class="fu">mean</span>()<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> post_sd <span class="op">=</span> post<span class="op">.</span><span class="fu">reduce</span>(ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">stdDev</span>())<span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> post_n <span class="op">=</span> ee<span class="op">.</span><span class="fu">Number</span>(post<span class="op">.</span><span class="fu">filterBounds</span>(aoi)<span class="op">.</span><span class="fu">size</span>())<span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Calculate the pooled standard deviation</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> pooled_sd <span class="op">=</span> pre_sd</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">multiply</span>(pre_sd)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">multiply</span>(pre_n<span class="op">.</span><span class="fu">subtract</span>(<span class="dv">1</span>))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">add</span>(post_sd<span class="op">.</span><span class="fu">multiply</span>(post_sd)<span class="op">.</span><span class="fu">multiply</span>(post_n<span class="op">.</span><span class="fu">subtract</span>(<span class="dv">1</span>)))</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">divide</span>(pre_n<span class="op">.</span><span class="fu">add</span>(post_n)<span class="op">.</span><span class="fu">subtract</span>(<span class="dv">2</span>))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">sqrt</span>()<span class="op">;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Calculate the denominator of the t-test</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> denom <span class="op">=</span> pooled_sd<span class="op">.</span><span class="fu">multiply</span>(</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    ee<span class="op">.</span><span class="fu">Number</span>(<span class="dv">1</span>)<span class="op">.</span><span class="fu">divide</span>(pre_n)<span class="op">.</span><span class="fu">add</span>(ee<span class="op">.</span><span class="fu">Number</span>(<span class="dv">1</span>)<span class="op">.</span><span class="fu">divide</span>(post_n))<span class="op">.</span><span class="fu">sqrt</span>()</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Calculate the Degrees of Freedom, which is the number of observations minus 2</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> df <span class="op">=</span> pre_n<span class="op">.</span><span class="fu">add</span>(post_n)<span class="op">.</span><span class="fu">subtract</span>(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Number of Images: "</span><span class="op">,</span> df)<span class="op">;</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Calculate the t-test using the:</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="co">// mean of the pre-event period, </span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="co">// the mean of the post-event period, </span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="co">// and the pooled standard deviation</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> change <span class="op">=</span> post_mean</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">abs</span>()</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">subtract</span>(pre_mean<span class="op">.</span><span class="fu">abs</span>())</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">divide</span>(denom)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">abs</span>()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">subtract</span>(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="co">// return the t-values for each pixel</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> change<span class="op">;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>An important detail in the code above is that we’ve actually tweaked the t-test slightly, in two ways.</p>
+<p>First, the algorithm above returns tha <em>absolute</em> value of t (i.e.&nbsp;the absolute value of the difference between the two means). This is because we’re interested in whether the pixel has changed at all, not whether it’s changed in a particular direction. Second, we’ve subtracted 2 from the t-value.</p>
+<p>The t-value is a measure of how many standard deviations the difference between the two means is. Generally speaking, if the t-value is greater than 2, then the difference between the two means is considered statistically significant. 2 is a fairly arbitrary cutoff, but it’s the most commonly used one since it corresponds to the 95% confidence interval (i.e., there’s less than a 5% chance of observing a difference that big due to random chance). Now we’ve got a function that can take an image collection and return a t-value image, where a value greater than 0 corresponds to a statistically significant change between the pre-event and post-event periods.</p>
+</section>
+<section id="filtering-the-sentinel-1-imagery" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-the-sentinel-1-imagery">Filtering the Sentinel-1 Imagery</h2>
+<p>We can’t just blindly apply this algorithm to the entire image collection, because the image collection contains images from both ascending and descending orbits. We need to filter the image collection to the ascending and descending orbits, and then calculate the t-value for each orbit separately: this is because the satellite is viewing the scene from a completely different angle when it’s in ascending and descending orbits, which will generate a lot of noise in our data. In fact, even when the satellite is either ascending or descending, we can have multiple images of the same place taken from slightly different orbital tracks because these overlap (see <a href="../ch1#orbits">this visualization of orbits</a>). We need to filter the image collection to the relative orbit number that is most common within the image collection. For that, we define a new function called ‘filter_s1’, which takes a single argument: the path (either ‘ASCENDING’ or ‘DESCENDING’).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">filter_s1</span>(path) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Filter the image collection to the ascending or descending orbit</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> s1 <span class="op">=</span> ee</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">"COPERNICUS/S1_GRD"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">listContains</span>(<span class="st">"transmitterReceiverPolarisation"</span><span class="op">,</span> <span class="st">"VH"</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">eq</span>(<span class="st">"instrumentMode"</span><span class="op">,</span> <span class="st">"IW"</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">eq</span>(<span class="st">"orbitProperties_pass"</span><span class="op">,</span> path))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filterBounds</span>(aoi)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">select</span>(<span class="st">"VH"</span>)<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Find the most common relative orbit number</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> orbit <span class="op">=</span> s1</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">aggregate_array</span>(<span class="st">"relativeOrbitNumber_start"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">reduce</span>(ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">mode</span>())<span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Filter the image collection to the most common relative orbit number</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> s1 <span class="op">=</span> s1<span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">eq</span>(<span class="st">"relativeOrbitNumber_start"</span><span class="op">,</span> orbit))<span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Calculate the t-test for the filtered image collection using the function we defined earlier</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> change <span class="op">=</span> <span class="fu">ttest</span>(s1<span class="op">,</span> <span class="st">"2020-08-04"</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Return the t-values for each pixel</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> change<span class="op">;</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ll notice that we’ve called the ttest function we defined earlier with four arguments:</p>
+<ul>
+<li>s1: the Sentinel-1 image collection filtered to the ascending or descending orbit</li>
+<li>2020-08-04: the date of the explosion</li>
+<li>12: the number of months before the explosion to use for the pre-event period; I’m choosing to include the full year prior to the explosion to get a good baseline</li>
+<li>2: the number of months after the explosion to use for the post-event period; I’m including 2 months after the explosion. Much less than that, and we risk missing the effects of the explosion. Much more than that, and we risk including the effects other changes that happened after the explosion, including the reconstruction effort.</li>
+</ul>
+<p>Now we want to apply this function to the image collection twice (once for each orbit) and then combine the two images into a single image. After that, we can clip it to the area of interest and display it on the map:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Call the filter_s1 function twice, once for each orbit, and then combine the two images into a single image</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> composite <span class="op">=</span> ee</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">ImageCollection</span>([<span class="fu">filter_s1</span>(<span class="st">"ASCENDING"</span>)<span class="op">,</span> <span class="fu">filter_s1</span>(<span class="st">"DESCENDING"</span>)])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">mean</span>()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">clip</span>(aoi)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Define a color palette</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> palette <span class="op">=</span> [<span class="st">"440154"</span><span class="op">,</span> <span class="st">"3b528b"</span><span class="op">,</span> <span class="st">"21918c"</span><span class="op">,</span> <span class="st">"5ec962"</span><span class="op">,</span> <span class="st">"fde725"</span>]<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">// Add the composite to the map</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  composite<span class="op">,</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">min</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span> <span class="dt">palette</span><span class="op">:</span> palette }<span class="op">,</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"change"</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The visualization parameters correspond to the statistical significance of the change in pixel values. Using the Viridis color palette which ranges from purple to yellow, dark purple pixels indicate no significant change, and yellow pixels indicate a significant change with with 95% confidence. The brighter the yellow of a pixel, the more significant the change.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beirut/beirut_change_2020.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Pixelwise T-Test, 2020</figcaption><p></p>
+</figure>
+</div>
+<p>This seems to be working quite well; but remember, ports are generally prone to change. The t-test is accounting for this by calculating each pixel’s variance over the entire time period, but it’s still possible that the change we’re seeing is due to the port rather than the explosion. To test this, we can run the same algorithm on the same area, using the same date cutoff (August 4th), but in a different year; I’ve chosen 2018. This is what’s known as a placebo test: if it’s still showing loads of statistically significant change around the cutoff, our algorithm is probably picking up on port activity rather than the explosion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beirut/beirut_change_2018.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Pixelwise T-Test, 2018</figcaption><p></p>
+</figure>
+</div>
+<p>Compared to the 2020 image, there’s a lot less yellow (significant change). That being said, there are a few yellow areas. This could be due to a number of reasons: ships coming and going, cranes moving, and containers being loaded and unloaded would all register in the change detection algorithm. There are also a number of yellow specks throughout the city, which is also to be expected since cities are also generally in a state of flux. Construction, demolition, and even the growth of vegetation can all be detected by the algorithm.</p>
+<p>However, the scale and quantity of the change is nowhere near what it was for the 2020 image. This is a good sign that the algorithm is detecting change resulting from the explosion.</p>
+</section>
+<section id="validation" class="level2">
+<h2 class="anchored" data-anchor-id="validation">Validation</h2>
+<p>Great. We’ve developed our very own change detection algorithm in earth engine, applied it to the Beirut explosion, and it seems to be working after checking with a basic placebo test. But how do we know that it’s correctly predicting the <em>extent</em> of the damage, and not wildly over/underestimating?</p>
+<p>Given that this was a few years ago, we have the benefit of hindsight. In particular, the United Nations and the Municipality of Beirut have <a href="https://unhabitat.org/sites/default/files/2020/10/municipality_of_beirut_-_beirut_explosion_rapid_assessment_report.pdf">published a report</a> on the damage caused by the explosion. This report includes estimates of the number of buildings damaged or destroyed, as well as the number of people displaced. The report states that approximately 10,000 buildings were damaged within a 3 kilometre radius of the port. If our algorithm suggests that only 1,000 buildings were damaged, it’s undershooting. If it suggests that 100,000 buildings were damaged, it’s overshooting.</p>
+<p>Using building footprint data and the t-test image we just generated, we can createe an estimate of the number of damaged buildings according to our model. First, we want to generate a thresholded image, where pixels with a value greater than 0 are set to 1, and all other pixels are set to 0. We can then use this mask to reduce the building footprints to a single value for each building, where the value is the mean of the t-test image within the footprint. If the mean value is greater than 0, the building is damaged. If it’s less than 0, the building is not damaged.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a mask of the t-test image, where pixels with a value greater than 0 are set to 1, and all other pixels are set to 0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> threshold <span class="op">=</span> composite<span class="op">.</span><span class="fu">updateMask</span>(composite<span class="op">.</span><span class="fu">gt</span>(<span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Load the building footprints</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> buildings <span class="op">=</span> ee</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">FeatureCollection</span>(<span class="st">"projects/sat-io/open-datasets/MSBuildings/Lebanon"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filterBounds</span>(aoi)<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate the mean value of the t-test image within each building footprint</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> damaged_buildings <span class="op">=</span> threshold<span class="op">.</span><span class="fu">reduceRegions</span>({</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">collection</span><span class="op">:</span> buildings<span class="op">,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reducer</span><span class="op">:</span> ee<span class="op">.</span><span class="at">Reducer</span><span class="op">.</span><span class="fu">mean</span>()<span class="op">,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scale</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">// Print the number of buildings with a mean value greater than 0</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">// i.e., those displaying statistically  significant change</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(damaged_buildings<span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">gt</span>(<span class="st">"mean"</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">.</span><span class="fu">size</span>())<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result is 9,256, which is pretty damn close to 10,000. We can also visualize the building footprints on the map, colored according the mean value of the t-test image within the footprint, where:</p>
+<ul>
+<li>Blue = no damage</li>
+<li>Green = low damage</li>
+<li>Yellow/Orange = medium damage</li>
+<li>Red = high levels of damage</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Create an empty image</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> empty <span class="op">=</span> ee<span class="op">.</span><span class="fu">Image</span>()<span class="op">.</span><span class="fu">byte</span>()<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Paint the building footprints onto the empty image</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> outline <span class="op">=</span> empty<span class="op">.</span><span class="fu">paint</span>({</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">featureCollection</span><span class="op">:</span> damaged_buildings<span class="op">,</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> <span class="st">"mean"</span><span class="op">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">// Define a color palette</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> building_palette <span class="op">=</span> [</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"0034f5"</span><span class="op">,</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"1e7d83"</span><span class="op">,</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"4da910"</span><span class="op">,</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"b3c120"</span><span class="op">,</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"fcc228"</span><span class="op">,</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ff8410"</span><span class="op">,</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"fd3000"</span><span class="op">,</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>]<span class="op">;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">// Add the image to the map</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  outline<span class="op">,</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">palette</span><span class="op">:</span> building_palette<span class="op">,</span> <span class="dt">min</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">max</span><span class="op">:</span> <span class="dv">2</span> }<span class="op">,</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Damaged Buildings"</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result naturally resembles the underlying t-test image, with high levels of damage concentrated around the port, and progressively decreasing damage with distance:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beirut/beirut_footprints.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Building Footprints colored according to estimated blast damage</figcaption><p></p>
+</figure>
+</div>
+<p>To get a better sense of how these predicitions correspond to actual damage, we can zoom in and turn on the Google satellite basemap, which has imagery taken just after the explosion; you can still see capsized boats in the port. Zooming in to the epicenter, we can see several warehouses that were effectively vaporized. Our change detection algorithm picks up on a high degree of change, as indicated by the red outlines of the building footprints:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beirut/beirut_footprints_port.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Predicted damage and optical satellite imagery in the Port of Beirut, August 2020</figcaption><p></p>
+</figure>
+</div>
+<p>This is pretty low-hanging fruit. Let’s look at a different area, around 1.3km east from the epicenter with a mix of warehouses and residential buildings:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/beirut/beirut_footprints_zoomed.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Area east of the port: 35.533194, 33.9024</figcaption><p></p>
+</figure>
+</div>
+<p>Here, there’s greater variation in the predictions. I’ve highlighted three areas.</p>
+<p>In Area A, we see a warehouse with a highly deformed roof; panels of corrugated iron are missing, and much of the roof is warped. The building footprint for this warehouse is red, suggesting that our algorithm correctly predicts a significant amount of blast damage.</p>
+<p>In Area B, we see a medium-rise building. If you look closely at the southern edge of the building, you’ll see the siding has been completely torn off and is laying on the sidewalk. The building footprint is orange, suggesting a medium amount of change. We may be underestimating a bit here.</p>
+<p>In Area C, there are a bunch of high rise buildings clustered together. The building footprints are all blue, suggesting little to no damage. This is a bit of a surprise given how damaged areas A and B are. If you squint at the satellite image, it is indeed hard to tell if these buildings are damaged because we’re looking at them from the top down, when much of the damage (e.g., the windows being blown out) would only be visible from the side. Indeed, our own estimate of the number of damaged buildings based on the algorithm we developed is about 8% shy of the U.N.’s estimate. This may be why.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this practical example, we created a custom change detection algorithm that conducts a pixelwise t-test to detect change resulting from the 2020 explosion in the port of Beirut. By defining our own functions to do most of this analysis, we can apply the same workflow quite easily to a different context by simply moving the AOI and inputting the date of the shock. A placebo test showed that it’s not just detecting general change in the area, but specifically change resulting from the explosion: when we keep everything the same but change the year of the shock, we see very little significant change being detected. Finally, by joining the predicted damage map to building footprints, we come up with an estimate of 9,256 damaged buildings, which is pretty close to the U.N.’s estimate of 10,000. That concludes the portion of this case study that deals with Earth Engine, but if you’re interested in learning more about why we’re coming up a bit short on the damage estimate (and some different ways of looking at the problem), read on.</p>
+</section>
+<section id="extension-satellite-imagery-and-its-limits" class="level2">
+<h2 class="anchored" data-anchor-id="extension-satellite-imagery-and-its-limits">Extension: Satellite Imagery and its Limits</h2>
+<p>Though satellite imagery analysis is undoubtedly one of the best tools we have at our disposal to analyze this sort of phenomenon, it appears to systematically underestimate the extent of damage in Beirut. I outline an alternative approach using Open Street Map data to create a 3D model of Beirut and the explosion to analyze directional blast damage. Again, we’re now leaving Earth Engine and moving to Blender, so if you’re not interested in that feel free to skip ahead to the next case study.</p>
+<p>Below is one of the most viewed videos of the explosion:</p>
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+Stunning video shows explosions just minutes ago at Beirut port <a href="https://t.co/ZjltF0VcTr">pic.twitter.com/ZjltF0VcTr</a>
+</p>
+— Borzou Daragahi 🖊🗒 (<span class="citation" data-cites="borzou">@borzou</span>) <a href="https://twitter.com/borzou/status/1290675854767513600?ref_src=twsrc%5Etfw">August 4, 2020</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Geolocating this video was pretty simple thanks to the Greek Orthodox church (highlighted in green below) and the road leading to it (highlighted in blue). The red box indicates the likely location (33.889061, 35.515909) from which the person was filming:</p>
+<p><img src="../images/beirut/IMG_2.png" class="img-fluid"></p>
+<p>The video shows heavy damage being sustained by areas well outside the zones classified as damaged in the maps above (both my own and NASA’s). Indeed, substantial damage was reported several kilometers away.</p>
+<p>Why are satellite images underestimating damage in Beirut? Satellite images are taken from above, and are two-dimensional. Much of the damage caused by the blast, however, was directional; the pressure wave hit the sides of buildings, as shown in this diagram from a FEMA manual:</p>
+<p><img src="../images/beirut/IMG_3.png" class="img-fluid"></p>
+<p>Areas close to the explosion suffered so much damage that it could be seen from above, but even if an apartment building had all of its windows blown out, this would not necessarily be visible in a top-down view. Even for radar, which does technically collect data in three dimensions, the angle problem remains; a high resolution radar might be able to tell you how tall an apartment complex is, but it won’t give you a clear image of all sides. Case in point: the NASA damage map was created using Sentinel-1 SAR data. In a nutshell, damage assessment in this case is a three-dimensional problem, and remote sensing is a two-dimensional solution.</p>
+<section id="creating-a-3d-model-of-beirut" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-3d-model-of-beirut">Creating a 3D model of Beirut</h3>
+<p>To create a more accurate rendering of directional blast damage, three dimensional data are required. Data from Open Street Maps (OSM) contains information on both the “footprints” (i.e., the location and shape) as well as the height of buildings, which is enough to create a three dimensional model of Beirut. 3D rendering was done in Blender using the Blender-OSM add-on to import a satellite basemap, terrain raster, and OSM data.</p>
+<p>Geolocated videos of the blast can be used to verify and adjust the model. Below is a side-by-side comparison of the twitter video and a 3D rendition of OSM data:</p>
+<p><img src="../images/beirut/IMG_4.png" class="img-fluid"></p>
+<p>Some slight adjustments to the raw OSM data were made to achieve the image on the right. The building footprints are generally very accurate and comprehensive in coverage, but the building height data does occasionally have to be adjusted manually. A simple and reliable way of doing this is to look at the shadows cast by the building on the satellite base map and scale accordingly. I also added a rough texture to the buildings to help differentiate them, and added the domed roof of the Greek Orthodox church for reference.</p>
+<p>For good measure, a second video is geolocated following the same procedure:</p>
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+Another view of the explosions in Beirut <a href="https://t.co/efT5VlpMkj">pic.twitter.com/efT5VlpMkj</a>
+</p>
+— Borzou Daragahi 🖊🗒 (<span class="citation" data-cites="borzou">@borzou</span>) <a href="https://twitter.com/borzou/status/1290678580897251330?ref_src=twsrc%5Etfw">August 4, 2020</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>The second pier (highlighted in green) and the angle (in blue) serve as references:</p>
+<p><img src="../images/beirut/IMG_5.png" class="img-fluid"></p>
+<p>The video was taken from the rooftop of a Japanese restaurant called Clap Beirut (in red above). This is confirmed by a picture of the rooftop bar on google images, which matches the bar that can be seen at 0:02 in the twitter video. Below is a comparison of the video view and the 3D OSM model:</p>
+<p><img src="../images/beirut/IMG_6.png" class="img-fluid"></p>
+<p>Though somewhat grainy, the basemap on the OSM rendering shows the same parking lot in the foreground, the second pier, and the same two buildings highlighted in yellow. Having created a 3D model of Beirut using OSM data, we can now simulate how the explosion would interact with the cityscape.</p>
+</section>
+<section id="using-a-viewshed-analysis-to-assess-blast-exposure" class="level3">
+<h3 class="anchored" data-anchor-id="using-a-viewshed-analysis-to-assess-blast-exposure">Using a Viewshed Analysis to Assess Blast Exposure</h3>
+<p>As the pressure wave moved through the Beirut, some buildings bore the full force of the explosion, while others were partially shielded by taller structures. A viewshed analysis can be conducted to identify surfaces that were directly exposed to the explosion by creating a lighting object at ground zero; areas that are lit up experienced unobstructed exposure to the blast:</p>
+<p><img src="../images/beirut/GIF_1.gif" class="img-fluid"></p>
+<p>Pressure waves, like sound, are capable of diffraction (bending around small obstructions). To roughly simulate this, the lighting object is gradually raised, allowing the light to pass “around” obstructions. Warehouses on the Eastern side of the docks, as well as the first row of apartment buildings facing the docks are immediately affected. As the lighting object rises above the warehouse, more areas suffer direct exposure.</p>
+<p>Using two lighting objects– a red one at 10 meters and a blue one at 20 meters above the warehouse at ground zero– the intensity of the blast in different areas is highlighted; red areas suffered direct exposure, blue areas suffered partially obstructed exposure, and black areas were indirectly exposed.</p>
+<p><img src="../images/beirut/IMG_7.png" class="img-fluid"></p>
+<p>In the immediate vicinity of the explosion the large “L” shaped building (Lebanon’s strategic grain reserve) is bright red, and was barely left standing. It absorbed a large amount of the blast, shielding areas behind it and thereby casting a long blue shadow to the West. If one refers back to the satellite damage maps above, there appears to be significantly less damage in the area just West of (“behind”) the grain silo, roughly corresponding to the blue shadow above. While these areas were still heavily damaged, they seem to have suffered less damage than areas of equal distance to the East.</p>
+</section>
+<section id="accounting-for-diffraction" class="level3">
+<h3 class="anchored" data-anchor-id="accounting-for-diffraction">Accounting for Diffraction</h3>
+<p>The viewshed analysis tells us which sides of a building are exposed to the blast, but it’s a pretty rough approximation of the way the pressure wave would respond to obstacles in its path. As previously mentioned, pressure waves behave much like sound waves or waves in water: they bounce off of objects, move around obstructions, and gradually fade.</p>
+<p>To get a more precise idea of the way in which the blast interacted with the urban environment, we can model the blast as an actual wave using the “dynamic wave” feature in Blender. This effectively involves creating a two-dimensional plane, telling it to behave like water, and simulating an object being dropped into the water. By putting an obstruction in this plane, we can see how the wave responds to it. As an example, the grain silo has been isolated below:</p>
+<p><img src="../images/beirut/GIF_2.gif" class="img-fluid"></p>
+<p>As the blast hits the side of the silo, it is reflected. Two large waves can be seen traveling to the right: the initial blast wave, and the reflection from the silo which rivals the initial wave in magnitude. To the left, the wave travels around the silo but is significantly weakened.</p>
+<p>Broadening the focus and adding the rest of the OSM data back in, we can observe how the pressure wave interacted with buildings on the waterfront:</p>
+<p><img src="../images/beirut/GIF_3.gif" class="img-fluid"></p>
+<p>The warehouses on the docks were omitted to emphasize the interaction between the pressure wave and the waterfront buildings; their light metal structure and low height means they would have caused little reflection anyway. The general pattern of the dynamic wave is consistent with the viewshed, but adds a layer of detail. The blast is reflected off of the silo towards the East, leading to a double hit. Though the wave still moves around the silo to the West, the pressure is diminished. Once the wave hits the highrises, the pattern becomes noisy as the wave both presses forward into the mainland and is reflected back towards the pier.</p>
+</section>
+<section id="modeling-the-pressure-wave" class="level3">
+<h3 class="anchored" data-anchor-id="modeling-the-pressure-wave">Modeling the Pressure Wave</h3>
+<p>Now that we’ve accounted for the directionality of the blast and the influence of buildings, we can model the pressure wave itself. An expanding sphere centered at ground zero is used to model the progression of the pressure wave through the city. To get a visual sense of the blast’s force, the color of the sphere will be a function of the pressure exerted by the pressure wave.</p>
+<p>The pressure exerted by the explosion in kilopascals (kPa) at various distances can be calculated using the U.S. Department of Defemse’s Blast Effects Computer, which allows users to input variables such as the TNT equivalent of the ordnance, storage method, and elevation. Though there are several estimates, the blast was likely equivalent to around 300 tons of TNT. The direct “incident pressure” of the pressure wave is shown in blue. However, pressure waves from explosions that occur on the ground are reflected upwards, amplifying the total pressure exerted by the blast. This “reflected pressure” is shown in orange:</p>
+<iframe title="Blast Overpressure and Distance " aria-label="Interactive line chart" id="datawrapper-chart-J1Pb1" src="https://datawrapper.dwcdn.net/J1Pb1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400">
+</iframe>
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+                </script>
+<p>For reference, 137 kPa results in 99% fatalities, 68 kPa is enough to cause structural damage to most buildings, and 20 kPa results in serious injuries. 1-6 kPa is enough to break an average window. At 1km, the reflected pressure of the blast (18 kPa) was still enough to seriously injure. Precisely calculating the force exerted by an explosion is exceptionally complicated, however, so these numbers should be treated as rough estimates. Further analysis of the damage caused by the blast can be derived from the UN’s Explosion Consequences Analysis calculator which provides distance values for different types of damage and injuries.</p>
+<p>Linking the values in this graph to the color of the pressure wave sphere provides a visual representation of the blast’s force as it expands. An RGB color scale corresponds to the blast’s overpressure at three threshold values.</p>
+<p><img src="../images/beirut/beirut.gif" class="img-fluid"></p>
+<p>By keeping the lighting object from the viewshed analysis and placing it within the expanding sphere of the pressure wave, we combine two key pieces of information: the pressure exerted by the blast (the color of the sphere), and the level of directional exposure (brightness).</p>
+<p>Now, referring back to the two geolocated twitter videos from earlier, we can recreate the blast in our 3D model and get some new insights. Below is a side-by-side comparison of the first video and the 3D model:</p>
+<p><img src="../images/beirut/GIF_5.gif" class="img-fluid"></p>
+<p>Judging by the twitter video alone, it would be very hard to tell the fate of the person filming or the damage caused to the building that they were in. However, the 3D model shows that despite having an unobstructed view of the explosion, the incident pressure of the pressure wave had decreased significantly by the time it reached the viewing point. The blue-green color corresponds to roughly 15 kPa– enough to injure and break windows, but not enough to cause structural damage to the building.</p>
+<p>The second twitter video was taken slightly closer to ground zero, but the view was partially obstructed by the grain silo:</p>
+<p><img src="../images/beirut/GIF_6.gif" class="img-fluid"></p>
+<p>Though the pressure wave probably exerted more pressure compared to the first angle, the partial obstruction of the grain silo likely tempered the force of the blast.</p>
+</section>
+<section id="assessing-damage-to-the-skyline-tower" class="level3">
+<h3 class="anchored" data-anchor-id="assessing-damage-to-the-skyline-tower">Assessing Damage to the Skyline Tower</h3>
+<p>As a concrete example of how this approach can be used to assess damage (or predict it, if one had the foresight), let us consider the Skyline Tower, pictured below following the explosion:</p>
+<p><img src="../images/beirut/IMG_8.png" class="img-fluid"></p>
+<p>This partial side view shows two faces of the building, labeled “A” and “B” above. Side A was nearly perpendicular to the blast, and just 600m from ground zero. Based on the previous modeling, the pressure wave exerted roughly 40 kPa on this side of the building. The corner where sides A and B meet, highlighted in green, shows total destruction of windows, removal of most siding panels, and structural damage. The back corner, highlighted in red, shows many windows still intact, indicating that the maximum overpressure on this side of the building likely didn’t exceed 10 kPa. In other words, standing on the front balcony would likely have led to serious injury but standing on the back balcony would have been relatively safe.</p>
+<p>The animation below shows the Skyline Tower as it is hit by the pressure wave, with sides A and B labeled:</p>
+<p><img src="../images/beirut/GIF_7.gif" class="img-fluid"></p>
+<p>The bright green color of the pressure wave indicates a strong likelihood of structural damage. Side A can be seen taking a direct hit, while side B is angled slightly away. Despite not being directly exposed to the blast, it likely still took reflective damage from some of the neighboring buildings. Both the incident overpressure indicated by the color of the sphere, as well as the relative brightness of sides A and B both correspond closely to the observed damage taken by the Skyline Tower.</p>
+</section>
+<section id="further-research" class="level3">
+<h3 class="anchored" data-anchor-id="further-research">Further Research</h3>
+<p>Though satellite imagery analysis is an indispensable tool in disaster response, it has limitations. Urban blast damage in particular is difficult to assess accurately because it is highly directional and much of it cannot be seen from a bird’s eye view. Using free and open source tools, an interactive 3D model of an urban explosion can be generated, allowing for a highly detailed investigation of directional blast damage. This can be achieved in three steps:</p>
+<p>First, creating a 3D model of the urban area using Blender and Open Street Maps data. Second, conducting a viewshed analysis using lighting objects to gauge levels of unobstructed exposure to the pressure wave. Third, modeling the explosion using geolocated videos of the event and ordnance calculators. For added detail, a dynamic wave analysis can be used to more precisely model how the pressure wave interacts with buildings.</p>
+<p>Once properly modeled, the explosion can be viewed from any angle in the city. The viewshed analysis can be calibrated more finely by ground-truthing various damage levels (e.g.&nbsp;broken windows) at different locations. In the absence of an official address registry in Beirut, OSM is already being used by the Lebanese Red Cross (donate here) to conduct neighborhood surveys assessing blast damage. As such, this type of damage analysis can quickly be integrated into relief efforts, adapted to model disasters in different cities, and can even be used to simulate the destructive potential of hypothetical explosions to promote readiness.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/C2_Refineries.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Refinery Identification</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/C4_Ships.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Ship Detection</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

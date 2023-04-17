@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Remote Sensing for OSINT - 8&nbsp; Refinery Identification</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/C3_Blast.html" rel="next">
+<link href="../chapters/C1_Lights.html" rel="prev">
+<link href="../favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-RK9ZLZQ6GL"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Refinery Identification</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo_white.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Remote Sensing for OSINT</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/oballinger/RS4OSINT/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="../Remote-Sensing-
+-for-OSINT.pdf">
+            <i class="bi bi-bi-file-pdf pe-1"></i>
+          Download PDF
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="../Remote-Sensing-
+-for-OSINT.epub">
+            <i class="bi bi-bi-journal pe-1"></i>
+          Download ePub
+          </a>
+        </li>
+    </ul>
+    <a href="" title="Share" id="sidebar-tool-dropdown-1" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-1">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">A. Introduction</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A2_Remote_Sensing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Remote Sensing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A3_Data_Acquisition.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Acquisition</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">B. Google Earth Engine</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B1_Getting_Started.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B2_Interpreting_Images.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interpreting Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B3_Image_Series.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image Series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B4_Vectors_Tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Vectors and Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">C. Case Studies</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C1_Lights.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">War at Night</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C2_Refineries.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Refinery Identification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C3_Blast.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Blast Damage Assessment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C4_Ships.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ship Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C5_Object_Detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#machine-learning-workflow" id="toc-machine-learning-workflow" class="nav-link active" data-scroll-target="#machine-learning-workflow">Machine Learning Workflow</a>
+  <ul class="collapse">
+  <li><a href="#pre-processing" id="toc-pre-processing" class="nav-link" data-scroll-target="#pre-processing">Pre-Processing</a></li>
+  <li><a href="#generating-labeled-data" id="toc-generating-labeled-data" class="nav-link" data-scroll-target="#generating-labeled-data">1. Generating Labeled Data</a></li>
+  <li><a href="#training-a-model" id="toc-training-a-model" class="nav-link" data-scroll-target="#training-a-model">2. Training a Model</a></li>
+  <li><a href="#validation" id="toc-validation" class="nav-link" data-scroll-target="#validation">3. Validation</a></li>
+  </ul></li>
+  <li><a href="#communicating-the-results" id="toc-communicating-the-results" class="nav-link" data-scroll-target="#communicating-the-results">Communicating the Results</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/oballinger/RS4OSINT/edit/main/chapters/C2_Refineries.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Refinery Identification</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><em>Topics: multispectral satellite imagery, machine learning, informal economies, war.</em></p>
+<p>In Syria, over a decade of war has ravaged one of its most important industries. Oil is a basic necessity for local residents who need to heat their homes and keep the lights on. It’s also an important source of income for armed groups who control production; by some estimates the Islamic State was making over <a href="https://www.rand.org/blog/2017/10/oil-extortion-still-paying-off-for-isis.html">$40 million</a> per month in oil revenues, and the Syrian Democratic Forces were making <a href="https://www.al-monitor.com/originals/2021/08/syrian-government-kurds-discuss-plans-oil-trade">$120 million</a> per year selling oil to their adversaries, the Syrian Government. This, in turn, has made oil production facilities a frequent target of <a href="https://www.gov.uk/government/publications/british-forces-air-strikes-in-iraq-monthly-list/january-2015">airstrikes</a>, leading to catastrophic environmental consequences.</p>
+<p>The destruction of Syria’s oil infrastructure and its importance as a source of revenue for armed groups has led to a massive rise in makeshift oil extraction and refining. These makeshift refineries are often constructed by digging a large pit, lining it with a tarp and filling it with polluted water. A furnace heats crude oil, which is run through a pipe cooled by the basin and collected in drums:</p>
+<p><img src="images/makeshift-refining.png" class="img-fluid" alt="credit: PAX/Wim Zwijnenburg"> Wim Zwijnenburg wrote an excellent <a href="https://www.bellingcat.com/news/2020/04/24/dying-to-keep-warm-oil-trade-and-makeshift-refining-in-north-west-syria/">Bellingcat article</a> on the subject, which you should read before going any further in this tutorial. In the article, Wim notes that these facilities “can be spotted by the ditch and the black spot at the end with oil waste residues, which blacken the soil around the furnace.” These refineries also frequently leak, blackening large swaths of land around them.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/refinery.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">source: https://www.bellingcat.com/news/2020/04/24/dying-to-keep-warm-oil-trade-and-makeshift-refining-in-north-west-syria/</figcaption><p></p>
+</figure>
+</div>
+<p>Looking around Northwestern Syria, we can see agricultural fields pockmarked by these makeshift refineries (you can pan around and zoom in):</p>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"8000607aa6a24e7d94d4015e7a4532fe","version_major":2,"version_minor":0}
+</script>
+</div>
+</div>
+<p>Previous efforts to quantify informal oil production have involved manually sifting through satellite imagery and counting them. This is a painstaking process that leaves a number of important questions unanswered. Even if we were to count all of the individual refineries, could we get an estimate of the polluted area? What if we wanted to count the refineries in a new part of Syria? Or get annual or even monthly estimates of new refineries?</p>
+<p>Below is an Earth Engine application that automates the detection of makeshift refineries in Northeastern Syria, using multispectral satellite imagery and machine learning. Blue dots represent the locations of predicted makeshift oil refineries and general oil pollution, while red areas indicate areas predicted to be contaminated by oil.</p>
+<div class="column-page">
+<iframe src="https://ollielballinger.users.earthengine.app/view/rojavaoil" width="100%" height="700px">
+</iframe>
+</div>
+<p>You can draw an Area of Interest (AOI) and get the total number of contaminated points as well as the total number of contaminated square meters within the AOI. Drawing multiple AOIs will show a running total of these statistics. It’s not perfect – it misses some refineries and falsely identifies some others – but it is generally quite accurate; you can visually verify the results of the prediction by zooming in using the “+” button. You can toggle different layers using the “layers” tab as well. This tool could be used to get an estimate of oil production in a user-defined area, and eventually to direct cleanup efforts. The fullscreen version of the application can be found <a href="https://ollielballinger.users.earthengine.app/view/rojavaoil">here</a>, and the source code <a href="https://code.earthengine.google.com/7a80f10412e1eb2a4d2c5d95989e70bd">here</a>. This tutorial will first cover the basics of multispectral remote sensing, before moving into a step-by-step guide in the construction of this model.</p>
+<section id="machine-learning-workflow" class="level1">
+<h1>Machine Learning Workflow</h1>
+<section id="pre-processing" class="level2">
+<h2 class="anchored" data-anchor-id="pre-processing">Pre-Processing</h2>
+<p>As always, the first step in our project will be to load and pre-process satellite imagery. For this project, we’ll be using Sentinel-2 imagery. Let’s load imagery from 2020-2021, filter out cloudy images, and define visualization parameters:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> start<span class="op">=</span><span class="st">'2020-04-01'</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> end<span class="op">=</span><span class="st">'2021-07-01'</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> bands <span class="op">=</span> [<span class="st">'B2'</span><span class="op">,</span> <span class="st">'B3'</span><span class="op">,</span> <span class="st">'B4'</span><span class="op">,</span><span class="st">'B5'</span><span class="op">,</span><span class="st">'B6'</span><span class="op">,</span><span class="st">'B7'</span><span class="op">,</span><span class="st">'B8'</span><span class="op">,</span> <span class="st">'B8A'</span><span class="op">,</span><span class="st">'B11'</span><span class="op">,</span><span class="st">'B12'</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sentinel <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">'COPERNICUS/S2_SR'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">date</span>(start<span class="op">,</span> end))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">lt</span>(<span class="st">'CLOUDY_PIXEL_PERCENTAGE'</span><span class="op">,</span> <span class="dv">10</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">mean</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">select</span>(bands)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> s_rgb <span class="op">=</span> {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">min</span><span class="op">:</span> <span class="fl">0.0</span><span class="op">,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">max</span><span class="op">:</span> <span class="dv">3000</span><span class="op">,</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">bands</span><span class="op">:</span>[<span class="st">'B4'</span><span class="op">,</span> <span class="st">'B3'</span><span class="op">,</span> <span class="st">'B2'</span>]<span class="op">,</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">opacity</span><span class="op">:</span><span class="dv">1</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When loading the Sentinel-2 imagery, I’ve also only selected the bands that we will ultimately use in our analysis. There are a number of other bands included in the data that we don’t need. I’ve omitted a few bands (B1, B9, B10) because they’re collected at a much lower spatial resolution (60 meters) compared to the other bands.</p>
+<p>A couple types of landcover are so readily identifiable that we can remove them with thresholds. Water and vegetation both have spectral indices; we looked at NDVI above, but there’s a similar one for water called NDWI. These can be calculated from Sentinel-2 imagery as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ndvi<span class="op">=</span>sentinel<span class="op">.</span><span class="fu">normalizedDifference</span>([<span class="st">'B8'</span><span class="op">,</span><span class="st">'B4'</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">select</span>([<span class="st">'nd'</span>]<span class="op">,</span>[<span class="st">'ndvi'</span>])</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ndwi<span class="op">=</span>sentinel<span class="op">.</span><span class="fu">normalizedDifference</span>([<span class="st">'B3'</span><span class="op">,</span><span class="st">'B8'</span>])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">select</span>([<span class="st">'nd'</span>]<span class="op">,</span>[<span class="st">'ndwi'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We use the <code>normalizedDifference</code> function and specify which bands we want to use for each index. NDVI uses the red and near infrared bands (B4 and B8), while NDWI uses bands 3 and 8. Finally, we want to rename the resulting band from ‘nd’ to the name of the spectral index.</p>
+<p>Now we can use these indices to filter out water and vegetation. We do this using the <code>updateMask</code> function, and specify that we want to remove areas that have an NDVI value higher than 0.2 and anNDWI value higher than 0.3. You can play around with these thresholds until you achieve the desired results.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> image<span class="op">=</span>sentinel<span class="op">.</span><span class="fu">updateMask</span>(ndwi<span class="op">.</span><span class="fu">lt</span>(<span class="fl">0.3</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">updateMask</span>(ndvi<span class="op">.</span><span class="fu">lt</span>(<span class="fl">0.2</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">addBands</span>(ndvi)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">select</span>(bands)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We also want to only select bands that are relevant to our analysis; Sentinel</p>
+<p>Finally, let’s clip the image to our Area of Interest (AOI) and add it to the map using the visualization parameters we defined earlier.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(image<span class="op">.</span><span class="fu">clip</span>(AOI)<span class="op">,</span> s_rgb<span class="op">,</span> <span class="st">'Sentinel'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rojava_preprocessed.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">water and vegetation have been removed from this Sentinel-2 image. What remains is largely fallow agricultural land, urban areas, and oil spills.</figcaption><p></p>
+</figure>
+</div>
+<p>Now that we’ve loaded and pre-porcessed our satellite imagery, we can proceed with the rest of our task. Ultimately, we want to create a map of the study area which shows us different “landcovers” (materials). This can broadly be achieved in three steps:</p>
+<ol type="1">
+<li>Generate labeled landcover data</li>
+<li>Train a model using labeled data</li>
+<li>Validate the model</li>
+</ol>
+</section>
+<section id="generating-labeled-data" class="level2">
+<h2 class="anchored" data-anchor-id="generating-labeled-data">1. Generating Labeled Data</h2>
+<p>A vital step in any machine learning workflow is the generation of labeled data, which we will use to train a model to differentiate between different types of land cover and later to test the model’s accuracy. By looking around the study area, we can get a sense of the different land cover classes that we might encounter:</p>
+<ol type="1">
+<li>Agricultural Land</li>
+<li>Urban Areas</li>
+<li>Oil Contamination</li>
+</ol>
+<p>Naturally we could subdivide each of these into sub-categories, and there are probably other classes we haven’t included that may be present in the study area. The choice of classes is partly informed by the nature of the task at hand. In theory, the most efficient number of classes for this task would be two: oil, and everything else. The problem is that the “everything else” category would be pretty noisy since it would include a wide range of materials, making it harder to distinguish this from oil. In practice, a visual inspection of major landcover classes in the study area is a quick-and-dirty way of getting at roughly the right number of classes. This is also an iterative process: you can start with a set of labeled data, look at the model results, and adjust your sampling accordingly. More on this later.</p>
+<p>The main landcover class we’re interested in is, of course, oil. Some oil contamination is readily visible from the high resolution satellite basemap; rivers of oil flow from the leaking <a href="https://zoom.earth/#view=36.947921,42.02871,16z/overlays=heat,labels:off,crosshair">Ger Zero refinery</a>. We can draw polygons around the oil contamination like so:</p>
+<p><img src="images/ger_zero.png" class="img-fluid"></p>
+<p>The same process is applied to agricultural land and urban areas. In general, you want to make sure that you’re sampling from all across the study area. I’ve generated between four to 10 polygons per landcover class in different places. We’re now left with a featureCollection composed of polygons for each class. I’ve named them <code>oil</code>, <code>agriculture</code>, and <code>urban</code>.</p>
+<p>However, I don’t just want to use all of the pixels contained in these polygons for training. There are several reasons for this. First, it would likely lead to <a href="https://en.wikipedia.org/wiki/Overfitting">overfitting</a>. Second, there are probably over a million pixels between all of the polygons, which would slow things down unnecessarily. Third, I haven’t drawn the polygons to be equal sizes across classes, so I could end up with way more points from one class compared to another. It’s OK to have some imbalance between classes, but you don’t want it to be extreme.</p>
+<p>As such, the next step involves taking random samples of points from <em>within</em> these polygons. I do so using the <code>randomPoints</code> function:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> oil_points<span class="op">=</span>ee<span class="op">.</span><span class="at">FeatureCollection</span><span class="op">.</span><span class="fu">randomPoints</span>(oil<span class="op">,</span> <span class="dv">3000</span>)<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(i){</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> i<span class="op">.</span><span class="fu">set</span>({<span class="st">'class'</span><span class="op">:</span> <span class="dv">0</span>})})</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> urban_points<span class="op">=</span>ee<span class="op">.</span><span class="at">FeatureCollection</span><span class="op">.</span><span class="fu">randomPoints</span>(urban<span class="op">,</span> <span class="dv">1000</span>)<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(i){</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> i<span class="op">.</span><span class="fu">set</span>({<span class="st">'class'</span><span class="op">:</span> <span class="dv">1</span>})})</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> agriculture_points<span class="op">=</span>ee<span class="op">.</span><span class="at">FeatureCollection</span><span class="op">.</span><span class="fu">randomPoints</span>(agriculture<span class="op">,</span> <span class="dv">2000</span>)<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(i){</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> i<span class="op">.</span><span class="fu">set</span>({<span class="st">'class'</span><span class="op">:</span> <span class="dv">2</span>})})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the first line, I create a new featureCollection called <code>oil_points</code> which contains 3000 points sampled from the polygons in the <code>oil</code> featureCollection. I then map through each of these points, and set a property called “class” equal to 0. I do the same for the urban and agricultural areas, setting the “class” property of these featureCollections to 1 and 2, respectively. Ultimately, our model will output a raster in which each pixel will contain one of these three values. A value of 0 in the output will represent the model predicting that that pixel is oil, based on the training data; a value of 1 would indicate predicted urban land cover, and 2 predicted agricultural landcover.</p>
+<p>Now we want to create one feature collection called “sample”, which will contain all three sets of points.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sample<span class="op">=</span>ee<span class="op">.</span><span class="fu">FeatureCollection</span>([oil_points<span class="op">,</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                  urban_points<span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                  agriculture_points</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                  ])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="op">.</span><span class="fu">flatten</span>()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="op">.</span><span class="fu">randomColumn</span>()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We’ve also assigned a property called “random” using the <code>randomColumn</code> function. This lets us split our featureCollection into two: one used for training the model, and one used for validation. We’ll use a 70-30 split.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> split<span class="op">=</span><span class="fl">0.7</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> training_sample <span class="op">=</span> sample<span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">lt</span>(<span class="st">'random'</span><span class="op">,</span> split))<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> validation_sample <span class="op">=</span> sample<span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">gte</span>(<span class="st">'random'</span><span class="op">,</span> split))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="training-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="training-a-model">2. Training a Model</h2>
+<p>Having generated labeled training and testing data, we now want to teach an algorithm to associate the pixels in those areas (in particular, their spectral profiles) with a specific landcover class.</p>
+<p>The list of points we generated in the previous step contain a label (0: oil, 1: urban, 2: agriculture). However, they do not yet contain any information about the spectral profile of the Sentinel-2 image. The <code>sampleRegions</code> function lets us assign the band values from an image as properties to our feature collection. We do this for both the training sample and the validation sample.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> training <span class="op">=</span> image<span class="op">.</span><span class="fu">sampleRegions</span>({</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">collection</span><span class="op">:</span> training_sample<span class="op">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">properties</span><span class="op">:</span> [<span class="st">'class'</span>]<span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scale</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> validation <span class="op">=</span> image<span class="op">.</span><span class="fu">sampleRegions</span>({</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">collection</span><span class="op">:</span> validation_sample<span class="op">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">properties</span><span class="op">:</span> [<span class="st">'class'</span>]<span class="op">,</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scale</span><span class="op">:</span> <span class="dv">10</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each point in the featureCollections above will contain a property denoting each Sentinel-2 band’s value at that location, as well as the property denoting the class label.</p>
+<p>Now we’re ready to train the model. We’ll be using a <a href="https://en.wikipedia.org/wiki/Random_forest">Random Forest</a> classifier, which basically works by trying to separate your data into the specified classes by setting lots of thresholds in your input properties (in our case, Sentinel-2 band values). It’s a versatile and widely-used model.</p>
+<p>We first call a random forest classifier with 500 trees. More trees usually yields higher accuracy, though there are diminishing returns. Too many trees will result in your computation timing out. We then train the model using the <code>train</code> function, which we supply with the training data as well as the name of the property that contains our class labels (“class”).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> model <span class="op">=</span> ee<span class="op">.</span><span class="at">Classifier</span><span class="op">.</span><span class="fu">smileRandomForest</span>(<span class="dv">500</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                          <span class="op">.</span><span class="fu">train</span>(training<span class="op">,</span> <span class="st">'class'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The trained model now associates Sentinel-2 band values with one of three landcover classes. We can now feed the model pixels it has never seen before, and it will use what it now knows about the spectral profiles of the different classes to predict the class of the new pixel.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> prediction <span class="op">=</span> image<span class="op">.</span><span class="fu">classify</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>prediction</code> is now a raster which contains one of three values (0: oil, 1: urban, 2: agriculture). We’re only interested in oil, so let’s isolate the regions in this raster that have a value of 0, and add them in red to the map:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> oil_prediction<span class="op">=</span>prediction<span class="op">.</span><span class="fu">updateMask</span>(prediction<span class="op">.</span><span class="fu">eq</span>(<span class="dv">0</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(oil_prediction<span class="op">,</span> {<span class="dt">palette</span><span class="op">:</span><span class="st">'red'</span>}<span class="op">,</span> <span class="st">'Predicted Oil Conamination'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="images/ger_zero_pred.png" class="img-fluid"></p>
+</section>
+<section id="validation" class="level2">
+<h2 class="anchored" data-anchor-id="validation">3. Validation</h2>
+<p>The image above should look somewhat familiar. It’s Ger Zero, where we trained part of our model. We can see in red the areas which the model predicts to be oil pollution. These largely align with the areas that we can see as being contaminated based on the high resolution basemap. It’s not perfect, but it’s pretty good.</p>
+<p>Let’s scroll to another area, far from where the model was trained. <img src="images/small_refinery.png" class="img-fluid"> This image shows two clusters of makeshift refineries which were identified by the model. This is good, though we can only get so far by visually inspecting the output from our model. To get a better sense of our model’s performance, we can use the validation data that we generated previously. Remember, these are labeled points which our model was not trained on, and has never seen before.</p>
+<p>We’ll take the <code>validation</code> featureCollection containing our labeled points, and have our model classify it.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> validated <span class="op">=</span> validation<span class="op">.</span><span class="fu">classify</span>(model)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now the <code>validated</code> variable is a featureCollection which contains both manual labels and predicted labels from our model. We can compare the manual labels to the predicted output to get a sense of how well our model is performing. This is called a Confusion Matrix (or an Error Matrix):</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> testAccuracy <span class="op">=</span> validated<span class="op">.</span><span class="fu">errorMatrix</span>(<span class="st">'class'</span><span class="op">,</span> <span class="st">'classification'</span>)<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">'Confusion Matrix '</span><span class="op">,</span> testAccuracy)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><em>Labels</em></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Oil</strong></td>
+<td style="text-align: center;"><strong>Urban</strong></td>
+<td style="text-align: center;"><strong>Agriculture</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Oil</strong></td>
+<td style="text-align: center;">876</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><em>Prediction</em></td>
+<td style="text-align: center;"><strong>Urban</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">168</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Agriculture</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">514</td>
+</tr>
+</tbody>
+</table>
+<p>Now, we can see that of the 877 points that were labeled “oil”, only one was falsely predicted to be agricultural land. The model also falsely predicted as oil one point that was labeled urban, and five points that were labeled agriculture. Not bad. We can get a sense of the model’s overall accuracy using the <code>accuracy</code> function on the confusion matrix:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">'Validation overall accuracy: '</span><span class="op">,</span> testAccuracy<span class="op">.</span><span class="fu">accuracy</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This tells us that the overall accuracy of our model is around 98%. However, we shouldn’t take this estimate at face value. There are a number of complicated reasons (<a href="https://www.sciencedirect.com/topics/computer-science/spatial-autocorrelation#:~:text=Spatial%20autocorrelation%20is%20the%20term,together%20to%20have%20similar%20values.">spatial autocorrelation</a> in the training data, for example) why this figure is probably inflated. If we were submitting this analysis to a peer-reviewed journal, we’d take great care in addressing this, but for our purposes we can use the accuracy statistics to guide our analysis and get a rough sense of how well the model is performing.</p>
+<p>This model isn’t perfect; it often mis-classifies the shorelines of lakes as oil, or certain parts of urban areas. As previously mentioned, training a model is often an iterative process. At this stage, if your accuracy is not as high as you’d like it to be, you can use the output to figure out how to tweak the model. For example, you may observe that your model is confusing urban areas with oil spills. You can draw a polygon over the erroneous area, label it urban landcover and retrain the model thereby hopefully improving accuracy. We could further refine our model in this way.</p>
+</section>
+</section>
+<section id="communicating-the-results" class="level1">
+<h1>Communicating the Results</h1>
+<p>Now that we’ve got a model that can identify oil from multispectral satellite imagery fairly well, we can set about making our results accessible.</p>
+<p>One of the things we’re particularly interested in is the distribution of small refineries. The way we’re currently visualizing the prediction (the raster output from the model where predicted oil is shown in red and everything else is transparent) makes it hard to see these small refineries when we zoom out:</p>
+<p><img src="images/big_red.png" class="img-fluid"></p>
+<p>We can convert our raster into a series of points using the <code>reduceToVectors</code> function. In essence, this takes homogenous regions of an image (e.g., an area predicted to be oil surrounded by an area not predicted to be oil) and converts it into a point:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> vectors <span class="op">=</span> oil_prediction<span class="op">.</span><span class="fu">reduceToVectors</span>({</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geometry</span><span class="op">:</span> AOI<span class="op">,</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scale</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geometryType</span><span class="op">:</span> <span class="st">'centroid'</span><span class="op">,</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eightConnected</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">labelProperty</span><span class="op">:</span> <span class="st">'classification'</span><span class="op">,</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">maxPixels</span><span class="op">:</span><span class="dv">1653602926</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">filterBounds</span>(AOI)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(vectors<span class="op">.</span><span class="fu">style</span>({<span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span><span class="op">,</span> <span class="dt">fillColor</span><span class="op">:</span> <span class="st">'#00f2ff'</span><span class="op">,</span> <span class="dt">pointSize</span><span class="op">:</span><span class="dv">5</span>})<span class="op">,</span>{}<span class="op">,</span><span class="st">'Oil Contamination Points'</span><span class="op">,</span><span class="kw">false</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now the distribution of small refineries is much more easily visible as blue dots:</p>
+<p><img src="images/points.png" class="img-fluid"></p>
+<p>If we zoom out even further, we can see clusters of points that correspond to areas of high oil production. Using geolocated photographs, we can roughly ground-truth the model output:</p>
+<p><img src="images/UNEP.PNG" class="img-fluid"></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/vnd.jupyter.widget-state+json">
+{"state":{"67e1e834b1e44433917c18a8aec6e13e":{"model_module":"jupyter-leaflet","model_module_version":"^0.17","model_name":"LeafletTileLayerModel","state":{"_model_module":"jupyter-leaflet","_model_module_version":"^0.17","_model_name":"LeafletTileLayerModel","_view_count":null,"_view_module":"jupyter-leaflet","_view_module_version":"^0.17","_view_name":"LeafletTileLayerView","attribution":"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community","base":true,"bottom":true,"bounds":null,"detect_retina":false,"loading":false,"max_native_zoom":null,"max_zoom":18,"min_native_zoom":null,"min_zoom":1,"name":"Esri.WorldImagery","no_wrap":false,"opacity":1,"options":["attribution","bounds","detect_retina","max_native_zoom","max_zoom","min_native_zoom","min_zoom","no_wrap","tile_size","tms","zoom_offset"],"pane":"","popup":null,"popup_max_height":null,"popup_max_width":300,"popup_min_width":50,"show_loading":false,"tile_size":256,"tms":false,"url":"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}","visible":true,"zoom_offset":0}},"8000607aa6a24e7d94d4015e7a4532fe":{"model_module":"jupyter-leaflet","model_module_version":"^0.17","model_name":"LeafletMapModel","state":{"_dom_classes":[],"_model_module":"jupyter-leaflet","_model_module_version":"^0.17","_model_name":"LeafletMapModel","_view_count":null,"_view_module":"jupyter-leaflet","_view_module_version":"^0.17","_view_name":"LeafletMapView","bottom":0,"bounce_at_zoom_limits":true,"box_zoom":true,"center":[36.936622,42.118185],"close_popup_on_click":true,"controls":["IPY_MODEL_dab76747888a4c24a70ac88725dfb7f6","IPY_MODEL_db3bdcc3d713463382edad71303b351f"],"crs":{"custom":false,"name":"EPSG3857"},"default_style":"IPY_MODEL_c623f703b5db47a1bed9eef32f9db26d","double_click_zoom":true,"dragging":true,"dragging_style":"IPY_MODEL_d739e693d6604a4f91270ba0e06e40c6","east":0,"fullscreen":false,"inertia":true,"inertia_deceleration":3000,"inertia_max_speed":1500,"interpolation":"bilinear","keyboard":true,"keyboard_pan_offset":80,"keyboard_zoom_offset":1,"layers":["IPY_MODEL_67e1e834b1e44433917c18a8aec6e13e"],"layout":"IPY_MODEL_e968740d25ac4baaa22d88f67504596c","left":9007199254740991,"max_zoom":null,"min_zoom":null,"modisdate":"2023-04-16","north":0,"options":["bounce_at_zoom_limits","box_zoom","center","close_popup_on_click","double_click_zoom","dragging","fullscreen","inertia","inertia_deceleration","inertia_max_speed","interpolation","keyboard","keyboard_pan_offset","keyboard_zoom_offset","max_zoom","min_zoom","prefer_canvas","scroll_wheel_zoom","tap","tap_tolerance","touch_zoom","world_copy_jump","zoom","zoom_animation_threshold","zoom_delta","zoom_snap"],"panes":{},"prefer_canvas":false,"right":0,"scroll_wheel_zoom":false,"south":0,"style":"IPY_MODEL_b4b1fd6714d44a63bcedb33f328d0abb","tabbable":null,"tap":true,"tap_tolerance":15,"tooltip":null,"top":9007199254740991,"touch_zoom":true,"west":0,"window_url":"","world_copy_jump":false,"zoom":14,"zoom_animation_threshold":4,"zoom_delta":1,"zoom_snap":1}},"b4b1fd6714d44a63bcedb33f328d0abb":{"model_module":"jupyter-leaflet","model_module_version":"^0.17","model_name":"LeafletMapStyleModel","state":{"_model_module":"jupyter-leaflet","_model_module_version":"^0.17","_model_name":"LeafletMapStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","cursor":"grab"}},"c623f703b5db47a1bed9eef32f9db26d":{"model_module":"jupyter-leaflet","model_module_version":"^0.17","model_name":"LeafletMapStyleModel","state":{"_model_module":"jupyter-leaflet","_model_module_version":"^0.17","_model_name":"LeafletMapStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","cursor":"grab"}},"d739e693d6604a4f91270ba0e06e40c6":{"model_module":"jupyter-leaflet","model_module_version":"^0.17","model_name":"LeafletMapStyleModel","state":{"_model_module":"jupyter-leaflet","_model_module_version":"^0.17","_model_name":"LeafletMapStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","cursor":"move"}},"dab76747888a4c24a70ac88725dfb7f6":{"model_module":"jupyter-leaflet","model_module_version":"^0.17","model_name":"LeafletZoomControlModel","state":{"_model_module":"jupyter-leaflet","_model_module_version":"^0.17","_model_name":"LeafletZoomControlModel","_view_count":null,"_view_module":"jupyter-leaflet","_view_module_version":"^0.17","_view_name":"LeafletZoomControlView","options":["position","zoom_in_text","zoom_in_title","zoom_out_text","zoom_out_title"],"position":"topleft","zoom_in_text":"+","zoom_in_title":"Zoom in","zoom_out_text":"-","zoom_out_title":"Zoom out"}},"db3bdcc3d713463382edad71303b351f":{"model_module":"jupyter-leaflet","model_module_version":"^0.17","model_name":"LeafletAttributionControlModel","state":{"_model_module":"jupyter-leaflet","_model_module_version":"^0.17","_model_name":"LeafletAttributionControlModel","_view_count":null,"_view_module":"jupyter-leaflet","_view_module_version":"^0.17","_view_name":"LeafletAttributionControlView","options":["position","prefix"],"position":"bottomright","prefix":"ipyleaflet"}},"e968740d25ac4baaa22d88f67504596c":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}}},"version_major":2,"version_minor":0}
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/C1_Lights.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">War at Night</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/C3_Blast.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Blast Damage Assessment</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

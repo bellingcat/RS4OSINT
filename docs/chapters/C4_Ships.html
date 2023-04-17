@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Remote Sensing for OSINT - 10&nbsp; Ship Detection</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/C5_Object_Detection.html" rel="next">
+<link href="../chapters/C3_Blast.html" rel="prev">
+<link href="../favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-RK9ZLZQ6GL"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RK9ZLZQ6GL', { 'anonymize_ip': true});
+</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Ship Detection</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo_white.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Remote Sensing for OSINT</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/oballinger/RS4OSINT/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="../Remote-Sensing-
+-for-OSINT.pdf">
+            <i class="bi bi-bi-file-pdf pe-1"></i>
+          Download PDF
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="../Remote-Sensing-
+-for-OSINT.epub">
+            <i class="bi bi-bi-journal pe-1"></i>
+          Download ePub
+          </a>
+        </li>
+    </ul>
+    <a href="" title="Share" id="sidebar-tool-dropdown-1" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-1">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">A. Introduction</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A2_Remote_Sensing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Remote Sensing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A3_Data_Acquisition.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Acquisition</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">B. Google Earth Engine</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B1_Getting_Started.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Getting Started</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B2_Interpreting_Images.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Interpreting Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B3_Image_Series.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Image Series</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/B4_Vectors_Tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Vectors and Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">C. Case Studies</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C1_Lights.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">War at Night</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C2_Refineries.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Refinery Identification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C3_Blast.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Blast Damage Assessment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C4_Ships.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Ship Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/C5_Object_Detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Object Detection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link active" data-scroll-target="#how-it-works">How it Works</a></li>
+  <li><a href="#building-the-application" id="toc-building-the-application" class="nav-link" data-scroll-target="#building-the-application">Building the Application</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#ship-detection" id="toc-ship-detection" class="nav-link" data-scroll-target="#ship-detection">Ship Detection</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">Putting it all together</a></li>
+  <li><a href="#building-a-user-interface" id="toc-building-a-user-interface" class="nav-link" data-scroll-target="#building-a-user-interface">Building a User Interface</a>
+  <ul class="collapse">
+  <li><a href="#drawing-tools" id="toc-drawing-tools" class="nav-link" data-scroll-target="#drawing-tools">Drawing Tools</a></li>
+  <li><a href="#widgets" id="toc-widgets" class="nav-link" data-scroll-target="#widgets">Widgets</a></li>
+  <li><a href="#the-control-panel" id="toc-the-control-panel" class="nav-link" data-scroll-target="#the-control-panel">The Control Panel</a></li>
+  </ul></li>
+  <li><a href="#taking-it-for-a-spin" id="toc-taking-it-for-a-spin" class="nav-link" data-scroll-target="#taking-it-for-a-spin">Taking it for a spin</a>
+  <ul class="collapse">
+  <li><a href="#north-korea" id="toc-north-korea" class="nav-link" data-scroll-target="#north-korea">North Korea</a></li>
+  <li><a href="#ukraine" id="toc-ukraine" class="nav-link" data-scroll-target="#ukraine">Ukraine</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/oballinger/RS4OSINT/edit/main/chapters/C4_Ships.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-title">Ship Detection</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>There’s a huge amount of data available on the internet about ship movements, most of which draws on the Automatic Identification System (AIS) which uses radio to broadcast the identity, position, course, speed and other data about ships. <a href="https://www.marinetraffic.com/en/ais-api-services">MarineTraffic</a>, for example, provides an API that allows you to query the location of ships in real time as well as historical vessel tracks and lots of other useful data. Unfortunately most sources of AIS data are paywalled, and AIS can be turned off or manipulated to hide the identity or position of the ship. In fact, most of the stuff we’re interested in investigating probably happens when AIS is turned off.</p>
+<p>Though ships can hide by turning off their AIS transponders, they can’t hide from satellites. In this tutorial, we’re going to build an application that uses Synthetic Aperture Radar (SAR) from the European Space Agency’s Sentinel-1 satellite to automatically identify ships, regardless of whether they’ve got their transponders turned on or off. Here’s the finished application:</p>
+<div class="column-page">
+<iframe src="https://ollielballinger.users.earthengine.app/view/shipdetection" width="100%" height="700px">
+</iframe>
+</div>
+<section id="how-it-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-it-works">How it Works</h2>
+<p>The app has two main panels:</p>
+<ol type="1">
+<li>A control panel on the left that allows the user to interact with the application</li>
+<li>A map on the right that displays the results</li>
+</ol>
+<p>The control panel has a date slider that allows the user to load imagery from a particular year. Below that is a graph that shows the number of ships detected over time within that year. A slider underneath the graph lets us toggle the sensitivity of the ship detection process. Finally, a button at the bottom lets the user draw their own area of interest on the map, and the app will automatically detect ships within that area.</p>
+<p>The map panel visualizes the results of the ship detection process and has three layers. The bottom layer is the Sentinel-1 image that we’re using to detect ships; it’s blue/purple, and if you zoom in and look cloesly you can see bright specks in the sea, which are ships. When Sentinel-1 sends a pulse of radio waves onto a flat surface like the sea, there is very little to reflect the waves back to the satellite – they just bounce off into space. A low return signal means we’ll see a darker color on our map. But when the radio waves hit a ship they are reflected back to the satellite and generate a higher return signal, and therefore a much brighter color. The second layer on the map displays a bunch of green points; each one of these is a detected ship. The last layer shows the red outline of the area of interest that the user drew on the map. You can zoom in on the map by holding down the command button and scrolling up and down.</p>
+<p>When the application is first loaded it is centered on an area just north of the Suez Canal, and is analyzing imagery from 2021. We can see a bunch of green dots in the AOI, which is the main waiting area for ships waiting to transit the canal. It’s a bit crowded because it’s visualizing all of the ships detected in the entire year. We can display imagery from a single day by clicking on a point in the graph on the left, which you will notice displays a huge spike in the number of ships detected around March.</p>
+<p>You might remember that on March 23rd, 2021, the Ever Given – a 400m long container ship – got stuck in the Suez Canal. The ship was blocking the canal for six days, and it’s estimated that it cost the global economy $400 million per day. If you click on the tip of the spike on March 30th, you can see a backup of around 150 ships waiting for the canal to be cleared. You can also zoom in on a particular date range by scrolling and dragging on the graph. If you zoom in on the spike, you can then select imagery from early April to compare the number of ships in the waiting area after the blockage was cleared. In normal times we can see a regular pattern in the number of ships in the waiting area ranging between 15 and 40 ships.</p>
+<p>If you’re closely zoomed in to the map and load imagery from different days by clicking on the graph, you can compare the bright spots on the Sentinel image and the green dots. The ship detection process is pretty accurate, and we typically see one green dot per ship. However, you may notice that we occasionally miss a ship. This is because the ship detection process is based on a threshold, and if the ship is too small it may not generate a high enough return signal to be detected. You can increase the sensitivity of the ship detection process by moving the slider below the graph. This will increase the number of ships detected, but it may also increase the number of false positives.</p>
+<p>The next section focuses on building this application. After that, we’ll have a look at a few different use cases for this sort of maritime surveillance.</p>
+</section>
+<section id="building-the-application" class="level1">
+<h1>Building the Application</h1>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>The first step is to configure the map and import the necessary datasets. By default, we want the app to be centered on the Suez Canal. Then, we want to import the Digital Surface Model (DSM) from the ALOS World 3D-30 dataset. This dataset provides a 30m resolution elevation model of the Earth which we will use to mask out the land. Finally, we want to import the Sentinel 1 dataset. We will use the VV polarization and the Interferometric Wide (IW) mode. We will also sort the images by date.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Center the map on the Suez Canal and set map options</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">setCenter</span>(<span class="fl">32.327</span><span class="op">,</span> <span class="fl">31.4532</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">setOptions</span>(<span class="st">"Hybrid"</span>)<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">setControlVisibility</span>({ <span class="dt">all</span><span class="op">:</span> <span class="kw">false</span> })<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Import the Digital Surface Model (DSM) from the ALOS World 3D-30 dataset</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dem <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">"JAXA/ALOS/AW3D30/V3_2"</span>)<span class="op">.</span><span class="fu">mean</span>()<span class="op">.</span><span class="fu">select</span>(<span class="st">"DSM"</span>)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Import the Sentinel 1 dataset</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> s1 <span class="op">=</span> ee</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">"COPERNICUS/S1_GRD"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">listContains</span>(<span class="st">"transmitterReceiverPolarisation"</span><span class="op">,</span> <span class="st">"VV"</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(ee<span class="op">.</span><span class="at">Filter</span><span class="op">.</span><span class="fu">eq</span>(<span class="st">"instrumentMode"</span><span class="op">,</span> <span class="st">"IW"</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>(<span class="st">"system:time_start"</span>)<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">// Define the default area of interest</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> suez <span class="op">=</span> ee<span class="op">.</span><span class="at">Geometry</span><span class="op">.</span><span class="fu">Polygon</span>([</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  [</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">32.17388584692775</span><span class="op">,</span> <span class="fl">31.59541178442045</span>]<span class="op">,</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">32.17388584692775</span><span class="op">,</span> <span class="fl">31.327159861902278</span>]<span class="op">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">32.4787564523965</span><span class="op">,</span> <span class="fl">31.327159861902278</span>]<span class="op">,</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">32.4787564523965</span><span class="op">,</span> <span class="fl">31.59541178442045</span>]<span class="op">,</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that we’ve gotten that out of the way, we can move on to the actual detection of ships.</p>
+</section>
+<section id="ship-detection" class="level2">
+<h2 class="anchored" data-anchor-id="ship-detection">Ship Detection</h2>
+<p>You might expect the automatic identification of ships based on synthetic aperture radar satellite imagery to involve a complex machine learning algorithm or artificial intelligence. In fact, it can be done in one line of code which sets a cutoff. If the return signal is greater than 0, then we have a ship. If it’s less than 0, then we don’t. Simple as that.</p>
+<p>The main analytical function responsible for ship identification is the <code>getVectors</code> function shown below. It takes an image as an input and returns a FeatureCollection of points, each corresponding to a ship. The function clips the image to the area of interest, selects the VV polarization, and finally filters out areas where the VV value is smaller than 0. This results in a raster image where the sea is black and the ships are white. We then use the <code>reduceToVectors</code> function to convert the raster image to a FeatureCollection of points. The function returns this FeatureCollection, and sets a property called <code>count</code> which is the number of ships detected in the image.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getVectors</span>(img) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Get the area of interest from the drawing tools widget.  </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> aoi <span class="op">=</span> drawingTools<span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">getEeObject</span>()<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Clip the image to the area of interest</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Select the VV polarization </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Filter areas where the VV value is greater than 0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cutoff <span class="op">=</span> img<span class="op">.</span><span class="fu">clip</span>(aoi)<span class="op">.</span><span class="fu">select</span>(<span class="st">"VV"</span>)<span class="op">.</span><span class="fu">gt</span>(<span class="dv">0</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Convert the raster image to a FeatureCollection of points</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> points <span class="op">=</span> cutoff<span class="op">.</span><span class="fu">reduceToVectors</span>({</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">geometry</span><span class="op">:</span> aoi<span class="op">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">scale</span><span class="op">:</span> scaleSlider<span class="op">.</span><span class="fu">getValue</span>()<span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">geometryType</span><span class="op">:</span> <span class="st">"centroid"</span><span class="op">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">eightConnected</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxPixels</span><span class="op">:</span> <span class="dv">1653602926</span><span class="op">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Set the number of ships detected in the image as a property called "count"</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> count <span class="op">=</span> points<span class="op">.</span><span class="fu">size</span>()<span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Set the date of the image as a property called "system:time_start"</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> date <span class="op">=</span> ee<span class="op">.</span><span class="fu">Date</span>(img<span class="op">.</span><span class="fu">get</span>(<span class="st">"system:time_start"</span>))<span class="op">;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> points<span class="op">.</span><span class="fu">set</span>(<span class="st">"count"</span><span class="op">,</span> count)<span class="op">.</span><span class="fu">set</span>(<span class="st">"system:time_start"</span><span class="op">,</span> date)<span class="op">;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>count</code> and <code>system:time_start</code> properties are used to create the graph of daily ship counts and allow the resulting vector (point) data to interact with the date slider widget. An important detail here is that the “scale” parameter of the <code>reduceToVectors</code> function is set to the value of the scale slider widget. This allows the user to adjust the resolution of the ship detection process; a smaller value will allow us to detect smaller ships.</p>
+</section>
+<section id="visualization" class="level2">
+<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<p>The <code>viz</code> function is responsible for displaying the results of the ship detection process. It takes the area of interest, the vector data, and the Sentinel 1 image as inputs. Nothing super complicated here; we’re just creating three layers and adding them to the map in order: the underlying Sentinel-1 image raster, the ship vector data in green, and the area of interest outline in red. We’re using the <code>Map.layers().set()</code> function to replace the existing layers with the new ones, rather than adding new ones each time.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">viz</span>(aoi<span class="op">,</span> vectors<span class="op">,</span> s1Filtered) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Create an empty image into which to paint the features, cast to byte.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> empty <span class="op">=</span> ee<span class="op">.</span><span class="fu">Image</span>()<span class="op">.</span><span class="fu">byte</span>()<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Paint all the polygon edges with the same number and width, display.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> outline <span class="op">=</span> empty<span class="op">.</span><span class="fu">paint</span>({</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">featureCollection</span><span class="op">:</span> aoi<span class="op">,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">color</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Create a layer for the area of interest in red</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> aoi_layer <span class="op">=</span> ui<span class="op">.</span><span class="at">Map</span><span class="op">.</span><span class="fu">Layer</span>(outline<span class="op">,</span> { <span class="dt">palette</span><span class="op">:</span> <span class="st">"red"</span> }<span class="op">,</span> <span class="st">"AOI"</span>)<span class="op">;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Create a layer for the vector data in green</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> vectorLayer <span class="op">=</span> ui<span class="op">.</span><span class="at">Map</span><span class="op">.</span><span class="fu">Layer</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    vectors<span class="op">.</span><span class="fu">flatten</span>()<span class="op">,</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">color</span><span class="op">:</span> <span class="st">"#39ff14"</span> }<span class="op">,</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Vectors"</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Create a layer for the Sentinel 1 image in false color</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> sarLayer <span class="op">=</span> ui<span class="op">.</span><span class="at">Map</span><span class="op">.</span><span class="fu">Layer</span>(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    s1Filtered<span class="op">,</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">min</span><span class="op">:</span> [<span class="op">-</span><span class="dv">25</span><span class="op">,</span> <span class="op">-</span><span class="dv">20</span><span class="op">,</span> <span class="op">-</span><span class="dv">25</span>]<span class="op">,</span> <span class="dt">max</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">0</span>]<span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span> <span class="fl">0.8</span> }<span class="op">,</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SAR"</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Add the layers in order</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="bu">Map</span><span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">set</span>(<span class="dv">0</span><span class="op">,</span> sarLayer)<span class="op">;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="bu">Map</span><span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">set</span>(<span class="dv">1</span><span class="op">,</span> vectorLayer)<span class="op">;</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="bu">Map</span><span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">set</span>(<span class="dv">2</span><span class="op">,</span> aoi_layer)<span class="op">;</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We want a function to handle the visualization because there are two different situations in which we’re going to visualize results, and we don’t want to repeat our code. The first situation is when the user draws a new area of interest, moves the date slider or alters the scale. In this case, we want to visualize the results of the ship detection process for the entire year’s worth of Sentinel-1 imagery. The second situation is when the user clicks on the chart to analyze a particular day. In this case, we obviously only want to visualize the results of the ship detection process on that day. With this function, we can simply pass the appropriately filtered versions of the Sentinel-1 image and vector data to the function, and it will visualize the results, rather than having to write the same code twice.</p>
+</section>
+<section id="putting-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-all-together">Putting it all together</h2>
+<p>Having defined a few helper functions to handle the visualization and ship detection process, we can now move on to the main function that will perform the analysis. This will be performed by the <code>daterangeVectors</code> function. In a nutshell, it reads the user specified date range from the date slider widget, and filters the Sentinel 1 dataset to only include images within that period. Then, it will loop through each Sentinel-1 image from that year and apply the <code>getVectors</code> function to count the number of ships that fall within the area of interest and generate a dataset of points corresponding to detected ships. We’ll then use the <code>viz</code> function we just defined to visualize all of the ship detections and Sentinel-1 images in the AOI during that year stacked on top of each other. Finally, we’ll create a chart based on the number of ships detected per day, and allow the user to click on the chart to visualize the results for a particular day.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> daterangeVectors <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Get the date range from the date slider widget.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> range <span class="op">=</span> ee<span class="op">.</span><span class="fu">DateRange</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ee<span class="op">.</span><span class="fu">Date</span>(dateSlider<span class="op">.</span><span class="fu">getValue</span>()[<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    ee<span class="op">.</span><span class="fu">Date</span>(dateSlider<span class="op">.</span><span class="fu">getValue</span>()[<span class="dv">1</span>])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Get the area of interest from the drawing tools widget.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> aoi <span class="op">=</span> drawingTools<span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">getEeObject</span>()<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Hide the user-drawn shape.</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  drawingTools<span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">setShown</span>(<span class="kw">false</span>)<span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Filter the Sentinel 1 dataset to only include images within the date range, and within the area of interest.</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> s1Filtered <span class="op">=</span> s1<span class="op">.</span><span class="fu">filterDate</span>(range<span class="op">.</span><span class="fu">start</span>()<span class="op">,</span> range<span class="op">.</span><span class="fu">end</span>())<span class="op">.</span><span class="fu">filterBounds</span>(aoi)<span class="op">;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Count the number of ships in each image using the getVectors function</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> vectors <span class="op">=</span> s1Filtered<span class="op">.</span><span class="fu">map</span>(getVectors)<span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Use the viz function to visualize the results </span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">viz</span>(aoi<span class="op">,</span> vectors<span class="op">,</span> s1Filtered<span class="op">.</span><span class="fu">max</span>()<span class="op">.</span><span class="fu">updateMask</span>(dem<span class="op">.</span><span class="fu">lte</span>(<span class="dv">0</span>)))<span class="op">;</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Create a chart of the number of ships per day</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> chart <span class="op">=</span> ui<span class="op">.</span><span class="at">Chart</span><span class="op">.</span><span class="at">feature</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">byFeature</span>({</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      <span class="dt">features</span><span class="op">:</span> vectors<span class="op">,</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      <span class="dt">xProperty</span><span class="op">:</span> <span class="st">"system:time_start"</span><span class="op">,</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>      <span class="dt">yProperties</span><span class="op">:</span> [<span class="st">"count"</span>]<span class="op">,</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">setOptions</span>({</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> <span class="st">"Daily Number of Ships in Area of Interest"</span><span class="op">,</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>      <span class="dt">vAxis</span><span class="op">:</span> { <span class="dt">title</span><span class="op">:</span> <span class="st">"Ship Count"</span> }<span class="op">,</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>      <span class="dt">explorer</span><span class="op">:</span> { <span class="dt">axis</span><span class="op">:</span> <span class="st">"horizontal"</span> }<span class="op">,</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>      <span class="dt">lineWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>      <span class="dt">series</span><span class="op">:</span> <span class="st">"Area of Interest"</span><span class="op">,</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Add the chart at a fixed position, so that new charts overwrite older ones.</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  controlPanel<span class="op">.</span><span class="fu">widgets</span>()<span class="op">.</span><span class="fu">set</span>(<span class="dv">4</span><span class="op">,</span> chart)<span class="op">;</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Add a click handler to the chart to filter the map by day.</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  chart<span class="op">.</span><span class="fu">onClick</span>(filterDay)<span class="op">;</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There’s one function referenced above – <code>filterDay</code>– that we haven’t defined yet. This function is called when the user clicks on the chart to analyze a particular day. It takes the date of the clicked day as an input, filters the Sentinel-1 dataset and vector data accordingly, and uses the <code>viz</code> function to display the results for that day.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">filterDay</span> (callback) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Get the date of the clicked day</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> date <span class="op">=</span> ee<span class="op">.</span><span class="fu">Date</span>(callback)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Filter the vector data to only include images from that day</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> vectorDay <span class="op">=</span> vectors<span class="op">.</span><span class="fu">filterDate</span>(date)<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Filter the Sentinel-1 imagery to only include images from that day</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> s1Day <span class="op">=</span> s1<span class="op">.</span><span class="fu">filterDate</span>(date)<span class="op">.</span><span class="fu">max</span>()<span class="op">.</span><span class="fu">updateMask</span>(dem<span class="op">.</span><span class="fu">lte</span>(<span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Use the viz function to visualize the results</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">viz</span>(aoi<span class="op">,</span> vectorDay<span class="op">,</span> s1Day)<span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The analytical portion of the application is now complete. Now we have to build a user interface that lets us interact with the application.</p>
+</section>
+<section id="building-a-user-interface" class="level2">
+<h2 class="anchored" data-anchor-id="building-a-user-interface">Building a User Interface</h2>
+<p>There are four main steps in the process of creating the User Interface (UI):</p>
+<ol type="1">
+<li>Configure the drawing tools that allow the user to draw a polygon on the map.</li>
+<li>Create some widgets</li>
+</ol>
+<section id="drawing-tools" class="level3">
+<h3 class="anchored" data-anchor-id="drawing-tools">Drawing Tools</h3>
+<p>We eventually want to allow the user to draw a polygon on the map, and count the number of ships that fall within it. In order to do so, we need to set up a few functions related to the drawing tools that allow the user to do this. Among other things, we want to make sure that we’re clearing the old geometries so that we’re only ever conducting analysis inside the most recent user-drawn polygon, so we’ll need to clear the old ones. We also want to specify the type of polygon the user can draw, which for ease will be a rectangle (you could change this to the actual “polygon” type if you wanted to draw more complex geometries).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> drawingTools <span class="op">=</span> <span class="bu">Map</span><span class="op">.</span><span class="fu">drawingTools</span>()<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Remove any existing layers</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (drawingTools<span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">length</span>() <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> layer <span class="op">=</span> drawingTools<span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  drawingTools<span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">remove</span>(layer)<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Add a dummy layer to the drawing tools object (the Suez Canal box)</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dummyGeometry <span class="op">=</span> ui<span class="op">.</span><span class="at">Map</span><span class="op">.</span><span class="fu">GeometryLayer</span>({</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geometries</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">fromGeometry</span>(suez)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">setShown</span>(<span class="kw">false</span>)<span class="op">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">// Add the dummy layer to the drawing tools object</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>drawingTools<span class="op">.</span><span class="fu">layers</span>()<span class="op">.</span><span class="fu">add</span>(dummyGeometry)<span class="op">;</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a function that clears existing geometries and lets the user draw a rectangle</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">drawPolygon</span>() {</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> layers <span class="op">=</span> drawingTools<span class="op">.</span><span class="fu">layers</span>()<span class="op">;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  layers<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">geometries</span>()<span class="op">.</span><span class="fu">remove</span>(layers<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">geometries</span>()<span class="op">.</span><span class="fu">get</span>(<span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  drawingTools<span class="op">.</span><span class="fu">setShape</span>(<span class="st">"rectangle"</span>)<span class="op">;</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  drawingTools<span class="op">.</span><span class="fu">draw</span>()<span class="op">;</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="widgets" class="level3">
+<h3 class="anchored" data-anchor-id="widgets">Widgets</h3>
+<p>The control panel will eventually contain a few different widgets that allow the user to interact with the application. We’ll start by creating a button that allows the user to draw a polygon on the map. We’ll also create a slider that allows the user to adjust the size of the ships that are detected (remember, this manipulates the “scale” parameter in the <code>reduceToVectors</code> function used in the detection process). The slider will have an accompanying label that tells the user what it does.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a button that allows the user to draw a polygon on the map</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> drawButton <span class="op">=</span> ui<span class="op">.</span><span class="fu">Button</span>({</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"🔺"</span> <span class="op">+</span> <span class="st">" Draw a Polygon"</span><span class="op">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onClick</span><span class="op">:</span> drawPolygon<span class="op">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> { <span class="dt">stretch</span><span class="op">:</span> <span class="st">"horizontal"</span> }<span class="op">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a slider that allows the user to adjust the size of the ships that are detected</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> scaleSlider <span class="op">=</span> ui<span class="op">.</span><span class="fu">Slider</span>({</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">min</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">max</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onChange</span><span class="op">:</span> daterangeVectors<span class="op">,</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> { <span class="dt">width</span><span class="op">:</span> <span class="st">"70%"</span> }<span class="op">,</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a label for the slider</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> scaleLabel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Label</span>(<span class="st">"Ship Size: "</span>)<span class="op">;</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a panel that contains the slider and its label</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> scalePanel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Panel</span>({</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">widgets</span><span class="op">:</span> [scaleLabel<span class="op">,</span> scaleSlider]<span class="op">,</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> { <span class="dt">stretch</span><span class="op">:</span> <span class="st">"horizontal"</span> }<span class="op">,</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layout</span><span class="op">:</span> ui<span class="op">.</span><span class="at">Panel</span><span class="op">.</span><span class="at">Layout</span><span class="op">.</span><span class="fu">Flow</span>(<span class="st">"horizontal"</span>)<span class="op">,</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The last widget we’re going to define is the date slider. This widget will trigger the <code>daterangeVectors</code> function, which will filter the Sentinel-1 dataset to only include images from the selected year, and then run the detection process on the filtered dataset.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Specify the start and end dates for the date slider</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> start <span class="op">=</span> <span class="st">"2014-01-01"</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> now <span class="op">=</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Create a date slider that allows the user to select a year</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dateSlider <span class="op">=</span> ui<span class="op">.</span><span class="fu">DateSlider</span>({</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"2021-03-01"</span><span class="op">,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">start</span><span class="op">:</span> start<span class="op">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">end</span><span class="op">:</span> now<span class="op">,</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">period</span><span class="op">:</span> <span class="dv">365</span><span class="op">,</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">onChange</span><span class="op">:</span> daterangeVectors<span class="op">,</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> { <span class="dt">width</span><span class="op">:</span> <span class="st">"95%"</span> }<span class="op">,</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-control-panel" class="level3">
+<h3 class="anchored" data-anchor-id="the-control-panel">The Control Panel</h3>
+<p>Now we’re going to assemble all of the widgets we’ve just defined into one panel, alongside some explanatory text. I’m adding a blank label to the panel as a placeholder for the chart, since it will be re-added to the panel every time the user changes the date on the date slider, the AOI, or the scale.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> controlPanel <span class="op">=</span> ui<span class="op">.</span><span class="fu">Panel</span>({</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">widgets</span><span class="op">:</span> [</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    ui<span class="op">.</span><span class="fu">Label</span>(<span class="st">"SAR Ship Detection"</span><span class="op">,</span> {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span><span class="op">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"20px"</span><span class="op">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    ui<span class="op">.</span><span class="fu">Label</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"This tool identifies ships using Synthetic Aperture Radar imagery. Use the date slider below to analyze a given year. Click on the graph to show ships on a given day."</span><span class="op">,</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      { <span class="dt">whiteSpace</span><span class="op">:</span> <span class="st">"wrap"</span> }</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    dateSlider<span class="op">,</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    ui<span class="op">.</span><span class="fu">Label</span>()<span class="op">,</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    scalePanel<span class="op">,</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    ui<span class="op">.</span><span class="fu">Label</span>(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Click the button below and draw a rectangle on the map to count ships in a custom area."</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    drawButton</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">maxWidth</span><span class="op">:</span> <span class="st">"400px"</span>}<span class="op">,</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layout</span><span class="op">:</span> ui<span class="op">.</span><span class="at">Panel</span><span class="op">.</span><span class="at">Layout</span><span class="op">.</span><span class="fu">flow</span>(<span class="st">"vertical"</span><span class="op">,</span> <span class="kw">true</span>)<span class="op">,</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once the control panel has been defined, we can add it to</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Add the control panel to the map</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ui<span class="op">.</span><span class="at">root</span><span class="op">.</span><span class="fu">insert</span>(<span class="dv">0</span><span class="op">,</span>controlPanel)<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Trigger the daterangeVectors function when the user draws a polygon</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>drawingTools<span class="op">.</span><span class="fu">onDraw</span>(ui<span class="op">.</span><span class="at">util</span><span class="op">.</span><span class="fu">debounce</span>(daterangeVectors<span class="op">,</span> <span class="dv">500</span>))<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Run the daterangeVectors function to initialize the map</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">daterangeVectors</span>()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And there we have it. A fully functional, all weather, daytime/nighttime ship detection tool that doesn’t rely on AIS data. Let’s play around with it.</p>
+</section>
+</section>
+<section id="taking-it-for-a-spin" class="level2">
+<h2 class="anchored" data-anchor-id="taking-it-for-a-spin">Taking it for a spin</h2>
+<section id="north-korea" class="level3">
+<h3 class="anchored" data-anchor-id="north-korea">North Korea</h3>
+<p>In 2020, North Korea implemented one of the most severe COVID-19 lockdowns in the world including a near-total ban on <a href="https://thediplomat.com/2023/01/north-korea-likely-to-lift-pandemic-border-restrictions-in-2023/">“all cross-border exchanges, including trade, traffic, and tourism”.</a>. Measures have been so severe that the country appears to have experienced a significant <a href="https://foreignpolicy.com/2022/05/16/kim-north-korea-covid-outbreak-pandemic/">famine</a>. Though there were signs that things have gradually returned to normal, information on North Korea’s economy is pretty hard to come by. Ship traffic in and out of the country’s largest port, Nampo, is probably a pretty good indicator of the country’s economic activity.</p>
+<p>But we can’t just head on down to Marine Tracker or other services that use AIS data to track ship movements. According to the <a href="https://home.treasury.gov/system/files/126/dprk_vessel_advisory_02232018.pdf">U.S. Treasury</a>, “North Korean-flagged merchant vessels have been known to intentionally disable their AIS transponders to mask their movements. This tactic, whether employed by North Korean-flagged vessels or other vessels involved in trade with North Korea, could conceal the origin or destination of cargo destined for, or originating in, North Korea.” They should know – they’re the ones imposing the sanctions that make it illegal to trade with North Korea.</p>
+<p>A New York Times <a href="https://www.nytimes.com/2019/07/16/world/asia/north-korea-luxury-goods-sanctions.html">investigation</a> tracked the maritime voyage of luxury Mercedes cars from Germany to North Korea via the Netherlands, China, Japan, South Korea, and Russia. AIS transponders were turned off at several points throughout this journey, and the investigation had to rely on satellite imagery to fill in the gaps.</p>
+<p>Though they used high resolution optical imagery to follow individual ships, we want to identify lots of ships in a large area over a long period. That would get very expensive, and automatic ship detection in optical imagery is relatively difficult. Here’s how our SAR tool fares when we draw a box in the bay of Nampo:</p>
+<p><img src="../images/ships_north_korea.jpg" class="img-fluid"></p>
+<p>Looking at imagery from 2021, we can see ship traffic increasing from nearly zero to around 40 ships per day.</p>
+</section>
+<section id="ukraine" class="level3">
+<h3 class="anchored" data-anchor-id="ukraine">Ukraine</h3>
+<p>Odessa is Ukraine’s largest port. Following its invasion of Ukraine in February 2022, Russia instituted a naval blockade against Ukrainian ports. The impact of this blockade is clearly visible using the tool we’ve just built:</p>
+<p><img src="../images/ships_ukraine.jpg" class="img-fluid"></p>
+<p>The daily number of ships detected in the port of Odessa dropped from 40 to 50 to 0 to 5 following the invasion, and remained near zero until the blockade was lifted in September 2022.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/C3_Blast.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Blast Damage Assessment</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/C5_Object_Detection.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Object Detection</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
