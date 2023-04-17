@@ -18,18 +18,18 @@ Despite only being released in 2015, the number of geospatial journal articles u
 
 A) **Introduction**
     * Two introductory chapters that provide an overview of remote sensing the different types of satellite imagery available on Google Earth Engine.
-        * [Remote Sensing](chapters/A2_Remote_Sensing.qmd)
-        * [Data Acquisition](chapters/A3_Data_Acquisition.qmd)
+        * [Remote Sensing](A2_Remote_Sensing.qmd)
+        * [Data Acquisition](A3_Data_Acquisition.qmd)
 B) **Google Earth Engine**
     * Recently, a team of over 100 scientists came together to write a book called ["Cloud-Based Remote Sensing with Google Earth Engine: Fundamentals and Applications"](https://www.eefabook.org/). It's a great resource for learning about remote sensing and Earth Engine. The material in this section is a subset of the book, edited to fit the scope of this guide. If you're interested in learning more, check out the full book.
-        * [Getting Started](chapters/B1_Getting_Started.qmd)
-        * [Interpreting Images](chapters/B2_Interpreting_Images.qmd)
-        * [Image Series](chapters/B3_Image_Series.qmd)
-        * [Vectors and Tables](chapters/B4_Vectors_Tables.qmd)
+        * [Getting Started](B1_Getting_Started.qmd)
+        * [Interpreting Images](B2_Interpreting_Images.qmd)
+        * [Image Series](B3_Image_Series.qmd)
+        * [Vectors and Tables](B4_Vectors_Tables.qmd)
 C) **Case Studies**
     * A series of case studies that demonstrate how to use Google Earth Engine for open source investigations. Each case study includes a brief introduction to the topic, a step-by-step guide to using Google Earth Engine to analyze satellite imagery, and a discussion of the results.
-        * [War at Night](chapters/C1_Lights.qmd)
-        * [Refinery Identification](chapters/C2_Refineries.qmd)
-        * [Blast Damage Assessment](chapters/C3_Blast.qmd)
-        * [Ship Detection](chapters/C4_Ships.qmd)
-        * [Object Detection](chapters/C5_Object_Detection.qmd)
+        * [War at Night](C1_Lights.qmd)
+        * [Refinery Identification](C2_Refineries.qmd)
+        * [Blast Damage Assessment](C3_Blast.qmd)
+        * [Ship Detection](C4_Ships.qmd)
+        * [Object Detection](C5_Object_Detection.qmd)

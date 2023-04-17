@@ -219,7 +219,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, interior hidden, breakable, sharp corners, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, breakable, sharp corners, frame hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, interior hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -317,9 +317,9 @@ resources; all you need is an internet connection.
     \begin{itemize}
     \tightlist
     \item
-      \href{chapters/A2_Remote_Sensing.qmd}{Remote Sensing}
+      \protect\hyperlink{remote-sensing}{Remote Sensing}
     \item
-      \href{chapters/A3_Data_Acquisition.qmd}{Data Acquisition}
+      \protect\hyperlink{data-acquisition}{Data Acquisition}
     \end{itemize}
   \end{itemize}
 \item
@@ -339,13 +339,13 @@ resources; all you need is an internet connection.
     \begin{itemize}
     \tightlist
     \item
-      \href{chapters/B1_Getting_Started.qmd}{Getting Started}
+      \protect\hyperlink{getting-started}{Getting Started}
     \item
-      \href{chapters/B2_Interpreting_Images.qmd}{Interpreting Images}
+      \protect\hyperlink{interpreting-images}{Interpreting Images}
     \item
-      \href{chapters/B3_Image_Series.qmd}{Image Series}
+      \protect\hyperlink{image-series}{Image Series}
     \item
-      \href{chapters/B4_Vectors_Tables.qmd}{Vectors and Tables}
+      \protect\hyperlink{vectors-and-tables}{Vectors and Tables}
     \end{itemize}
   \end{itemize}
 \item
@@ -363,15 +363,17 @@ resources; all you need is an internet connection.
     \begin{itemize}
     \tightlist
     \item
-      \href{chapters/C1_Lights.qmd}{War at Night}
+      \protect\hyperlink{war-at-night}{War at Night}
     \item
-      \href{chapters/C2_Refineries.qmd}{Refinery Identification}
+      \protect\hyperlink{refinery-identification}{Refinery
+      Identification}
     \item
-      \href{chapters/C3_Blast.qmd}{Blast Damage Assessment}
+      \protect\hyperlink{blast-damage-assessment}{Blast Damage
+      Assessment}
     \item
-      \href{chapters/C4_Ships.qmd}{Ship Detection}
+      \protect\hyperlink{ship-detection}{Ship Detection}
     \item
-      \href{chapters/C5_Object_Detection.qmd}{Object Detection}
+      \protect\hyperlink{object-detection}{Object Detection}
     \end{itemize}
   \end{itemize}
 \end{enumerate}
@@ -1376,7 +1378,7 @@ Coverage
 \hypertarget{programming-basics}{%
 \section{Programming Basics}\label{programming-basics}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author}{%
 \subsection*{Author}\label{author}}
@@ -1777,7 +1779,7 @@ Congratulations! You have learned enough JavaScript to be able to use
 the Earth Engine API. In the next section, you will see how to access
 and execute Earth Engine API functions using JavaScript.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F10a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -1901,7 +1903,7 @@ indeed contains the list of years with the correct interval.
 You just accomplished a moderately complex programming task with the
 help of Earth Engine API.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F10b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -1923,7 +1925,7 @@ scripts for remote sensing analysis.
 \hypertarget{exploring-images}{%
 \section{Exploring Images}\label{exploring-images}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-1}{%
 \subsection*{Author}\label{author-1}}
@@ -2208,7 +2210,7 @@ the order of the layers in the list to the sequence of operations in
 your script. What layer did your script add first and where does this
 appear in the layering order on the map?
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F11a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -2388,7 +2390,7 @@ composites}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F11b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -2599,7 +2601,7 @@ value of each band. This will empower you to employ false-color
 composites as a flexible and powerful method to explore and interpret
 geographic patterns and changes on Earth's surface.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F11c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -2633,7 +2635,7 @@ about the location, date collected, and other properties of each image,
 allowing you to sift through the ImageCollection for the exact image
 characteristics needed for your analysis.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{authors}{%
 \subsection*{Authors}\label{authors}}
@@ -2809,7 +2811,7 @@ and information to the screen for too many elements}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F12a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -2978,7 +2980,7 @@ level of 7 (zoom levels go from 0 to 24).
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F12b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -3099,7 +3101,7 @@ previous section (Fig. F1.2.6). Zoom in and out and pan the screen as
 needed. What do you notice? Save your script but don't start a new
 one---we will keep adding code to this script.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F12c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -3149,7 +3151,7 @@ Central Africa? Northern Australia?
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F12d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -3306,7 +3308,7 @@ is shown in red)?
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F12f. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -3346,7 +3348,7 @@ in order to make these features more visible. Save your script.
 
 Fig. F1.2.18. NASADEM elevation
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F12g. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -3391,7 +3393,7 @@ Earth Engine. Remote Sens 13:1--23. https://doi.org/10.3390/rs13010010
 \section{The Remote Sensing
 Vocabulary}\label{the-remote-sensing-vocabulary}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{authors-1}{%
 \subsection*{Authors}\label{authors-1}}
@@ -3716,7 +3718,7 @@ with large-sized pixels are also called ``coarse resolution,'' those
 with medium-sized pixels are also called ``moderate resolution,'' and
 those with small-sized pixels are also called ``fine resolution.''
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F13a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -3882,7 +3884,7 @@ just produced (Fig. F1.3.15). Both cover a period of six months, yet
 there are many more points through time for the Sentinel-2 satellite,
 reflecting the greater temporal resolution.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F13b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -4073,7 +4075,7 @@ F1.3.19.
 Compare this hyperspectral instrument chart with the multispectral chart
 we plotted above for MODIS.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F13c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -4126,7 +4128,7 @@ false-color image with the QA60 band to see these values. More
 information about how to interpret these complex values is given in
 Chap. F4.3, which explains the treatment of clouds.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F13d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -4176,7 +4178,7 @@ properties using the get function, and printed to the Console.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F13e. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -4220,7 +4222,7 @@ interpreting the results.
 \section{Image Manipulation: Bands, Arithmetic, Thresholds, and
 Masks}\label{image-manipulation-bands-arithmetic-thresholds-and-masks}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-2}{%
 \subsubsection*{Author}\label{author-2}}
@@ -4571,7 +4573,7 @@ higher water content.
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F20a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -4910,7 +4912,7 @@ have more layers in your Inspector.}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F20b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -4993,7 +4995,7 @@ Amazon. Remote Sens 5:5493--5513. https://doi.org/10.3390/rs5115493
 \section{Interpreting an Image:
 Classification}\label{interpreting-an-image-classification}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-3}{%
 \subsubsection*{Author}\label{author-3}}
@@ -5302,7 +5304,7 @@ developed, water, and herbaceous (Fig. F2.1.8).
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F21a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -5574,7 +5576,7 @@ on accuracy metrics.
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F21b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -5718,7 +5720,7 @@ classification results (see Code Checkpoint below for an example).
 Another key point of classification is the accuracy assessment of the
 results. This will be covered in Chap. F2.2.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F21c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -5773,7 +5775,7 @@ tools and techniques. In: Data Mining. pp 4
 \section{Accuracy Assessment: Quantifying Classification
 Quality}\label{accuracy-assessment-quantifying-classification-quality}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-4}{%
 \subsubsection*{Author}\label{author-4}}
@@ -6164,7 +6166,7 @@ compared to the others? Can you think of any reasons why? (Hint: Check
 where the errors in these classes are in the confusion matrix---i.e.,
 being committed and omitted.)
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F22a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -6225,7 +6227,7 @@ trees}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F22b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -6244,7 +6246,7 @@ following Code Checkpoint replicates Sect. 1 but with a spatial join
 that excludes training points that are less than 1000 meters distant
 from testing points.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F22c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -6316,7 +6318,7 @@ to understand the status of places across decades.
 \hypertarget{filter-map-reduce}{%
 \section{Filter, Map, Reduce}\label{filter-map-reduce}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-5}{%
 \subsubsection*{Author}\label{author-5}}
@@ -6652,7 +6654,7 @@ you narrowed geographically first, it is good practice in Earth Engine
 to order the filters with the filterBounds first, followed by metadata
 filters in order of decreasing specificity.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F40a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -6789,7 +6791,7 @@ opening and closing the list of items. When you open that tag, you will
 see a chart of the EVI values at that pixel, created by mapping the
 makeLandsat5EVI function over the filtered ImageCollection.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F40b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -6869,7 +6871,7 @@ subsequent chapters in Part F4, you will see other kinds of
 reducers---for example, ones that summarize the characteristics in the
 neighborhood surrounding each pixel.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F40c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -6900,7 +6902,7 @@ ability to do sophisticated projects in Earth Engine.
 \section{Exploring Image
 Collections}\label{exploring-image-collections}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-6}{%
 \subsubsection*{Author}\label{author-6}}
@@ -7043,7 +7045,7 @@ tab, assuming the same pixel is clicked.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F41a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -7133,7 +7135,7 @@ want to use a different reducer, such as a median operation, that would
 give different, useful answers for each band. A few of these reducers
 are described below.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F41b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -7192,7 +7194,7 @@ curious about which reducers can be used to summarize band values across
 a collection of images, use the Docs tab in the Code Editor to list all
 reducers and look for those beginning with ee.Reducer.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F41c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -7294,7 +7296,7 @@ in image collections in a frequency domain. Exploring these values in
 different forms should be the first step of any study before developing
 data analysis algorithms.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F41d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -7328,7 +7330,7 @@ Biol 14:e1002415. https://doi.org/10.1371/journal.pbio.1002415
 \section{Aggregating Images for Time
 Series}\label{aggregating-images-for-time-series}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-7}{%
 \subsubsection*{Author}\label{author-7}}
@@ -7464,7 +7466,7 @@ Let's aggregate this collection so that we have 12 images---one image
 per month, with pixel values that represent the total precipitation for
 that month.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F42a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -7544,7 +7546,7 @@ We will use the millis function in the next section when we need to set
 the system:time\_start and system:time\_end properties of the aggregated
 images.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F42b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -7638,7 +7640,7 @@ ImageCollection (Fig. F4.2.2).
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F42c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -7727,7 +7729,7 @@ monsoon season lasting from June to September.
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F42d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -7768,7 +7770,7 @@ Remote Sensing Symposium (IGARSS). pp 3414--3416
 \section{Clouds and Image
 Compositing}\label{clouds-and-image-compositing}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-8}{%
 \subsubsection*{Author}\label{author-8}}
@@ -8165,7 +8167,7 @@ to better see them). Again, if the time period is not a constraint for
 the creation of your composite, you can incorporate more images from a
 third year, and so on.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F43a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -8359,7 +8361,7 @@ composite (right) for 2019. Inset centered at latitude 3.6023, longitude
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F43b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -8388,7 +8390,7 @@ compositing approach can be found in Griffiths et al.~(2013), and
 detailed information on tuning parameters can be found in White et
 al.~(2014).
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F43c. The book's repository contains information about
 accessing the GEE-BAP interface and its related functions.
@@ -8547,7 +8549,7 @@ into a new script.
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F43d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -8685,7 +8687,7 @@ https://doi.org/10.1016/j.rse.2011.10.028
 \hypertarget{change-detection}{%
 \section{Change Detection}\label{change-detection}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-9}{%
 \subsubsection*{Author}\label{author-9}}
@@ -9014,7 +9016,7 @@ the built-in rename function.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F44a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -9174,7 +9176,7 @@ algorithms that go beyond differencing and thresholding between two
 images, instead allowing you to analyze changes indicated across several
 images as a time series.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F44b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -9250,7 +9252,7 @@ https://doi.org/10.1016/j.rse.2019.111558
 \section{Interpreting Annual Time Series with
 LandTrendr}\label{interpreting-annual-time-series-with-landtrendr}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-10}{%
 \subsubsection*{Author}\label{author-10}}
@@ -9324,7 +9326,7 @@ in some of the chapters that follow this one.
 For this lab, we will use a graphical user interface (GUI) to teach the
 concepts of LandTrendr.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F45a. The book's repository contains information about
 accessing the LandTrendr interface.
@@ -9794,7 +9796,7 @@ https://doi.org/10.3390/rs10050691
 \section{Fitting Functions to Time
 Series}\label{fitting-functions-to-time-series}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-11}{%
 \subsubsection*{Author}\label{author-11}}
@@ -10106,7 +10108,7 @@ analyses can be done to the time series by harnessing Earth Engine tools
 for fitting curves through this data. We will see a couple of examples
 in the following sections.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F46a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -10224,7 +10226,7 @@ trendlines parameter (Fig. F4.6.5).
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F46b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -10403,7 +10405,7 @@ values of a pixel, you will not get values of phase, amplitude, and
 NDVI, but the transformed values into values of blue, green, and red
 colors.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F46c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -10471,7 +10473,7 @@ in the image. Using different elements of the fit, these two views, like
 other combinations of the data you might imagine, can reveal the rich
 variability of the landscape around Modesto.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F46d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -10489,7 +10491,7 @@ Modeling multiple waves within a given year can be done by adding more
 harmonic terms to Eq. F4.6.2. The code at the following checkpoint
 allows the fitting of any number of cycles through a given point.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F46e. The book's repository contains a script to use to
 begin this section. You will need to start with that script and edit the
@@ -10565,7 +10567,7 @@ https://doi.org/10.1016/j.rse.2019.02.003
 \section{Interpreting Time Series with
 CCDC}\label{interpreting-time-series-with-ccdc}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-12}{%
 \subsubsection*{Author}\label{author-12}}
@@ -10677,7 +10679,7 @@ created an interface-based tool (Arévalo et al.~2020) that facilitates
 the exploration of time series of Landsat observations and the CCDC
 results.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F47a. The book's repository contains information about
 accessing the CCDC interface.
@@ -10887,7 +10889,7 @@ exercise would take approximately 30 minutes on average to export, but
 larger tiles may take several hours to complete, depending on the number
 of images in the collection and the parameters used.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F47b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -11110,7 +11112,7 @@ the selected study period}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F47c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -11260,7 +11262,7 @@ by the CCDC algorithm for the origin (e.g., time 0), and not for the
 year we requested. In order to retrieve the adjusted intercept, as well
 as other coefficients, we will use a different approach.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F47d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -11448,7 +11450,7 @@ for the requested date}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F47e. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -11509,7 +11511,7 @@ of land cover using all available Landsat data. Remote Sens Environ
 \section{Data Fusion: Merging Classification
 Streams}\label{data-fusion-merging-classification-streams}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-13}{%
 \subsubsection*{Author}\label{author-13}}
@@ -11709,7 +11711,7 @@ In the thumbnail sequence, the color palette shows Forest (class 1) as
 green, Water (class 2) as blue, and Active Agriculture (class 3) as
 yellow. Areas with no data in a particular Event are shown in black.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F48a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -12081,7 +12083,7 @@ second stage, the meaning of those changes and any changes to LULC
 classes are identified. We will explore the workings of BULC-D using its
 GUI.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F48c. The book's repository contains information about
 accessing that interface.
@@ -12497,7 +12499,7 @@ Journey. Anchor
 \section{Exploring Lagged Effects in Time
 Series}\label{exploring-lagged-effects-in-time-series}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-14}{%
 \subsubsection*{Author}\label{author-14}}
@@ -12892,7 +12894,7 @@ course, that images list will fill up with all the images that are
 within lag of t. Those other images are also useful---for example, in
 fitting autoregressive models as described later.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F49a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13010,7 +13012,7 @@ As long as there is sufficient temporal overlap between the time series,
 these techniques could be extended to longer lags and longer time
 series.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F49b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13139,7 +13141,7 @@ At this stage, note that the missing data has become a real problem. Any
 data point for which at least one of the previous points is masked or
 missing is also masked.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F49c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13151,7 +13153,7 @@ equation F4.9.1 (the modeled value) for the missing or masked data.
 Unfortunately, the code to make that happen is not straightforward. You
 can check a solution in the following Code Checkpoint:
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F49d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13202,7 +13204,7 @@ vector data, and how to combine vector and raster data for analyses.
 \hypertarget{exploring-vectors}{%
 \section{Exploring Vectors}\label{exploring-vectors}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-15}{%
 \subsubsection*{Author}\label{author-15}}
@@ -13360,7 +13362,7 @@ the Imports section of the code at the top of your script}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F50a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13508,7 +13510,7 @@ Note that if you have any trouble with loading the FeatureCollection
 using the technique above, you can follow directions in the Checkpoint
 script below to use an existing asset loaded for this exercise.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F50b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13632,7 +13634,7 @@ Both of the above sections of code provide meaningful information about
 each feature, but they do not tell us which block is the most green. The
 next section will address that question.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F50c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13780,7 +13782,7 @@ After you run the task, the file will be saved to your Google Drive. You
 have now brought a feature into Earth Engine and also exported data from
 Earth Engine.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F50d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13828,7 +13830,7 @@ USF.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F50e. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -13852,7 +13854,7 @@ using vector features in Earth Engine.
 \hypertarget{rastervector-conversions}{%
 \section{Raster/Vector Conversions}\label{rastervector-conversions}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-16}{%
 \subsubsection*{Author}\label{author-16}}
@@ -14202,7 +14204,7 @@ samples for a validation effort.
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F51a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -14420,7 +14422,7 @@ of interest, such as only the largest deforestation events:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F51b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -14508,7 +14510,7 @@ change.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F51c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -14604,7 +14606,7 @@ This output can be useful when performing large-scale raster operations,
 such as efficiently calculating deforestation rates for multiple
 protected areas.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F51d. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -14762,7 +14764,7 @@ protected area but only outside of the boundary.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F51e. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -14781,7 +14783,7 @@ applications and ideas for using these techniques.
 \hypertarget{zonal-statistics}{%
 \section{Zonal Statistics}\label{zonal-statistics}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-17}{%
 \subsubsection*{Author}\label{author-17}}
@@ -15053,7 +15055,7 @@ vector dataset for future filtering and joining.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F52a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -15478,7 +15480,7 @@ you don't specify your own existing folder in Drive, the folder
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F52b. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -15660,7 +15662,7 @@ point of three pixels.}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F52c. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -15728,7 +15730,7 @@ https://doi.org/10.1016/j.rse.2006.12.006
 \hypertarget{advanced-vector-operations}{%
 \section{Advanced Vector Operations}\label{advanced-vector-operations}}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-tip-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Chapter Information}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-tip-color-frame]
 
 \hypertarget{author-18}{%
 \subsubsection*{Author}\label{author-18}}
@@ -16055,7 +16057,7 @@ priority}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F53a. The book's repository contains a script that shows
 what your code should look like at this point.
@@ -16406,7 +16408,7 @@ Francisco neighborhoods}
 
 \end{figure}
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, breakable, leftrule=.75mm, toptitle=1mm, opacitybacktitle=0.6, colback=white, titlerule=0mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, opacityback=0, rightrule=.15mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, left=2mm, coltitle=black, colback=white, bottomtitle=1mm, bottomrule=.15mm, opacityback=0, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, rightrule=.15mm, breakable, arc=.35mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 Code Checkpoint F53b. The book's repository contains a script that shows
 what your code should look like at this point.
