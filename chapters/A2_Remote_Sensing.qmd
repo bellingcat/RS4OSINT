@@ -99,4 +99,4 @@ This allows SkySat to achieve a revisit rate of 2-3 *hours*. The catch, however,
 ## Summary
 
 
-You should hopefully have a better understanding of what satellite imagery is, and how it can be used to answer questions about the world. In the [next section](A3_Data_acquisition.qmd), we'll look at the various types of satellite imagery stored in the Google Earth Engine catalog.
+You should hopefully have a better understanding of what satellite imagery is, and how it can be used to answer questions about the world. In the [next section](A3_Data_Acquisition.qmd), we'll look at the various types of satellite imagery stored in the Google Earth Engine catalog.
